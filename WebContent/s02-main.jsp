@@ -80,9 +80,10 @@
 				background-color: #4375DB;
 			}
 			
-			#imp {
-				margin-top: 1%;
-				margin-left: 1%;
+			table, tr, th, td {
+				border: thin solid black;
+				border-collapse: collapse;
+				padding: 5px;
 			}
 		</style>
 	</head>

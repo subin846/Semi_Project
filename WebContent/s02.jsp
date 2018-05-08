@@ -9,35 +9,35 @@
 		</tr>
 		<tr>
 			<td>학년</td>
-			<td></td>
+			<td>${dto.std_year}</td>
 		</tr>
 		<tr>
 			<td>이름</td>
-			<td></td>
+			<td>${dto.std_name}</td>
 		</tr>
 		<tr>
 			<td>생년월일</td>
-			<td></td>
+			<td>${dto.std_birthday}</td>
 		</tr>
 		<tr>
 			<td>전공</td>
-			<td></td>
+			<td>${dto.major_name}</td>
 		</tr>
 		<tr>
 			<td>상태</td>
-			<td></td>
+			<td>${dto.std_state}</td>
 		</tr>
 		<tr>
 			<td>연락처</td>
-			<td></td>
+			<td>${dto.std_phone}</td>
 		</tr>
 		<tr>
 			<td>이메일</td>
-			<td></td>
+			<td>${dto.std_email}</td>
 		</tr>
 		<tr>
 			<td>주소</td>
-			<td></td>
+			<td>${dto.std_address}</td>
 		</tr>
 	</table>
 </div>
