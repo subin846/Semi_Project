@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.semi2.service.InfoService;
+
 @WebServlet("/")
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -20,7 +22,26 @@ public class MainController extends HttpServlet {
 	}
 
 	private void dual(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 인코딩 설정
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		
+		String uri = request.getRequestURI();
+		String cp = request.getContextPath();
+		String sub = uri.substring(cp.length());
+		System.out.println("sub : " + sub);
+		
+		switch (sub) {
+		
+		case "/sProfile" :
+			System.out.println("sProfile 요청");
+			InfoService service = new InfoService(request, response);
+			service.sProfile();
+			break;
+			
+		default :
+			System.out.println("Input error");
+		}
 	}
 
 }

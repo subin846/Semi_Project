@@ -1,0 +1,43 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<div id="subdiv">
+	<table>
+		<tr>
+			<td>학번</td>
+			<td>${dto.std_id}</td>
+		</tr>
+		<tr>
+			<td>학년</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>이름</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>생년월일</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>전공</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>상태</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>연락처</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>이메일</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>주소</td>
+			<td></td>
+		</tr>
+	</table>
+</div>
