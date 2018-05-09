@@ -102,9 +102,9 @@
 					<a href="logout">LOGOUT</a>
 		</div>
 		<div id="navi">
-			<div><a href="#">학적</a></div>
+			<div><a href="#">내정보</a></div>
 			<div><a href="#">과목게시판</a></div>
-			<div><a href="#">수강신청</a></div>
+			<div><a href="#">강의</a></div>
 		</div>
 		<div id="sub">
 			<select>
@@ -115,10 +115,6 @@
 			</select>
 			<div><a href="#">신상조회</a></div>
 			<div><a href="#">시간표조회</a></div>
-			<div><a href="#">등록금고지서</a></div>
-			<div><a href="#">장학금</a></div>
-			<div><a href="#">성적</a></div>
-			<div><a href="#">학점계산기</a></div>
 		</div>
 		
 		
