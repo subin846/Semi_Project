@@ -36,11 +36,13 @@ public class MainController extends HttpServlet {
 		AdminService adservice = new AdminService(request, response);
 		
 		switch (sub) {
+		
 		case "/sProfile" :
 			System.out.println("sProfile 요청");
 			InfoService service = new InfoService(request, response);
 			service.sProfile();
 			break;
+/**민철******************************************************/
 		case "/student":
 			System.out.println("학생 리스트 요청");
 			adservice.sManagePage();
