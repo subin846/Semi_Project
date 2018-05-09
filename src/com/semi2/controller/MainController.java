@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.semi2.service.AdminService;
 import com.semi2.service.InfoService;
 
 @WebServlet("/")
@@ -30,15 +31,39 @@ public class MainController extends HttpServlet {
 		String cp = request.getContextPath();
 		String sub = uri.substring(cp.length());
 		System.out.println("sub : " + sub);
+		/**AdminService  민철******************************/
+		AdminService adservice = new AdminService(request, response);
 		
 		switch (sub) {
-		
 		case "/sProfile" :
 			System.out.println("sProfile 요청");
 			InfoService service = new InfoService(request, response);
 			service.sProfile();
 			break;
-			
+		case "/student":
+			System.out.println("학생 리스트 요청");
+			adservice.sManagePage();
+			break;
+		case "/update":
+			System.out.println("수정 페이지 요청");
+			adservice.sUpdate();
+			break;
+		case "/updateForm":
+			System.out.println("수정폼 요청");
+			adservice.sUpdatePage();
+			break;
+		case "/register":
+			System.out.println("학생등록 요청");
+			adservice.sAdd();
+			break;
+		case "/del":
+			System.out.println("삭제 요청");
+			adservice.sDel();
+			break;
+		case "/search":
+			System.out.println("검색 요청");
+			adservice.sSearch();
+			break;
 		default :
 			System.out.println("Input error");
 		}
