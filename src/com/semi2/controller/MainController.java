@@ -35,6 +35,9 @@ public class MainController extends HttpServlet {
 		/**AdminService  민철******************************/
 		AdminService adservice = new AdminService(request, response);
 		
+		/**MainService  수빈******************************/
+		MainService mservice = new MainService(request, response);
+		
 		switch (sub) {
 		
 		case "/sProfile" :
@@ -72,28 +75,23 @@ public class MainController extends HttpServlet {
 /**********************************************************************/			
 		//수빈			
 		case "/login" :
-			System.out.println("login 요청");
-			MainService mservice = new MainService(request, response);
+			System.out.println("login 요청");	
 			mservice.login();
 			break;
 		case "/logout" :
 			System.out.println("logout 요청");
-			mservice = new MainService(request, response);
 			mservice.logout();
 			break;
 		case "/smain" :
 			System.out.println("학생 main 페이지 이동");
-			mservice = new MainService(request, response);
 			mservice.smain();
 			break;
 		case "/pmain" :
 			System.out.println("교수 main 페이지 이동");
-			mservice = new MainService(request, response);
 			mservice.pmain();
 			break;
 		case "/amain" :
 			System.out.println("관리자 main 페이지 이동");
-			mservice = new MainService(request, response);
 			mservice.amain();
 			break;
 /**********************************************************************/				
