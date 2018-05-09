@@ -31,13 +31,21 @@ public class MainController extends HttpServlet {
 		String sub = uri.substring(cp.length());
 		System.out.println("sub : " + sub);
 		
+		InfoService infoService = null;
+		
 		switch (sub) {
 		
 		case "/sProfile" :
 			System.out.println("sProfile 요청");
-			InfoService service = new InfoService(request, response);
-			service.sProfile();
+			infoService = new InfoService(request, response);
+			infoService.sProfile();
 			break;
+			
+		case "/sTimetable" :
+			System.out.println("sTimetable 요청");
+			infoService = new InfoService(request, response);
+			infoService.sTimetable();
+			break;	
 			
 		default :
 			System.out.println("Input error");

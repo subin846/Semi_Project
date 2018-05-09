@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<% session.setAttribute("loginId", "s16160001"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -80,11 +82,6 @@
 				background-color: #4375DB;
 			}
 			
-			table, tr, th, td {
-				border: thin solid black;
-				border-collapse: collapse;
-				padding: 5px;
-			}
 		</style>
 	</head>
 	<body>
@@ -100,18 +97,25 @@
 			<div><a href="#">수강신청</a></div>
 		</div>
 		<div id="sub">
-			<div><a href="#">신상조회</a></div>
-			<div><a href="#">시간표조회</a></div>
-			<div><a href="#">등록금고지서</a></div>
-			<div><a href="#">장학금</a></div>
-			<div><a href="#">성적</a></div>
-			<div><a href="#">학점계산기</a></div>
+			<div id="s02"><a href="#">신상조회</a></div>
+			<div id="s03"><a href="#">시간표조회</a></div>
+			<div id="s04"><a href="#">등록금고지서</a></div>
+			<div id="s05"><a href="#">장학금</a></div>
+			<div id="s06"><a href="#">성적</a></div>
+			<div id="s07"><a href="#">학점계산기</a></div>
 		</div>
-		<div id="imp">
-			<%@ include file="s02.jsp" %>
+		<div id="subPage">
 		</div>
 	</body>
 	<script>
-	
+		// 신상조회 클릭
+		$("#s02").click(function() {
+			$("#subPage").load("s02.jsp");
+		});
+		
+		// 시간표 조회 클릭
+		$("#s03").click(function() {
+			$("#subPage").load("s03.jsp");
+		});
 	</script>
 </html>
