@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.semi2.service.MainService;
 import com.semi2.service.InfoService;
 
 @WebServlet({"/", "/login", "/logout", "/smain", "/pmain", "/amain"})
@@ -44,23 +45,28 @@ public class MainController extends HttpServlet {
 		//수빈			
 		case "/login" :
 			System.out.println("login 요청");
-			service.login();
+			MainService mservice = new MainService(request, response);
+			mservice.login();
 			break;
 		case "/logout" :
 			System.out.println("logout 요청");
-			service.logout();
+			mservice = new MainService(request, response);
+			mservice.logout();
 			break;
 		case "/smain" :
 			System.out.println("학생 main 페이지 이동");
-			service.smain();
+			mservice = new MainService(request, response);
+			mservice.smain();
 			break;
 		case "/pmain" :
 			System.out.println("교수 main 페이지 이동");
-			service.pmain();
+			mservice = new MainService(request, response);
+			mservice.pmain();
 			break;
 		case "/amain" :
 			System.out.println("관리자 main 페이지 이동");
-			service.amain();
+			mservice = new MainService(request, response);
+			mservice.amain();
 			break;
 /**********************************************************************/				
 			
