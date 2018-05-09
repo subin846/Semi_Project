@@ -8,9 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.semi2.service.AdminService;
+import com.semi2.service.MainService;
 import com.semi2.service.InfoService;
 
-@WebServlet("/")
+@WebServlet({"/", "/login", "/logout", "/smain", "/pmain", "/amain"})
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -64,6 +65,38 @@ public class MainController extends HttpServlet {
 			System.out.println("검색 요청");
 			adservice.sSearch();
 			break;
+		
+		
+/**********************************************************************/			
+		//수빈			
+		case "/login" :
+			System.out.println("login 요청");
+			MainService mservice = new MainService(request, response);
+			mservice.login();
+			break;
+		case "/logout" :
+			System.out.println("logout 요청");
+			mservice = new MainService(request, response);
+			mservice.logout();
+			break;
+		case "/smain" :
+			System.out.println("학생 main 페이지 이동");
+			mservice = new MainService(request, response);
+			mservice.smain();
+			break;
+		case "/pmain" :
+			System.out.println("교수 main 페이지 이동");
+			mservice = new MainService(request, response);
+			mservice.pmain();
+			break;
+		case "/amain" :
+			System.out.println("관리자 main 페이지 이동");
+			mservice = new MainService(request, response);
+			mservice.amain();
+			break;
+/**********************************************************************/				
+			
+			
 		default :
 			System.out.println("Input error");
 		}
