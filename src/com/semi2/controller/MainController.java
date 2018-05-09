@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.semi2.service.InfoService;
 
-@WebServlet("/")
+@WebServlet({"/", "/login", "/logout", "/smain", "/pmain", "/amain"})
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -38,6 +38,32 @@ public class MainController extends HttpServlet {
 			InfoService service = new InfoService(request, response);
 			service.sProfile();
 			break;
+		
+		
+/**********************************************************************/			
+		//수빈			
+		case "/login" :
+			System.out.println("login 요청");
+			service.login();
+			break;
+		case "/logout" :
+			System.out.println("logout 요청");
+			service.logout();
+			break;
+		case "/smain" :
+			System.out.println("학생 main 페이지 이동");
+			service.smain();
+			break;
+		case "/pmain" :
+			System.out.println("교수 main 페이지 이동");
+			service.pmain();
+			break;
+		case "/amain" :
+			System.out.println("관리자 main 페이지 이동");
+			service.amain();
+			break;
+/**********************************************************************/				
+			
 			
 		default :
 			System.out.println("Input error");
