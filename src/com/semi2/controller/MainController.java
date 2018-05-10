@@ -42,6 +42,8 @@ public class MainController extends HttpServlet {
 		
 		InfoService infoService = null;
 		LectureService lectureService = null;
+		//은경
+		BbsService bbs = null;
 		
 		switch (sub) {
 		/******************* 준도 *******************/
@@ -163,7 +165,6 @@ public class MainController extends HttpServlet {
 			break;
 /**********************************************************************/			
 			//은경
-			BbsService bbs;
 			
 			case "/subjectTab":
 				System.out.println("select에 신청과목 들어가도록 요청");
