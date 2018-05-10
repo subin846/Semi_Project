@@ -165,7 +165,6 @@ public class MainController extends HttpServlet {
 			//은경
 			BbsService bbs;
 			
-			switch (subAddr) {
 			case "/subjectTab":
 				System.out.println("select에 신청과목 들어가도록 요청");
 				bbs = new BbsService(request,response);
@@ -195,7 +194,6 @@ public class MainController extends HttpServlet {
 				bbs = new BbsService(request,response);
 				bbs.detail();
 				break;	
-			}
 			
 		default :
 			System.out.println("Input error");
