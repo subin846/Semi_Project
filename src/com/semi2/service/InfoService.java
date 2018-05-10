@@ -118,8 +118,21 @@ public class InfoService {
 	}
 
 	// 성적조회
-	public void score() {
-		
+	public void score() throws IOException {
+		String loginId = request.getParameter("loginId");
+
+		InfoDAO dao = new InfoDAO();
+		ArrayList<DTO> scoreList = dao.score(loginId);
+
+		// map에 dto 담기
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("scoreList", scoreList);
+
+		// json 전송
+		Gson gson = new Gson();
+		String json = gson.toJson(map);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().println(json);
 	}
 
 	// 학점계산기 페이지

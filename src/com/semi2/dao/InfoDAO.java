@@ -187,4 +187,37 @@ public class InfoDAO {
 		return scholarList;
 	}
 
+	// 성적조회
+	public ArrayList<DTO> score(String loginId) {
+		ArrayList<DTO> scoreList = new ArrayList<>();
+		String sql = "SELECT sc.std_id, sb.term_id, sb.subject_name, score_score, sb.subject_credit, sb.subject_type " + 
+				"FROM score sc " + 
+				"JOIN subject sb " + 
+				"ON sc.subject_id = sb.subject_id " + 
+				"WHERE sc.std_id =? " + 
+				"order by term_id desc";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, loginId);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				DTO dto = new DTO();
+				dto.setTerm_id(rs.getString("term_id"));
+				dto.setSubject_name(rs.getString("subject_name"));
+				dto.setScore_score(rs.getString("score_score"));
+				dto.setSubject_credit(rs.getInt("subject_credit"));
+				dto.setSubject_type(rs.getString("subject_type"));
+				scoreList.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			resClose();
+		}
+		
+		return scoreList;
+	}
+
 }

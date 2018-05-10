@@ -124,5 +124,10 @@
 		$("#s05").click(function() {
 			$("#subPage").load("s05.jsp");
 		});
+		
+		// 성적조회 클릭
+		$("#s06").click(function() {
+			$("#subPage").load("s06.jsp");
+		});
 	</script>
 </html>
