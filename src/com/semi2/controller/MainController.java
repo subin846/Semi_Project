@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.semi2.service.AdminService;
+import com.semi2.service.BbsService;
 import com.semi2.service.MainService;
 import com.semi2.service.InfoService;
 import com.semi2.service.LectureService;
@@ -160,7 +161,41 @@ public class MainController extends HttpServlet {
 			System.out.println("관리자 main 페이지 이동");
 			mservice.amain();
 			break;
-/**********************************************************************/				
+/**********************************************************************/			
+			//은경
+			BbsService bbs;
+			
+			switch (subAddr) {
+			case "/subjectTab":
+				System.out.println("select에 신청과목 들어가도록 요청");
+				bbs = new BbsService(request,response);
+				bbs.subjectTab();
+				break;
+				
+			case "/subjectSel":
+				System.out.println("select값을 가져와 옵션 채워넣기");
+				bbs = new BbsService(request, response);
+				bbs.subjectSel();
+				break;
+				
+			case "/list":
+				System.out.println("게시판 리스트 요청");
+				bbs = new BbsService(request, response);
+				bbs.list();
+				break;	
+				
+			case "/write":
+				System.out.println("글쓰기 요청");
+				bbs = new BbsService(request,response);
+				bbs.write();
+				break;	
+				
+			case "/detail":
+				System.out.println("상세보기 요청");
+				bbs = new BbsService(request,response);
+				bbs.detail();
+				break;	
+			}
 			
 		default :
 			System.out.println("Input error");
