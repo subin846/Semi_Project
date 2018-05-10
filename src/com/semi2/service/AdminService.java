@@ -107,9 +107,14 @@ public class AdminService {
 	}
 	/**검색*********************************/
 	public void sSearch() throws ServletException, IOException{
+		String selectbox = request.getParameter("selectbox");
+		String val=request.getParameter("val");
+		AdminDAO dao = new AdminDAO();
+		ArrayList<DTO> list=dao.sSearch(selectbox,val);
+		request.setAttribute("search", list);
+		RequestDispatcher dis = request.getRequestDispatcher("a01.jsp");
+		dis.forward(request, response);
 		
 	}
-
-	
 
 }

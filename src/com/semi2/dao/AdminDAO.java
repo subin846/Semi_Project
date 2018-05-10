@@ -164,4 +164,41 @@ public class AdminDAO {
 			}
 			return success;
 		}
+		/**검색 ****************/
+		public ArrayList<DTO> sSearch(String selectbox, String val) {
+			ArrayList<DTO> list = new ArrayList<>();
+			try {
+				if(selectbox.equals("std_id")) {
+					ps=conn.prepareStatement("SELECT * FROM std WHERE std_id = ?");
+					ps.setString(1, val);
+				}else if(selectbox.equals("std_name")) {
+					ps=conn.prepareStatement("SELECT * FROM std WHERE std_name=?");
+					ps.setString(1, val);
+				}else if(selectbox.equals("std_state")) {
+					ps=conn.prepareStatement("SELECT * FROM std WHERE std_state=?");
+					ps.setString(1, val);
+				}
+				rs=ps.executeQuery();
+				System.out.println("/////////////");
+				while(rs.next()) {
+					DTO dto=new DTO();
+					System.out.println(rs.getString("std_id"));
+					dto.setStd_id(rs.getString("std_id"));
+					dto.setStd_year(rs.getInt("std_year"));
+					dto.setStd_name(rs.getString("std_name"));
+					dto.setStd_birthday(rs.getString("std_birthday"));
+					dto.setStd_state(rs.getString("std_state"));
+					dto.setStd_phone(rs.getString("std_phone"));
+					dto.setStd_email(rs.getString("std_email"));
+					dto.setStd_address(rs.getString("std_address"));		
+					list.add(dto);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+			}finally {
+				close();
+			}
+			return list;
+		}
 }

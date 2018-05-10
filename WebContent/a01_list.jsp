@@ -4,11 +4,14 @@
 
  <body>
 	<div id="div3">
-            <form id="selectbox" action="search">
-                <input type="radio" name="select" value="studentId"/>학번
-                <input type="radio" name="select" value="studentId"/>이름
-                <input type="radio" name="select" value="studentId"/>  전공
-                <input type="text"/>
+            <form id="select" action="search">
+            	<select name="selectbox">
+            		<option value="none"  selected="selected" >-선택하세요-</option>
+  					<option value="std_id">학번</option>
+				  	<option value="std_name">이름</option>
+				 	<option value="std_state">상태</option>
+				</select>
+                <input type="text" name="val"/>
                 <input type="submit" value="조회"/>
                 <input type="button" onclick="location.href='a01_Register.jsp'" value="등록">
             </form>
@@ -43,6 +46,26 @@
 			            </td>
 			            <td>
 			           		<input type="button" onclick="location.href='del?std_id=${bbs.std_id}'" value="삭제"/>
+			            </td>
+		       		</tr>
+		        </form>
+	        </c:forEach>
+	        <c:forEach items="${search}" var="search">
+	       		<form action="updateForm" method="get">
+		      		<tr >
+			            <td> ${search.std_id}<input  type="hidden" name="std_id" value="${ search.std_id }"/></td>
+			            <td> ${search.std_year}</td>
+			            <td> ${search.std_name}</td>
+			            <td> ${search.std_birthday}</td>
+			            <td> ${search.std_state}</td>
+			            <td> ${search.std_phone}</td>
+			            <td> ${search.std_email}</td>
+			            <td> ${search.std_address}</td>
+			            <td>
+			           		<input  type="submit" value="수정"/>
+			            </td>
+			            <td>
+			           		<input type="button" onclick="location.href='del?std_id=${search.std_id}'" value="삭제"/>
 			            </td>
 		       		</tr>
 		        </form>
