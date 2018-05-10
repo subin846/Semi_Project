@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ include file="loginCheck.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -14,6 +15,12 @@
 			th, td {
 				width: 80px;
 				height: 40px;
+			}
+			th {
+				background-color: #F6F6F6;
+			}
+			#s03 {
+				text-decoration: underline;
 			}
 		</style>
 	</head>
@@ -108,7 +115,7 @@
 				url: "./sTimetable",
 				dataType: "json",
 				data: {
-					"loginId": '${sessionScope.loginId}'
+					"loginId": "${sessionScope.loginId}"
 				},
 				success: function(data) {
 					for (var i = 0; i < data.list.length; i++) {

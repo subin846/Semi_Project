@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.semi2.service.AdminService;
 import com.semi2.service.MainService;
 import com.semi2.service.InfoService;
+import com.semi2.service.LectureService;
 
 @WebServlet({"/", "/login", "/logout", "/smain", "/pmain", "/amain"})
 public class MainController extends HttpServlet {
@@ -39,14 +40,78 @@ public class MainController extends HttpServlet {
 		MainService mservice = new MainService(request, response);
 		
 		InfoService infoService = null;
+		LectureService lectureService = null;
 		
 		switch (sub) {
-		
+		/******************* 준도 *******************/
 		case "/sProfile" :
-			System.out.println("sProfile 요청");
+			System.out.println("학생 신상조회 요청");
 			infoService = new InfoService(request, response);
 			infoService.sProfile();
 			break;
+		case "/sTimetable" :
+			System.out.println("학생 시간표 요청");
+			infoService = new InfoService(request, response);
+			infoService.sTimetable();
+			break;
+		case "/tuitionTerm" :
+			System.out.println("등록금 학기 가져오기");
+			infoService = new InfoService(request, response);
+			infoService.tuitionTerm();
+			break;
+		case "/tuition" :
+			System.out.println("등록금고지서 요청");
+			infoService = new InfoService(request, response);
+			infoService.tuition();
+			break;
+		case "/scholar" :
+			System.out.println("장학금조회 요청");
+			infoService = new InfoService(request, response);
+			infoService.scholar();
+			break;
+		case "/score" :
+			System.out.println("성적조회 요청");
+			infoService = new InfoService(request, response);
+			infoService.score();
+			break;
+		case "/calPage" :
+			System.out.println("학점계산기 페이지 요청");
+			infoService = new InfoService(request, response);
+			infoService.calPage();
+			break;
+		case "/cal" :
+			System.out.println("학점계산 요청");
+			infoService = new InfoService(request, response);
+			infoService.cal();
+			break;
+		case "/pTimetable" :
+			System.out.println("교수 시간표 요청");
+			infoService = new InfoService(request, response);
+			infoService.pTimetable();
+			break;
+		case "/pProfile" :
+			System.out.println("교수 신상정보 요청");
+			infoService = new InfoService(request, response);
+			infoService.pProfile();
+			break;
+		case "/studentSearch" :
+			System.out.println("수강생조회 요청");
+			lectureService = new LectureService(request, response);
+			lectureService.studentSearch();
+			break;
+		case "/scoreRegistPage" :
+			System.out.println("성적등록 페이지 요청");
+			lectureService = new LectureService(request, response);
+			lectureService.scoreRegistPage();
+			break;
+		case "/scoreRegist" :
+			System.out.println("성적등록 요청");
+			lectureService = new LectureService(request, response);
+			lectureService.scoreRegist();
+			break;
+			
+		/******************* 준도 *******************/
+			
 /**민철******************************************************/
 		case "/student":
 			System.out.println("학생 리스트 요청");
@@ -73,7 +138,6 @@ public class MainController extends HttpServlet {
 			adservice.sSearch();
 			break;
 		
-		
 /**********************************************************************/			
 		//수빈			
 		case "/login" :
@@ -97,13 +161,6 @@ public class MainController extends HttpServlet {
 			mservice.amain();
 			break;
 /**********************************************************************/				
-			
-			
-		case "/sTimetable" :
-			System.out.println("sTimetable 요청");
-			infoService = new InfoService(request, response);
-			infoService.sTimetable();
-			break;	
 			
 		default :
 			System.out.println("Input error");
