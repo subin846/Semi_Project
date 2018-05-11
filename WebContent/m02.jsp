@@ -29,10 +29,10 @@
 		}else{
 			alert("현재의 비밀번호가 일치하지 않습니다. 다시 확인 해 주세요.");
 		}
-		console.log(loginPw);
-		console.log(document.getElementById("writePass").value);
-		console.log(document.getElementById("writeNewPass").value);
-		console.log(document.getElementById("newPassCheck").value);
+		//console.log(loginPw);
+		//console.log(document.getElementById("writePass").value);
+		//console.log(document.getElementById("writeNewPass").value);
+		//console.log(document.getElementById("newPassCheck").value);
     });
 	
 	$("#save").click(function(){
@@ -41,9 +41,9 @@
 		}else{
 			alert("저장이 완료 되었습니다.");
 		}
-		console.log(loginPw);
-		console.log(document.getElementById("writePass").value);
-		console.log(document.getElementById("writeNewPass").value);
+		//console.log(loginPw);
+		//console.log(document.getElementById("writePass").value);
+		//console.log(document.getElementById("writeNewPass").value);
 		
     });
 	
