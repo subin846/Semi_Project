@@ -48,8 +48,8 @@
     </head>
     <body>
         <div id="div1">
-            <h3><a href="student" id="link1" >학생 관리</a></h3><br/>
-            <h3><a href="aTuition" id="link2"> 등록금 관리</a></h3><br/>
+            <h3><a href="student">학생 관리</a></h3><br/>
+            <h3><a href="tuition"> 등록금 관리</a></h3><br/>
             <h3>장학금 종류 관리</h3><br/>
             <h3>장학금 관리</h3><br/>
             <h3>교수 관리</h3><br/>
@@ -61,7 +61,7 @@
             학번 /<a href="#"> 비밀번호 변경</a> / <a href="#"> 로그아웃</a>
         </div>
         <div id="subPage" >
-       	 	<%@ include file="a01_list.jsp" %>
+       	 	<%@ include file="a02_list.jsp" %>
         </div>
     </body>
     <script>

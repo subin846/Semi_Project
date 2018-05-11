@@ -18,7 +18,7 @@ public class DTO {
 	private String std_email;
 	private String std_name;
 	private String std_pw;
-	// 전공
+	// 학과명
 	private String major_id;
 	private String major_name;
 	// 수강신청
@@ -72,7 +72,14 @@ public class DTO {
 	// 첨부파일
 	private int upload_id;
 	private String upload_name;
-
+	// 등록금 실납입액
+	private int totalMoney;
+	public int getTotalMoney() {
+		return totalMoney;
+	}
+	public void setTotalMoney(int totalMoney) {
+		this.totalMoney = totalMoney;
+	}
 	// Getter, Setter
 	public int getScholar_id() {
 		return scholar_id;
