@@ -11,7 +11,6 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import com.semi2.dto.DTO;
-//CREATE SEQUENCE seq_tuition; 시퀀스 생성
 public class AdminDAO {
 	Connection conn=null;
 	ResultSet rs=null;
@@ -301,7 +300,7 @@ public class AdminDAO {
 		/**등록금 등록*****************/
 		public int tAdd(DTO dto) {
 			int success=0;
-			String sql = "INSERT INTO tuition(tuition_id, tuition_money,std_id,scholar_id,term_id) VALUES (seq_tuition.NEXTVAL,?,?,?,?) ";
+			String sql = "INSERT INTO tuition(tuition_id, tuition_money,std_id,scholar_id,term_id) VALUES (seq_tuition_id.NEXTVAL,?,?,?,?) ";
 			try {
 				ps=conn.prepareStatement(sql);
 				ps.setInt(1, dto.getTuition_money());
