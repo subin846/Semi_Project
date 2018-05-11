@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-
-
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script src =" https://code.jquery.com/jquery-3.3.1.min.js"></script>
 		<title>Insert title here</title>
 		<style>
 			body{
@@ -48,12 +47,8 @@
 				font-size: large;
 				font-weight: bold;
 			}
-			select {
-				width: 150px;
-				height: 30px;
-				margin-bottom: 15px;
-				margin-top: 15px;
-				margin-left: 10px
+			#navi #navi3{
+				background-color: #4375DB;
 			}
  			#sub a{
 				text-decoration: none;
@@ -61,7 +56,6 @@
 				font-weight: bold;
 				color: black;
 				margin-left: 10px;
-				display: none;
 			}
 			#sub{
 				margin-top: 1%;
@@ -70,59 +64,73 @@
 				border: 1px solid #c0c0c0;
 				margin-left: 1%;
 				background-color: #F6F6F6;
-				float: left;
-				display: none;
+				float: left; 
 			}
-			#sub div{
+			 #sub div{
 				height: 40px;
-				padding-top: 15px;
-				display: none;
-			}
+				padding-top: 50px;
+			} 
 			#sub div:hover {
-				text-decoration: underline;
-				display: none;
+				 text-decoration: underline; 
 			}
+			#import  table,th,td{
+				border: 1px solid black;
+				border-collapse: collapse;
+				padding:10px 15px;
+				margin:2%;
+			} 
 		</style>
 	</head>
 	<body>
-		<div id="menu">
-			<span></span>
-				<script>
-					var loginId ="${sessionScope.loginId}";
-					if(loginId == ""){
-						alert("로그인이 필요한 서비스 입니다.");
-						location.href="index.jsp";
-					}else{
-						var content = loginId+" 님 환영합니다 ";
-						document.getElementById("menu").innerHTML = content;
-					}
-				</script>
+			<div id="menu">
+					<span></span>님 환영합니다
 					<a href="#">HOME</a>
-					<a href="m02.jsp">비밀번호변경</a>
-					<a href="logout">LOGOUT</a>
-		</div>
-		<div id="navi">
-			<div><a href="./s02-main.jsp">학적</a></div>
-			<div><a href="#">과목게시판</a></div>
-			<div><a href="#">수강신청</a></div>
-		</div>
-		<div id="sub">
-			<select>
-				<option>과목선택</option>
-				<option>과목1</option>
-				<option>과목2</option>
-				<option>과목3</option>
-			</select>
-			<div><a href="#">강의계획서</a></div>
-			<div><a href="#">강의자료</a></div>
-			<div><a href="#">과제제출</a></div>
-			<div><a href="#">강의평가</a></div>
-		</div>
-		
-		
-		
-		
-
-		
-	</body>
+					<a href="#">비밀번호변경</a>
+					<a href="#">LOGOUT</a>
+			</div>
+			<div id="navi">
+				<div><a href="#">학적</a></div>
+				<div><a href="#">과목게시판</a></div>
+				<div id="navi3"><a href="./s15-main.jsp">수강신청</a></div>
+			</div>
+			<div id="sub">
+				<div id="s15"><a href="#">과목조회</a></div>
+				<div id="s16"><a href="#">수강신청</a></div>
+				<div id="s17"><a href="#">신청과목조회</a></div>
+			</div>
+			<div id ="import">
+				<%@include file="s15.jsp" %> 
+			</div>
+	<script>
+		/* 과목 조회 메뉴 클릭시 */
+		$("#s15").click(function(){
+			$("#import").load("s15.jsp");
+		});
+		/* 과목 조회 메뉴 클릭시 */
+		$("#s16").click(function(){
+			$("#import").load("s16.jsp");
+		});
+		/* 과목 조회 메뉴 클릭시 */
+		$("#s17").click(function(){
+			$("#import").load("s17.jsp");	
+		});
+	</script>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

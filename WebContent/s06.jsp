@@ -7,7 +7,7 @@
 	<head>
 		<style>
 			table, tr, th, td {
-				border: thin solid black;
+				border: thin solid lightgray;
 				border-collapse: collapse;
 				padding: 5px;
 				text-align: center;
@@ -23,7 +23,7 @@
 			}
 		</style>
 	</head>
-	<body id="body06">
+	<body>
 		<div id="s06Div"></div>
 	</body>
 	<script>
@@ -41,7 +41,7 @@
 					var termCount = 0; // 학기 개수
 					var str = ""; // append할 String
 					var sumCredit = 0; // 학기별 총 신청학점
-					var sumScore = 0; // 학기별 성적*학점 합
+					var sumScore = 0.0; // 학기별 성적*학점 합
 					
 					for (var i = 0; i < data.scoreList.length; i++) {
 						// 기존 학기와 다를 경우
@@ -68,7 +68,7 @@
 							+ "<td>" + data.scoreList[i].score_score +"</td></tr>";
 						
 						sumCredit += data.scoreList[i].subject_credit; // 신청학점 더하기
-						sumScore += data.scoreList[i].subject_credit * scoreToInt(data.scoreList[i].score_score); // 학점*성적 더하기
+						sumScore += data.scoreList[i].subject_credit * scoreToNum(data.scoreList[i].score_score); // 학점*성적 더하기
 							
 						// 마지막 후처리
 						if (i == data.scoreList.length - 1) {
@@ -83,7 +83,8 @@
 				}
 			});
 			
-			function scoreToInt(score) {
+			// 성적을 숫자로 변환
+			function scoreToNum(score) {
 				if (score == "A+") {
 					return 4.5;
 				} else if (score == "A0") {

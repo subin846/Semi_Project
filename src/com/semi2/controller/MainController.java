@@ -1,6 +1,7 @@
 package com.semi2.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,23 +10,27 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.semi2.service.AdminService;
 import com.semi2.service.BbsService;
-import com.semi2.service.MainService;
+import com.semi2.service.EnrollService;
 import com.semi2.service.InfoService;
 import com.semi2.service.LectureService;
+import com.semi2.service.MainService;
 
-@WebServlet({"/", "/login", "/logout", "/smain", "/pmain", "/amain"})
+@WebServlet({"/", "/login", "/logout", "/smain", "/pmain", "/amain", "/passChange"})
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 		dual(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 		dual(request, response);
 	}
 
-	private void dual(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void dual(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 		// 인코딩 설정
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
@@ -37,6 +42,7 @@ public class MainController extends HttpServlet {
 		/**AdminService  민철******************************/
 		AdminService adservice = new AdminService(request, response);
 		
+		EnrollService enService= new EnrollService(request,response);
 		/**MainService  수빈******************************/
 		MainService mservice = new MainService(request, response);
 		
@@ -82,11 +88,6 @@ public class MainController extends HttpServlet {
 			infoService = new InfoService(request, response);
 			infoService.calPage();
 			break;
-		case "/cal" :
-			System.out.println("학점계산 요청");
-			infoService = new InfoService(request, response);
-			infoService.cal();
-			break;
 		case "/pTimetable" :
 			System.out.println("교수 시간표 요청");
 			infoService = new InfoService(request, response);
@@ -115,11 +116,19 @@ public class MainController extends HttpServlet {
 			
 		/******************* 준도 *******************/
 			
+		/******************* 지현 *******************/
+		case "/subjectSearch" :
+			System.out.println("조회 버튼 클릭시 필터링");
+			enService.subjectSearch();
+			break; 
+		/******************* 지현 *******************/
+			
 /**민철******************************************************/
 		case "/student":
 			System.out.println("학생 리스트 요청");
 			adservice.sManagePage();
 			break;
+		
 		case "/update":
 			System.out.println("수정 페이지 요청");
 			adservice.sUpdate();
@@ -186,6 +195,10 @@ public class MainController extends HttpServlet {
 		case "/amain" :
 			System.out.println("관리자 main 페이지 이동");
 			mservice.amain();
+			break;
+		case "/passChange" :
+			System.out.println("비밀번호 변경 요청");
+			mservice.passChange();
 			break;
 /**********************************************************************/			
 			//은경

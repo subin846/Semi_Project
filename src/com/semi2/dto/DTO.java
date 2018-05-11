@@ -18,7 +18,7 @@ public class DTO {
 	private String std_email;
 	private String std_name;
 	private String std_pw;
-	// 전공
+	// 학과명
 	private String major_id;
 	private String major_name;
 	// 수강신청
