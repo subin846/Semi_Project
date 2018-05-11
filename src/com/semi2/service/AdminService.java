@@ -114,7 +114,87 @@ public class AdminService {
 		request.setAttribute("search", list);
 		RequestDispatcher dis = request.getRequestDispatcher("a01.jsp");
 		dis.forward(request, response);
+	}
+	/**등록금 리스트 ***************************/
+	public void tMangePage() throws ServletException, IOException {
+		AdminDAO dao = new AdminDAO();
+		ArrayList<DTO> tMangePage=dao.tMangePage();
+		request.setAttribute("list", tMangePage);
+		RequestDispatcher dis = request.getRequestDispatcher("a02_index.jsp");
+		dis.forward(request, response);
+	}
+	/**등록금 수정폼********************/
+	public void tUpdatePage() throws ServletException, IOException {
+		String studentId =request.getParameter("std_id");
+		String term_id = request.getParameter("term_id");
+		AdminDAO dao = new AdminDAO();
+		DTO dto = dao.tUpdatePage(studentId,term_id);
+		if (dto != null) {
+			request.setAttribute("form", dto);
+		} else {
+			System.out.println("오류");
+		}
+		RequestDispatcher rd = request.getRequestDispatcher("a02_update.jsp");
+		rd.forward(request, response);
+	}
+	/**등록금 수정 ********************/
+	public void tUpdate() throws ServletException, IOException {
+		String std_id =request.getParameter("std_id");
+		int tuition_money=Integer.parseInt(request.getParameter("tuition_money"));
+		String term_id = request.getParameter("term_id");
+		AdminDAO dao = new AdminDAO();
+		DTO dto = new DTO();
+		dto.setStd_id(std_id);
+		dto.setTuition_money(tuition_money);
+		dto.setTerm_id(term_id);
+		// 데이터 수정
+		int success = dao.tUpdate(dto);
+		// 결과 확인
+		if (success > 0) {
+			System.out.println("성공");
+			RequestDispatcher rd = request.getRequestDispatcher("aTuition");
+			rd.forward(request, response);
+		} else {
+			RequestDispatcher rd = request.getRequestDispatcher("a02_update.jsp");
+			rd.forward(request, response);
+		}
+	}
+	/**등록금 삭제***********/
+	public void tDell() throws ServletException, IOException {
+		String std_id= request.getParameter("std_id");
+		String term_id =request.getParameter("term_id");
+		AdminDAO dao = new AdminDAO();
+		if(dao.tDell(std_id,term_id) >0) {
+			System.out.println("삭제성공");
+		}
+		RequestDispatcher dis = request.getRequestDispatcher("aTuition");
+		dis.forward(request, response);
+	}
+	/**등록금 등록****************/
+	public void tAdd() throws ServletException, IOException {
+		AdminDAO dao =new AdminDAO();
+		DTO dto= new DTO();
+		dto.setTerm_id(request.getParameter("term_id"));
+		dto.setScholar_id(Integer.parseInt(request.getParameter("scholar_id")));
+		dto.setStd_id(request.getParameter("std_id"));
+		dto.setTuition_money(Integer.parseInt(request.getParameter("tuition_money")));
+		if(dao.tAdd(dto)>0) {
+			System.out.println("저장완료");
+		}
+		RequestDispatcher dis = request.getRequestDispatcher("aTuition");
+		dis.forward(request, response);
 		
 	}
-
+	/** 등록금 검색 ********************/
+	public void tSearch() throws ServletException, IOException {
+		String selectbox = request.getParameter("selectbox");
+		String val=request.getParameter("val");
+		AdminDAO dao = new AdminDAO();
+		ArrayList<DTO> list=dao.tSearch(selectbox,val);
+		request.setAttribute("search", list);
+		//request.setAttribute("result", result);
+		RequestDispatcher dis = request.getRequestDispatcher("a02_index.jsp");
+		dis.forward(request, response);
+		
+	}
 }

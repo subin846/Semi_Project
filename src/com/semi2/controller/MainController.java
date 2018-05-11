@@ -140,6 +140,30 @@ public class MainController extends HttpServlet {
 			System.out.println("검색 요청");
 			adservice.sSearch();
 			break;
+		case "/aTuition":
+			System.out.println("등록금 페이지");
+			adservice.tMangePage();
+			break;
+		case "/tUpdateForm":
+			System.out.println("등록금 수정폼");
+			adservice.tUpdatePage();
+			break;
+		case "/tUpdate":
+			System.out.println("등록금 수정");
+			adservice.tUpdate();
+			break;
+		case "/tDell":
+			System.out.println("등록금 삭제");
+			adservice.tDell();
+			break;
+		case "/tAdd":
+			System.out.println("등록금 등록");
+			adservice.tAdd();
+			break;
+		case "/tSearch":
+			System.out.println("등록금 검색");
+			adservice.tSearch();
+			break;
 		
 /**********************************************************************/			
 		//수빈			
