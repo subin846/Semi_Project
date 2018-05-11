@@ -82,11 +82,6 @@ public class MainController extends HttpServlet {
 			infoService = new InfoService(request, response);
 			infoService.calPage();
 			break;
-		case "/cal" :
-			System.out.println("학점계산 요청");
-			infoService = new InfoService(request, response);
-			infoService.cal();
-			break;
 		case "/pTimetable" :
 			System.out.println("교수 시간표 요청");
 			infoService = new InfoService(request, response);

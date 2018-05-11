@@ -7,7 +7,7 @@
 	<head>
 		<style>
 			table, tr, th, td {
-				border: thin solid black;
+				border: thin solid lightgray;
 				border-collapse: collapse;
 				padding: 5px;
 				text-align: center;

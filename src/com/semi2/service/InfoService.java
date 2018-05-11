@@ -136,13 +136,21 @@ public class InfoService {
 	}
 
 	// 학점계산기 페이지
-	public void calPage() {
-		
-	}
+	public void calPage() throws IOException {
+		String loginId = request.getParameter("loginId");
 
-	// 학점계산
-	public void cal() {
-		
+		InfoDAO dao = new InfoDAO();
+		ArrayList<DTO> subjectList = dao.calPage(loginId);
+
+		// map에 dto 담기
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("subjectList", subjectList);
+
+		// json 전송
+		Gson gson = new Gson();
+		String json = gson.toJson(map);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().println(json);
 	}
 
 	// 교수 시간표
