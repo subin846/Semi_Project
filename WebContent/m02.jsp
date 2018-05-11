@@ -20,10 +20,6 @@
 		<input type ="hidden" name="loginId" value="${sessionScope.loginId}">
 	</form>
 	</body>
-	<%-- <%
-	String pw = "";
-	pw = (String)session.getAttribute("pw");            // request에서 id 파라미터를 가져온다
-	%>	 --%>
 	<script>
 	var loginPw ="${sessionScope.loginPw}";
 	
