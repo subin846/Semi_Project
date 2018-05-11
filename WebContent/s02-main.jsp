@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>Insert title here</title>
+		<title>학적</title>
 		<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 		<style>
 			body{
@@ -128,6 +128,11 @@
 		// 성적조회 클릭
 		$("#s06").click(function() {
 			$("#subPage").load("s06.jsp");
+		});
+		
+		// 학점계산기 클릭
+		$("#s07").click(function() {
+			$("#subPage").load("s07.jsp");
 		});
 	</script>
 </html>

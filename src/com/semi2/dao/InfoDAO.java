@@ -220,4 +220,34 @@ public class InfoDAO {
 		return scoreList;
 	}
 
+	// 학점계산기 페이지(현재 학기 수강과목 리스트 반환)
+	public ArrayList<DTO> calPage(String loginId) {
+		ArrayList<DTO> subjectList = new ArrayList<>();
+		String sql = "SELECT subject_name, subject_type, subject_credit " + 
+				"FROM enroll E " + 
+				"JOIN subject sub ON E.subject_id = sub.subject_id " + 
+				"WHERE std_id=? AND term_id='2018-1' " +
+				"ORDER BY subject_name";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, loginId);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				DTO dto = new DTO();
+				dto.setSubject_name(rs.getString("subject_name"));
+				dto.setSubject_type(rs.getString("subject_type"));
+				dto.setSubject_credit(rs.getInt("subject_credit"));
+				subjectList.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			resClose();
+		}
+		
+		return subjectList;
+	}
+
 }
