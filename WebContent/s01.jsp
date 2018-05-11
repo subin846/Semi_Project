@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ include file="loginCheck.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Insert title here</title>
-		<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 		<style>
 			body{
 				margin: 0px; /* body와 div 사이 공백 제거 */
@@ -48,86 +48,81 @@
 				font-size: large;
 				font-weight: bold;
 			}
+			select {
+				width: 150px;
+				height: 30px;
+				margin-bottom: 15px;
+				margin-top: 15px;
+				margin-left: 10px
+			}
  			#sub a{
 				text-decoration: none;
 				font-size: 17px;
 				font-weight: bold;
 				color: black;
 				margin-left: 10px;
+				display: none;
 			}
 			#sub{
-				margin: 10px;
+				margin-top: 1%;
 				width: 230px;
 				height: 400px;
 				border: 1px solid #c0c0c0;
+				margin-left: 1%;
 				background-color: #F6F6F6;
 				float: left;
+				display: none;
 			}
 			#sub div{
 				height: 40px;
 				padding-top: 15px;
-				cursor: pointer;
+				display: none;
 			}
 			#sub div:hover {
 				text-decoration: underline;
-			}
-			#navi #navi1 {
-				background-color: #4375DB;
-			}
-			#subPage {
-				float: left;
-				margin:10px;
+				display: none;
 			}
 		</style>
 	</head>
 	<body>
 		<div id="menu">
-				<span>${ sessionScope.loginId }</span>님 환영합니다
-				<a href="./s01.jsp">HOME</a>
-				<a href="#">비밀번호변경</a>
-				<a href="./logout">LOGOUT</a>
+			<span></span>
+				<script>
+					var loginId ="${sessionScope.loginId}";
+					if(loginId == ""){
+						alert("로그인이 필요한 서비스 입니다.");
+						location.href="index.jsp";
+					}else{
+						var content = loginId+" 님 환영합니다 ";
+						document.getElementById("menu").innerHTML = content;
+					}
+				</script>
+					<a href="#">HOME</a>
+					<a href="#">비밀번호변경</a>
+					<a href="logout">LOGOUT</a>
 		</div>
 		<div id="navi">
-			<div id="navi1"><a href="#">학적</a></div>
+			<div><a href="./s02-main.jsp">학적</a></div>
 			<div><a href="#">과목게시판</a></div>
 			<div><a href="#">수강신청</a></div>
 		</div>
 		<div id="sub">
-			<div id="s02"><a>신상조회</a></div>
-			<div id="s03"><a>시간표조회</a></div>
-			<div id="s04"><a>등록금고지서</a></div>
-			<div id="s05"><a>장학금조회</a></div>
-			<div id="s06"><a>성적조회</a></div>
-			<div id="s07"><a>학점계산기</a></div>
+			<select>
+				<option>과목선택</option>
+				<option>과목1</option>
+				<option>과목2</option>
+				<option>과목3</option>
+			</select>
+			<div><a href="#">강의계획서</a></div>
+			<div><a href="#">강의자료</a></div>
+			<div><a href="#">과제제출</a></div>
+			<div><a href="#">강의평가</a></div>
 		</div>
-		<div id="subPage">
-			<jsp:include page="s02.jsp"></jsp:include>
-		</div>
+		
+		
+		
+		
+
+		
 	</body>
-	<script>
-		// 신상조회 클릭
-		$("#s02").click(function() {
-			$("#subPage").load("s02.jsp");
-		});
-		
-		// 시간표 조회 클릭
-		$("#s03").click(function() {
-			$("#subPage").load("s03.jsp");
-		});
-		
-		// 등록금고지서 클릭
-		$("#s04").click(function() {
-			$("#subPage").load("s04.jsp");
-		});
-		
-		// 장학금조회 클릭
-		$("#s05").click(function() {
-			$("#subPage").load("s05.jsp");
-		});
-		
-		// 성적조회 클릭
-		$("#s06").click(function() {
-			$("#subPage").load("s06.jsp");
-		});
-	</script>
 </html>
