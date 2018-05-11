@@ -58,7 +58,7 @@
             <h3>학사일정 관리 </h3>
         </div>
         <div id="div2">
-            학번 /<a href="#"> 비밀번호 변경</a> / <a href="#"> 로그아웃</a>
+            학번 /<a href="m02.jsp"> 비밀번호 변경</a> / <a href="#"> 로그아웃</a>
         </div>
         <div id="subPage" >
        	 	<%@ include file="a01_list.jsp" %>

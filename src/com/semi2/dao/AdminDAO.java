@@ -308,7 +308,6 @@ public class AdminDAO {
 				ps.setInt(3, dto.getScholar_id());
 				ps.setString(4, dto.getTerm_id());
 				success=ps.executeUpdate();
-				//System.out.println(dto.getTuition_money());
 			} catch (SQLException e) {
 				e.printStackTrace();
 				success=0;
