@@ -15,7 +15,7 @@ import com.semi2.service.InfoService;
 import com.semi2.service.LectureService;
 import com.semi2.service.MainService;
 
-@WebServlet({"/", "/login", "/logout", "/smain", "/pmain", "/amain"})
+@WebServlet({"/", "/login", "/logout", "/smain", "/pmain", "/amain", "/passChange"})
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -195,6 +195,10 @@ public class MainController extends HttpServlet {
 		case "/amain" :
 			System.out.println("관리자 main 페이지 이동");
 			mservice.amain();
+			break;
+		case "/passChange" :
+			System.out.println("비밀번호 변경 요청");
+			mservice.passChange();
 			break;
 /**********************************************************************/			
 			//은경
