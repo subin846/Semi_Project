@@ -9,6 +9,9 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import com.semi2.dto.DTO;
+import com.semi2.dto.PwDTO;
+
 public class MainDAO {
 	
 	Connection conn = null;
@@ -26,15 +29,17 @@ public class MainDAO {
 		}
 	}
 	
-	// 자원 반납
-	public void resClose() {
+	private void resClose() {
+		System.out.println("자원 반납");
 		try {
-			if (rs != null) rs.close();
-			if (ps != null) ps.close();
-			if (conn != null) conn.close();
+			if(rs != null) {//rs 가 사용해서 있을 경우만 닫아 준다.
+				rs.close();
+			}			
+			ps.close();
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		}		
 	}
 	
 	// 로그인
@@ -59,7 +64,7 @@ public class MainDAO {
 				e.printStackTrace();
 				return false;				
 			}finally {
-				resClose();
+				resClose(); 
 			}
 			
 		}else if(id.startsWith("p")){//id가 p로 시작 하면 (교수 로그인 체크)
@@ -108,6 +113,41 @@ public class MainDAO {
 		}
 		return result;
 	}
-			
+
+	//비밀번호 변경
+	public int passChange(DTO dto,PwDTO pwdto) {
+		
+		int success = 0;
+		try {
+			if(pwdto.getLoginidDTO().startsWith("s")) {
+				String sql = "UPDATE std SET std_pw=? WHERE std_id=?";
+				ps = conn.prepareStatement(sql);			
+				ps.setString(1, pwdto.getnewPw());
+				ps.setString(2, pwdto.getLoginidDTO());
+			}else if(pwdto.getLoginidDTO().startsWith("p")) {
+				String sql = "UPDATE pro SET pro_pw=? WHERE pro_id=?";
+				ps = conn.prepareStatement(sql);			
+				ps.setString(1, pwdto.getnewPw());
+				ps.setString(2, pwdto.getLoginidDTO());
+			}else {
+				String sql = "UPDATE admin SET admin_pw=? WHERE admin_id=?";
+				ps = conn.prepareStatement(sql);			
+				ps.setString(1, pwdto.getnewPw());
+				ps.setString(2, pwdto.getLoginidDTO());
+			}
+			System.out.println(pwdto.getnewPw());
+			System.out.println(pwdto.getLoginidDTO());
+			success = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}finally {
+			resClose();
+		}
+		return success;
+	}
+
 }
+			
+
 
