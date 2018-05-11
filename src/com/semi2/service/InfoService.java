@@ -5,6 +5,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -154,13 +155,33 @@ public class InfoService {
 	}
 
 	// 교수 시간표
-	public void pTimetable() {
-		
+	public void pTimetable() throws IOException {
+		String loginId = request.getParameter("loginId");
+
+		InfoDAO dao = new InfoDAO();
+		ArrayList<DTO> list = dao.pTimetable(loginId);
+
+		// map에 list 담기
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("list", list);
+
+		// json 전송
+		Gson gson = new Gson();
+		String json = gson.toJson(map);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().println(json);
 	}
 
 	// 교수 신상정보
-	public void pProfile() {
+	public void pProfile() throws ServletException, IOException {
+		String loginId = (String) request.getSession().getAttribute("loginId");
+
+		InfoDAO dao = new InfoDAO();
+		DTO dto = dao.pProfile(loginId);
 		
+		request.setAttribute("dto", dto);
+		RequestDispatcher rd = request.getRequestDispatcher("p01.jsp");
+		rd.forward(request, response);
 	}
 
 }

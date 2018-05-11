@@ -13,8 +13,8 @@
 				text-align: center;
 			}
 			th, td {
-				width: 80px;
-				height: 40px;
+				width: 140px;
+				height: 50px;
 			}
 			th {
 				background-color: #F6F6F6;

@@ -250,4 +250,61 @@ public class InfoDAO {
 		return subjectList;
 	}
 
+	// 교수 신상조회
+	public DTO pProfile(String loginId) {
+		DTO dto = new DTO();
+		String sql = "SELECT p.pro_id, p.pro_name, m.major_name, p.pro_room, p.pro_phone, p.pro_email " + 
+				"FROM pro P " + 
+				"JOIN major M ON P.major_id = M.major_id " + 
+				"WHERE P.pro_id = ?";
+
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, loginId);
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				dto.setPro_id(rs.getString("pro_id"));
+				dto.setPro_name(rs.getString("pro_name"));
+				dto.setMajor_name(rs.getString("major_name"));
+				dto.setPro_room(rs.getString("pro_room"));
+				dto.setPro_phone(rs.getString("pro_phone"));
+				dto.setPro_email(rs.getString("pro_email"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			resClose();
+		}
+		return dto;
+	}
+
+	// 교수 시간표
+	public ArrayList<DTO> pTimetable(String loginId) {
+		ArrayList<DTO> list = new ArrayList<>();
+		String sql = "SELECT S.subject_name, S.subject_time, S.subject_room " + 
+				"FROM subject S " + 
+				"JOIN pro P ON S.pro_id = P.pro_id " + 
+				"WHERE P.pro_id = ? AND S.term_id = '2018-1' ";
+
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, loginId);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				DTO dto = new DTO();
+				dto.setSubject_name(rs.getString("subject_name"));
+				dto.setSubject_time(rs.getString("subject_time"));
+				dto.setSubject_room(rs.getString("subject_room"));
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			resClose();
+		}
+		return list;
+	}
+
 }
