@@ -195,6 +195,74 @@ public class AdminService {
 		//request.setAttribute("result", result);
 		RequestDispatcher dis = request.getRequestDispatcher("a02_index.jsp");
 		dis.forward(request, response);
+	}
+	/**장학금 리스트**********************/
+	public void scPage() throws ServletException, IOException{
+		AdminDAO dao = new AdminDAO();
+		ArrayList<DTO> list=dao.scPage(); 
+		request.setAttribute("list", list);
+		RequestDispatcher dis = request.getRequestDispatcher("a03_index.jsp");
+		dis.forward(request, response);
+	}
+	/**장학금 수정페이지**********************/
+	public void scUpdatePage() throws ServletException, IOException{
+		int scholar_id =Integer.parseInt(request.getParameter("scholar_id"));
+		AdminDAO dao = new AdminDAO();
+		DTO dto = dao.scUpdatePage(scholar_id);
+		if (dto != null) {
+			request.setAttribute("form", dto);
+		} else {
+			System.out.println("오류");
+		}
+		RequestDispatcher rd = request.getRequestDispatcher("a03_update.jsp");
+		rd.forward(request, response);
+	}
+	/**장학금 수정**********************/
+	public void scUpdate() throws ServletException, IOException{
+		int scholar_id =Integer.parseInt(request.getParameter("scholar_id"));
+		String scholar_name=request.getParameter("scholar_name");
+		int scholar_money =Integer.parseInt(request.getParameter("scholar_money"));
+		AdminDAO dao = new AdminDAO();
+		DTO dto = new DTO();
+		dto.setScholar_id(scholar_id);
+		dto.setScholar_name(scholar_name);
+		dto.setScholar_money(scholar_money);
+		// 데이터 수정
+		int success = dao.scUpdate(dto);
+		// 결과 확인
+		if (success > 0) {
+			System.out.println("성공");
+			RequestDispatcher rd = request.getRequestDispatcher("scScholar");
+			rd.forward(request, response);
+		} else {
+			RequestDispatcher rd = request.getRequestDispatcher("a03_update.jsp");
+			rd.forward(request, response);
+		}
+	}
+	/**장학금 삭제**********************/
+	public void scDel()  throws ServletException, IOException{
+		int scholar_id =Integer.parseInt(request.getParameter("scholar_id"));
+		AdminDAO dao = new AdminDAO();
+		if(dao.scDel(scholar_id) >0) {
+			System.out.println("삭제성공");
+		}
+		RequestDispatcher dis = request.getRequestDispatcher("scScholar");
+		dis.forward(request, response);
 		
 	}
+	/**장학금 등록
+	 * @throws**********************/
+	public void scAdd() throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		AdminDAO dao =new AdminDAO();
+		DTO dto= new DTO();
+		dto.setScholar_name(request.getParameter("scholar_name"));
+		dto.setScholar_money(Integer.parseInt(request.getParameter("scholar_money")));
+		if(dao.scAdd(dto)>0) {
+			System.out.println("저장완료");
+		}
+		RequestDispatcher dis = request.getRequestDispatcher("scScholar");
+		dis.forward(request, response);
+	}	
+
 }

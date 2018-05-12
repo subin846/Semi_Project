@@ -353,4 +353,101 @@ public class AdminDAO {
 			}
 			return list;
 		}
+		/**장학금 리스트****************/
+		public ArrayList<DTO> scPage() {
+			ArrayList<DTO> list = new ArrayList<>();
+			String sql="SELECT * FROM scholar";
+			DTO dto = null;
+			try {
+				ps=conn.prepareStatement(sql);
+				rs=ps.executeQuery();
+				while(rs.next()) {
+					dto=new DTO();
+					dto.setScholar_id(rs.getInt("scholar_id"));
+					dto.setScholar_name(rs.getString("scholar_name"));
+					dto.setScholar_money(rs.getInt("scholar_money"));
+					list.add(dto);
+				}
+			} catch (SQLException e) {
+				 e.printStackTrace();
+				 return null;
+			}finally {
+				close();
+			}
+				return list;
+		}
+		/**장학금 수정폼****************/
+		public DTO scUpdatePage(int scholar_id) {
+			DTO dto=null;
+			String sql = "SELECT * FROM scholar WHERE scholar_id=?"; 
+			try {
+				ps=conn.prepareStatement(sql);
+				ps.setInt(1, scholar_id);
+				rs=ps.executeQuery();
+				if(rs.next()) {
+					dto=new DTO();
+					dto.setScholar_id(rs.getInt("scholar_id"));
+					dto.setScholar_name(rs.getString("scholar_name"));
+					dto.setScholar_money(rs.getInt("scholar_money"));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return dto;
+			}finally {
+				close();
+			}
+			return dto;
+		}
+		/**장학금 수정***************/
+		public int scUpdate(DTO dto) {
+			String sql="UPDATE scholar SET scholar_name=?, scholar_money=? WHERE scholar_id=?";
+			int success = 0;
+			try {
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, dto.getScholar_name());
+				ps.setInt(2, dto.getScholar_money());
+				ps.setInt(3, dto.getScholar_id());
+				success=ps.executeUpdate();
+				System.out.println(success);
+			} catch (SQLException e) {
+				e.printStackTrace();
+				success=0;
+			}finally {
+				close();
+			}
+			return success;
+		}
+		/**장학금 삭제***************/
+		public int scDel(int scholar_id) {
+			String sql="DELETE FROM scholar WHERE scholar_id = ?" ;
+			int success =0;
+			try {
+				ps=conn.prepareStatement(sql);
+				ps.setInt(1, scholar_id);
+				success = ps.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				success=0;
+			}finally {
+				close();
+			}
+			return success;
+		}
+		/**장학금 등록***************/
+		public int scAdd(DTO dto) {
+			int success=0;
+			String sql = "INSERT INTO scholar (scholar_id,scholar_name,scholar_money) VALUES (seq_scholar_id.NEXTVAL,?,?) ";
+			try {
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, dto.getScholar_name());
+				ps.setInt(2, dto.getScholar_money());
+				success=ps.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				success=0;
+			}finally {
+				close();
+			}
+			return success;
+		}
 }
