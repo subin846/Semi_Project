@@ -173,6 +173,26 @@ public class MainController extends HttpServlet {
 			System.out.println("등록금 검색");
 			adservice.tSearch();
 			break;
+		case "/scScholar":
+			System.out.println("장학금 리스트");
+			adservice.scPage();
+			break;
+		case "/scUpdatePage":
+			System.out.println("장학금 수정페이지");
+			adservice.scUpdatePage();
+			break;
+		case "/scUpdate":
+			System.out.println("장학금 수정");
+			adservice.scUpdate();
+			break;
+		case "/scDel":
+			System.out.println("장학금 삭제");
+			adservice.scDel();
+			break;
+		case "/scAdd":
+			System.out.println("장학금 등록");
+			adservice.scAdd();
+			break;
 		
 /**********************************************************************/			
 		//수빈			
