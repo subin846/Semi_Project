@@ -6,8 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <style type="text/css">
-	body, html  { height: 100%; }
-	html, body, div, span, applet, object, iframe,
+	body  { height: 100%; }
+	body, div, span, applet, object, iframe,
 	p, blockquote, pre,
 	a, abbr, acronym, address, big, cite, code,
 	del, dfn, em, font, img, ins, kbd, q, s, samp,
