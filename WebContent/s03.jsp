@@ -13,7 +13,7 @@
 				text-align: center;
 			}
 			th, td {
-				width: 140px;
+				width: 100px;
 				height: 50px;
 			}
 			th {

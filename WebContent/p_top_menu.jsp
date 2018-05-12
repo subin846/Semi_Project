@@ -67,7 +67,7 @@
 		});
 		// 강의 클릭
 		$("#navi3").click(function() {
-			location.href="";
+			location.href="studentSearchPage?subject_id=default";
 		});
 	</script>
 </html>

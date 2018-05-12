@@ -26,38 +26,46 @@
 			th {
 				background-color: #F6F6F6;
 			}
+			#container {
+				width: 1920px;
+			}
+			#sub1 {
+				text-decoration: underline;
+			}
 		</style>
 	</head>
 	<body>
 		<jsp:include page="p_top_menu.jsp"/>
-		<jsp:include page="p_sub_menu1.jsp"/>
-		<div id="content">
-			<table>
-				<tr>
-					<th>사번</th>
-					<td>${ dto.pro_id }</td>
-				</tr>
-				<tr>
-					<th>이름</th>
-					<td>${ dto.pro_name }</td>
-				</tr>
-				<tr>
-					<th>학과</th>
-					<td>${ dto.major_name }</td>
-				</tr>
-				<tr>
-					<th>연구실</th>
-					<td>${ dto.pro_room }</td>
-				</tr>
-				<tr>
-					<th>연락처</th>
-					<td>${ dto.pro_phone }</td>
-				</tr>
-				<tr>
-					<th>이메일</th>
-					<td>${ dto.pro_email }</td>
-				</tr>
-			</table>
+		<div id="container">
+			<jsp:include page="p_sub_menu1.jsp"/>
+			<div id="content">
+				<table>
+					<tr>
+						<th>사번</th>
+						<td>${ dto.pro_id }</td>
+					</tr>
+					<tr>
+						<th>이름</th>
+						<td>${ dto.pro_name }</td>
+					</tr>
+					<tr>
+						<th>학과</th>
+						<td>${ dto.major_name }</td>
+					</tr>
+					<tr>
+						<th>연구실</th>
+						<td>${ dto.pro_room }</td>
+					</tr>
+					<tr>
+						<th>연락처</th>
+						<td>${ dto.pro_phone }</td>
+					</tr>
+					<tr>
+						<th>이메일</th>
+						<td>${ dto.pro_email }</td>
+					</tr>
+				</table>
+			</div>
 		</div>
 	</body>
 	<script>

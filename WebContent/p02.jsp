@@ -11,7 +11,7 @@
 		<style>
 			#content {
 				float: left;
-				margin-top: 10px;
+				margin: 10px 0px;
 			}
 			table, tr, th, td {
 				border: thin solid lightgray;
@@ -20,100 +20,108 @@
 				text-align: center;
 			}
 			th, td {
-				width: 140px;
+				width: 100px;
 				height: 50px;
 			}
 			th {
 				background-color: #F6F6F6;
 			}
+			#container {
+				width: 1920px;
+			}
+			#sub2 {
+				text-decoration: underline;
+			}
 		</style>
 	</head>
 	<body>
 		<jsp:include page="p_top_menu.jsp"/>
-		<jsp:include page="p_sub_menu1.jsp"/>
-		<div id="content">
-			<table>
-				<tr>
-					<th></th>
-					<th>월</th>
-					<th>화</th>
-					<th>수</th>
-					<th>목</th>
-					<th>금</th>
-				</tr>
-				<tr id="1">
-					<th>1교시</th>
-					<td class="월"></td>
-					<td class="화"></td>
-					<td class="수"></td>
-					<td class="목"></td>
-					<td class="금"></td>
-				</tr>
-				<tr id="2">
-					<th>2교시</th>
-					<td class="월"></td>
-					<td class="화"></td>
-					<td class="수"></td>
-					<td class="목"></td>
-					<td class="금"></td>
-				</tr>
-				<tr id="3">
-					<th>3교시</th>
-					<td class="월"></td>
-					<td class="화"></td>
-					<td class="수"></td>
-					<td class="목"></td>
-					<td class="금"></td>
-				</tr>
-				<tr id="4">
-					<th>4교시</th>
-					<td class="월"></td>
-					<td class="화"></td>
-					<td class="수"></td>
-					<td class="목"></td>
-					<td class="금"></td>
-				</tr>
-				<tr id="5">
-					<th>5교시</th>
-					<td class="월"></td>
-					<td class="화"></td>
-					<td class="수"></td>
-					<td class="목"></td>
-					<td class="금"></td>
-				</tr>
-				<tr id="6">
-					<th>6교시</th>
-					<td class="월"></td>
-					<td class="화"></td>
-					<td class="수"></td>
-					<td class="목"></td>
-					<td class="금"></td>
-				</tr>
-				<tr id="7">
-					<th>7교시</th>
-					<td class="월"></td>
-					<td class="화"></td>
-					<td class="수"></td>
-					<td class="목"></td>
-					<td class="금"></td>
-				</tr>
-				<tr id="8">
-					<th>8교시</th>
-					<td class="월"></td>
-					<td class="화"></td>
-					<td class="수"></td>
-					<td class="목"></td>
-					<td class="금"></td>
-				</tr>
-				<tr id="9">
-					<th>9교시</th>
-					<td class="월"></td>
-					<td class="화"></td>
-					<td class="수"></td>
-					<td class="목"></td>
-					<td class="금"></td>
-				</tr>
-			</table>
+		<div id="container">
+			<jsp:include page="p_sub_menu1.jsp"/>
+			<div id="content">
+				<table>
+					<tr>
+						<th></th>
+						<th>월</th>
+						<th>화</th>
+						<th>수</th>
+						<th>목</th>
+						<th>금</th>
+					</tr>
+					<tr id="1">
+						<th>1교시</th>
+						<td class="월"></td>
+						<td class="화"></td>
+						<td class="수"></td>
+						<td class="목"></td>
+						<td class="금"></td>
+					</tr>
+					<tr id="2">
+						<th>2교시</th>
+						<td class="월"></td>
+						<td class="화"></td>
+						<td class="수"></td>
+						<td class="목"></td>
+						<td class="금"></td>
+					</tr>
+					<tr id="3">
+						<th>3교시</th>
+						<td class="월"></td>
+						<td class="화"></td>
+						<td class="수"></td>
+						<td class="목"></td>
+						<td class="금"></td>
+					</tr>
+					<tr id="4">
+						<th>4교시</th>
+						<td class="월"></td>
+						<td class="화"></td>
+						<td class="수"></td>
+						<td class="목"></td>
+						<td class="금"></td>
+					</tr>
+					<tr id="5">
+						<th>5교시</th>
+						<td class="월"></td>
+						<td class="화"></td>
+						<td class="수"></td>
+						<td class="목"></td>
+						<td class="금"></td>
+					</tr>
+					<tr id="6">
+						<th>6교시</th>
+						<td class="월"></td>
+						<td class="화"></td>
+						<td class="수"></td>
+						<td class="목"></td>
+						<td class="금"></td>
+					</tr>
+					<tr id="7">
+						<th>7교시</th>
+						<td class="월"></td>
+						<td class="화"></td>
+						<td class="수"></td>
+						<td class="목"></td>
+						<td class="금"></td>
+					</tr>
+					<tr id="8">
+						<th>8교시</th>
+						<td class="월"></td>
+						<td class="화"></td>
+						<td class="수"></td>
+						<td class="목"></td>
+						<td class="금"></td>
+					</tr>
+					<tr id="9">
+						<th>9교시</th>
+						<td class="월"></td>
+						<td class="화"></td>
+						<td class="수"></td>
+						<td class="목"></td>
+						<td class="금"></td>
+					</tr>
+				</table>
+			</div>
 		</div>
 	</body>
 	<script>
