@@ -6,19 +6,67 @@
 <html>
 	<head>
 		<style>
-			table, tr, th, td {
+/************************ 테이블 ************************/
+table {
+	font-family:Arial, Helvetica, sans-serif;
+	color:#666;
+	font-size:14px;
+	text-shadow: 1px 1px 0px #fff;
+	background:#eaebec;
+	border:#ccc 1px solid;
+
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+
+	-moz-box-shadow: 0 1px 2px #d1d1d1;
+	-webkit-box-shadow: 0 1px 2px #d1d1d1;
+	box-shadow: 0 1px 2px #d1d1d1;
+}
+/* 크기 지정 */
+table th, table td {
+	width: 100px;
+	height: 50px;
+}
+table th {
+	/* padding:15px; */
+	border-top:1px solid #fafafa;
+	border-bottom:1px solid #e0e0e0;
+	border-left: 1px solid #e0e0e0;
+
+	background: #ededed;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb));
+	background: -moz-linear-gradient(top,  #ededed,  #ebebeb);
+}
+table tr {
+	text-align: center;
+	padding-left:20px;
+}
+table td {
+	/* padding:10px; */
+	border-top: 1px solid #ffffff;
+	border-bottom:1px solid #e0e0e0;
+	border-left: 1px solid #e0e0e0;
+
+	background: #fafafa;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
+	background: -moz-linear-gradient(top,  #fbfbfb,  #fafafa);
+}
+/************************ 테이블 ************************/
+
+			/*table, tr, th, td {
 				border: thin solid lightgray;
 				border-collapse: collapse;
 				padding: 5px;
 				text-align: center;
 			}
 			th, td {
-				width: 140px;
+				width: 100px;
 				height: 50px;
 			}
 			th {
 				background-color: #F6F6F6;
-			}
+			}*/
 			#s03 {
 				text-decoration: underline;
 			}

@@ -98,6 +98,11 @@ public class MainController extends HttpServlet {
 			infoService = new InfoService(request, response);
 			infoService.pProfile();
 			break;
+		case "/studentSearchPage" :
+			System.out.println("수강생조회 페이지 요청");
+			lectureService = new LectureService(request, response);
+			lectureService.studentSearchPage();
+			break;
 		case "/studentSearch" :
 			System.out.println("수강생조회 요청");
 			lectureService = new LectureService(request, response);
