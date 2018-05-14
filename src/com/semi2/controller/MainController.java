@@ -222,6 +222,30 @@ public class MainController extends HttpServlet {
 			System.out.println("장학금 관리 검색");
 			adservice.eSearch();
 			break;
+		case "/pManagePage":
+			System.out.println("교수 리스트 페이지");
+			adservice.pManagePage();
+			break;
+		case "/pUpdatePage":
+			System.out.println("교수 수정폼");
+			adservice.pUpdatePage();
+			break;
+		case "/pUpdate":
+			System.out.println("교수 수정");
+			adservice.pUpdate();
+			break;
+		case "/pDel":
+			System.out.println("교수 삭제");
+			adservice.pDel();
+			break;
+		case "/pAdd":
+			System.out.println("교수 등록");
+			adservice.pAdd();
+			break;
+		case "/pSearch":
+			System.out.println("교수 검색");
+			adservice.pSearch();
+			break;
 /**********************************************************************/			
 		//수빈			
 		case "/login" :

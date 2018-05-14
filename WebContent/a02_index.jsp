@@ -222,7 +222,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="pManagePage">
 						<i class="fa fa-user"></i>
 						<span>교수 관리</span>
 					</a>

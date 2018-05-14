@@ -575,4 +575,150 @@ public class AdminDAO {
 			}
 			return list;
 		}
+		/**교수리스트-***********************/
+		public ArrayList<DTO> pManagePage() {
+			ArrayList<DTO> list = new ArrayList<>();
+			String sql="SELECT * FROM pro P JOIN major M ON P.major_id=M.major_id";
+			DTO dto = null;
+			try {
+				ps=conn.prepareStatement(sql);
+				rs=ps.executeQuery();
+				while(rs.next()) {
+					dto=new DTO();
+					dto.setPro_id(rs.getString("pro_id"));
+					dto.setPro_phone(rs.getString("pro_phone"));
+					dto.setPro_name(rs.getString("pro_name"));
+					dto.setPro_room(rs.getString("pro_room"));
+					dto.setPro_email(rs.getString("pro_email"));
+					dto.setMajor_name(rs.getString("major_name"));
+					list.add(dto);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+			}finally {
+				close();
+			}
+			return list;
+		}
+		/**교수 수정 페이지*******************/
+		public DTO pUpdatePage(String pro_id) {
+			DTO dto=null;
+			String sql = "SELECT * FROM pro P JOIN major M ON P.major_id=M.major_id WHERE pro_id=?";
+			try {
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, pro_id);
+				rs=ps.executeQuery();
+				if(rs.next()) {
+					dto=new DTO();
+					dto.setPro_id(rs.getString("pro_id"));
+					dto.setPro_phone(rs.getString("pro_phone"));
+					dto.setPro_name(rs.getString("pro_name"));
+					dto.setPro_room(rs.getString("pro_room"));
+					dto.setPro_email(rs.getString("pro_email"));
+					dto.setMajor_id(rs.getString("major_id"));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return dto;
+			}finally {
+				close();
+			}
+			return dto;
+		}
+		/**교수 수정 *******************/
+		public int pUpdate(DTO dto) {
+			String sql="UPDATE pro SET  pro_id=?,pro_name=?,pro_phone=?,pro_email=?,pro_room=?, major_id=? WHERE pro_id=?" ;
+			int success=0;
+			try {
+				ps =conn.prepareStatement(sql);
+				ps.setString(1, dto.getPro_id());
+				ps.setString(2, dto.getPro_name());
+				ps.setString(3, dto.getPro_phone());
+				ps.setString(4, dto.getPro_email());
+				ps.setString(5, dto.getPro_room());
+				ps.setString(6, dto.getMajor_id());
+				ps.setString(7, dto.getPro_id());
+				success=ps.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return 0;
+			}finally {
+				close();
+			}
+			return success;
+		}
+		/**교수 삭제 *******************/
+		public int pDel(String pro_id) {
+			String sql="DELETE FROM pro WHERE pro_id = ?" ;
+			int success =0;
+			try {
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, pro_id);
+				success = ps.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				success=0;
+			}finally {
+				close();
+			}
+			return success;
+		}
+		/**교수 등록 *******************/
+		public int pAdd(DTO dto) {
+			int success=0;
+			String sql = "INSERT INTO pro(pro_id, pro_phone, pro_name, pro_room, pro_email, pro_pw, major_id) " + 
+					"VALUES (?, ?, ?, ?, ?, ?, ?)";
+			try {
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, dto.getPro_id());
+				ps.setString(2, dto.getPro_phone());
+				ps.setString(3, dto.getPro_name());
+				ps.setString(4, dto.getPro_room());
+				ps.setString(5, dto.getPro_email());
+				ps.setString(6, dto.getPro_pw());
+				ps.setString(7, dto.getMajor_id());
+				success=ps.executeUpdate();
+				System.out.println(success);
+			} catch (SQLException e) {
+				e.printStackTrace();
+				success=0;
+			}finally {
+				close();
+			}
+			return success;
+		}
+		/**교수 검색 *******************/
+		public ArrayList<DTO> pSearch(String selectbox, String val) {
+			ArrayList<DTO> list = new ArrayList<>();
+			try {
+				if(selectbox.equals("pro_id")) {
+					ps=conn.prepareStatement("SELECT * FROM pro P JOIN major M ON P.major_id=M.major_id WHERE pro_id=?");
+					ps.setString(1, val);
+				}else if(selectbox.equals("pro_name")) {
+					ps=conn.prepareStatement("SELECT * FROM pro P JOIN major M ON P.major_id=M.major_id WHERE pro_name=?");
+					ps.setString(1, val);
+				}else if(selectbox.equals("major_name")) {
+					ps=conn.prepareStatement("SELECT * FROM pro P JOIN major M ON P.major_id=M.major_id WHERE major_name=?");
+					ps.setString(1, val);
+				}
+				rs=ps.executeQuery();
+				while(rs.next()) {
+					DTO dto=new DTO();
+					dto.setPro_id(rs.getString("pro_id"));
+					dto.setPro_phone(rs.getString("pro_phone"));
+					dto.setPro_name(rs.getString("pro_name"));
+					dto.setPro_room(rs.getString("pro_room"));
+					dto.setPro_email(rs.getString("pro_email"));
+					dto.setMajor_name(rs.getString("major_name"));
+					list.add(dto);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+			}finally {
+				close();
+			}
+			return list;
+		}
 }

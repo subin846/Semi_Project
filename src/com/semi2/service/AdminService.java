@@ -342,6 +342,96 @@ public class AdminService {
 		request.setAttribute("search", list);
 		RequestDispatcher dis = request.getRequestDispatcher("a04_index.jsp");
 		dis.forward(request, response);
+	}
+	/**교수 리스트******************/
+	public void pManagePage() throws ServletException, IOException {
+		AdminDAO dao = new AdminDAO();
+		ArrayList<DTO> pManagePage=dao.pManagePage();
+		request.setAttribute("list", pManagePage);
+		RequestDispatcher dis = request.getRequestDispatcher("a05_index.jsp");
+		dis.forward(request, response);
+	}
+	/**교수 수정페이지******************/
+	public void pUpdatePage() throws ServletException, IOException {
+		String pro_id =request.getParameter("pro_id");
+		AdminDAO dao = new AdminDAO();
+		DTO dto = dao.pUpdatePage(pro_id);
+		if (dto != null) {
+			request.setAttribute("form", dto);
+		} else {
+			System.out.println("오류");
+		}
+		RequestDispatcher rd = request.getRequestDispatcher("a05_UpdatePage.jsp");
+		rd.forward(request, response);
+	}
+	/**교수 수정******************/
+	public void pUpdate() throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		String pro_id =request.getParameter("pro_id");
+		String pro_name = request.getParameter("pro_name");
+		String pro_phone = request.getParameter("pro_phone");
+		String pro_email = request.getParameter("pro_email");
+		String pro_room = request.getParameter("pro_room");
+		String major_id=request.getParameter("major_id");
+		AdminDAO dao = new AdminDAO();
+		DTO dto = new DTO();
+		dto.setPro_id(pro_id);
+		dto.setPro_name(pro_name);
+		dto.setPro_email(pro_email);
+		dto.setPro_phone(pro_phone);
+		dto.setPro_room(pro_room);
+		dto.setMajor_id(major_id);
+		// 데이터 수정
+		int success = dao.pUpdate(dto);
+		// 결과 확인
+		if (success > 0) {
+			System.out.println("성공");	
+			request.setAttribute("update", "수정 완료!!");
+			RequestDispatcher rd = request.getRequestDispatcher("pManagePage");
+			rd.forward(request, response);
+		} else {
+			request.setAttribute("update", "수정 실패!!");
+			RequestDispatcher rd = request.getRequestDispatcher("a05_UpdatePage.jsp");
+			rd.forward(request, response);
+		}
+	}
+	/** 교수 삭제********/
+	public void pDel() throws ServletException, IOException {
+		String pro_id= request.getParameter("pro_id");
+		AdminDAO dao = new AdminDAO();
+		if(dao.pDel(pro_id) >0) {
+			System.out.println("삭제성공");
+		}
+		RequestDispatcher dis = request.getRequestDispatcher("pManagePage");
+		dis.forward(request, response);
+	}
+	/** 교수 등록********/
+	public void pAdd() throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		AdminDAO dao =new AdminDAO();
+		DTO dto= new DTO();
+		dto.setPro_id(request.getParameter("pro_id"));
+		dto.setPro_pw(request.getParameter("pro_pw"));
+		dto.setPro_name(request.getParameter("pro_name"));
+		dto.setPro_email(request.getParameter("pro_email"));
+		dto.setPro_phone(request.getParameter("pro_phone"));
+		dto.setPro_room(request.getParameter("pro_room"));
+		dto.setMajor_id(request.getParameter("major_id"));
+		if(dao.pAdd(dto)>0) {
+			System.out.println("저장완료");
+		}
+		RequestDispatcher dis = request.getRequestDispatcher("pManagePage");
+		dis.forward(request, response);
+	}
+	/** 교수 검색********/
+	public void pSearch() throws ServletException, IOException {
+		String selectbox = request.getParameter("selectbox");
+		String val=request.getParameter("val");
+		AdminDAO dao = new AdminDAO();
+		ArrayList<DTO> list=dao.pSearch(selectbox,val);
+		request.setAttribute("search", list);
+		RequestDispatcher dis = request.getRequestDispatcher("a05_index.jsp");
+		dis.forward(request, response);
 		
 	}
 }

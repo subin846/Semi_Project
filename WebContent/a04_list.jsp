@@ -232,7 +232,7 @@
 			           		<input  type="submit" value="수정"/>
 			            </td>
 			            <td>
-			           		<input type="button" onclick="location.href='tDell?term_id=${search.term_id}&std_id=${search.std_id}'" value="삭제"/>
+			           		<input type="button" onclick="location.href='eDel?tuition_id=${bbs.tuition_id}'" value="삭제"/>
 			            </td>
 	       			</tr>
      			</form>

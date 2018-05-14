@@ -197,7 +197,7 @@
 		<nav>
 		<label for="menu_state"><i class="fa"></i></label>
 			<ul>
-				<li  class="active unread">
+				<li>
 					<a href="student">
 						<i class="fa fa-graduation-cap"></i>
 						<span>학생 관리</span>
@@ -221,7 +221,7 @@
 						<span>장학금 관리</span>
 					</a>
 				</li>
-				<li>
+				<li  class="active unread">
 					<a href="pManagePage">
 						<i class="fa fa-user"></i>
 						<span>교수 관리</span>
@@ -250,6 +250,6 @@
 		<main>
 			<header></header>
 		</main>
-		<%@ include file="a01_list.jsp" %>
+		<%@ include file="a05_list.jsp" %>
 	</body>
 </html>
