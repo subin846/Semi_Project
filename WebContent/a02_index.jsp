@@ -199,13 +199,13 @@
 			<ul>
 				<li>
 					<a href="student">
-						<i class="fa fa-pencil"></i>
+						<i class="fa fa-graduation-cap"></i>
 						<span>학생 관리</span>
 					</a>
 				</li>
-				<li class="active unread">
+				<li  class="active unread">
 					<a href="aTuition">
-						<i class="fa fa-pencil"></i>
+						<i class="fa fa-credit-card"></i>
 						<span>등록금 관리</span>
 					</a>
 				</li>
@@ -216,26 +216,26 @@
 					</a>
 				</li>
 				<li>
-					<a href="#">
-						<i class="fa fa-pencil"></i>
+					<a href="ePage">
+						<i class="fa fa-credit-card"></i>
 						<span>장학금 관리</span>
 					</a>
 				</li>
 				<li>
 					<a href="#">
-						<i class="fa fa-pencil"></i>
+						<i class="fa fa-user"></i>
 						<span>교수 관리</span>
 					</a>
 				</li>
 				<li>
 					<a href="#">
-						<i class="far fa-pencil"></i>
+						<i class="fa fa-book"></i>
 						<span>과목 관리</span>
 					</a>
 				</li>
 				<li>
 					<a href="#">
-						<i class="fas fa-edit"></i>
+						<i class="fa fa-edit"></i>
 						<span>강의평가 질문 관리</span>
 					</a>
 				</li>

@@ -193,7 +193,30 @@ public class MainController extends HttpServlet {
 			System.out.println("장학금 등록");
 			adservice.scAdd();
 			break;
-		
+		case "/ePage":
+			System.out.println("장학금 관리 리스트 페이지");
+			adservice.ePage();
+			break;
+		case "/eUpdatePage":
+			System.out.println("장학금 관리 수정폼");
+			adservice.eUpdatePage();
+			break;
+		case "/eUpdate":
+			System.out.println("장학금 관리 수정");
+			adservice.eUpdate();
+			break;
+		case "/eDel":
+			System.out.println("장학금 관리 삭제");
+			adservice.eDel();
+			break;
+		case "/eAdd":
+			System.out.println("장학금 관리 등록");
+			adservice.eAdd();
+			break;
+		case "/eSearch":
+			System.out.println("장학금 관리 검색");
+			adservice.eSearch();
+			break;
 /**********************************************************************/			
 		//수빈			
 		case "/login" :

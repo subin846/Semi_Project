@@ -203,7 +203,7 @@ public class AdminDAO {
 		/**등록금*****************************/
 		public ArrayList<DTO> tMangePage() {
 			ArrayList<DTO> list = new ArrayList<DTO>();
-			String sql="SELECT t.term_id,s.std_id,s.std_name,sc.scholar_name,sc.scholar_money,t.tuition_money "
+			String sql="SELECT t.term_id,s.std_id,s.std_name,sc.scholar_name,sc.scholar_money,t.tuition_money,t.tuition_id "
 					+ "FROM scholar sc JOIN tuition t ON sc.scholar_id = t.scholar_id JOIN std s ON t.std_id = s.std_id"; 
 			DTO dto = null;
 			try {
@@ -218,6 +218,7 @@ public class AdminDAO {
 					dto.setScholar_money(rs.getInt("scholar_money"));
 					dto.setTuition_money(rs.getInt("tuition_money"));
 					dto.setTotalMoney(rs.getInt("tuition_money")-rs.getInt("scholar_money"));
+					dto.setTuition_id(rs.getInt("tuition_id"));
 					list.add(dto);
 					
 				}
@@ -278,17 +279,14 @@ public class AdminDAO {
 			return success;
 		}
 		/**등록금 삭제************/
-		public int tDell(String std_id, String term_id) {
-			String sql="DELETE FROM tuition WHERE std_id = ? AND term_id=?" ;
+		public int tDell(int tuition_id) {
+			String sql="DELETE FROM tuition WHERE tuition_id=?" ;
 			int success =0;
 			try {
 				ps=conn.prepareStatement(sql);
-				ps.setString(1, std_id);
-				ps.setString(2, term_id);
-				System.out.println(term_id);
-				System.out.println(std_id);
+				ps.setInt(1,tuition_id );
 				success = ps.executeUpdate();
-				System.out.println(std_id);
+				System.out.println(tuition_id);
 			} catch (SQLException e) {
 				e.printStackTrace();
 				success=0;
@@ -449,5 +447,132 @@ public class AdminDAO {
 				close();
 			}
 			return success;
+		}
+		/**장학금 관리 리스트*************************/
+		public ArrayList<DTO> ePage() {
+			ArrayList<DTO> list = new ArrayList<DTO>();
+			String sql="SELECT t.term_id,s.std_id,s.std_name,sc.scholar_name,sc.scholar_money,t.tuition_id "
+					+"FROM scholar sc JOIN tuition t ON sc.scholar_id = t.scholar_id JOIN std s ON t.std_id = s.std_id"; 
+			DTO dto = null;
+			try {
+				ps=conn.prepareStatement(sql);
+				rs=ps.executeQuery();
+				while(rs.next()) {
+					dto=new DTO();
+					dto.setTerm_id(rs.getString("term_id"));
+					dto.setStd_id(rs.getString("std_id"));
+					dto.setStd_name(rs.getString("std_name"));
+					dto.setScholar_name(rs.getString("scholar_name"));
+					dto.setScholar_money(rs.getInt("scholar_money"));
+					dto.setTuition_id(rs.getInt("tuition_id"));
+					list.add(dto);
+				}
+			} catch (SQLException e) {
+				 e.printStackTrace();
+				 return null;
+			}finally {
+				close();
+			}
+				return list;
+		}
+		/**장학금 관리 등록************/
+		public int eAdd(DTO dto) {
+			int success=0;
+			String sql = "INSERT INTO tuition(tuition_id, std_id, scholar_id, term_id) VALUES(seq_tuition_id.NEXTVAL,?,?,? )";
+			try {
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, dto.getStd_id());
+				ps.setInt(2, dto.getScholar_id());
+				ps.setString(3, dto.getTerm_id());
+				success=ps.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				success=0;
+			}finally {
+				close();
+			}
+			return success;
+		}
+		/**장학금 관리 수정 폼***************/
+		public DTO eUpdatePage(int tuition_id) {
+			DTO dto=null;
+			String sql = "SELECT t.term_id,s.std_id,s.std_name,sc.scholar_id,t.tuition_id " + 
+				 "FROM scholar sc JOIN tuition t ON sc.scholar_id = t.scholar_id JOIN std s ON t.std_id = s.std_id WHERE t.tuition_id=?"; 
+			try {
+				ps=conn.prepareStatement(sql);
+				ps.setInt(1, tuition_id);
+				rs=ps.executeQuery();
+				if(rs.next()) {
+					dto=new DTO();
+					dto.setTerm_id(rs.getString("term_id"));
+					dto.setStd_id(rs.getString("std_id"));
+					dto.setStd_name(rs.getString("std_name"));
+					dto.setScholar_id(rs.getInt("scholar_id"));
+					dto.setTuition_id(rs.getInt("tuition_id"));	
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return dto;
+			}finally {
+				close();
+			}
+			return dto;
+		}
+		/**장학금 관리 수정 ***************/
+		public int eUpdate(DTO dto) {
+			String sql="UPDATE tuition SET term_id=? , scholar_id=? WHERE tuition_id=?";
+			int success = 0;
+			try {
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, dto.getTerm_id());
+				ps.setInt(2, dto.getScholar_id());
+				ps.setInt(3, dto.getTuition_id());
+				success=ps.executeUpdate();
+				System.out.println(dto.getTuition_id());
+				System.out.println(dto.getScholar_id());
+				System.out.println(success);
+			} catch (SQLException e) {
+				e.printStackTrace();
+				success=0;
+			}finally {
+				close();
+			}
+			return success;
+		}
+		/**장학금 관리 검색 ******************/
+		public ArrayList<DTO> eSearch(String selectbox, String val) {
+			ArrayList<DTO> list = new ArrayList<>();
+			try {
+				if(selectbox.equals("std_id")) {
+					ps=conn.prepareStatement("SELECT t.term_id,s.std_id,s.std_name,sc.scholar_name,sc.scholar_money " + 
+							"FROM scholar sc JOIN tuition t ON sc.scholar_id = t.scholar_id JOIN std s ON t.std_id = s.std_id WHERE t.std_id=?");
+					ps.setString(1, val);
+				}else if(selectbox.equals("std_name")) {
+					ps=conn.prepareStatement("SELECT t.term_id,s.std_id,s.std_name,sc.scholar_name,sc.scholar_money " + 
+							"FROM scholar sc JOIN tuition t ON sc.scholar_id = t.scholar_id JOIN std s ON t.std_id = s.std_id WHERE s.std_name=?");
+					ps.setString(1, val);
+				}else if(selectbox.equals("scholar_name")) {
+					ps=conn.prepareStatement("SELECT t.term_id,s.std_id,s.std_name,sc.scholar_name,sc.scholar_money " + 
+							"FROM scholar sc JOIN tuition t ON sc.scholar_id = t.scholar_id JOIN std s ON t.std_id = s.std_id WHERE t.scholar_name=?");
+					ps.setString(1, val);
+				}
+				rs=ps.executeQuery();
+				while(rs.next()) {
+					DTO dto=new DTO();
+					dto.setTerm_id(rs.getString("term_id"));
+					dto.setStd_id(rs.getString("std_id"));
+					dto.setStd_name(rs.getString("std_name"));
+					dto.setScholar_name(rs.getString("scholar_name"));
+					dto.setScholar_money(rs.getInt("scholar_money"));
+					
+					list.add(dto);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+			}finally {
+				close();
+			}
+			return list;
 		}
 }

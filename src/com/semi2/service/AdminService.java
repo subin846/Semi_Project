@@ -20,6 +20,7 @@ public class AdminService {
 		this.request =request;
 		this.response=response;
 	}
+	/**학생 리스트 출력***************/
 	public void sManagePage() throws ServletException, IOException {
 		AdminDAO dao = new AdminDAO();
 		ArrayList<DTO> sManagePage=dao.sManagePage();
@@ -52,10 +53,12 @@ public class AdminService {
 		int success = dao.sUpdate(dto);
 		// 결과 확인
 		if (success > 0) {
-			System.out.println("성공");
+			System.out.println("성공");	
+			request.setAttribute("update", "수정 완료!!");
 			RequestDispatcher rd = request.getRequestDispatcher("student");
 			rd.forward(request, response);
 		} else {
+			request.setAttribute("update", "수정 실패!!");
 			RequestDispatcher rd = request.getRequestDispatcher("a01_UpdatePage.jsp");
 			rd.forward(request, response);
 		}
@@ -161,10 +164,9 @@ public class AdminService {
 	}
 	/**등록금 삭제***********/
 	public void tDell() throws ServletException, IOException {
-		String std_id= request.getParameter("std_id");
-		String term_id =request.getParameter("term_id");
+		int tuition_id=Integer.parseInt(request.getParameter("tuition_id"));
 		AdminDAO dao = new AdminDAO();
-		if(dao.tDell(std_id,term_id) >0) {
+		if(dao.tDell(tuition_id) >0) {
 			System.out.println("삭제성공");
 		}
 		RequestDispatcher dis = request.getRequestDispatcher("aTuition");
@@ -250,8 +252,7 @@ public class AdminService {
 		dis.forward(request, response);
 		
 	}
-	/**장학금 등록
-	 * @throws**********************/
+	/**장학금 등록**********************/
 	public void scAdd() throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		AdminDAO dao =new AdminDAO();
@@ -263,6 +264,84 @@ public class AdminService {
 		}
 		RequestDispatcher dis = request.getRequestDispatcher("scScholar");
 		dis.forward(request, response);
+	}
+	
+	/**장학금 관리 리스트********************/
+	public void ePage()  throws ServletException, IOException {
+		AdminDAO dao = new AdminDAO();
+		ArrayList<DTO> ePage=dao.ePage();
+		request.setAttribute("list", ePage);
+		RequestDispatcher dis = request.getRequestDispatcher("a04_index.jsp");
+		dis.forward(request, response);
+	}
+	/**장학금 관리 등록************/
+	public void eAdd() throws ServletException, IOException {
+		AdminDAO dao =new AdminDAO();
+		DTO dto= new DTO();
+		dto.setTerm_id(request.getParameter("term_id"));
+		dto.setScholar_id(Integer.parseInt(request.getParameter("scholar_id")));
+		dto.setStd_id(request.getParameter("std_id"));
+		if(dao.eAdd(dto)>0) {
+			System.out.println("저장완료");
+		}
+		RequestDispatcher dis = request.getRequestDispatcher("ePage");
+		dis.forward(request, response);
+	}
+	/**장학금 관리 삭제************/
+	public void eDel() throws ServletException, IOException {
+		int tuition_id=Integer.parseInt(request.getParameter("tuition_id"));
+		AdminDAO dao = new AdminDAO();
+		if(dao.tDell(tuition_id) >0) {
+			System.out.println("삭제성공");
+		}
+		RequestDispatcher dis = request.getRequestDispatcher("ePage");
+		dis.forward(request, response);
+		
+	}
+	/**장학금 관리 수정 폼***************/
+	public void eUpdatePage() throws ServletException, IOException {
+		int tuition_id =Integer.parseInt(request.getParameter("tuition_id"));
+		AdminDAO dao = new AdminDAO();
+		DTO dto = dao.eUpdatePage(tuition_id);
+		if (dto != null) {
+			request.setAttribute("form", dto);
+		} else {
+			System.out.println("오류");
+		}
+		RequestDispatcher rd = request.getRequestDispatcher("a04_update.jsp");
+		rd.forward(request, response);
 	}	
-
+	/**장학금 관리 수정 ***************/
+	public void eUpdate() throws ServletException, IOException {
+		int scholar_id=Integer.parseInt(request.getParameter("scholar_id"));
+		String term_id = request.getParameter("term_id");
+		int tuition_id=Integer.parseInt(request.getParameter("tuition_id"));
+		AdminDAO dao = new AdminDAO();
+		DTO dto = new DTO();
+		dto.setScholar_id(scholar_id);
+		dto.setTerm_id(term_id);
+		dto.setTuition_id(tuition_id);
+		// 데이터 수정
+		int success = dao.eUpdate(dto);
+		// 결과 확인
+		if (success > 0) {
+			System.out.println("성공");
+			RequestDispatcher rd = request.getRequestDispatcher("ePage");
+			rd.forward(request, response);
+		} else {
+			RequestDispatcher rd = request.getRequestDispatcher("a04_update.jsp");
+			rd.forward(request, response);
+		}
+	}
+	/**장학금 관리 검색 ******************/
+	public void eSearch() throws ServletException, IOException {
+		String selectbox = request.getParameter("selectbox");
+		String val=request.getParameter("val");
+		AdminDAO dao = new AdminDAO();
+		ArrayList<DTO> list=dao.eSearch(selectbox,val);
+		request.setAttribute("search", list);
+		RequestDispatcher dis = request.getRequestDispatcher("a04_index.jsp");
+		dis.forward(request, response);
+		
+	}
 }
