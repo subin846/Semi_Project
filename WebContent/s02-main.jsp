@@ -78,6 +78,10 @@
 				float: left;
 				margin-top:10px;
 			}
+			/* 서브페이지 아래로 밀림 방지 */
+			#container {
+				width: 1920px;
+			}
 		</style>
 	</head>
 	<body>
@@ -92,16 +96,18 @@
 			<div><a href="#">과목게시판</a></div>
 			<div><a href="#">수강신청</a></div>
 		</div>
-		<div id="sub">
-			<div id="s02"><a>신상조회</a></div>
-			<div id="s03"><a>시간표조회</a></div>
-			<div id="s04"><a>등록금고지서</a></div>
-			<div id="s05"><a>장학금조회</a></div>
-			<div id="s06"><a>성적조회</a></div>
-			<div id="s07"><a>학점계산기</a></div>
-		</div>
-		<div id="subPage">
-			<jsp:include page="s02.jsp"></jsp:include>
+		<div id="container">
+			<div id="sub">
+				<div id="s02"><a>신상조회</a></div>
+				<div id="s03"><a>시간표조회</a></div>
+				<div id="s04"><a>등록금고지서</a></div>
+				<div id="s05"><a>장학금조회</a></div>
+				<div id="s06"><a>성적조회</a></div>
+				<div id="s07"><a>학점계산기</a></div>
+			</div>
+			<div id="subPage">
+				<jsp:include page="s02.jsp"></jsp:include>
+			</div>
 		</div>
 	</body>
 	<script>
