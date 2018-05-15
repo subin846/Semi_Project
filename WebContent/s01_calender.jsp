@@ -87,9 +87,9 @@
 					// 태그에 가져온 데이터 넣기
 					$("#schedule_date").html(data.dto.schedule_date); //data.dto.schedule_date
 					$("#schedule_content").html(data.dto.schedule_content);
-					console.log("클릭 됨");
 				} 
 		  });
+		  console.log(document.getElementById("datepicker").value);
 		});
 	   
 
