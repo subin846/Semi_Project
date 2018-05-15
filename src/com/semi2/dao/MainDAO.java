@@ -147,6 +147,30 @@ public class MainDAO {
 		return success;
 	}
 
+	//학사일정
+	public DTO dateEvent(DTO scheduleDTO) {
+		DTO dto = new DTO();
+		String sql =  "SELECT schedule_content, schedule_date from schedule WHERE schedule_date=?";	
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, scheduleDTO.getSchedule_date());
+			rs = ps.executeQuery();
+			
+			if (rs.next()) {
+				dto.setSchedule_content(rs.getString("schedule_content"));
+				dto.setSchedule_date(rs.getString("schedule_date"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			resClose();
+		}
+		return dto;
+	}
+	
+	
+	
 }
 			
 

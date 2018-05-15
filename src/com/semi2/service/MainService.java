@@ -2,6 +2,7 @@ package com.semi2.service;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
 import com.semi2.dao.MainDAO;
 import com.semi2.dto.DTO;
 import com.semi2.dto.PwDTO;
@@ -76,7 +78,7 @@ public class MainService extends PwDTO{
 	//교수 메인
 	public void pmain() throws IOException, ServletException {
 		HttpSession session = request.getSession();
-		response.sendRedirect("p01.jsp");
+		response.sendRedirect("p01_main.jsp");
 	}
 
 	//관리자 메인
@@ -119,7 +121,27 @@ public class MainService extends PwDTO{
 		}		
 	}
 
-	
+	//학사일정 조회
+	public void dateEvent() throws IOException {
+		
+		String schedule = request.getParameter("schedule");
+		
+		MainDAO dao = new MainDAO();
+		DTO scheduleDTO = new DTO();
+		scheduleDTO.setSchedule_date(schedule);
+		
+		DTO dto = dao.dateEvent(scheduleDTO);
+
+		// map에 dto 담기
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("dto", dto);
+
+		// json 전송
+		Gson gson = new Gson();
+		String json = gson.toJson(map);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().println(json);
+	}
 	
 
 	

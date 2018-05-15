@@ -296,6 +296,10 @@ public class MainController extends HttpServlet {
 			System.out.println("비밀번호 변경 요청");
 			mservice.passChange();
 			break;
+		case "/dateEvent" :
+			System.out.println("학사일정표 요청");
+			mservice.dateEvent();
+			break;	
 /**********************************************************************/			
 			//은경
 			
