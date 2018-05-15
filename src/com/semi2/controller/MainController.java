@@ -270,6 +270,26 @@ public class MainController extends HttpServlet {
 			System.out.println("과목검색");
 			adservice.suSearch();
 			break;
+		case "/gPage":
+			System.out.println("강의평가 질문 리스트");
+			adservice.gPage();
+			break;
+		case "/gAdd":
+			System.out.println("강의평가 질문 작성");
+			adservice.gAdd();
+			break;
+		case "/gUpdatePage":
+			System.out.println("강의평가 질문 수정페이지");
+			adservice.gUpdatePage();
+			break;
+		case "/gUpdate":
+			System.out.println("강의평가 질문 수정");
+			adservice.gUpdate();
+			break;
+		case "/gDel":
+			System.out.println("강의평가 질문 삭제");
+			adservice.gDel();
+			break;
 /**********************************************************************/			
 		//수빈			
 		case "/login" :

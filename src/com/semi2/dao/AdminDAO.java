@@ -920,4 +920,97 @@ public class AdminDAO {
 			}
 			return list;
 		}
+		/**강의평가 질문 리스트******************/
+		public ArrayList<DTO> gPage() {
+			ArrayList<DTO> list = new ArrayList<>();
+			String sql="SELECT * FROM question";
+		DTO dto = null;
+		System.out.println("쿼리실행");
+		try {
+			ps=conn.prepareStatement(sql);
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				dto=new DTO();
+				dto.setQuestion_id(rs.getInt("question_id"));
+				dto.setQuestion_question(rs.getString("question_question"));
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			close();
+		}
+		return list;
+		}
+		/**강의평가 질문 등록***************/
+		public int gAdd(DTO dto) {
+			int success=0;
+			String sql = "INSERT INTO question(question_id, question_question) VALUES(seq_question_id.NEXTVAL, ?)";
+			try {
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, dto.getQuestion_question());
+				success=ps.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				success=0;
+			}finally {
+				close();
+			}
+			return success;
+		}
+		/**강의평가 질문 수정페이지***************/
+		public DTO gUpdatePage(int question_id) {
+			DTO dto=null;
+			String sql = "SELECT * FROM question WHERE question_id=?";
+			try {
+				ps=conn.prepareStatement(sql);
+				ps.setInt(1, question_id);
+				rs=ps.executeQuery();
+				if(rs.next()) {
+					dto=new DTO();
+					dto.setQuestion_id(rs.getInt(question_id));
+					dto.setQuestion_question(rs.getString("question_question"));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return dto;
+			}finally {
+				close();
+			}
+			return dto;
+		}
+		/**강의평가 질문 수정***************/
+		public int gUpdate(DTO dto) {
+			String sql="UPDATE question SET  question_question=? WHERE question_id=?" ;
+			int success=0;
+			try {
+				ps =conn.prepareStatement(sql);
+				ps.setString(1, dto.getQuestion_question());
+				ps.setInt(2, dto.getQuestion_id());
+				success=ps.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return 0;
+			}finally {
+				close();
+			}
+			return success;
+		}
+		/**강의평가 질문 삭제***************/
+		public int gDel(int question_id) {
+			String sql="DELETE FROM question WHERE question_id = ?" ;
+			int success =0;
+			try {
+				ps=conn.prepareStatement(sql);
+				ps.setInt(1, question_id);
+				success = ps.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				success=0;
+			}finally {
+				close();
+			}
+			return success;
+		}
 }

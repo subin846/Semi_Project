@@ -537,4 +537,68 @@ public class AdminService {
 		RequestDispatcher dis = request.getRequestDispatcher("a06_index.jsp");
 		dis.forward(request, response);
 	}
+	/**강의평가 질문 리스트*************/
+	public void gPage() throws ServletException, IOException {
+		AdminDAO dao = new AdminDAO();
+		ArrayList<DTO> gPage=dao.gPage();
+		request.setAttribute("list", gPage);
+		RequestDispatcher dis = request.getRequestDispatcher("a07_index.jsp");
+		dis.forward(request, response);
+	}
+	/**강의평가 질문 등록*************/
+	public void gAdd() throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		AdminDAO dao =new AdminDAO();
+		DTO dto= new DTO();
+		dto.setQuestion_question(request.getParameter("question_question"));
+		if(dao.gAdd(dto)>0) {
+			System.out.println("저장완료");
+		}
+		RequestDispatcher dis = request.getRequestDispatcher("gPage");
+		dis.forward(request, response);
+	}
+	/**강의평가 질문 등록 수정페이지 *************/
+	public void gUpdatePage() throws ServletException, IOException {
+		int question_id =Integer.parseInt(request.getParameter("question_id"));
+		AdminDAO dao = new AdminDAO();
+		DTO dto = dao.gUpdatePage(question_id);
+		if (dto != null) {
+			request.setAttribute("form", dto);
+		} else {
+			System.out.println("오류");
+		}
+		RequestDispatcher rd = request.getRequestDispatcher("a07_update.jsp");
+		rd.forward(request, response);
+	}
+	/**강의평가 질문 등록 수정 *************/
+	public void gUpdate() throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		int question_id = Integer.parseInt(request.getParameter("question_id"));
+		String question_question=request.getParameter("question_question");
+		AdminDAO dao = new AdminDAO();
+		DTO dto = new DTO();
+		dto.setQuestion_id(question_id);
+		dto.setQuestion_question(question_question);
+		int success = dao.gUpdate(dto);
+		if (success > 0) {
+			System.out.println("성공");	
+			request.setAttribute("update", "수정 완료!!");
+			RequestDispatcher rd = request.getRequestDispatcher("gPage");
+			rd.forward(request, response);
+		} else {
+			request.setAttribute("update", "수정 실패!!");
+			RequestDispatcher rd = request.getRequestDispatcher("a07_update.jsp");
+			rd.forward(request, response);
+		}
+	}
+	/**강의평가 질문 삭제 *************/
+	public void gDel() throws ServletException, IOException {
+		int question_id= Integer.parseInt(request.getParameter("question_id"));
+		AdminDAO dao = new AdminDAO();
+		if(dao.gDel(question_id) >0) {
+			System.out.println("삭제성공");
+		}
+		RequestDispatcher dis = request.getRequestDispatcher("gPage");
+		dis.forward(request, response);
+	}
 }
