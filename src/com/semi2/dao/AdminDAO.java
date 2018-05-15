@@ -721,4 +721,203 @@ public class AdminDAO {
 			}
 			return list;
 		}
+		/**과목 리스트**************************/
+		public ArrayList<DTO> suManagePage() {
+			ArrayList<DTO> list = new ArrayList<>();
+				String sql="SELECT subject_name, subject_room, subject_time, subject_type, subject_grade, subject_credit, subject_limit, term_id, M.major_name, P.pro_name, P.pro_id " + 
+						"FROM subject S " + 
+						"JOIN major M " + 
+						"ON S.major_id = M.major_id " + 
+						"JOIN pro P " + 
+						"ON S.pro_id = P.pro_id";
+			DTO dto = null;
+			System.out.println("쿼리실행");
+			try {
+				ps=conn.prepareStatement(sql);
+				rs=ps.executeQuery();
+				while(rs.next()) {
+					dto=new DTO();
+					dto.setMajor_name(rs.getString("major_name"));
+					dto.setSubject_name(rs.getString("subject_name"));
+					dto.setPro_name(rs.getString("pro_name"));
+					dto.setSubject_room(rs.getString("subject_room"));
+					dto.setSubject_time(rs.getString("subject_time"));
+					dto.setSubject_type(rs.getString("subject_type"));
+					dto.setSubject_credit(rs.getInt("subject_credit"));
+					dto.setSubject_limit(rs.getInt("subject_limit"));
+					dto.setSubject_grade(rs.getDouble("subject_grade"));
+					dto.setTerm_id(rs.getString("term_id"));
+					dto.setPro_id(rs.getString("pro_id"));
+					list.add(dto);
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+			}finally {
+				close();
+			}
+			return list;
+		}
+		/**과목 삭제**************************/
+		public int suDel(String pro_id, String subject_time) {
+			String sql="DELETE FROM subject WHERE pro_id = ? AND subject_time=?" ;
+			int success =0;
+			try {
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, pro_id);
+				ps.setString(2, subject_time);
+				System.out.println(pro_id);
+				success = ps.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				success=0;
+			}finally {
+				close();
+			}
+			return success;
+		}
+		/**과목 등록**************************/
+		public int suAdd(DTO dto) {
+			int success=0;
+			String sql = "INSERT INTO subject(subject_id, term_id,major_id, pro_id, subject_name,"
+					+ "subject_room,subject_time,subject_type,subject_grade,subject_credit,subject_limit ) " + 
+					"VALUES (?, ?, ?, ?, ?, ?, ?,?,?,?,?)";
+			try {
+				ps=conn.prepareStatement(sql);
+				ps.setInt(1, dto.getSubject_id());
+				ps.setString(2, dto.getTerm_id());
+				ps.setString(3, dto.getMajor_id());
+				ps.setString(4, dto.getPro_id());
+				ps.setString(5, dto.getSubject_name());
+				ps.setString(6, dto.getSubject_room());
+				ps.setString(7, dto.getSubject_time());
+				ps.setString(8, dto.getSubject_type());
+				ps.setDouble(9, dto.getSubject_grade());
+				ps.setInt(10, dto.getSubject_credit());
+				ps.setInt(11, dto.getSubject_limit());
+				success=ps.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				success=0;
+			}finally {
+				close();
+			}
+			return success;
+		}
+		/**과목 수정페이지*****************************/
+		public DTO suUpdatePage(String pro_id, String subject_time) {
+			DTO dto=null;
+			String sql = "SELECT * FROM subject WHERE pro_id=? AND subject_time=?";
+			try {
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, pro_id);
+				ps.setString(2, subject_time);
+				rs=ps.executeQuery();
+				if(rs.next()) {
+					dto=new DTO();
+					dto.setSubject_id(rs.getInt("subject_id"));
+					dto.setTerm_id(rs.getString("term_id"));
+					dto.setMajor_id(rs.getString("major_id"));
+					dto.setPro_id(rs.getString("pro_id"));
+					dto.setSubject_name(rs.getString("subject_name"));
+					dto.setSubject_room(rs.getString("subject_room"));
+					dto.setSubject_time(rs.getString("subject_time"));
+					dto.setSubject_type(rs.getString("subject_type"));
+					dto.setSubject_grade(rs.getDouble("subject_grade"));
+					dto.setSubject_credit(rs.getInt("subject_credit"));
+					dto.setSubject_limit(rs.getInt("subject_limit"));	
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return dto;
+			}finally {
+				close();
+			}
+			return dto;
+		}
+		/**과목 수정**********************/
+		public int suUpdate(DTO dto) {
+			String sql="UPDATE subject SET  major_id=?,subject_id=?,pro_id=?,subject_room=?,subject_name=?, subject_time=?, "
+					+ "subject_type=?,subject_credit=?,subject_limit=?,subject_grade=?,term_id=? WHERE subject_id=?" ;
+			int success=0;
+			try {
+				ps =conn.prepareStatement(sql);
+				ps.setString(1, dto.getMajor_id());
+				ps.setInt(2, dto.getSubject_id());
+				ps.setString(3, dto.getPro_id());
+				ps.setString(4, dto.getSubject_room());
+				ps.setString(5, dto.getSubject_name());
+				ps.setString(6, dto.getSubject_time());
+				ps.setString(7, dto.getSubject_type());
+				ps.setInt(8, dto.getSubject_credit());
+				ps.setInt(9, dto.getSubject_limit());
+				ps.setDouble(10, dto.getSubject_grade());
+				ps.setString(11, dto.getTerm_id());
+				ps.setInt(12, dto.getSubject_id());
+				success=ps.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return 0;
+			}finally {
+				close();
+			}
+			return success;
+		}
+		/** 과목검색*************/
+		public ArrayList<DTO> suSearch(String selectbox, String val) {
+			ArrayList<DTO> list = new ArrayList<>();
+			try {
+				if(selectbox.equals("major_name")) {
+					ps=conn.prepareStatement("SELECT subject_name, subject_room, subject_time, subject_type, subject_grade, subject_credit, subject_limit, term_id, M.major_name, P.pro_name, P.pro_id " + 
+							"FROM subject S " + 
+							"JOIN major M " + 
+							"ON S.major_id = M.major_id " + 
+							"JOIN pro P " + 
+							"ON S.pro_id = P.pro_id " + 
+							"WHERE M.major_name LIKE '%' || ? || '%'");
+					ps.setString(1, val);
+				}else if(selectbox.equals("subject_name")) {
+					ps=conn.prepareStatement("SELECT subject_name, subject_room, subject_time, subject_type, subject_grade, subject_credit, subject_limit, term_id, M.major_name, P.pro_name, P.pro_id " + 
+							"FROM subject S " + 
+							"JOIN major M " + 
+							"ON S.major_id = M.major_id " + 
+							"JOIN pro P " + 
+							"ON S.pro_id = P.pro_id " + 
+							"WHERE S	.subject_name LIKE '%' || ? || '%'");
+					ps.setString(1, val);
+				}else if(selectbox.equals("pro_name")) {
+					ps=conn.prepareStatement("SELECT subject_name, subject_room, subject_time, subject_type, subject_grade, subject_credit, subject_limit, term_id, M.major_name, P.pro_name, P.pro_id " + 
+							"FROM subject S " + 
+							"JOIN major M " + 
+							"ON S.major_id = M.major_id " + 
+							"JOIN pro P " + 
+							"ON S.pro_id = P.pro_id " + 
+							"WHERE P.pro_name LIKE '%' || ? || '%'");
+					ps.setString(1, val);
+				}
+				rs=ps.executeQuery();
+				while(rs.next()) {
+					DTO dto=new DTO();
+					dto.setMajor_name(rs.getString("major_name"));
+					dto.setSubject_name(rs.getString("subject_name"));
+					dto.setPro_name(rs.getString("pro_name"));
+					dto.setSubject_room(rs.getString("subject_room"));
+					dto.setSubject_time(rs.getString("subject_time"));
+					dto.setSubject_type(rs.getString("subject_type"));
+					dto.setSubject_credit(rs.getInt("subject_credit"));
+					dto.setSubject_limit(rs.getInt("subject_limit"));
+					dto.setSubject_grade(rs.getDouble("subject_grade"));
+					dto.setTerm_id(rs.getString("term_id"));
+					dto.setPro_id(rs.getString("pro_id"));
+					list.add(dto);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+			}finally {
+				close();
+			}
+			return list;
+		}
 }

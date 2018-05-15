@@ -432,6 +432,109 @@ public class AdminService {
 		request.setAttribute("search", list);
 		RequestDispatcher dis = request.getRequestDispatcher("a05_index.jsp");
 		dis.forward(request, response);
-		
+	}
+	/** 과목 리스트********/
+	public void suManagePage() throws ServletException, IOException {
+		AdminDAO dao = new AdminDAO();
+		ArrayList<DTO> suManagePage=dao.suManagePage();
+		request.setAttribute("list", suManagePage);
+		RequestDispatcher dis = request.getRequestDispatcher("a06_index.jsp");
+		dis.forward(request, response);
+	}
+	/** 과목 삭제********/
+	public void suDel() throws ServletException, IOException {
+		String pro_id= request.getParameter("pro_id");
+		String subject_time=request.getParameter("subject_time");
+		AdminDAO dao = new AdminDAO();
+		if(dao.suDel(pro_id,subject_time) >0) {
+			System.out.println("삭제성공");
+		}
+		RequestDispatcher dis = request.getRequestDispatcher("suManagePage");
+		dis.forward(request, response);
+	}
+	/** 과목 추가********/
+	public void suAdd() throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		AdminDAO dao =new AdminDAO();
+		DTO dto= new DTO();
+		dto.setMajor_id(request.getParameter("major_id"));
+		dto.setSubject_id(Integer.parseInt(request.getParameter("subject_id")));
+		dto.setPro_id(request.getParameter("pro_id"));
+		dto.setSubject_room(request.getParameter("subject_room"));
+		dto.setSubject_name(request.getParameter("subject_name"));
+		dto.setSubject_time(request.getParameter("subject_time"));
+		dto.setSubject_type(request.getParameter("subject_type"));
+		dto.setSubject_credit(Integer.parseInt(request.getParameter("subject_credit")));
+		dto.setSubject_limit(Integer.parseInt(request.getParameter("subject_limit")));
+		dto.setSubject_grade(Double.parseDouble(request.getParameter("subject_grade")));
+		dto.setTerm_id(request.getParameter("term_id"));
+		if(dao.suAdd(dto)>0) {
+			System.out.println("저장완료");
+		}
+		RequestDispatcher dis = request.getRequestDispatcher("suManagePage");
+		dis.forward(request, response);
+	}
+	/**과목 수정 페이지*****************/
+	public void suUpdatePage() throws ServletException, IOException {
+		String pro_id =request.getParameter("pro_id");
+		String subject_time=request.getParameter("subject_time");
+		AdminDAO dao = new AdminDAO();
+		DTO dto = dao.suUpdatePage(pro_id,subject_time);
+		if (dto != null) {
+			request.setAttribute("form", dto);
+		} else {
+			System.out.println("오류");
+		}
+		RequestDispatcher rd = request.getRequestDispatcher("a06_update.jsp");
+		rd.forward(request, response);
+	}
+	/**과목 수정 *****************/
+	public void suUpdate() throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		String major_id =request.getParameter("major_id");
+		int subject_id=Integer.parseInt(request.getParameter("subject_id"));
+		String pro_id =request.getParameter("pro_id");
+		String subject_room =request.getParameter("subject_room");
+		String subject_name =request.getParameter("subject_name");
+		String subject_time =request.getParameter("subject_time");
+		String subject_type =request.getParameter("subject_type");
+		int subject_credit=Integer.parseInt(request.getParameter("subject_credit"));
+		int subject_limit=Integer.parseInt(request.getParameter("subject_limit"));
+		Double subject_grade=Double.parseDouble(request.getParameter("subject_grade"));
+		String term_id =request.getParameter("term_id");
+		AdminDAO dao = new AdminDAO();
+		DTO dto = new DTO();
+		dto.setMajor_id(major_id);
+		dto.setSubject_id(subject_id);
+		dto.setPro_id(pro_id);
+		dto.setSubject_room(subject_room);
+		dto.setSubject_name(subject_name);
+		dto.setSubject_time(subject_time);
+		dto.setSubject_type(subject_type);
+		dto.setSubject_credit(subject_credit);
+		dto.setSubject_limit(subject_limit);
+		dto.setSubject_grade(subject_grade);
+		dto.setTerm_id(term_id);
+		int success = dao.suUpdate(dto);
+		if (success > 0) {
+			System.out.println("성공");	
+			request.setAttribute("update", "수정 완료!!");
+			RequestDispatcher rd = request.getRequestDispatcher("suManagePage");
+			rd.forward(request, response);
+		} else {
+			request.setAttribute("update", "수정 실패!!");
+			RequestDispatcher rd = request.getRequestDispatcher("a06_update.jsp");
+			rd.forward(request, response);
+		}
+	}
+	/**과목 검색*************/
+	public void suSearch() throws ServletException, IOException {
+		String selectbox = request.getParameter("selectbox");
+		String val=request.getParameter("val");
+		AdminDAO dao = new AdminDAO();
+		ArrayList<DTO> list=dao.suSearch(selectbox,val);
+		request.setAttribute("search", list);
+		RequestDispatcher dis = request.getRequestDispatcher("a06_index.jsp");
+		dis.forward(request, response);
 	}
 }

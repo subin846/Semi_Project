@@ -229,19 +229,19 @@
 					</a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="suManagePage">
 						<i class="fa fa-book"></i>
 						<span>과목 관리</span>
 					</a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="gPage">
 						<i class="fa fa-edit"></i>
 						<span>강의평가 질문 관리</span>
 					</a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="schedulePage">
 						<i class="fa fa-calendar"></i>
 						<span>학사일정 관리</span>
 					</a>
