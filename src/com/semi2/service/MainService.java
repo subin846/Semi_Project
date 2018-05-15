@@ -125,7 +125,6 @@ public class MainService extends PwDTO{
 	public void dateEvent() throws IOException {
 		
 		String schedule = request.getParameter("schedule");
-		System.out.println("값 확인"+schedule);
 		
 		MainDAO dao = new MainDAO();
 		DTO scheduleDTO = new DTO();
