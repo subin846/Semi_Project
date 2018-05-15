@@ -74,23 +74,24 @@
 	  
 	    
 	    $('#datepicker').change(function() {
-          
-		  $.ajax({
-				type: "post",
-				url: "./dateEvent",
-				dataType: "json",
-				
-				data: {
-					"schedule": $(this).val() 
-				},
-				success: function(data) {
-					// 태그에 가져온 데이터 넣기
-					$("#schedule_date").html(data.dto.schedule_date); //data.dto.schedule_date
-					$("#schedule_content").html(data.dto.schedule_content);
-				} 
-		  });
-		  console.log(document.getElementById("datepicker").value);
-		});
+	          
+	 		  $.ajax({
+					type: "post",
+					url: "./dateEvent",
+					dataType: "json",
+					
+					data: {
+						"schedule": $(this).val() 
+					},
+					success: function(data) {
+						// 태그에 가져온 데이터 넣기
+						$("#schedule_date").html(data.dto.schedule_date); //data.dto.schedule_date
+						$("#schedule_content").html(data.dto.schedule_content);
+					} 
+			  }); 
+			  
+				console.log(document.getElementById("datepicker").value);
+			});
 	   
 
 	     //-- Font-size를 40px 설정해보니 상단의 년도와 , 월~토요일까지가 글자의 크기가 변경되는 것을 확인하였습니다. 

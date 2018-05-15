@@ -15,7 +15,7 @@ import com.semi2.service.InfoService;
 import com.semi2.service.LectureService;
 import com.semi2.service.MainService;
 
-@WebServlet({"/", "/login", "/logout", "/smain", "/pmain", "/amain", "/passChange"})
+@WebServlet({"/login", "/logout", "/smain", "/pmain", "/amain", "/passChange"})
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -38,7 +38,7 @@ public class MainController extends HttpServlet {
 		String uri = request.getRequestURI();
 		String cp = request.getContextPath();
 		String sub = uri.substring(cp.length());
-		System.out.println("sub : " + sub);
+		System.out.println("sub :" + sub);
 		/**AdminService  민철******************************/
 		AdminService adservice = new AdminService(request, response);
 		
@@ -272,23 +272,23 @@ public class MainController extends HttpServlet {
 			break;
 		case "/gPage":
 			System.out.println("강의평가 질문 리스트");
-			adservice.gPage();
+			//adservice.gPage();
 			break;
 		case "/gAdd":
 			System.out.println("강의평가 질문 작성");
-			adservice.gAdd();
+			//adservice.gAdd();
 			break;
 		case "/gUpdatePage":
 			System.out.println("강의평가 질문 수정페이지");
-			adservice.gUpdatePage();
+			//adservice.gUpdatePage();
 			break;
 		case "/gUpdate":
 			System.out.println("강의평가 질문 수정");
-			adservice.gUpdate();
+			//adservice.gUpdate();
 			break;
 		case "/gDel":
 			System.out.println("강의평가 질문 삭제");
-			adservice.gDel();
+			//adservice.gDel();
 			break;
 /**********************************************************************/			
 		//수빈			
