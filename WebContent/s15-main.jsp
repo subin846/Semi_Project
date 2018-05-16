@@ -84,12 +84,12 @@
 	<body>
 			<div id="menu">
 					<span>${sessionScope.loginId}</span>님 환영합니다
-					<a href="#">HOME</a>
+					<a href="./s01.jsp">HOME</a>
 					<a href="#">비밀번호변경</a>
 					<a href="#">LOGOUT</a>
 			</div>
 			<div id="navi">
-				<div><a href="#">학적</a></div>
+				<div><a href="./s02-main.jsp">학적</a></div>
 				<div><a href="#">과목게시판</a></div>
 				<div id="navi3"><a href="./s15-main.jsp">수강신청</a></div>
 			</div>

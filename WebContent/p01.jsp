@@ -82,9 +82,9 @@ table td {
 		</style>
 	</head>
 	<body>
-		<jsp:include page="p_top_menu.jsp"/>
+	<%-- 	<jsp:include page="p_top_menu.jsp"/> --%>
 		<div id="container">
-			<jsp:include page="p_sub_menu1.jsp"/>
+			<%-- <jsp:include page="p_sub_menu1.jsp"/> --%>
 			<div id="content">
 				<table>
 					<tr>

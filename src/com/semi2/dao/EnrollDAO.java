@@ -94,9 +94,9 @@ public class EnrollDAO {
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				System.out.println("반복문 실행!");
-				System.out.println("과목 id"+rs.getString("subject_id"));
+				//System.out.println("과목 id"+rs.getString("subject_id"));
 				DTO dto =new DTO();
-				dto.setSubject_id(rs.getInt("subject_id"));
+				/*dto.setSubject_id(rs.getInt("subject_id"));*/
 				dto.setTerm_id(rs.getString("term_id"));
 				dto.setMajor_name(rs.getString("major_name"));
 				dto.setSubject_name(rs.getString("subject_name"));
