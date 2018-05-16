@@ -94,7 +94,7 @@
 		<div id="navi">
 			<div id="navi1"><a href="#">학적</a></div>
 			<div><a href="#">과목게시판</a></div>
-			<div><a href="#">수강신청</a></div>
+			<div><a href="./s15-main.jsp">수강신청</a></div>
 		</div>
 		<div id="container">
 			<div id="sub">

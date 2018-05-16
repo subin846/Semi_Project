@@ -86,13 +86,14 @@
 			display:none;
 		}
 		table{
-			width: 1000px;
+			width: 1800px;
 			}
 		table,th,td{
 			border-collapse: collapse;
 			border : 1px solid black;
 			padding : 5px 10px;
-			margin:10px;
+			margin:20px;
+			text-align: center;
 		}
 	</style>
 </head>
