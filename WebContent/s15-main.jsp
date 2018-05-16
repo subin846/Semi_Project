@@ -83,7 +83,7 @@
 	</head>
 	<body>
 			<div id="menu">
-					<span></span>님 환영합니다
+					<span>${sessionScope.loginId}</span>님 환영합니다
 					<a href="#">HOME</a>
 					<a href="#">비밀번호변경</a>
 					<a href="#">LOGOUT</a>
@@ -102,17 +102,18 @@
 				<%@include file="s15.jsp" %> 
 			</div>
 	<script>
+	
 		/* 과목 조회 메뉴 클릭시 */
 		$("#s15").click(function(){
 			$("#import").load("s15.jsp");
 		});
 		/* 과목 조회 메뉴 클릭시 */
 		$("#s16").click(function(){
-			$("#import").load("s16.jsp");
+			location.href="s16.jsp"; 
 		});
 		/* 과목 조회 메뉴 클릭시 */
 		$("#s17").click(function(){
-			$("#import").load("s17.jsp");	
+			location.href="s17.jsp"; 
 		});
 	</script>
 </html>

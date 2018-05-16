@@ -41,7 +41,7 @@ public class MainController extends HttpServlet {
 		System.out.println("sub : " + sub);
 		/**AdminService  민철******************************/
 		AdminService adservice = new AdminService(request, response);
-		
+		/**EnrollService  지현******************************/
 		EnrollService enService= new EnrollService(request,response);
 		/**MainService  수빈******************************/
 		MainService mservice = new MainService(request, response);
@@ -118,8 +118,25 @@ public class MainController extends HttpServlet {
 			
 		/******************* 지현 *******************/
 		case "/subjectSearch" :
-			System.out.println("조회 버튼 클릭시 필터링");
+			System.out.print("이전 학기과목 평점조회 or ");
+			System.out.println("신 학기 수강신청 과목 조회 필터링으로 분류");
 			enService.subjectSearch();
+			break;
+		case "/stdEnroll" :
+			System.out.println("로그인 학생의 수강 신청 과목 조회");
+			enService.stdEnroll();
+			break;
+		case "/stdCredit" :
+			System.out.println("로그인 학생의 수강 과목 학점 조회");
+			enService.stdCredit();
+			break;
+		case "/enroll" :
+			System.out.println("로그인 학생의 수강 신청 ");
+			enService.enroll();
+			break; 
+		case "/enrollChange" :
+			System.out.println("로그인 학생의 수강 정정 ");
+			enService.enrollChange();
 			break; 
 		/******************* 지현 *******************/
 			
