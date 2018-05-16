@@ -175,10 +175,8 @@
 		</style>
 	</head>
 	<body>
-		<div id="div3">
-                <input type="button" onclick="location.href='a07_Register.jsp'" value="등록">
-        </div>
-		<table cellspacing='0'> <!-- cellspacing='0' is important, must stay -->
+		<button id="bnt" onclick="location.href='a07_Register.jsp'">등록</button>
+		<table cellspacing='0'> 
 			<thead>
 				<tr>
 					<th>질문번호</th>

@@ -2,45 +2,116 @@
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
-   table,tr,th,td{
-                border: 1px solid black;
-                border-collapse: collapse;
-                text-align: center;
-                width: 1200px;
-            }
+	html {
+		box-sizing: inherit;
+		background: -webkit-linear-gradient(right, #8e9eab, #eef2f3);
+		background: linear-gradient(to left, #8e9eab, #eef2f3);
+	}
+ 	div{
+		position: relative;
+		width: 500px;
+		min-height: 5%;
+		margin: 0 auto 0;
+		background: #fff;
+		font-size: 17px;	
+		z-index: 10;
+	}
+	#div1{
+	 	padding : 10px;
+	 	text-align:left;
+	    border: solid 1px #dadada;
+	 }
+	input{
+		padding : 10px 5px;
+		font-size: 17px;
+		width: 78%;
+		z-index: 10;
+		height: 35px;
+		border: none;
+		background: #fff;
+	}
+	select{
+		text-align:center;
+		width: 150px;
+		height: 30px;
+		padding-left: 10px;
+		font-size: 18px;
+		color: black;
+		border: 1px solid #dadada;
+		border-radius: 3px;
+	}
+	#div3{
+	    height: 55px;
+	    width : 520px;
+	   	border: solid 1px none;
+	    -webkit-background-size: 108px auto;
+	    background: white;	
+	  }
+	  #div3 input{
+	 		width: 100%;
+	 		height: 100%;
+			font-size: 17px;
+			border: none;
+			background: #fff;
+	  }
+	  h2,h4{
+	  		cursor: pointer;
+	  }
 </style>
  <body>
-	    <table id="updateForm">
-	        <tr>
-	            <th></th>
-	            <th>학번</th>
-	            <th>학년</th>
-	            <th>이름</th>
-	            <th>생년 월일</th>
-	            <th>상태</th>
-	            <th>연락처</th>
-	            <th>이메일</th>
-	            <th>주소</th>
-	            <th>수정</th>
-	        </tr>
-       		<form action="update" method="get">
-	      		<tr >
-		            <td></td>
-		            <td>${form.std_id}<input type="hidden" name="std_id" value="${form.std_id}"/></td>
-		            <td><input type="text" name="std_year" value="${form.std_year}"/></td>
-		            <td><input type="text" name="std_name" value="${form.std_name}"/></td>
-		            <td><input type="text" name="std_birthday" value="${form.std_birthday}"/></td>
-		            <td><input type="text" name="std_state" value="${form.std_state}"/></td>
-		            <td><input type="text" name="std_phone" value="${form.std_phone}"/></td>
-		            <td><input type="text" name="std_email" value="${form.std_email}"/></td>
-		            <td><input type="text" name="std_address" value="${form.std_address}"/></td>
-		            <td>
-		           		<input type="submit" onclick="click()" value="저장"/>
-		            </td>
-	       		</tr>
-	        </form>
-	    </table>
-	
+ 	<h2  onclick="location.href='student'">Total Information System</h2>
+	<h4 onclick="location.href='student'" >학생 수정</h4>
+	    <form action="update">
+			<div id="div1">
+				<div>
+					&nbsp; 학번 : ${form.std_id}
+				<input type="hidden" name="std_id" value="${form.std_id}"/>
+				</div>
+				<hr/>
+				<div>
+					&nbsp; 이름 :<input type="text" name="std_name"  value="${form.std_name}">
+				</div>
+				<hr/>
+				<div>
+					&nbsp; 학년 :
+					<select name="std_year">
+	            		<option value="none"  selected="selected" >-선택하세요-</option>
+	  					<option value="1">1</option>
+					  	<option value="2">2</option>
+					 	<option value="3">3</option>
+					 	<option value="4">4</option>
+					</select>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;상태 :
+					<select name="std_state">
+	            		<option value="none"  selected="selected" >-선택하세요-</option>
+	  					<option value="재학">재학</option>
+					  	<option value="졸업">졸업</option>
+					 	<option value="휴학">휴학</option>
+					</select>
+				</div>
+				<hr/>
+				<div>
+					&nbsp; 생년월일 :<input type="text" name="std_birthday"  value="${form.std_birthday}">
+				</div>
+				<hr/>
+				<div>
+					&nbsp; 핸드폰번호 :<input type="text" name="std_phone"  value="${form.std_phone}">
+				</div>
+				<hr/>
+				<div>
+					&nbsp; 주소 :<input type="text" name="std_address"  value="${form.std_address}">
+				</div>
+				<hr/>
+				<div>
+					&nbsp; 이메일 :<input type="text" name="std_email"  value="${form.std_email}">
+				</div>
+				<hr/>
+			</div>
+			<br/>
+			<div id="div3">
+				<input  type="submit" value="완료"/> 
+			</div>
+		</form>
 </body>
 <script>
 	function click(){

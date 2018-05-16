@@ -969,7 +969,7 @@ public class AdminDAO {
 				rs=ps.executeQuery();
 				if(rs.next()) {
 					dto=new DTO();
-					dto.setQuestion_id(rs.getInt(question_id));
+					dto.setQuestion_id(rs.getInt("question_id"));
 					dto.setQuestion_question(rs.getString("question_question"));
 				}
 			} catch (SQLException e) {
