@@ -177,16 +177,16 @@
 </head>
 <body>
 	<div id="div3">
-        <form id="select" action="tSearch">
+        <form id="select" action="eSearch">
         	<select name="selectbox">
 			<option value="std_id">학번</option>
 		  	<option value="std_name">이름</option>
-		 	<option value="term_id">학기</option>
+		 	<option value="scholar_name">장학금 종류</option>
 		 	<option value="none"  selected="selected" >-선택하세요-</option>
 		</select>
         <input type="text" name="val"/>
         <input type="submit" value="조회"/>
-        <input type="button" onclick="location.href='a02_register.jsp'" value="등록">
+        <input type="button" onclick="location.href='a04_register.jsp'" value="등록">
 		</form>
 	</div>
     <table cellspacing='0'> <!-- cellspacing='0' is important, must stay -->
@@ -197,15 +197,13 @@
 	            <th>이름</th>
 	            <th>장학금 종류</th>
 	            <th>장학금 금액</th>
-	            <th>등록금</th>
-	            <th>실납입액</th>
 	            <th>수정</th>
 	            <th>삭제</th>
       		</tr>
         </thead><!-- Table Header -->
         <tbody>
        		<c:forEach items="${list}" var="bbs">
-       			<form action="tUpdateForm" method="get">
+       			<form action=eUpdatePage method="get">
 		      		<tr>
 		      			<input  type="hidden" name="tuition_id" value="${ bbs.tuition_id }"/>
 			            <td>${bbs.term_id}<input  type="hidden" name="term_id" value="${ bbs.term_id }"/></td>
@@ -213,13 +211,11 @@
 			            <td>${bbs.std_name}</td>
 			            <td>${bbs.scholar_name}</td>
 			            <td>${bbs.scholar_money}<input  type="hidden" name="scholar_money" value="${ bbs.scholar_money }"/></td>
-			            <td>${bbs.tuition_money}<input  type="hidden" name="tuition_money" value="${ bbs.tuition_money }"/></td>
-			            <td>${bbs.totalMoney}</td>
 			            <td>
 			           		<input  type="submit" value="수정"/>
 			            </td>
 			            <td>
-			           		<input type="button" onclick="location.href='tDell?tuition_id=${bbs.tuition_id}'" value="삭제"/>
+			           		<input type="button" onclick="location.href='eDel?tuition_id=${bbs.tuition_id}'" value="삭제"/>
 			            </td>
 	       			</tr>
        			</form>
@@ -232,13 +228,11 @@
 			            <td>${search.std_name}</td>
 			            <td>${search.scholar_name}</td>
 			            <td>${search.scholar_money}<input  type="hidden" name="scholar_money" value="${ search.scholar_money }"/></td>
-			            <td>${search.tuition_money}<input  type="hidden" name="tuition_money" value="${ search.tuition_money }"/></td>
-			            <td >${search.totalMoney }</td>
 			            <td>
 			           		<input  type="submit" value="수정"/>
 			            </td>
 			            <td>
-			           		<input type="button" onclick="location.href='tDell?tuition_id=${bbs.tuition_id}'" value="삭제"/>
+			           		<input type="button" onclick="location.href='eDel?tuition_id=${bbs.tuition_id}'" value="삭제"/>
 			            </td>
 	       			</tr>
      			</form>

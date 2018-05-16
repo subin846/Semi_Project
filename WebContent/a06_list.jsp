@@ -176,70 +176,76 @@
 	</head>
 	<body>
 		<div id="div3">
-            <form id="select" action="search">
+            <form id="select" action="suSearch">
             	<select name="selectbox">
             		<option value="none"  selected="selected" >-선택하세요-</option>
-  					<option value="std_id">학번</option>
-				  	<option value="std_name">이름</option>
-				 	<option value="std_state">상태</option>
+  					<option value="major_name">학과명</option>
+				  	<option value="subject_name">과목명</option>
+				 	<option value="pro_name">교수명</option>
 				</select>
                 <input type="text" name="val"/>
                 <input type="submit" value="조회"/>
-                <input type="button" onclick="location.href='a01_Register.jsp'" value="등록">
+                <input type="button" onclick="location.href='a06_Register.jsp'" value="등록">
             </form>
         </div>
 		<table cellspacing='0'> <!-- cellspacing='0' is important, must stay -->
 			<thead>
 				<tr>
-					<th>학번</th>
-		            <th>학년</th>
-		            <th>이름</th>
-		            <th>생년 월일</th>
-		            <th>상태</th>
-		            <th>연락처</th>
-		            <th>이메일</th>
-		            <th>주소</th>
+					<th>학과명</th>
+		            <th>과목명</th>
+		            <th>교수명</th>
+		            <th>강의실</th>
+		            <th>강의시간</th>
+		            <th>이수구분</th>
+		            <th>학점</th>
+		            <th>제한인원</th>
+		            <th>평점</th>
+		            <th>학기</th>
 		            <th>수정</th>
 		            <th>삭제</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${list}" var="bbs">
-       				<form action="updateForm" method="get">
+       				<form action="suUpdatePage" method="get">
 		      			<tr >
-				            <td>${bbs.std_id}<input  type="hidden" name="std_id" value="${ bbs.std_id }"/></td>
-				            <td>${bbs.std_year}</td>
-				            <td>${bbs.std_name}</td>
-				            <td>${bbs.std_birthday}</td>
-				            <td>${bbs.std_state}</td>
-				            <td>${bbs.std_phone}</td>
-				            <td>${bbs.std_email}</td>
-				            <td>${bbs.std_address}</td>
+				            <td>${bbs.major_name}<input  type="hidden" name="pro_id" value="${ bbs.pro_id }"/></td>
+				            <td>${bbs.subject_name}</td>
+				            <td>${bbs.pro_name}</td>
+				            <td>${bbs.subject_room}</td>
+				            <td>${bbs.subject_time}<input  type="hidden" name="subject_time" value="${ bbs.subject_time }"/></td>
+				            <td>${bbs.subject_type}</td>
+				            <td>${bbs.subject_credit}</td>
+				            <td>${bbs.subject_limit}</td>
+				            <td>${bbs.subject_grade}</td>
+				            <td>${bbs.term_id}</td>
 				            <td>
 				           		<input  type="submit" value="수정"/>
 				            </td>
 				            <td>
-				           		<input type="button" onclick="location.href='del?std_id=${bbs.std_id}'" value="삭제"/>
+				           		<input type="button" onclick="location.href='suDel?pro_id=${bbs.pro_id}&subject_time=${bbs.subject_time}'" value="삭제"/>
 				            </td>
 		       			</tr>
 	       			</form>
 				</c:forEach>
 				<c:forEach items="${search}" var="search">
-	       			<form action="updateForm" method="get">
+	       			<form action="suUpdatePage" method="get">
 		      			<tr >
-				            <td> ${search.std_id}<input  type="hidden" name="std_id" value="${ search.std_id }"/></td>
-				            <td> ${search.std_year}</td>
-				            <td> ${search.std_name}</td>
-				            <td> ${search.std_birthday}</td>
-				            <td> ${search.std_state}</td>
-				            <td> ${search.std_phone}</td>
-				            <td> ${search.std_email}</td>
-			            	<td> ${search.std_address}</td>
+				            <td>${search.major_name}<input  type="hidden" name="pro_id" value="${ search.pro_id }"/></td>
+				            <td> ${search.subject_name}</td>
+				            <td> ${search.pro_name}</td>
+				            <td> ${search.subject_room}</td>
+				            <td> ${search.subject_time}</td>
+				            <td> ${search.subject_type}</td>
+				            <td> ${search.subject_credit}</td>
+				            <td> ${search.subject_limit}</td>
+			            	<td> ${search.subject_grade}</td>
+			            	<td>${search.term_id}</td>
 			           		<td>
 			           			<input  type="submit" value="수정"/>
 			            	</td>
 			           		<td>
-			           			<input type="button" onclick="location.href='del?std_id=${search.std_id}'" value="삭제"/>
+			           			<input type="button" onclick="location.href='suDel?pro_id=${bbs.pro_id}&subject_time=${bbs.subject_time}'" value="삭제"/>
 			            	</td>
 		       			</tr>
 	        		</form>

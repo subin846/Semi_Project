@@ -197,7 +197,7 @@
 		<nav>
 		<label for="menu_state"><i class="fa"></i></label>
 			<ul>
-				<li  class="active unread">
+				<li>
 					<a href="student">
 						<i class="fa fa-graduation-cap"></i>
 						<span>학생 관리</span>
@@ -227,13 +227,13 @@
 						<span>교수 관리</span>
 					</a>
 				</li>
-				<li>
+				<li >
 					<a href="suManagePage">
 						<i class="fa fa-book"></i>
 						<span>과목 관리</span>
 					</a>
 				</li>
-				<li>
+				<li class="active unread">
 					<a href="gPage">
 						<i class="fa fa-edit"></i>
 						<span>강의평가 질문 관리</span>
@@ -250,6 +250,6 @@
 		<main>
 			<header></header>
 		</main>
-		<%@ include file="a01_list.jsp" %>
+		<%@ include file="a07_list.jsp" %>
 	</body>
 </html>

@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 		<style type="text/css">
+			/* 배경 색 */
 			html {
 	 			box-sizing: inherit;
 				background: -webkit-linear-gradient(right, #8e9eab, #eef2f3);
@@ -197,7 +198,7 @@
 		<nav>
 		<label for="menu_state"><i class="fa"></i></label>
 			<ul>
-				<li  class="active unread">
+				<li>
 					<a href="student">
 						<i class="fa fa-graduation-cap"></i>
 						<span>학생 관리</span>
@@ -209,7 +210,7 @@
 						<span>등록금 관리</span>
 					</a>
 				</li>
-				<li>
+				<li  class="active unread">
 					<a href="scScholar">
 						<i class="fa fa-pencil"></i>
 						<span>장학금 종류 관리</span>
@@ -250,6 +251,6 @@
 		<main>
 			<header></header>
 		</main>
-		<%@ include file="a01_list.jsp" %>
+		<%@ include file="a03_list.jsp" %>
 	</body>
 </html>

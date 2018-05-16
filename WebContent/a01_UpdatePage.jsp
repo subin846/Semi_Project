@@ -43,4 +43,8 @@
 	
 </body>
 <script>
+	function click(){
+			alert("sss");
+	}
+	
 </script>

@@ -10,7 +10,7 @@
 		<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 		<style>
 /************************ 테이블 ************************/
-table {
+/* table {
 	font-family:Arial, Helvetica, sans-serif;
 	color:#666;
 	font-size:14px;
@@ -27,12 +27,12 @@ table {
 	box-shadow: 0 1px 2px #d1d1d1;
 }
 /* 크기 지정 */
-table th, table td {
+/* table th, table td {
 	width: 150px;
 	height: 40px;
 }
 table th {
-	/* padding:15px; */
+	/* padding:15px; 
 	border-top:1px solid #fafafa;
 	border-bottom:1px solid #e0e0e0;
 	border-left: 1px solid #e0e0e0;
@@ -46,20 +46,20 @@ table tr {
 	padding-left:20px;
 }
 table td {
-	/* padding:10px; */
+	/* padding:10px; 
 	border-top: 1px solid #ffffff;
 	border-bottom:1px solid #e0e0e0;
 	border-left: 1px solid #e0e0e0;
 
 	background: #fafafa;
 	background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
-	background: -moz-linear-gradient(top,  #fbfbfb,  #fafafa);
-}
+	background: -moz-linear-gradient(top,  #fbfbfb,  #fafafa); 
+} */
 /************************ 테이블 ************************/
-			#content {
+		/* 	#content {
 				float: left;
-				margin-top: 10px;
-			}
+				margin-top: 10px; 
+			} */
 			/* table, tr, th, td {
 				border: thin solid lightgray;
 				border-collapse: collapse;
@@ -72,18 +72,19 @@ table td {
 			}
 			th {
 				background-color: #F6F6F6;
-			} */
+			} 
 			#container {
 				width: 1920px;
 			}
 			#sub1 {
 				text-decoration: underline;
-			}
+			} */
 		</style>
 	</head>
 	<body>
 		<jsp:include page="p_top_menu.jsp"/>
-		<div id="container">
+			<jsp:include page="s01_calender.jsp"></jsp:include>
+		<%-- <div id="container">
 			<jsp:include page="p_sub_menu1.jsp"/>
 			<div id="content">
 				<table>
@@ -113,10 +114,10 @@ table td {
 					</tr>
 				</table>
 			</div>
-		</div>
+		</div>  --%>
 	</body>
 	<script>
 		// 내정보 메뉴에 색깔 표시
-		$("#navi1").css("background-color", "#4375DB");
+		//$("#navi1").css("background-color", "#4375DB");
 	</script>
 </html>

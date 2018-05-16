@@ -15,7 +15,7 @@ import com.semi2.service.InfoService;
 import com.semi2.service.LectureService;
 import com.semi2.service.MainService;
 
-@WebServlet({"/", "/login", "/logout", "/smain", "/pmain", "/amain"})
+@WebServlet({"/", "/login", "/logout", "/smain", "/pmain", "/amain", "/passChange"})
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -97,6 +97,11 @@ public class MainController extends HttpServlet {
 			System.out.println("교수 신상정보 요청");
 			infoService = new InfoService(request, response);
 			infoService.pProfile();
+			break;
+		case "/studentSearchPage" :
+			System.out.println("수강생조회 페이지 요청");
+			lectureService = new LectureService(request, response);
+			lectureService.studentSearchPage();
 			break;
 		case "/studentSearch" :
 			System.out.println("수강생조회 요청");
@@ -190,7 +195,118 @@ public class MainController extends HttpServlet {
 			System.out.println("등록금 검색");
 			adservice.tSearch();
 			break;
-		
+		case "/scScholar":
+			System.out.println("장학금 리스트");
+			adservice.scPage();
+			break;
+		case "/scUpdatePage":
+			System.out.println("장학금 수정페이지");
+			adservice.scUpdatePage();
+			break;
+		case "/scUpdate":
+			System.out.println("장학금 수정");
+			adservice.scUpdate();
+			break;
+		case "/scDel":
+			System.out.println("장학금 삭제");
+			adservice.scDel();
+			break;
+		case "/scAdd":
+			System.out.println("장학금 등록");
+			adservice.scAdd();
+			break;
+		case "/ePage":
+			System.out.println("장학금 관리 리스트 페이지");
+			adservice.ePage();
+			break;
+		case "/eUpdatePage":
+			System.out.println("장학금 관리 수정폼");
+			adservice.eUpdatePage();
+			break;
+		case "/eUpdate":
+			System.out.println("장학금 관리 수정");
+			adservice.eUpdate();
+			break;
+		case "/eDel":
+			System.out.println("장학금 관리 삭제");
+			adservice.eDel();
+			break;
+		case "/eAdd":
+			System.out.println("장학금 관리 등록");
+			adservice.eAdd();
+			break;
+		case "/eSearch":
+			System.out.println("장학금 관리 검색");
+			adservice.eSearch();
+			break;
+		case "/pManagePage":
+			System.out.println("교수 리스트 페이지");
+			adservice.pManagePage();
+			break;
+		case "/pUpdatePage":
+			System.out.println("교수 수정폼");
+			adservice.pUpdatePage();
+			break;
+		case "/pUpdate":
+			System.out.println("교수 수정");
+			adservice.pUpdate();
+			break;
+		case "/pDel":
+			System.out.println("교수 삭제");
+			adservice.pDel();
+			break;
+		case "/pAdd":
+			System.out.println("교수 등록");
+			adservice.pAdd();
+			break;
+		case "/pSearch":
+			System.out.println("교수 검색");
+			adservice.pSearch();
+			break;
+		case "/suManagePage":
+			System.out.println("과목 리스트");
+			adservice.suManagePage();
+			break;
+		case "/suDel":
+			System.out.println("과목 리스트");
+			adservice.suDel();
+			break;
+		case "/suAdd":
+			System.out.println("과목추가");
+			adservice.suAdd();
+			break;
+		case "/suUpdatePage":
+			System.out.println("과목수정페이지");
+			adservice.suUpdatePage();
+			break;
+		case "/suUpdate":
+			System.out.println("과목수정");
+			adservice.suUpdate();
+			break;
+		case "/suSearch":
+			System.out.println("과목검색");
+			adservice.suSearch();
+			break;
+		case "/gPage":
+			System.out.println("강의평가 질문 리스트");
+			adservice.gPage();
+			break;
+		case "/gAdd":
+			System.out.println("강의평가 질문 작성");
+			adservice.gAdd();
+			break;
+		case "/gUpdatePage":
+			System.out.println("강의평가 질문 수정페이지");
+			adservice.gUpdatePage();
+			break;
+		case "/gUpdate":
+			System.out.println("강의평가 질문 수정");
+			adservice.gUpdate();
+			break;
+		case "/gDel":
+			System.out.println("강의평가 질문 삭제");
+			adservice.gDel();
+			break;
 /**********************************************************************/			
 		//수빈			
 		case "/login" :
@@ -213,6 +329,14 @@ public class MainController extends HttpServlet {
 			System.out.println("관리자 main 페이지 이동");
 			mservice.amain();
 			break;
+		case "/passChange" :
+			System.out.println("비밀번호 변경 요청");
+			mservice.passChange();
+			break;
+		case "/dateEvent" :
+			System.out.println("학사일정표 요청");
+			mservice.dateEvent();
+			break;	
 /**********************************************************************/			
 			//은경
 			
