@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <html>
 <head>
-	<script src =" https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 	<style>
  		#s15{
 			text-decoration: underline;
@@ -50,13 +50,15 @@
 		ajaxCall();
 		/* 조회 버튼 클릭 시 text의 value 가져오기 */
 		$("#btn").click(function(){
-			console.log("조회 버튼 클릭");
+ 			console.log("조회 버튼 클릭");
 			optSel = $("#optSelect option:selected").val();
 			selId = $("#inp").val();
+			console.log("selId : "+selId);
 			ajaxCall();
 		}); 
 
  		function ajaxCall(){
+
 			 $.ajax({
 				type:"post",
 				url:"./subjectSearch",
