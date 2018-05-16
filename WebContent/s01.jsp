@@ -104,7 +104,7 @@
 		<div id="navi">
 			<div><a href="./s02-main.jsp">학적</a></div>
 			<div><a href="#">과목게시판</a></div>
-			<div><a href="#">수강신청</a></div>
+			<div><a href="./s15-main.jsp">수강신청</a></div>
 		</div>
 		<div id="sub">
 			<select>
@@ -118,7 +118,7 @@
 			<div><a href="#">과제제출</a></div>
 			<div><a href="#">강의평가</a></div>
 		</div>
-		<jsp:include page="s01_calender.jsp"></jsp:include>
+	<%-- 	<jsp:include page="s01_calender.jsp"></jsp:include> --%>
 		
 		
 		
