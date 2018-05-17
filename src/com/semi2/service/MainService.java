@@ -2,6 +2,7 @@ package com.semi2.service;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
@@ -123,24 +124,20 @@ public class MainService extends PwDTO{
 
 	//학사일정 조회
 	public void dateEvent() throws IOException {
-		
-		String schedule = request.getParameter("schedule");
-		
-		MainDAO dao = new MainDAO();
-		DTO scheduleDTO = new DTO();
-		scheduleDTO.setSchedule_date(schedule);
-		
-		DTO dto = dao.dateEvent(scheduleDTO);
 
+		String schedule = request.getParameter("schedule");
+
+		MainDAO dao = new MainDAO();
+		ArrayList<DTO> dateList = dao.dateEvent(schedule);
+		
 		// map에 dto 담기
 		HashMap<String, Object> map = new HashMap<>();
-		map.put("dto", dto);
-
+		map.put("dateList", dateList);
 		// json 전송
 		Gson gson = new Gson();
-		String json = gson.toJson(map);
+		String obj = gson.toJson(map);
 		response.setContentType("text/html; charset=UTF-8");
-		response.getWriter().println(json);
+		response.getWriter().println(obj);
 	}
 	
 
