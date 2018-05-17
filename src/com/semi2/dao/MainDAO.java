@@ -152,7 +152,7 @@ public class MainDAO {
 	public ArrayList<DTO> dateEvent(String schedule) {
 		ArrayList<DTO> dateList = new ArrayList<>();
 		DTO dto = null;
-		String sql = "SELECT schedule_content from schedule WHERE schedule_date = ? ";
+		String sql = "SELECT  schedule_id, schedule_content FROM schedule WHERE schedule_date = ? ";
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, schedule);
@@ -160,6 +160,7 @@ public class MainDAO {
 			while (rs.next()) {
 				dto = new DTO();
 				dto.setSchedule_content(rs.getString("schedule_content"));
+				dto.setSchedule_id(rs.getInt("schedule_id"));
 				dateList.add(dto);
 			}
 

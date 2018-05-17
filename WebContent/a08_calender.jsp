@@ -52,21 +52,15 @@
 		<form id="calender" action="caAdd">
 			<div id="datepicker"></div>
 			<input type="text" id="getdate" name="getdate">
-			<div id="schedule"><h1 id="hacsa">학사일정</h1>		
-				<table>
-	           		<tr>
-	                	<th id ="schedule_date" width="520px">
-	                		날짜
-                		</th>	         
-	            	</tr>
-	           		<tr>
-	               		<th id="schedule_content" height="265px">
-	               			<input id="content" type="text" value="일정 없음"/>
-	               		</th>
-	               <input type="submit" id="caAdd"  value="등록"/>
-	               <input type="button" id="caDel" value="삭제"/>
-	            	</tr>
-        		</table>
+			<div id="schedule"><h1 id="hacsa">학사일정</h1>	
+			<input type="text" name="content"/>
+			<input type="submit" value="등록"/>	
+			<table id="listTable">
+	            <tr>
+	                <th id ="schedule_date" width="520px">일정</th>	         
+	            </tr>
+       		</table>
+				
 			</div>
 		</form>
 		
@@ -84,25 +78,55 @@
 	  
 	    
 	    $('#datepicker').change(function() {
-          
-		  $.ajax({
-				type: "get",
-				url: "./calender",
+			$.ajax({
+				type: "post",
+				url: "./dateEvent",
 				dataType: "json",
 				
 				data: {
 					"schedule": $(this).val() 
 				},
 				success: function(data) {
-					// 태그에 가져온 데이터 넣기
-					$("#schedule_date").html(data.dto.schedule_date); //data.dto.schedule_date
-					$("#content").val(data.dto.schedule_content);
-					
-				} 
-		  });
-		  console.log(document.getElementById("datepicker").value);
+					console.log(data);
+					if(data){
+						listPrint(data.dateList)
+						}else{
+							alert("날짜를 다시 선택해주세요");
+						}
+					}
+			});
 		});
+	    function listPrint(dateList){
+	   		var content ="";
+	   		$("#listTable").html("<table id='listTable'><tr><th id ='schedule_date' width='520px'>일정</th></tr></table>");
+	   		dateList.forEach(function(item){
+	   			content += "<tr>";
+	   			content += "<td>"+
+	   				"<form action='./caUpdate'>"+
+	   				"<input  name='schedule_id' type='hidden' value='"+ item.schedule_id+"'/>"+
+	   				"<input class='cont1' name='content' type='text' value='"+item.schedule_content+"'/>"+
+	   				"<input  type='submit' value='수정'/>"+ 
+	   				"</form>"+
+	   				"<input name='schedule_id' type='hidden' value='"+item.schedule_id+"'/>"+
+	   				"<input class='del' type='button' onclick='location.href=\"./caDell?schedule_id=" + item.schedule_id + "\"' value='삭제'/>"+"</td>";
+	   			content += "</tr>";
+	   		});
+	   		$("#listTable").append(content);
+	   	}
 	    $('.ui-datepicker').css('font-size', '30px');
-  //
+  		//삭제///////////////////////////////////////////////////////////////
+  		  $('.del').click(function() {
+			$.ajax({
+				type: "post",
+				url: "./caDell",
+				dataType: "json",
+				data: {
+					"caDell": $(this).val() 
+				},
+				success: function(data) {
+					console.log(data);
+				}
+			});
+		}); 
 	</script>
 </html>

@@ -126,13 +126,14 @@ public class MainService extends PwDTO{
 	public void dateEvent() throws IOException {
 
 		String schedule = request.getParameter("schedule");
-
+		System.out.println(schedule+"sad");
 		MainDAO dao = new MainDAO();
 		ArrayList<DTO> dateList = dao.dateEvent(schedule);
 		
 		// map에 dto 담기
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("dateList", dateList);
+		
 		// json 전송
 		Gson gson = new Gson();
 		String obj = gson.toJson(map);

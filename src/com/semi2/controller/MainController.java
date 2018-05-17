@@ -307,14 +307,19 @@ public class MainController extends HttpServlet {
 			System.out.println("강의평가 질문 삭제");
 			adservice.gDel();
 			break;
-		case "/calender":
-			System.out.println("학사 일정 관리");
-			adservice.calender();
-			break;
 		case "/caAdd":
-			System.out.println("학사 일정 관리");
+			System.out.println("학사일정 등록");
 			adservice.caAdd();
 			break;
+		case "/caDell":
+			System.out.println("학사일정 삭제");
+			adservice.caDell();
+			break;
+		case "/caUpdate":
+			System.out.println("학사일정 수정");
+			adservice.caUpdate();
+			break;
+			
 /**********************************************************************/			
 		//수빈			
 		case "/login" :
