@@ -49,6 +49,7 @@ public class EnrollDAO {
 					+term_id+ "ORDER BY term_id DESC ";
 		}else if(optSel.equals("term")) {
 			System.out.println("학기");
+
 			sql=" SELECT S.subject_id,term_id,M.major_name, subject_name, P.pro_name, subject_room, subject_time, "
 					+" subject_type, subject_credit, subject_limit,subject_grade "
 					+" FROM subject S "
@@ -57,6 +58,7 @@ public class EnrollDAO {
 					+" JOIN pro P  "
 					+" ON S.pro_id = P.pro_id  "
 					+" WHERE S.term_id Like '%"+selId+"%'" + term_id +" ORDER BY term_id DESC ";
+
 		}else if(optSel.equals("pro")) {
 			System.out.println("교수");
 			sql =" SELECT S.subject_id,term_id,M.major_name, subject_name, P.pro_name, subject_room, subject_time, "

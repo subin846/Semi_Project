@@ -2,32 +2,88 @@
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
-   table,tr,th,td{
-                border: 1px solid black;
-                border-collapse: collapse;
-                text-align: center;
-                width: 1200px;
-            }
+ 	html {
+		box-sizing: inherit;
+		background: -webkit-linear-gradient(right, #8e9eab, #eef2f3);
+		background: linear-gradient(to left, #8e9eab, #eef2f3);
+	}
+ 	div{
+		position: relative;
+		width: 500px;
+		min-height: 5%;
+		margin: 0 auto 0;
+		background: #fff;
+		font-size: 17px;	
+		z-index: 10;
+	}
+	#div1{
+	 	padding : 10px;
+	 	text-align:left;
+	    border: solid 1px #dadada;
+	 }
+	input{
+		padding : 10px 5px;
+		font-size: 17px;
+		width: 75%;
+		z-index: 10;
+		height: 35px;
+		border: none;
+		background: #fff;
+		border: 1px solid #dadada;
+	}
+	#div3{
+	    height: 55px;
+	    width : 520px;
+	   	border: solid 1px none;
+	    -webkit-background-size: 108px auto;
+	    background: white;	
+	  }
+	  #div3 input{
+	  		border: 1px solid #dadada;
+	 		width: 100%;
+	 		height: 100%;
+			font-size: 17px;
+			border: none;
+			background: #fff;
+	  }
+	  h2,h4{
+	  		cursor: pointer;
+	  }
+	  textarea{
+		padding : 10px 5px;
+		font-size: 17px;
+		width: 97%;
+		z-index: 10;
+		height: 300px;
+		border: none;
+		background: #fff;
+	}
 </style>
  <body>
-	    <table id="updateForm">
-	        <tr>
-	            <th>질문 번호</th>
-	            <th>질문 내용</th>
-	            <th>저장</th>
-	        </tr>
-	       		<form action="gUpdate" method="get">
-		      		<tr >
-		      			<td>${ form.question_id }<input  type="hidden" name="question_id" value="${ form.question_id }"/></td>
-			            <td>
-			            	<textarea rows="5" cols="30" name="question_question">${ form.question_question }</textarea>
-			            </td>
-			            <td>
-			           		<input type="submit" onclick="click()" value="저장"/>
-			            </td>
-		       		</tr>
-		        </form>
-	    </table>
+ 	<h2  onclick="location.href='gPage'">Total Information System</h2>
+	<h4 onclick="location.href='gPage'" >강의평가 질문 수정</h4>
+	<br/><br/><br/>
+	<form action="gUpdate">
+		<div id="div1">
+			<div>
+				&nbsp; 질문번호 : ${ form.question_id }
+				<input  type="hidden" name="question_id" value="${ form.question_id }"/>
+			</div>
+			<hr/>
+			<div>
+				&nbsp; 질문
+			</div>
+			<hr/>
+			<div>
+				<textarea rows="5" cols="30" name="question_question">${ form.question_question }</textarea>
+			</div>
+			<hr/>
+		</div>
+		<br/>
+		<div id="div3">
+			<input  type="submit" value="완료"/> 
+		</div>
+	</form>
 	
 </body>
 <script>

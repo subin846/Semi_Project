@@ -2,39 +2,99 @@
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
-   table,tr,th,td{
-                border: 1px solid black;
-                border-collapse: collapse;
-                text-align: center;
-                width: 1200px;
-            }
+ 	html {
+		box-sizing: inherit;
+		background: -webkit-linear-gradient(right, #8e9eab, #eef2f3);
+		background: linear-gradient(to left, #8e9eab, #eef2f3);
+	}
+ 	div{
+		position: relative;
+		width: 500px;
+		min-height: 5%;
+		margin: 0 auto 0;
+		background: #fff;
+		font-size: 17px;	
+		z-index: 10;
+	}
+	#div1{
+	 	padding : 10px;
+	 	text-align:left;
+	    border: solid 1px #dadada;
+	 }
+	input{
+		padding : 10px 5px;
+		font-size: 17px;
+		width: 75%;
+		z-index: 10;
+		height: 35px;
+		border: none;
+		background: #fff;
+		border: 1px solid #dadada;
+	}
+	#div3{
+	    height: 55px;
+	    width : 520px;
+	   	border: solid 1px none;
+	    -webkit-background-size: 108px auto;
+	    background: white;	
+	  }
+	  #div3 input{
+	  		border: 1px solid #dadada;
+	 		width: 100%;
+	 		height: 100%;
+			font-size: 17px;
+			border: none;
+			background: #fff;
+	  }
+	  h2,h4{
+	  		cursor: pointer;
+	  }
+	  #code1{
+	   	width: 60%;
+	  }
 </style>
  <body>
-	    <table id="updateForm">
-	        <tr>
-	            <th>사번</th>
-	            <th>이름</th>
-	            <th>연락처</th>
-	            <th>이메일</th>
-	            <th>연구실</th>
-	            <th>전공 코드 번호</th>
-	            <th>수정</th>
-	        </tr>
-       		<form action="pUpdate" method="get">
-	      		<tr >
-		            <td>${form.pro_id}<input type="hidden" name="pro_id" value="${form.pro_id}"/></td>
-		            <td><input type="text" name="pro_name" value="${form.pro_name}"/></td>
-		            <td><input type="text" name="pro_phone" value="${form.pro_phone}"/></td>
-		            <td><input type="text" name="pro_email" value="${form.pro_email}"/></td>
-		            <td><input type="text" name="pro_room" value="${form.pro_room}"/></td>
-		            <td><input type="text" name="major_id" value="${form.major_id}"/></td>
-		            <td>
-		           		<input type="submit" onclick="click()" value="저장"/>
-		            </td>
-	       		</tr>
-	        </form>
-	    </table>
-	
+ 	<h2  onclick="location.href='pManagePage'">Total Information System</h2>
+	<h4 onclick="location.href='pManagePage'" >교수 수정</h4>
+	<br/><br/><br/>
+	<form action="pUpdate">
+		<div id="div1">
+			<div>
+				&nbsp; 사번 :${form.pro_id}
+				<input type="hidden" name="pro_id" value="${form.pro_id}"/>
+			</div>
+			<hr/>
+			<div>
+				&nbsp; 이름 :
+				<input type="text" name="pro_name" value="${form.pro_name}"/>
+			</div>
+			<hr/>
+			<div>
+				&nbsp; 연락처 :
+				<input type="text" name="pro_phone" value="${form.pro_phone}"/>
+			</div>
+			<hr/>
+			<div>
+				&nbsp; 이메일 :
+				<input type="text" name="pro_email" value="${form.pro_email}"/>
+			</div>
+			<hr/>
+			<div>
+				&nbsp; 연구실 :
+				<input type="text" name="pro_room" value="${form.pro_room}"/>
+			</div>
+			<hr/>
+			<div>
+				&nbsp; 전공 코드 번호 :
+				<input  id="code1" type="text" name="major_id" value="${form.major_id}"/>
+			</div>
+			<hr/>
+		</div>
+		<br/>
+		<div id="div3">
+			<input  type="submit" value="완료"/> 
+		</div>
+	</form>
 </body>
 <script>
 	
