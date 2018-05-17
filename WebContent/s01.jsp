@@ -118,11 +118,6 @@
 			<div><a href="#">과제제출</a></div>
 			<div><a href="#">강의평가</a></div>
 		</div>
-	    	<jsp:include page="s01_calender.jsp"></jsp:include>
-		
-		
-		
-
-		
+		<jsp:include page="s01_calender.jsp"></jsp:include>
 	</body>
 </html>

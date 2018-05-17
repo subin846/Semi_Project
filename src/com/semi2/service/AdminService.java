@@ -2,12 +2,14 @@ package com.semi2.service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.semi2.dao.AdminDAO;
 import com.semi2.dto.DTO;
 
@@ -600,5 +602,30 @@ public class AdminService {
 		}
 		RequestDispatcher dis = request.getRequestDispatcher("gPage");
 		dis.forward(request, response);
+	}
+	/**학사 일정 관리*************/
+	public void calender() throws ServletException, IOException {
+		String schedule = request.getParameter("schedule");
+		AdminDAO dao = new AdminDAO();
+		DTO scheduleDTO = new DTO();
+		scheduleDTO.setSchedule_date(schedule);
+		
+		DTO dto = dao.calender(scheduleDTO);
+
+		// map에 dto 담기
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("dto", dto);
+
+		// json 전송
+		Gson gson = new Gson();
+		String json = gson.toJson(map);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().println(json);
+	}
+	/**학사 일정 등록*************/
+	public void caAdd() throws ServletException, IOException {
+		String getdate =request.getParameter("getdate"+"wqeqe");
+		System.out.println(getdate);
+		
 	}
 }

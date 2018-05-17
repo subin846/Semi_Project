@@ -9,6 +9,11 @@
 		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 		<style type="text/css">
+			#bnt{
+				position: absolute;
+				top: 130px;
+				left: 87%;
+			}
 			html {
 	 			box-sizing: inherit;
 				background: -webkit-linear-gradient(right, #8e9eab, #eef2f3);
@@ -221,13 +226,13 @@
 						<span>장학금 관리</span>
 					</a>
 				</li>
-				<li  class="active unread">
+				<li>
 					<a href="pManagePage">
 						<i class="fa fa-user"></i>
 						<span>교수 관리</span>
 					</a>
 				</li>
-				<li>
+				<li >
 					<a href="suManagePage">
 						<i class="fa fa-book"></i>
 						<span>과목 관리</span>
@@ -239,17 +244,17 @@
 						<span>강의평가 질문 관리</span>
 					</a>
 				</li>
-				<li>
+				<li class="active unread">
 					<a href="a08_index.jsp">
 						<i class="fa fa-calendar"></i>
 						<span>학사일정 관리</span>
 					</a>
 				</li>
-			</ul>
+			</ul>	
 		</nav>
 		<main>
 			<header></header>
 		</main>
-		<%@ include file="a05_list.jsp" %>
+		<%@ include file="a08_calender.jsp" %>
 	</body>
 </html>
