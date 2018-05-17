@@ -49,7 +49,7 @@ public class EnrollDAO {
 					+term_id+ "ORDER BY term_id DESC ";
 		}else if(optSel.equals("term")) {
 			System.out.println("학기");
-			sql=" SELECT term_id,M.major_name, subject_name, P.pro_name, subject_room, subject_time, "
+			sql=" SELECT S.subject_id,term_id,M.major_name, subject_name, P.pro_name, subject_room, subject_time, "
 					+" subject_type, subject_credit, subject_limit,subject_grade "
 					+" FROM subject S "
 					+" JOIN major M "
@@ -94,9 +94,8 @@ public class EnrollDAO {
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				System.out.println("반복문 실행!");
-				//System.out.println("과목 id"+rs.getString("subject_id"));
 				DTO dto =new DTO();
-				/*dto.setSubject_id(rs.getInt("subject_id"));*/
+				dto.setSubject_id(rs.getInt("subject_id"));
 				dto.setTerm_id(rs.getString("term_id"));
 				dto.setMajor_name(rs.getString("major_name"));
 				dto.setSubject_name(rs.getString("subject_name"));
