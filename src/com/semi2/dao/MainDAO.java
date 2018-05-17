@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -148,25 +149,27 @@ public class MainDAO {
 	}
 
 	//학사일정
-	public DTO dateEvent(DTO scheduleDTO) {
-		DTO dto = new DTO();
-		String sql =  "SELECT schedule_content, schedule_date from schedule WHERE schedule_date=?";	
+	public ArrayList<DTO> dateEvent(String schedule) {
+		ArrayList<DTO> dateList = new ArrayList<>();
+		DTO dto = null;
+		String sql = "SELECT schedule_content from schedule WHERE schedule_date = ? ";
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, scheduleDTO.getSchedule_date());
+			ps.setString(1, schedule);
 			rs = ps.executeQuery();
-			
-			if (rs.next()) {
+			while (rs.next()) {
+				dto = new DTO();
 				dto.setSchedule_content(rs.getString("schedule_content"));
-				dto.setSchedule_date(rs.getString("schedule_date"));
+				dateList.add(dto);
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			resClose();
 		}
-		return dto;
+		
+		return dateList;
 	}
 	
 	
