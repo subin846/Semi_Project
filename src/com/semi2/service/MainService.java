@@ -141,6 +141,28 @@ public class MainService extends PwDTO{
 		response.getWriter().println(obj);
 	}
 	
+	// 강의계획서 조회
+	public void lecturePlan() throws IOException {
+		String loginId = request.getParameter("loginId");
+		String subject = request.getParameter("subject");
+
+		MainDAO dao = new MainDAO();
+		DTO planDTO = new DTO();
+		planDTO.setPro_id(loginId);
+		planDTO.setSubject_name(subject);
+		System.out.println("planDTOㄴㄴㄴㄴㄴ: " +planDTO.getSubject_name());
+		DTO dto = dao.lecturePlan(planDTO);
+
+		// map에 dto 담기
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("dto", dto);
+
+		// json 전송
+		Gson gson = new Gson();
+		String json = gson.toJson(map);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().println(json);
+	}
 
 	
 }
