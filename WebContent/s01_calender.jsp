@@ -52,7 +52,7 @@
 		<div id="schedule"><h1 id="hacsa">학사일정</h1>		
 			<table id="listTable">
 	            <tr>
-	                <th id ="schedule_date" width="520px">일정</th>	         
+	                <th id ="schedule_date" width="520px">날짜</th>	         
 	            </tr>
         	</table>
 		</div>
@@ -68,6 +68,7 @@
 	        altField : '#getdate',
 	        dateFormat : 'yy-mm-dd'       
 		});
+	  	    
 	    
 	    $('#datepicker').change(function() {
           
@@ -83,6 +84,7 @@
 					console.log(data);
 					if(data){
 						listPrint(data.dateList)
+						$("#schedule_date").html(document.getElementById("getdate").value);
 						}else{
 							alert("날짜를 다시 선택해주세요");
 						}
@@ -92,7 +94,7 @@
 	    
 	   	function listPrint(dateList){
 	   		var content ="";
-	   		$("#listTable").html("<table id='listTable'><tr><th id ='schedule_date' width='520px'>일정</th></tr></table>");
+	   		$("#listTable").html("<table id='listTable'><tr><th id ='schedule_date' width='520px'>날짜</th></tr></table>");
 	   		dateList.forEach(function(item){
 	   			content += "<tr>";
 	   			content += "<td>"+item.schedule_content+"</td>";
