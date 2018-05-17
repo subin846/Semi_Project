@@ -246,7 +246,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="schedulePage">
+					<a href="a08_index.jsp">
 						<i class="fa fa-calendar"></i>
 						<span>학사일정 관리</span>
 					</a>
