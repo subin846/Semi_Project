@@ -53,52 +53,9 @@
 			<a href="#">LOGOUT</a>
 		</div>
 		<div id="navi">
-			<div id="std">학적</div>
+			<div id="std">내정보</div>
 			<div id="subBbs">과목게시판</div>
-			<div id="enroll">수강신청</div>
+			<div id="enroll">강의</div>
 		</div>
 	</body>
-	<div>
-		<jsp:include page="s09-main2.jsp"></jsp:include>
-		<jsp:include page="p03_std.jsp"></jsp:include>
-	</div>
-	<script>
-	var obj={};
-	obj.type="post";
-	obj.dataType="json";
-	obj.error=function(e){console.log(e)};
-
-		$("#subBbs").click(function(){
-			obj.url="./subjectTab";
-			obj.success=function(data){
-				//console.log(data);
-				if(data){
-					console.log("성공");
-					//console.log(data.sublist);
-					 selectbox(data.sublist); 
-				}else{
-					location.href="index.jsp";
-				}
-			}
-			ajaxCall(obj);
-		});
-		
-		function selectbox(list) {
-			var content ="";
-			console.log(list);
-			$("#list").html("<option value='과목선택'>과목선택</option>");
-				list.forEach(function(item){
-					console.log(item);
-					content += "<option value="+item.subject_name+">";
-					content += item.subject_name;
-					content += "</option>";
-				});
-				$("#list").append(content);
-		}
-		
-		function ajaxCall(param){
-			console.log("ajax 호출")
-			$.ajax(obj);
-		}
-	</script>
 </html>

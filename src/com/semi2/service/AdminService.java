@@ -603,29 +603,72 @@ public class AdminService {
 		RequestDispatcher dis = request.getRequestDispatcher("gPage");
 		dis.forward(request, response);
 	}
-	/**학사 일정 관리*************/
-	public void calender() throws ServletException, IOException {
-		String schedule = request.getParameter("schedule");
-		AdminDAO dao = new AdminDAO();
-		DTO scheduleDTO = new DTO();
-		scheduleDTO.setSchedule_date(schedule);
-		
-		DTO dto = dao.calender(scheduleDTO);
-
-		// map에 dto 담기
-		HashMap<String, Object> map = new HashMap<>();
-		map.put("dto", dto);
-
-		// json 전송
-		Gson gson = new Gson();
-		String json = gson.toJson(map);
-		response.setContentType("text/html; charset=UTF-8");
-		response.getWriter().println(json);
-	}
 	/**학사 일정 등록*************/
 	public void caAdd() throws ServletException, IOException {
-		String getdate =request.getParameter("getdate"+"wqeqe");
+		request.setCharacterEncoding("UTF-8");
+		String getdate =request.getParameter("getdate");
+		String content=request.getParameter("content");
 		System.out.println(getdate);
+		AdminDAO dao =new AdminDAO();
+		DTO dto= new DTO();
+		dto.setSchedule_date(request.getParameter("schedule_date"));
+		if(dao.caAdd(dto,content,getdate)>0) {
+			System.out.println("저장완료");
+		}
+		response.sendRedirect("a08_index.jsp");
+	}
+	/**학사 일정 삭제 **********************************/
+	public void caDell() throws ServletException, IOException {
+		int schedule_id=Integer.parseInt(request.getParameter("schedule_id"));
+		System.out.println(schedule_id);
+		AdminDAO dao = new AdminDAO();
+		boolean success= false;
+		
+		if(dao.caDell(schedule_id) >0) {
+			System.out.println("삭제성공");
+		}
+		Gson json = new Gson();
+		HashMap<String, Boolean> map = new HashMap<>();
+		map.put("success", success);
+		String obj = json.toJson(map);
+		response.getWriter().println(obj);
+		response.sendRedirect("a08_index.jsp");
+	}
+	/**학사 일정 수정 **********************************/
+	public void caUpdate() throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		int schedule_id=Integer.parseInt(request.getParameter("schedule_id"));
+		String schedule_content=request.getParameter("content");
+		AdminDAO dao = new AdminDAO();
+		
+		System.out.println(schedule_content+"asdweqewq");
+		Gson json = new Gson();
+		HashMap<String, Integer> map = new HashMap<>();
+		map.put("success", dao.caUpdate(schedule_id,schedule_content));
+		String obj = json.toJson(map);
+		response.getWriter().println(obj);
+		response.sendRedirect("a08_index.jsp");
+		
+		
+		
+		
+		
+		
+		
+		
+		/*DTO dto = new DTO();
+		dto.setSchedule_id(schedule_id);
+		dto.setSchedule_content(schedule_content);
+		int success = dao.caUpdate(dto);
+		if (success > 0) {
+			System.out.println("성공");	
+		} 
+		Gson json = new Gson();
+		HashMap<String, Boolean> map = new HashMap<>();
+		map.put("success", success);
+		String obj = json.toJson(map);
+		response.getWriter().println(obj);
+		response.sendRedirect("a08_index.jsp");*/
 		
 	}
 }

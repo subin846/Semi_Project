@@ -152,7 +152,7 @@ public class MainDAO {
 	public ArrayList<DTO> dateEvent(String schedule) {
 		ArrayList<DTO> dateList = new ArrayList<>();
 		DTO dto = null;
-		String sql = "SELECT schedule_content from schedule WHERE schedule_date = ? ";
+		String sql = "SELECT  schedule_id, schedule_content FROM schedule WHERE schedule_date = ? ";
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, schedule);
@@ -160,6 +160,7 @@ public class MainDAO {
 			while (rs.next()) {
 				dto = new DTO();
 				dto.setSchedule_content(rs.getString("schedule_content"));
+				dto.setSchedule_id(rs.getInt("schedule_id"));
 				dateList.add(dto);
 			}
 
@@ -308,6 +309,65 @@ public class MainDAO {
 			return dto;
 		}
 	
+	/*
+	// 게시글 총 개수 반환
+	public int totalCount() {
+		String sql = "SELECT count(*) AS cnt FROM bbs";
+		int cnt = 0;
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				cnt = rs.getInt("cnt");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			resClose();
+		}
+
+		return cnt;
+	}
+
+	// startNum ~ endNum 구간 리스트 반환
+	public ArrayList<DTO> pagedList(int startNum, int endNum) {
+		ArrayList<DTO> list = new ArrayList<>();
+
+		// endNum까지만 검색하여 시간 최소화
+		String sql = "SELECT X.rnum, X.bbs_id, X.bbs_title, X.bbs_writer " + 
+				"FROM ( " + 
+				"	SELECT ROWNUM AS rnum, A.bbs_id, A.bbs_title, A.bbs_writer " + 
+				"	FROM ( " + 
+				"		SELECT bbs_id, bbs_title, bbs_writer " + 
+				"		FROM bbs " + 
+				"		ORDER BY bbs_id DESC) A " + 
+				"	WHERE ROWNUM <= ?) X " + 
+				"WHERE X.rnum >= ?";
+
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, endNum);
+			ps.setInt(2, startNum);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				DTO dto = new DTO();
+				dto.setBbs_id(rs.getInt("bbs_id"));
+				dto.setBbs_title(rs.getString("bbs_title"));
+				dto.setBbs_writer(rs.getString("bbs_writer"));
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			resClose();
+		}
+
+		return list;
+	}
+	*/
+
 	
 }
 			

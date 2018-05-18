@@ -126,13 +126,14 @@ public class MainService extends PwDTO{
 	public void dateEvent() throws IOException {
 
 		String schedule = request.getParameter("schedule");
-
+		System.out.println(schedule+"sad");
 		MainDAO dao = new MainDAO();
 		ArrayList<DTO> dateList = dao.dateEvent(schedule);
 		
 		// map에 dto 담기
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("dateList", dateList);
+		
 		// json 전송
 		Gson gson = new Gson();
 		String obj = gson.toJson(map);
@@ -217,6 +218,57 @@ public class MainService extends PwDTO{
 		response.setContentType("text/html; charset=UTF-8");
 		response.getWriter().println(json);
 	}
+	
+	/*
+	// 페이징(예시)
+	public void pagingList() throws ServletException, IOException {
+		 // 파라미터 get 
+		String paramPage = request.getParameter("page");  // 현재 페이지
+		String paramListCount = request.getParameter("listCount");  // 페이지의 리스트 개수
+		String paramPageCount = request.getParameter("pageCount");  // 화면의 페이지 개수
+
+		//// 기본값 설정(파라미터로 받지 못했을 경우) ////
+		// 현재 페이지
+		int page; 
+		if (paramPage == null) {
+			page = 1;
+		} else {
+			page = Integer.parseInt(paramPage);
+		}
+		// 한 페이지에 보여줄 리스트 개수
+		int listCount;
+		if (paramListCount == null) {
+			listCount = 10;
+		} else {
+			listCount = Integer.parseInt(paramListCount);
+		}
+		// 한 화면에 보여줄 페이지 개수
+		int pageCount;
+		if (paramPageCount == null) {
+			pageCount = 10;
+		} else {
+			pageCount = Integer.parseInt(paramPageCount);
+		}
+
+		// DB에서 리스트의 총 개수 가져오기
+		DAO dao = new DAO();
+		int totalCount = dao.totalCount();
+
+		// PageInfo 생성(보여줄 글번호, 보여줄 페이지, 총 페이지수 등 계산)
+		PageInfo pageInfo = new PageInfo(page, listCount, pageCount, totalCount);
+		int startNum = pageInfo.getStartNum();  // 시작 글번호
+		int endNum = pageInfo.getEndNum();  // 마지막 글번호
+
+		// startNum ~ endNum 구간 리스트 가져옴
+		dao = new DAO();
+		ArrayList<DTO> list = dao.pagedList(startNum, endNum);
+
+		request.setAttribute("list", list);
+		request.setAttribute("pageInfo", pageInfo);
+
+		RequestDispatcher rd = request.getRequestDispatcher("list.jsp");
+		rd.forward(request, response);
+	}*/
 
 	
 }
