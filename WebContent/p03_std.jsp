@@ -39,10 +39,7 @@
 		</style>
 	</head>
 	<body>
-		<select id="subjectSel" name="sub">
-			<option value="default">과목 선택</option>
-		</select>
-		<table>
+		<table id="p">
 			<tr>
 				<th id="plan" colspan="6">강 의 계 획 서</th>
 			</tr>
@@ -99,61 +96,6 @@
 		</table>
 	</body>
 	<script>
-		$(document).ready(function() {
-			// 교수가 강의 하는 과목 select 태그에 추가
-			$.ajax({
-				type: "post",
-				url: "./selectProSubject",
-				dataType: "json",
-				data: {
-					"loginId": "${sessionScope.loginId}"
-				},
-				 success: function(data) {
-					var str = "";
-					for (var i = 0; i < data.subjectList.length; i++) {
-						str += "<option value='" + data.subjectList[i] + "'>" 
-							+ data.subjectList[i] 
-							+ "</option>";
-							console.log(data.subjectList[i]);
-					}
-					$("#subjectSel").append(str);
-				} 
-			});
 		
-			// 과목 선택 시
-		 $("#subjectSel").change(function() {
-			// 과목 선택이 아닌 실제 과목을 선택한 경우
-			if ($(this).val() != "default") {
-				
-				$.ajax({
-					type: "post",
-					url: "./plecturePlan",
-					dataType: "json",
-					data: {
-						"loginId": "${sessionScope.loginId}",
-						"subject": $(this).val() //과목이름 : sub1~sub4 들어감.
-					},
-					success: function(data) {
-						// 태그에 가져온 데이터 넣기
-					
-						$("#major").html(data.dto.major_name);
-						$("#term").html(data.dto.term_id);
-						$("#subject").html(data.dto.subject_name);
-						$("#class").html(data.dto.std_year);
-						$("#major_type").html(data.dto.subject_type);
-						$("#score").html(data.dto.subject_credit.toLocaleString());
-						$("#pro").html(data.dto.pro_name);
-						$("#time").html(data.dto.subject_time);
-						$("#email").html(data.dto.pro_email);
-						$("#classroom").html(data.dto.subject_room);
-						$("#cu").html(data.dto.plan_cu);
-						$("#planbook").html(data.dto.plan_book);
-						$("#objective").html(data.dto.subject_objective);
-						$("#sub_book").html(data.dto.plan_sub_book);
-					}
-				});
-			} 
-		}); 
-	});
 	</script>
 </html>

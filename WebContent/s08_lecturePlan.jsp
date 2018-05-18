@@ -69,11 +69,12 @@
 		</div>
 	</body>
 	<div>
-		<jsp:include page="s09-main2.jsp"></jsp:include>
-		<jsp:include page="p03_std.jsp"></jsp:include>
+		<jsp:include page="s08_main2.jsp"></jsp:include>
 	</div>
 	<script>
-	var obj={};
+
+	
+ 	var obj={};
 	obj.type="post";
 	obj.dataType="json";
 	obj.error=function(e){console.log(e)};
@@ -109,6 +110,6 @@
 		function ajaxCall(param){
 			console.log("ajax 호출")
 			$.ajax(obj);
-		}
+		} 
 	</script>
 </html>

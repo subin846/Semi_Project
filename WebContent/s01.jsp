@@ -97,13 +97,13 @@
 						document.getElementById("menu").innerHTML = content;
 					}
 				</script>
-					<a href="#">HOME</a>
-					<a href="m02.jsp">비밀번호변경</a>
-					<a href="logout">LOGOUT</a>
+					<a href="./s01.jsp">HOME</a>
+					<a href="./m02.jsp">비밀번호변경</a>
+					<a href="./logout">LOGOUT</a>
 		</div>
 		<div id="navi">
 			<div><a href="./s02-main.jsp">학적</a></div>
-			<div><a href="#">과목게시판</a></div>
+			<div><a href="./s08_main.jsp">과목게시판</a></div>
 			<div><a href="./s15-main.jsp">수강신청</a></div>
 		</div>
 		<div id="sub">
