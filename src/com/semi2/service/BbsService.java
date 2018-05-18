@@ -66,7 +66,7 @@ public class BbsService {
 			int totalCount = dao.totalCount(selected,bbssort_type);
 			
 			// PageInfo 생성(보여줄 글번호, 보여줄 페이지, 총 페이지수 등 계산)
-		    PageInfo pageInfo = new PageInfo(page, 3, 3, totalCount);
+		    PageInfo pageInfo = new PageInfo(page, 5, 10, totalCount);
 		    int startNum = pageInfo.getStartNum();  // 시작 글번호
 		    int endNum = pageInfo.getEndNum();  // 마지막 글번호
 			
@@ -140,7 +140,7 @@ public class BbsService {
 			int totalCount = dao.totalCount(selected,bbssort_type);
 			
 			// PageInfo 생성(보여줄 글번호, 보여줄 페이지, 총 페이지수 등 계산)
-			PageInfo pageInfo = new PageInfo(page, 3, 3, totalCount);
+			PageInfo pageInfo = new PageInfo(page, 5, 10, totalCount);
 		    int startNum = pageInfo.getStartNum();  // 시작 글번호
 		    int endNum = pageInfo.getEndNum();  // 마지막 글번호
 			
@@ -430,7 +430,7 @@ public class BbsService {
 			int totalCount = dao.totalCount(selected,bbssort_type);
 			
 			// PageInfo 생성(보여줄 글번호, 보여줄 페이지, 총 페이지수 등 계산)
-		    PageInfo pageInfo = new PageInfo(1, 3, 3, totalCount);
+		    PageInfo pageInfo = new PageInfo(1, 5, 10, totalCount);
 		    int startNum = pageInfo.getStartNum();  // 시작 글번호
 		    int endNum = pageInfo.getEndNum();  // 마지막 글번호
 		    
