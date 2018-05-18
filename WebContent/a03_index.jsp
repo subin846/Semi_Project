@@ -9,6 +9,11 @@
 		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 		<style type="text/css">
+			#bnt{
+				position: absolute;
+				top: 130px;
+				left: 87%;
+			}
 			/* 배경 색 */
 			html {
 	 			box-sizing: inherit;
@@ -241,7 +246,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="schedulePage">
+					<a href="a08_index.jsp">
 						<i class="fa fa-calendar"></i>
 						<span>학사일정 관리</span>
 					</a>

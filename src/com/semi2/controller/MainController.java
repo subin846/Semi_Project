@@ -307,6 +307,19 @@ public class MainController extends HttpServlet {
 			System.out.println("강의평가 질문 삭제");
 			adservice.gDel();
 			break;
+		case "/caAdd":
+			System.out.println("학사일정 등록");
+			adservice.caAdd();
+			break;
+		case "/caDell":
+			System.out.println("학사일정 삭제");
+			adservice.caDell();
+			break;
+		case "/caUpdate":
+			System.out.println("학사일정 수정");
+			adservice.caUpdate();
+			break;
+			
 /**********************************************************************/			
 		//수빈			
 		case "/login" :
@@ -336,42 +349,151 @@ public class MainController extends HttpServlet {
 		case "/dateEvent" :
 			System.out.println("학사일정표 요청");
 			mservice.dateEvent();
-			break;	
+			break;
+		case "/selectProSubject" :
+			System.out.println("교수 과목 리스트 정보 요청");
+			mservice.selectProSubject();
+			break;
+		case "/selectStdSubject" :
+			System.out.println("교수 과목 리스트 정보 요청");
+			mservice.selectStdSubject();
+			break;
+		case "/plecturePlan" :
+			System.out.println("교수 강의계획서 페이지 요청");
+			mservice.plecturePlan();
+			break;
+		case "/slecturePlan" :
+			System.out.println("학생 강의계획서 페이지 요청");
+			mservice.slecturePlan();
+			break;
 /**********************************************************************/			
 			//은경
 			
-			case "/subjectTab":
-				System.out.println("select에 신청과목 들어가도록 요청");
-				bbs = new BbsService(request,response);
-				bbs.subjectTab();
-				break;
-				
-			case "/subjectSel":
-				System.out.println("select값을 가져와 옵션 채워넣기");
-				bbs = new BbsService(request, response);
-				bbs.subjectSel();
-				break;
-				
-			case "/list":
-				System.out.println("게시판 리스트 요청");
-				bbs = new BbsService(request, response);
-				bbs.list();
-				break;	
-				
-			case "/write":
-				System.out.println("글쓰기 요청");
-				bbs = new BbsService(request,response);
-				bbs.write();
-				break;	
-				
-			case "/detail":
-				System.out.println("상세보기 요청");
-				bbs = new BbsService(request,response);
-				bbs.detail();
-				break;	
+		case "/subjectTab":
+			System.out.println("select에 신청과목 들어가도록 요청");
+			bbs = new BbsService(request,response);
+			bbs.subjectTab();
+			break;
 			
-		default :
-			System.out.println("Input error");
+		case "/list":
+			System.out.println("강의자료 요청");
+			bbs = new BbsService(request, response);
+			bbs.list();
+			break;	
+			
+		case "/write":
+			System.out.println("글쓰기 요청");
+			bbs = new BbsService(request,response);
+			bbs.write();
+			break;	
+			
+		case "/detail":
+			System.out.println("상세보기 요청");
+			bbs = new BbsService(request,response);
+			bbs.detail();
+			break;	
+			
+		case "/uploadlist":
+			System.out.println("과제 게시판 요청");
+			bbs = new BbsService(request,response);
+			bbs.uploadlist();
+			break;	
+			
+		case "/uploaddetail":
+			System.out.println("과제 상세보기 요청");
+			bbs = new BbsService(request,response);
+			bbs.uploaddetail();
+			break;		
+			
+		case "/updatePage":
+			System.out.println("학생 - 과제 게시판 수정 폼 요청");
+			bbs = new BbsService(request,response);
+			bbs.updatePage();
+			break;		
+			
+		case "/sUpdate":
+			System.out.println("학생 - 과제 게시판 수정 요청");
+			bbs = new BbsService(request,response);
+			bbs.update();
+			break;		
+			
+		case "/sDel":
+			System.out.println("학생 - 과제 게시판 삭제 요청");
+			bbs = new BbsService(request,response);
+			bbs.del();
+			break;			
+			
+		case "/gradePage":
+			System.out.println("학생-강의평가 폼 요청");
+			bbs = new BbsService(request,response);
+			bbs.gradePage();
+			break;		
+			
+		case "/grade":
+			System.out.println("학생-강의평가 저장 요청");
+			bbs = new BbsService(request,response);
+			bbs.grade();
+			break;		
+			
+		case "/prosubjectTab":
+			System.out.println("교수-과목 게시판 클릭시 select 박스 채움 요청");
+			bbs = new BbsService(request,response);
+			bbs.prosubjectTab();
+			break;		
+			
+		case "/prolist":
+			System.out.println("교수-강의자료 게시판 요청");
+			bbs = new BbsService(request,response);
+			bbs.prolist();
+			break;		
+			
+		case "/prouploadlist":
+			System.out.println("교수-과목 게시판 요청");
+			bbs = new BbsService(request,response);
+			bbs.prouploadlist();
+			break;			
+			
+		case "/prodetail":
+			System.out.println("교수-강의자료 상세보기 요청");
+			bbs = new BbsService(request,response);
+			bbs.prodetail();
+			break;		
+			
+		case "/prouploaddetail":
+			System.out.println("교수-과제게시판 상세보기 요청");
+			bbs = new BbsService(request,response);
+			bbs.prouploaddetail();
+			break;		
+
+		case "/prowrite":
+			System.out.println("교수-강의자료 글쓰기 요청");
+			bbs = new BbsService(request,response);
+			bbs.prowrite();
+			break;	
+			
+		case "/proupdatePage":
+			System.out.println("교수-강의자료 글쓰기 수정 폼 요청");
+			bbs = new BbsService(request,response);
+			bbs.proupdatePage();
+			break;	
+			
+		case "/proupdate":
+			System.out.println("교수-강의자료 글쓰기 수정 요청");
+			bbs = new BbsService(request,response);
+			bbs.proupdate();
+			break;	
+			
+		case "/prodel":
+			System.out.println("교수-강의자료 삭제 요청");
+			bbs = new BbsService(request,response);
+			bbs.prodel();
+			break;
+			
+		case "/listback":
+			System.out.println("뒤로가기 요청");
+			bbs = new BbsService(request,response);
+			bbs.listback();
+			break;
 		}
 	}
 

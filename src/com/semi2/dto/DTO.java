@@ -55,6 +55,10 @@ public class DTO {
 	// 강의계획서
 	private String plan_cu;
 	private String plan_book;
+	private String plan_sub_book;
+	private String subject_objective;
+
+
 	// 관리자
 	private String admin_id;
 	private String admin_pw;
@@ -520,4 +524,20 @@ public class DTO {
 		this.upload_name = upload_name;
 	}
 
+	public String getPlan_sub_book() {
+		return plan_sub_book;
+	}
+	
+	public void setPlan_sub_book(String plan_sub_book) {
+		this.plan_sub_book = plan_sub_book;
+	}
+	
+	public String getSubject_objective() {
+		return subject_objective;
+	}
+	
+	public void setSubject_objective(String subject_objective) {
+		this.subject_objective = subject_objective;
+	}
+	
 }

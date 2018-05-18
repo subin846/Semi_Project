@@ -969,7 +969,7 @@ public class AdminDAO {
 				rs=ps.executeQuery();
 				if(rs.next()) {
 					dto=new DTO();
-					dto.setQuestion_id(rs.getInt(question_id));
+					dto.setQuestion_id(rs.getInt("question_id"));
 					dto.setQuestion_question(rs.getString("question_question"));
 				}
 			} catch (SQLException e) {
@@ -1008,6 +1008,75 @@ public class AdminDAO {
 			} catch (SQLException e) {
 				e.printStackTrace();
 				success=0;
+			}finally {
+				close();
+			}
+			return success;
+		}
+		/**학사 일정 등록 *************/
+		public int caAdd(DTO dto, String content, String getdate) {
+			int success=0;
+			String sql = "INSERT INTO schedule(schedule_id, schedule_date, schedule_content) " + 
+					"VALUES(seq_schedule_id.NEXTVAL, ?, ?)";
+			try {
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, getdate);
+				ps.setString(2, content);
+				success=ps.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				success=0;
+			}finally {
+				close();
+			}
+			return success;
+		}
+		/**학사 일정 삭제  *************/
+		public int caDell(int schedule_id) {
+			String sql="DELETE FROM schedule WHERE schedule_id=?" ;
+			int success =0;
+			try {
+				ps=conn.prepareStatement(sql);
+				ps.setInt(1, schedule_id);
+				System.out.println(schedule_id);
+				success = ps.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				success=0;
+			}finally {
+				close();
+			}
+			return success;
+		}
+		/**학사 일정 수정  *************/
+		/*public int caUpdate(DTO dto) {
+			String sql="UPDATE schedule SET  schedule_content=? WHERE schedule_id=?" ;
+			int success=0;
+			try {
+				ps =conn.prepareStatement(sql);
+				ps.setString(1, dto.getSchedule_content());
+				ps.setInt(2, dto.getSchedule_id());
+				success=ps.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return 0;
+			}finally {
+				close();
+			}
+			return success;
+		}*/
+		public Integer caUpdate(int schedule_id, String schedule_content) {
+			String sql="UPDATE schedule SET  schedule_content=? WHERE schedule_id=?" ;
+			int success=0;
+			try {
+				ps =conn.prepareStatement(sql);
+				ps.setString(1, schedule_content);
+				System.out.println(schedule_content);
+				ps.setInt(2, schedule_id);
+				success=ps.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return 0;
 			}finally {
 				close();
 			}

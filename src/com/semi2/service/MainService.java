@@ -2,6 +2,7 @@ package com.semi2.service;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
@@ -123,14 +124,66 @@ public class MainService extends PwDTO{
 
 	//학사일정 조회
 	public void dateEvent() throws IOException {
-		
+
 		String schedule = request.getParameter("schedule");
+		System.out.println(schedule+"sad");
+		MainDAO dao = new MainDAO();
+		ArrayList<DTO> dateList = dao.dateEvent(schedule);
+		
+		// map에 dto 담기
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("dateList", dateList);
+		
+		// json 전송
+		Gson gson = new Gson();
+		String obj = gson.toJson(map);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().println(obj);
+	}
+	
+	//교수 과목 목록 가져오기
+	public void selectProSubject() throws IOException {			
+		String loginId = request.getParameter("loginId");
 		
 		MainDAO dao = new MainDAO();
-		DTO scheduleDTO = new DTO();
-		scheduleDTO.setSchedule_date(schedule);
+		ArrayList<String> subjectList = dao.selectProSubject(loginId);
 		
-		DTO dto = dao.dateEvent(scheduleDTO);
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("subjectList", subjectList);
+
+		Gson gson = new Gson();
+		String json = gson.toJson(map);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().println(json);
+	}
+	
+	//학생 과목 목록 가져오기
+	public void selectStdSubject() throws IOException {			
+		String loginId = request.getParameter("loginId");
+		
+		MainDAO dao = new MainDAO();
+		ArrayList<String> subjectList = dao.selectStdSubject(loginId);
+		
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("subjectList", subjectList);
+
+		Gson gson = new Gson();
+		String json = gson.toJson(map);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().println(json);
+	}
+	
+	// 강의계획서 조회(교수 페이지)
+	public void plecturePlan() throws IOException {
+		String loginId = request.getParameter("loginId");
+		String subject = request.getParameter("subject");
+
+		MainDAO dao = new MainDAO();
+		DTO planDTO = new DTO();
+		planDTO.setPro_id(loginId);
+		planDTO.setSubject_name(subject);
+		System.out.println("planDTOㄴㄴㄴㄴㄴ: " +planDTO.getSubject_name());
+		DTO dto = dao.plecturePlan(planDTO);
 
 		// map에 dto 담기
 		HashMap<String, Object> map = new HashMap<>();
@@ -142,8 +195,29 @@ public class MainService extends PwDTO{
 		response.setContentType("text/html; charset=UTF-8");
 		response.getWriter().println(json);
 	}
-	
 
+	// 강의계획서 조회(학생 페이지)
+	public void slecturePlan() throws IOException {
+		String loginId = request.getParameter("loginId");
+		String subject = request.getParameter("subject");
+
+		MainDAO dao = new MainDAO();
+		DTO planDTO = new DTO();
+		planDTO.setStd_id(loginId);
+		planDTO.setSubject_name(subject);
+		System.out.println("planDTOㄴㄴㄴㄴㄴ: " +planDTO.getSubject_name());
+		DTO dto = dao.slecturePlan(planDTO);
+
+		// map에 dto 담기
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("dto", dto);
+
+		// json 전송
+		Gson gson = new Gson();
+		String json = gson.toJson(map);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().println(json);
+	}
 	
 }
 

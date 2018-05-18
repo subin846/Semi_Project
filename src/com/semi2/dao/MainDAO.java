@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -148,27 +149,165 @@ public class MainDAO {
 	}
 
 	//학사일정
-	public DTO dateEvent(DTO scheduleDTO) {
-		DTO dto = new DTO();
-		String sql =  "SELECT schedule_content, schedule_date from schedule WHERE schedule_date=?";	
+	public ArrayList<DTO> dateEvent(String schedule) {
+		ArrayList<DTO> dateList = new ArrayList<>();
+		DTO dto = null;
+		String sql = "SELECT  schedule_id, schedule_content FROM schedule WHERE schedule_date = ? ";
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, scheduleDTO.getSchedule_date());
+			ps.setString(1, schedule);
 			rs = ps.executeQuery();
-			
-			if (rs.next()) {
+			while (rs.next()) {
+				dto = new DTO();
 				dto.setSchedule_content(rs.getString("schedule_content"));
-				dto.setSchedule_date(rs.getString("schedule_date"));
+				dto.setSchedule_id(rs.getInt("schedule_id"));
+				dateList.add(dto);
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			resClose();
 		}
-		return dto;
+		
+		return dateList;
 	}
 	
+	//교수 과목 리스트
+		public ArrayList<String> selectProSubject(String loginId) {
+			ArrayList<String> subjectList = new ArrayList<>();
+			String sql = "SELECT subject_name FROM subject WHERE pro_id = ? ORDER BY subject_name ";
+
+			try {
+				ps = conn.prepareStatement(sql);
+				ps.setString(1, loginId);
+				rs = ps.executeQuery();
+
+				while (rs.next()) {
+					subjectList.add(rs.getString("subject_name"));
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				resClose();
+			}
+
+			return subjectList;
+		}
+		
+		//학생 과목 리스트
+			public ArrayList<String> selectStdSubject(String loginId) {
+				ArrayList<String> subjectList = new ArrayList<>();
+				String sql = "SELECT S.subject_name FROM subject S JOIN enroll E ON S.subject_id = E.subject_id "
+						+ "WHERE std_id = ? ORDER BY subject_name ";
+
+				try {
+					ps = conn.prepareStatement(sql);
+					ps.setString(1, loginId);
+					rs = ps.executeQuery();
+
+					while (rs.next()) {
+						subjectList.add(rs.getString("subject_name"));
+					}
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					resClose();
+				}
+
+				return subjectList;
+			}
+		
+		
+		// 강의계획서 조회(교수 페이지) 
+		public DTO plecturePlan(DTO planDTO) {
+			System.out.println("교수 lecturePlan 호출");
+			DTO dto = new DTO();
+			String sql = "SELECT T.term_id, S.subject_name, S.subject_type, S.subject_credit, P.pro_name, "
+					+ "P.pro_email, S.subject_room, M.major_name, S.subject_time, std.std_year, p.plan_cu, p.plan_book, "
+					+ "p.subject_objective, p.plan_sub_book "
+					+ "FROM pro P " + "JOIN subject S ON P.pro_id = S.pro_id "
+					+ "JOIN term T ON S.term_id = T.term_id " + "JOIN major M ON S.major_id = M.major_id " 
+					+ "JOIN std std ON std.major_id = M.major_id " 
+					+ "JOIN plan p ON S.subject_id = p.subject_id "
+					+ "WHERE P.pro_id=? AND subject_name=?";
+
+			try {
+				ps = conn.prepareStatement(sql);
+				ps.setString(1, planDTO.getPro_id());
+				ps.setString(2, planDTO.getSubject_name());
+				rs = ps.executeQuery();
+				System.out.println("값이 있다");
+				if (rs.next()) {
+					dto.setMajor_name(rs.getString("major_name"));
+					dto.setTerm_id(rs.getString("term_id"));
+					dto.setSubject_name(rs.getString("subject_name"));
+					dto.setStd_year(rs.getInt("std_year"));
+					dto.setSubject_type(rs.getString("subject_type"));
+					dto.setSubject_credit(rs.getInt("subject_credit"));
+					dto.setPro_name(rs.getString("pro_name"));
+					dto.setSubject_time(rs.getString("subject_time"));
+					dto.setPro_email(rs.getString("pro_email"));
+					dto.setSubject_room(rs.getString("subject_room"));
+					dto.setPlan_cu(rs.getString("plan_cu"));
+					dto.setPlan_book(rs.getString("plan_book"));
+					dto.setPlan_sub_book(rs.getString("plan_sub_book"));
+					dto.setSubject_objective(rs.getString("subject_objective"));
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				resClose();
+			}
+			return dto;
+		}
+
+		//강의계획서 조회(학생 페이지) 
+		public DTO slecturePlan(DTO planDTO) {
+			System.out.println("학생 lecturePlan 호출");
+			DTO dto = new DTO();
+			String sql = "SELECT T.term_id, S.subject_name, S.subject_type, S.subject_credit, P.pro_name, "
+					+ "P.pro_email, S.subject_room, M.major_name, S.subject_time, std.std_year, p.plan_cu, p.plan_book, "
+					+ "p.subject_objective, p.plan_sub_book "
+					+ "FROM pro P " + "JOIN subject S ON P.pro_id = S.pro_id "
+					+ "JOIN term T ON S.term_id = T.term_id " + "JOIN major M ON S.major_id = M.major_id " 
+					+ "JOIN std std ON std.major_id = M.major_id " 
+					+ "JOIN plan p ON S.subject_id = p.subject_id "
+					+ "WHERE std.std_id=? AND subject_name=?";
+
+			try {
+				ps = conn.prepareStatement(sql);
+				ps.setString(1, planDTO.getStd_id());
+				ps.setString(2, planDTO.getSubject_name());
+				rs = ps.executeQuery();
+				System.out.println("값이 있다");
+				if (rs.next()) {
+					dto.setMajor_name(rs.getString("major_name"));
+					dto.setTerm_id(rs.getString("term_id"));
+					dto.setSubject_name(rs.getString("subject_name"));
+					dto.setStd_year(rs.getInt("std_year"));
+					dto.setSubject_type(rs.getString("subject_type"));
+					dto.setSubject_credit(rs.getInt("subject_credit"));
+					dto.setPro_name(rs.getString("pro_name"));
+					dto.setSubject_time(rs.getString("subject_time"));
+					dto.setPro_email(rs.getString("pro_email"));
+					dto.setSubject_room(rs.getString("subject_room"));
+					dto.setPlan_cu(rs.getString("plan_cu"));
+					dto.setPlan_book(rs.getString("plan_book"));
+					dto.setPlan_sub_book(rs.getString("plan_sub_book"));
+					dto.setSubject_objective(rs.getString("subject_objective"));
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				resClose();
+			}
+			return dto;
+		}
 	
 	
 }

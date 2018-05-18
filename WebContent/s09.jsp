@@ -25,13 +25,28 @@
 				margin-right: 20%;
 				font-size: small;
 			}
+	#bbs button{
+		float: right;
+		margin-top: 10px;
+	}
+	#page button{
+		color: black;
+		margin-right: 1%;
+		text-align: center;
+	}
+	#page{
+		margin-top: 2%;
+		font-size: medium;
+	}
 </style>
 </head>
 <body>
 	<div id="main">
 		<jsp:include page="s09-main.jsp"/>
 	</div>
-
+	<div>
+		<jsp:include page="s09-main2.jsp"/>
+	</div>
 	<div id="bbs">
 		<table id="listTable" width="100%">
 			<tr>
@@ -40,15 +55,106 @@
 				<th width="20%">작성자</th>
 				<th width="15%">작성일</th>
 			</tr>
-			<c:forEach items="${list}" var="lecturebbs">
-				<tr>
-					<td>${lecturebbs.bbs_number}</td>
-					<td><a href="./detail?bbs_number=${lecturebbs.bbs_number}">${lecturebbs.bbs_title}</a> </td>
-					<td>${lecturebbs.bbs_writer}</td>
-					<td>${lecturebbs.bbs_date}</td>
-				</tr>
-			</c:forEach>
 		</table>
+		<div id="page">
+			<button id="next">다음</button>
+			<button id="before">이전</button>
+		</div>
 	</div>
 </body>
+<script>
+	var obj={};
+	obj.type="post";
+	obj.dataType="json";
+	obj.error=function(e){console.log(e)};
+	
+	//신청과목 셀렉트 박스에 넣기
+	$(document).ready(function(){
+		obj.url="./subjectTab";
+		obj.data={
+				"id":'${sessionScope.loginId}'
+		}
+		obj.success=function(data){
+			//console.log(data);
+			if(data){
+				console.log("성공");
+				//console.log(data.sublist);
+				 selectbox(data.sublist); 
+			}else{
+				location.href="index.jsp";
+			}
+		}
+		ajaxCall(obj);
+		/* var msg = "${msg}";
+		if(msg != ""){
+			alert(msg);
+		} */
+	});
+	
+	$(document).ready(function(){
+		obj.url="./listback";
+		obj.success=function(data){
+			console.log(data);
+			if(data){
+				console.log(data.main);
+				mainPrint(data.main)
+			}else{
+				alert("과목을 다시 선택해주세요");
+			}
+		}
+		ajaxCall(obj);
+	});
+	
+	//셀렉트 박스에 넣는 반복문
+	function selectbox(list) {
+		var content ="";
+		console.log(list);
+		$("#list").html("<option value='과목선택'>과목선택</option>");
+			list.forEach(function(item){
+				console.log(item);
+				content += "<option value="+item.subject_id+">";
+				content += item.subject_name;
+				content += "</option>";
+			});
+			$("#list").append(content);
+	}
+	
+	//셀렉트 박스 선택시 리스트 출력
+	$("#list").change(function(){
+		obj.url="./list?mName=강의자료";
+		//console.log($("#list option:selected").val());
+		obj.data={selected:$("#list option:selected").val()};
+		console.log(obj.data);
+		obj.success=function(data){
+			if(data){
+				console.log(data.main);
+				mainPrint(data.main)
+			}else{
+				alert("과목을 다시 선택해주세요");
+			}
+		}
+		ajaxCall(obj);
+	});
+	
+	function mainPrint(main){
+		var content="";
+		$("#listTable").html("<table id='listTable' width='100%'><tr>"+"<th width='15%''>글번호</th>"
+		+"<th width='50%''>제목</th>"
+		+"<th width='20%''>작성자</th>"
+		+"<th width='15%'>작성일</th></tr></table>"); //테이블 초기화
+		main.forEach(function(item){
+			content += "<tr>";
+			content += "<td>"+item.bbs_id+"</td>";
+			content += "<td><a href='detail?idx="+item.bbs_id+"&mName=강의자료&selected="+item.subject_id+"'>"+item.bbs_title+"</td>";
+			content += "<td>"+item.bbs_writer+"</td>";
+			content += "<td>"+item.bbs_date+"</td>";
+		});
+		$("#listTable").append(content);
+	}
+	
+	function ajaxCall(param){
+		console.log("ajax 호출")
+		$.ajax(obj);
+	}
+</script>
 </html>

@@ -47,7 +47,7 @@
 	</head>
 	<body>
 		<div id="menu">
-			<span></span>님 환영합니다
+			<span>${sessionScope.loginId}</span>님 환영합니다
 			<a href="#">HOME</a>
 			<a href="#">비밀번호변경</a>
 			<a href="#">LOGOUT</a>
@@ -58,46 +58,4 @@
 			<div id="enroll">수강신청</div>
 		</div>
 	</body>
-	<div>
-		<jsp:include page="s09-main2.jsp"></jsp:include>
-	</div>
-	<script>
-	var obj={};
-	obj.type="post";
-	obj.dataType="json";
-	obj.error=function(e){console.log(e)};
-
-		$("#subBbs").click(function(){
-			obj.url="./subjectTab";
-			obj.success=function(data){
-				//console.log(data);
-				if(data){
-					console.log("성공");
-					//console.log(data.sublist);
-					 selectbox(data.sublist); 
-				}else{
-					location.href="index.jsp";
-				}
-			}
-			ajaxCall(obj);
-		});
-		
-		function selectbox(list) {
-			var content ="";
-			console.log(list);
-			$("#list").html("<option value='과목선택'>과목선택</option>");
-				list.forEach(function(item){
-					console.log(item);
-					content += "<option value="+item.subject_name+">";
-					content += item.subject_name;
-					content += "</option>";
-				});
-				$("#list").append(content);
-		}
-		
-		function ajaxCall(param){
-			console.log("ajax 호출")
-			$.ajax(obj);
-		}
-	</script>
 </html>
