@@ -48,6 +48,9 @@
 			<th width="15%">작성일</th>
 		</tr>
 	</table>
+	<div id="page">
+			<jsp:include page="paging.jsp"></jsp:include>
+	</div>
 	<button onclick="move()">글작성</button>
 </div>
 </body>
@@ -80,12 +83,14 @@
 	});
 	
 	$(document).ready(function(){
-		obj.url="./listback";
+		obj.url="./listback?bbssort_type=과제";
 		obj.success=function(data){
+			$("#list").val("${sessionScope.selected}").prop("selected", true);
 			console.log(data);
 			if(data){
 				console.log(data.main);
-				mainPrint(data.main)
+				mainPrint(data.main);
+				paging(data.pageInfo);
 			}else{
 				alert("과목을 다시 선택해주세요");
 			}
@@ -115,7 +120,8 @@
 		obj.success=function(data){
 			if(data){
 				console.log(data.main);
-				mainPrint(data.main)
+				mainPrint(data.main);
+				paging(data.pageInfo);
 			}else{
 				alert("과목을 다시 선택해주세요");
 			}
@@ -195,6 +201,56 @@
 	function move(){
 		var selected = $("#list option:selected").val()
 		location.href="s13.jsp?subject_id="+selected+"&mName=과제";
+	}
+	
+	// 페이지 매기기
+	function paging(pageInfo) {
+		// 초기화
+		$(".paging").html("");
+		// 맨앞
+	    if (pageInfo.startPage > 1) {
+	        $(".paging").append("<a class='text' onclick='list(1)'>맨앞</a>");
+	    }
+	    // 이전
+	    if (pageInfo.startPage > 1) {
+	        $(".paging").append("<a class='text' onclick='list("+pageInfo.prevPage+")'>이전</a>");
+	    }
+	    // 페이지 번호
+	    for (var i = pageInfo.startPage; i <= pageInfo.endPage; i++) {
+	        if (i == pageInfo.page) {
+	            $(".paging").append("<a id='curPage' onclick='list("+i+")'>" + i + "</a>");
+	        } else {
+	            $(".paging").append("<a onclick='list("+i+")'>" + i + "</a>");
+	        }
+	    }
+	    // 다음
+	    if (pageInfo.endPage != pageInfo.totalPage) {
+	        $(".paging").append("<a class='text' onclick='list(" + pageInfo.nextPage  + ")'>다음</a>");
+	    }
+	    // 맨뒤
+	    if (pageInfo.endPage != pageInfo.totalPage) {
+	        $(".paging").append("<a class='text' onclick='list(" + pageInfo.totalPage + ")'>맨뒤</a>");
+	    }
+	}
+	
+	// 특정 페이지의 리스트 불러오는 함수
+	function list(pageNum) {
+		obj.url="./uploadlist?mName=과제&sNum=1&eNum=10";
+		//console.log($("#list option:selected").val());
+		obj.data={"selected":$("#list option:selected").val(),
+				"page": pageNum
+		};
+		console.log(obj.data);
+		obj.success=function(data){
+			if(data){
+				console.log(data.main);
+				mainPrint(data.main);
+				paging(data.pageInfo);
+			}else{
+				alert("과목을 다시 선택해주세요");
+			}
+		}
+		ajaxCall(obj);
 	}
 </script>
 </html>

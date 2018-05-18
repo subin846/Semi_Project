@@ -17,6 +17,7 @@ import com.google.gson.Gson;
 import com.oreilly.servlet.MultipartRequest;
 import com.semi2.dao.BbsDAO;
 import com.semi2.dto.DTO;
+import com.semi2.dto.PageInfo;
 
 public class BbsService {
 	
@@ -48,12 +49,34 @@ public class BbsService {
 		public void list() throws ServletException, IOException {
 			int selected = Integer.parseInt(request.getParameter("selected"));
 			String bbssort_type = request.getParameter("mName");
+			String paramPage = request.getParameter("page");  // 현재 페이지
+			System.out.println(paramPage);
+			// 현재 페이지
+		    int page; 
+		    if (paramPage == null) {
+		        page = 1;
+		    } else {
+		        page = Integer.parseInt(paramPage);
+		    }
+		    
+			request.getSession().setAttribute("selected", selected);
+			request.getSession().setAttribute("bbssort_type", bbssort_type);
+			
 			BbsDAO dao = new BbsDAO();
-			ArrayList<DTO> list = dao.list(selected,bbssort_type);
+			int totalCount = dao.totalCount(selected,bbssort_type);
+			
+			// PageInfo 생성(보여줄 글번호, 보여줄 페이지, 총 페이지수 등 계산)
+		    PageInfo pageInfo = new PageInfo(page, 3, 3, totalCount);
+		    int startNum = pageInfo.getStartNum();  // 시작 글번호
+		    int endNum = pageInfo.getEndNum();  // 마지막 글번호
+			
+			dao = new BbsDAO();
+			ArrayList<DTO> list = dao.pagingList(selected,bbssort_type, startNum, endNum);
 
 			Gson json = new Gson();
 			HashMap<String, Object> map = new HashMap<>();
 			map.put("main", list);
+			map.put("pageInfo", pageInfo);
 			String obj = json.toJson(map);
 			response.setContentType("text/html; charset=UTF-8");
 			response.getWriter().println(obj);
@@ -105,13 +128,29 @@ public class BbsService {
 		public void uploadlist() throws ServletException, IOException {
 			int selected = Integer.parseInt(request.getParameter("selected"));
 			String bbssort_type = request.getParameter("mName");
+			String paramPage = request.getParameter("page");  // 현재 페이지
+			int page; 
+		    if (paramPage == null) {
+		        page = 1;
+		    } else {
+		        page = Integer.parseInt(paramPage);
+		    }
+		    
+		    BbsDAO dao = new BbsDAO();
+			int totalCount = dao.totalCount(selected,bbssort_type);
 			
-			BbsDAO dao = new BbsDAO();
-			ArrayList<DTO> uploadlist = dao.list(selected,bbssort_type);
+			// PageInfo 생성(보여줄 글번호, 보여줄 페이지, 총 페이지수 등 계산)
+			PageInfo pageInfo = new PageInfo(page, 3, 3, totalCount);
+		    int startNum = pageInfo.getStartNum();  // 시작 글번호
+		    int endNum = pageInfo.getEndNum();  // 마지막 글번호
+			
+			dao = new BbsDAO();
+			ArrayList<DTO> uploadlist = dao.pagingList(selected,bbssort_type, startNum, endNum);
 			
 			Gson json = new Gson();
 			HashMap<String, Object> map = new HashMap<>();
 			map.put("main", uploadlist);
+			map.put("pageInfo", pageInfo);
 			String obj = json.toJson(map);
 			response.setContentType("text/html; charset=UTF-8");
 			response.getWriter().println(obj);
@@ -385,14 +424,23 @@ public class BbsService {
 		public void listback() throws IOException {
 			int bbs_id = (int) request.getSession().getAttribute("bbs_id");
 			int selected = (int) request.getSession().getAttribute("selected");
-			String bbssort_type = (String) request.getSession().getAttribute("bbssort_type");
+			String bbssort_type = request.getParameter("bbssort_type");
 			
 			BbsDAO dao = new BbsDAO();
-			ArrayList<DTO> list = dao.list(selected,bbssort_type);
+			int totalCount = dao.totalCount(selected,bbssort_type);
+			
+			// PageInfo 생성(보여줄 글번호, 보여줄 페이지, 총 페이지수 등 계산)
+		    PageInfo pageInfo = new PageInfo(1, 3, 3, totalCount);
+		    int startNum = pageInfo.getStartNum();  // 시작 글번호
+		    int endNum = pageInfo.getEndNum();  // 마지막 글번호
+		    
+			dao = new BbsDAO();
+			ArrayList<DTO> list = dao.pagingList(selected,bbssort_type, startNum, endNum);
 
 			Gson json = new Gson();
 			HashMap<String, Object> map = new HashMap<>();
 			map.put("main", list);
+			map.put("pageInfo", pageInfo);
 			String obj = json.toJson(map);
 			response.setContentType("text/html; charset=UTF-8");
 			response.getWriter().println(obj);

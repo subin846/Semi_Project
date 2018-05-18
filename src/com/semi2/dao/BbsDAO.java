@@ -76,6 +76,43 @@ public class BbsDAO {
 		}
 		return list;
 	}
+	
+	//학생 - 과목 게시판 (페이징)
+	public ArrayList<DTO> pagingList(int selected, String bbssort_type, int startNum, int endNum) {
+		ArrayList<DTO> list = new ArrayList<DTO>();
+		DTO dto= null;
+		String sql = "SELECT X.rnum, X.bbs_id, X.bbs_title, X.bbs_writer, X.bbs_date " + 
+				"FROM ( " + 
+				"    SELECT ROWNUM AS rnum, A.bbs_id, A.bbs_title, A.bbs_writer, A.bbs_date " + 
+				"    FROM ( " + 
+				"        SELECT B.bbs_id, B.bbs_title, B.bbs_writer, B.bbs_date FROM bbs B JOIN bbssort bs ON bs.bbssort_type = B.bbssort_type " + 
+				"        JOIN bbssort bs ON bs.bbssort_type = B.bbssort_type " + 
+				"        WHERE b.subject_id=? AND bs.bbssort_type=? ORDER BY b.bbs_id DESC) A " + 
+				"    WHERE ROWNUM <= ?) x " + 
+				"WHERE X.rnum >= ?";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, selected);
+			ps.setString(2, bbssort_type);
+			ps.setInt(3, endNum);
+			ps.setInt(4, startNum);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				dto = new DTO();
+				dto.setBbs_id(rs.getInt("bbs_id"));
+				dto.setBbs_title(rs.getString("bbs_title"));
+				dto.setBbs_writer(rs.getString("bbs_writer"));
+				dto.setBbs_date(rs.getString("bbs_date"));
+				dto.setSubject_id(selected);
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			resClose();
+		}
+		return list;
+	}
 
 	//학생 - 신청과목 리스트
 	public ArrayList<DTO> sublist(String id) {
@@ -308,5 +345,27 @@ public class BbsDAO {
 			resClose();
 		}
 		return success;
+	}
+
+	// 총 게시글 수 반환
+	public int totalCount(int selected, String bbssort_type) {
+		String sql = "SELECT count(*) AS cnt FROM bbs WHERE subject_id=? AND bbssort_type=?";
+		int cnt = 0;
+	    try {
+	        ps = conn.prepareStatement(sql);
+	        ps.setInt(1, selected);
+	        ps.setString(2, bbssort_type);
+	        rs = ps.executeQuery();
+
+	        if (rs.next()) {
+	            cnt = rs.getInt("cnt");
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        resClose();  // 자원 반납
+	    }
+
+	    return cnt;
 	}
 }

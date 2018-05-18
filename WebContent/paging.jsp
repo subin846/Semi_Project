@@ -19,6 +19,7 @@
             border: thin solid lightgray;
             text-align: center;
             text-decoration: none;
+            cursor: pointer;
         }
         /* 글자(맨앞, 이전, 다음, 맨뒤) */
         .paging a.text {
@@ -36,33 +37,5 @@
 	<div class="paging"></div>
 </body>
 <script>
-    // 맨앞
-    if (${pageInfo.startPage} > 1) {
-        $(".paging").append("<a class='text' href='?page=1'>맨앞</a>");
-    }
-
-    // 이전
-    if (${pageInfo.startPage} > 1) {
-        $(".paging").append("<a class='text' href='?page=" + ${pageInfo.prevPage}  + "'>이전</a>");
-    }
-
-    // 페이지 번호
-    for (var i = ${pageInfo.startPage}; i <= ${pageInfo.endPage}; i++) {
-        if (i == ${pageInfo.page}) {
-            $(".paging").append("<a id='curPage' href='?page=" + i + "'>" + i + "</a>");
-        } else {
-            $(".paging").append("<a href='?page=" + i + "'>" + i + "</a>");
-        }
-    }
-
-    // 다음
-    if (${pageInfo.endPage} != ${pageInfo.totalPage}) {
-        $(".paging").append("<a class='text' href='?page=" + ${pageInfo.nextPage}  + "'>다음</a>");
-    }
-
-    // 맨뒤
-    if (${pageInfo.endPage} != ${pageInfo.totalPage}) {
-        $(".paging").append("<a class='text' href='?page=" + ${pageInfo.totalPage} + "'>맨뒤</a>");
-    }
 </script>
 </html>
