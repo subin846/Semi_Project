@@ -136,12 +136,13 @@
 				<th>이수구분</th>
 				<th>학점</th>
 				<th>제한인원</th>
+				<th>수강 신청 가능 인원</th>
 				<th>수강신청</th>
 			</tr>
 			</table>
 			<div>
 				최소학점 : <input type="text" value="2" readonly size="10" style="background-color: #e2e2e2"/>	
-				최대학점 : <input type="text" value="20" readonly  size="10" style="background-color: #e2e2e2"/>	
+				최대학점 : <input type="text" id="maxCredit" value="10" readonly  size="10" style="background-color: #e2e2e2"/>	
 				내 신청학점 : <input id="stdCredit"  type="text" value="" size="10" style="background-color: #e2e2e2"/>	
 			</div>
 			<table> 
@@ -156,7 +157,8 @@
 				<th>이수구분</th>
 				<th>학점</th>
 				<th>제한인원</th>
-				<th>수강신청</th>
+				<th>수강 신청 가능 인원</th>
+				<th>수강정정</th>
 			</tr>
 			</table>
 </body>
@@ -210,6 +212,7 @@
 						listAppend+="<td>"+data.searchList[i].subject_type+"</td>"
 						listAppend+="<td>"+data.searchList[i].subject_credit+"</td>"
 						listAppend+="<td>"+data.searchList[i].subject_limit+"</td>"
+						listAppend+="<td>"+data.searchList[i].subject_count+"</td>"
 						listAppend+="<td><input type='button' class='enroll'  value='수강신청'></td>" 
 						listAppend+="</tr>"
 					}
@@ -233,35 +236,61 @@
 						var tdValue = [];
 						trChilds.each(function(i){
 							tdValue.push(trChilds.eq(i).text());
-							console.log(tdValue);
 						});
+						tdValue.push($("#maxCredit").val());
+						console.log("tdValue");
+						console.log(tdValue);
 						//아작스 호출 
 						obj.url ="./enroll";
 						obj.data={
 							"loginId" : "${sessionScope.loginId}",
 							"tdValue" : tdValue
 						};
-						obj.success=function(data){
+						obj.success=function(data){	
 							console.log(data);
-							console.log(data.success);
-							console.log(data.subject_id);
+							 //쿼리 성공 여부 반환 변수 --	data.result[0]  
+							 //최대학점 기준 성공 여부 반환 변수--data.result[1] 
+							 //중복된 과목이 있는지 구분하여 반환하는  변수---data.result[2] 
+							//중복된 강의시간이  있는지 구분하여 반환하는  변수  --data.result[3] 
+							 //신청 인원이 마감 되었는지 확인 하는  변수  --data.result[4] 
+								if(data.result[1] >0 ){
+									if(data.result[2] >0 ){
+										if(data.result[3] >0 ){
+											if(data.result[4]> 0){
+												if(data.result[0] >0 ){
+													alert("수강 신청이 완료되었습니다.");
+												}
+											}else{
+												alert("신청 인원이 마감되었습니다.");
+											}
+										}else{
+											alert("기존 신청하신 과목과 강의시간이 중복됩니다. ");
+										}
+									}else{
+										alert("이미 수강 신청하신 과목입니다.");
+									}
+								}else{
+									alert("최대 20학점까지 수강 신청 가능합니다.");
+								}
+							 //
+							 initialEntry(obj);
 							//특정학생의 수강 신청한 학점 조회
 							stdCredit(obj);
 							//특정학생의 수강 신청한 과목 조회
 							stdEnroll(obj);		
-						};
+						}
 						//수강 신청 클릭 이벤트 ajax 호출
 				 		ajaxCall(obj);
-					}
-				}else{
-					alert("로그인이 필요한 서비스 입니다.");
-					location.href="index.jsp";
+					 }	
+			}else{
+				alert("로그인이 필요한 서비스 입니다.");
+				location.href="index.jsp";
 				}
 			}); 
+			
 			/* 수강 정정 버튼 이벤트 */
 			$(document).on("click",".enrollChange",function(){
 				var trChilds = $(this).parent().parent().children();
-				console.log(trChilds.eq(1).text());
 				//json 형태로 로그인 아이디와 유일한 키 과목 eq(0).text()를 전송
 				var subject_id = trChilds.eq(0).text();
 				if(confirm("선택한 과목을 삭제 하시겠습니까?")){
@@ -274,10 +303,12 @@
 						console.log("수강정정 반환값");
 						console.log(data);
 						if(data.success>0){
-							alert("선택한 과목을 삭제 하였습니다!");
+							alert("선택한 과목을 삭제 하였습니다.");
 						}else{
 							alert("삭제 실패 했습니다. 다시 시도해주세요.");
 						}
+						//
+						initialEntry(obj)
 						//특정학생의 수강 신청한 학점 조회
 						stdCredit(obj);
 						//특정학생의 수강 신청한 과목 조회
@@ -290,6 +321,7 @@
 		/* ready 되면서 전체 과목 리스트 조회*/
 		function initialEntry(obj){
 				console.log("initialEntry 함수 호출");
+				obj.url="./subjectSearch";
 				obj.term_id = "AND S.term_id > '2018-1' ";
 				obj.optSel = $("#optSelect option:selected").val();
 				obj.selId = $("#inp").val();
@@ -299,12 +331,11 @@
 						"optSel"  :obj.optSel,
 						"selId" : obj.selId,
 						"term_id" : obj.term_id
-					};
+				};
 				/*이전 학기 평점조회 와 
 				신학기 수강신청 과목 분류 하기위해 분류할수있는 데이터 함께 전송*/
-				obj.url="./subjectSearch";
 				obj.success =function(data){
-					console.log("성공!");
+					console.log("initialEntry 성공!");
 					console.log(data);
 					console.log(data.searchList);
 					console.log(data.searchList.length);
@@ -316,6 +347,7 @@
 					// 수강신청 과목 리스트 담을 변수 선언
 					var listAppend;
 					for(var i =0; i<data.searchList.length; i++){
+
 						listAppend+="<tr class='trRemove1'>"
 						listAppend+="<td class='display'>"+data.searchList[i].subject_id+"</td>"
 						listAppend+="<td>"+data.searchList[i].term_id+"</td>"
@@ -327,6 +359,7 @@
 						listAppend+="<td>"+data.searchList[i].subject_type+"</td>"
 						listAppend+="<td>"+data.searchList[i].subject_credit+"</td>"
 						listAppend+="<td>"+data.searchList[i].subject_limit+"</td>"
+						listAppend+="<td>"+data.searchList[i].subject_count+"</td>"
 						listAppend+="<td><input type='button' class='enroll'  value='수강신청'></td>" 
 						listAppend+="</tr>"
 					}
@@ -365,6 +398,7 @@
 						listAppend+="<td>"+data.searchList[i].subject_type+"</td>"
 						listAppend+="<td>"+data.searchList[i].subject_credit+"</td>"
 						listAppend+="<td>"+data.searchList[i].subject_limit+"</td>"
+						listAppend+="<td>"+data.searchList[i].subject_count+"</td>"
 						listAppend+="<td><input type='button' class='enrollChange' value='수강정정'></td>" 
 						listAppend+="</tr>"
 					}
@@ -395,7 +429,5 @@
 			console.log("ajax호출");
 			$.ajax(obj);
 		}
-
-
 </script>
 </html>

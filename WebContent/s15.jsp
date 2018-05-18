@@ -46,7 +46,7 @@
 		var selId = $("#inp").val();
 		/*이전 학기 평점조회 와 
 		신학기 수강신청 과목 분류 하기위해 분류할수있는 데이터 함께 전송*/
-		var term_id = "AND S.term_id < '2018-2' "
+		var term_id = "AND S.term_id <= '2018-2' "
 		ajaxCall();
 		/* 조회 버튼 클릭 시 text의 value 가져오기 */
 		$("#btn").click(function(){
@@ -92,7 +92,7 @@
 							listAppend+="<td>"+data.searchList[i].subject_type+"</td>"
 							listAppend+="<td>"+data.searchList[i].subject_credit+"</td>"
 							listAppend+="<td>"+data.searchList[i].subject_limit+"</td>"
-							listAppend+="<td><strong>"+data.searchList[i].subject_grade+"</strong></td>"
+							listAppend+="<td>"+data.searchList[i].subject_grade+"</td>"
 							listAppend+="</tr>"
 						}
 							$("#trAppend").after(listAppend);
