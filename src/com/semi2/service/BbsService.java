@@ -345,6 +345,10 @@ public class BbsService {
 			int selected = Integer.parseInt(request.getParameter("selected"));
 			String bbssort_type = request.getParameter("mName");
 			
+			request.getSession().setAttribute("bbs_id", bbs_id);
+			request.getSession().setAttribute("selected", selected);
+			request.getSession().setAttribute("bbssort_type", bbssort_type);
+			
 			BbsDAO dao = new BbsDAO();
 			DTO dto = dao.detail(bbs_id,selected,bbssort_type);
 			
