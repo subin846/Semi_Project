@@ -73,7 +73,7 @@
 					<tr>
 						<td colspan="4">
 							<button>저장</button>
-							<a href="./uploadlist?mName=과제">취소</a>
+							<a href="s11.jsp">취소</a>
 						</td>
 					</tr>
 				</table>

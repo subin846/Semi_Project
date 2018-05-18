@@ -85,10 +85,24 @@
 			}
 		}
 		ajaxCall(obj);
-		var msg = "${msg}";
+		/* var msg = "${msg}";
 		if(msg != ""){
 			alert(msg);
+		} */
+	});
+	
+	$(document).ready(function(){
+		obj.url="./listback";
+		obj.success=function(data){
+			console.log(data);
+			if(data){
+				console.log(data.main);
+				mainPrint(data.main)
+			}else{
+				alert("과목을 다시 선택해주세요");
+			}
 		}
+		ajaxCall(obj);
 	});
 	
 	//셀렉트 박스에 넣는 반복문

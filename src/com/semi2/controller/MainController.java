@@ -488,6 +488,12 @@ public class MainController extends HttpServlet {
 			bbs = new BbsService(request,response);
 			bbs.prodel();
 			break;
+			
+		case "/listback":
+			System.out.println("뒤로가기 요청");
+			bbs = new BbsService(request,response);
+			bbs.listback();
+			break;
 		}
 	}
 

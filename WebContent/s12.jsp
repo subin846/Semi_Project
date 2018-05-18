@@ -119,7 +119,6 @@
 	}
 		
 	$("#back").click(function(){
-		alert("과목을 다시 선택하세요");
 		location.href="s09.jsp";
 	});
 	var loginId = "${sessionScope.loginId}";
@@ -140,7 +139,7 @@
 	});
 		
 	$("#del").click(function(){
-		var loginId = "${sessionScope.loginId}";
+		var loginId = "s16160001";
 		if(loginId != "${uploaddetail.bbs_writer}"){
 			alert("삭제 권한이 없습니다");
 			location.href="s09.jsp";

@@ -79,6 +79,20 @@
 		ajaxCall(obj);
 	});
 	
+	$(document).ready(function(){
+		obj.url="./listback";
+		obj.success=function(data){
+			console.log(data);
+			if(data){
+				console.log(data.main);
+				mainPrint(data.main)
+			}else{
+				alert("과목을 다시 선택해주세요");
+			}
+		}
+		ajaxCall(obj);
+	}); 
+	
 	function selectbox(list) {
 		var content ="";
 		console.log(list);

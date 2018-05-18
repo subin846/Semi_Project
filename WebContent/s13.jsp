@@ -70,8 +70,8 @@
 					</tr>
 					<tr>
 						<td colspan="4">
-							<button>저장</button>
-							<a href="./uploadlist?mName=과제">취소</a>
+							<button id="save">저장</button>
+							<button id="back">취소</button>
 						</td>
 					</tr>
 				</table>
@@ -120,7 +120,12 @@
 		$.ajax(obj);
 	}
 	
-	$("button").click(function(){
+	$("#back").click(function(){
+		//alert("과목을 다시 선택해주세요");
+		location.href="s11.jsp";
+	});
+	
+	$("#save").click(function(){
 		if($("input[name='bbs_title']").val()==""){
 			alert("제목을 입력하세요");
 			$("input[name='bbs_title']").focus();

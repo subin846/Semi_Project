@@ -114,8 +114,6 @@
 	}
 
 	$("button").click(function(){
-		//location.href="./list?mName=강의자료&sNum=1&eNum=10&selected="+${selected};
-		alert("과목을 다시 선택하세요");
 		location.href="s09.jsp";
 	});
 </script>
