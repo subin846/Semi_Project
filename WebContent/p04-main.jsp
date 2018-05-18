@@ -53,9 +53,9 @@
 			<a href="#">LOGOUT</a>
 		</div>
 		<div id="navi">
-			<div id="std">학적</div>
+			<div id="std">내정보</div>
 			<div id="subBbs">과목게시판</div>
-			<div id="enroll">수강신청</div>
+			<div id="enroll">강의</div>
 		</div>
 	</body>
 </html>

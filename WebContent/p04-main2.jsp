@@ -46,9 +46,8 @@
 			<option value="" selected="selected">과목선택</option>
 			</select>
 			<div id="plan"><a href="#">강의계획서</a></div>
-			<div id="lectureNote"><a href="s09.jsp">강의자료</a></div>
-			<div id="upload"><a href="s11.jsp">과제</a></div>
-			<div id="grade"><a href="s14.jsp">강의평가</a></div>
+			<div id="lectureNote"><a href="p04.jsp">강의자료</a></div>
+			<div id="upload"><a href="p07.jsp">과제</a></div>
 		</div>
 	</body>
 </html>
