@@ -45,12 +45,17 @@
 			<select id="list">
 			<option value="" selected="selected">과목선택</option>
 			</select>
-<<<<<<< HEAD
-			<div id="plan"><a href="s09-main.jsp">강의계획서</a></div>
+			<!-- <div id="plan"><a href="s09-main.jsp">강의계획서</a></div>
 			<div id="lectureNote"><a href="./list">강의자료</a></div>
 			<div id="upload"><a href="./list">과제</a></div>
 			<div id="grade"><a href="#">강의평가</a></div>
+		</div> -->
+			<div id="plan"><a href="s09-main.jsp">강의계획서</a></div>
+			<div id="lectureNote"><a href="s09.jsp">강의자료</a></div>
+			<div id="upload"><a href="s11.jsp">과제</a></div>
+			<div id="grade"><a href="s14.jsp">강의평가</a></div>
 		</div>
+	</body>
 	</body>
 		<script>
 		$(document).ready(function() {
@@ -114,12 +119,4 @@
 		
 		
 	</script>
-=======
-			<div id="plan"><a href="#">강의계획서</a></div>
-			<div id="lectureNote"><a href="s09.jsp">강의자료</a></div>
-			<div id="upload"><a href="s11.jsp">과제</a></div>
-			<div id="grade"><a href="s14.jsp">강의평가</a></div>
-		</div>
-	</body>
->>>>>>> 8e2f5bbe2f504763b2932e882dbdcfcbae084d03
 </html>
