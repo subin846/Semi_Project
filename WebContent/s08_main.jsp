@@ -47,10 +47,20 @@
 	</head>
 	<body>
 		<div id="menu">
-			<span>${sessionScope.loginId}</span>님 환영합니다
-			<a href="#">HOME</a>
-			<a href="#">비밀번호변경</a>
-			<a href="#">LOGOUT</a>
+			<span></span><!-- 님 환영합니다 -->
+				<script>
+					var loginId ="${sessionScope.loginId}";
+					if(loginId == ""){
+						alert("로그인이 필요한 서비스 입니다.");
+						location.href="index.jsp";
+					}else{
+						var content = loginId+" 님 환영합니다 ";
+						document.getElementById("menu").innerHTML = content;
+					}
+				</script>
+			<a href="./s01.jsp">HOME</a>
+			<a href="./m02.jsp">비밀번호변경</a>
+			<a href="./logout">LOGOUT</a>
 		</div>
 		<div id="navi">
 			<div id="std">학적</div>
@@ -59,11 +69,12 @@
 		</div>
 	</body>
 	<div>
-		<jsp:include page="s09-main2.jsp"></jsp:include>
-		<jsp:include page="p03_std.jsp"></jsp:include>
+		<jsp:include page="s08_main2.jsp"></jsp:include>
 	</div>
 	<script>
-	var obj={};
+
+	
+ 	var obj={};
 	obj.type="post";
 	obj.dataType="json";
 	obj.error=function(e){console.log(e)};
@@ -99,6 +110,6 @@
 		function ajaxCall(param){
 			console.log("ajax 호출")
 			$.ajax(obj);
-		}
+		} 
 	</script>
 </html>

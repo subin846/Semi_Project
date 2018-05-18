@@ -350,9 +350,21 @@ public class MainController extends HttpServlet {
 			System.out.println("학사일정표 요청");
 			mservice.dateEvent();
 			break;
-		case "/lecturePlan" :
-			System.out.println("강의계획서 정보 요청");
-			mservice.lecturePlan();
+		case "/selectProSubject" :
+			System.out.println("교수 과목 리스트 정보 요청");
+			mservice.selectProSubject();
+			break;
+		case "/selectStdSubject" :
+			System.out.println("교수 과목 리스트 정보 요청");
+			mservice.selectStdSubject();
+			break;
+		case "/plecturePlan" :
+			System.out.println("교수 강의계획서 페이지 요청");
+			mservice.plecturePlan();
+			break;
+		case "/slecturePlan" :
+			System.out.println("학생 강의계획서 페이지 요청");
+			mservice.slecturePlan();
 			break;
 /**********************************************************************/			
 			//은경
