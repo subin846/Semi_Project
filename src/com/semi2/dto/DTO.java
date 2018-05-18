@@ -50,6 +50,8 @@ public class DTO {
 	private double subject_grade;
 	private int subject_credit;
 	private int subject_limit;
+	private int subject_count;
+
 	// 강의계획서
 	private String plan_cu;
 	private String plan_book;
@@ -384,7 +386,12 @@ public class DTO {
 	public void setSubject_limit(int subject_limit) {
 		this.subject_limit = subject_limit;
 	}
-
+	public int getSubject_count() {
+		return subject_count;
+	}
+	public void setSubject_count(int subject_count) {
+		this.subject_count = subject_count;
+	}
 	public String getPlan_cu() {
 		return plan_cu;
 	}

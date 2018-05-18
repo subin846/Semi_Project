@@ -2,19 +2,16 @@ package com.semi2.service;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.semi2.dao.EnrollDAO;
 import com.semi2.dto.DTO;
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
 public class EnrollService {
 	HttpServletRequest request =null;
@@ -59,7 +56,7 @@ public class EnrollService {
 		//필수  -- 요청 한 페이지로  getWriter()  transJson을 success | error 로 반환해줌
 		response.getWriter().println(transJson);
 	}
-	
+
 	/*로그인 학생의 수강 신청 과목 조회*/
 	public void stdEnroll() throws IOException {
 		String loginId = request.getParameter("loginId");
@@ -102,22 +99,49 @@ public class EnrollService {
 		//ajax 로 호출 한 내용을 파라메터로 받기
 		String loginId = request.getParameter("loginId");
 		String[] tdValue  = request.getParameterValues("tdValue[]"); 
-		System.out.println(loginId);
 		System.out.println("request 개수 : "+tdValue.length);
-		//해당 학생 id를 기준으로 수강 신청 과목을 Insert해주고 신청 학점을 update해주자. ->DB 접속 필요
-		EnrollDAO dao =new EnrollDAO();
-		int[] result =  dao.enroll(loginId,tdValue);
-		System.out.println("반환값 "+result[0]+" / "+result[1]);
+		
+		//Insert 하기 전에  로그인 학생의 학점이 20 미만일 경우에는 신청 불가 
+		// ->로그인 학생의 학점 조회 (id와 현재학기를 기준)
+		EnrollDAO CreditDao= new EnrollDAO();
+		int stdCredit =CreditDao.stdCredit(loginId, tdValue[1]);
+		
+		
+		//Insert 하기전에 신청한 (1)과목id or (2)강의시간 중복 여부 판단 
+		// ->로그인 학생의 신청한 과목 조회(id와 현재학기를 기준) + flag 변수
+		//flag = 0 일경우 과목 조회 쿼리 결과를 얻어오고
+		// flag = 1 일 경우 강의시간 겹치는지 유무를 얻어옴    (2개의 메서드를 하나로 합침)
+		//(1)
+		EnrollDAO overLap1  = new EnrollDAO(); 
+		ArrayList<Object> currentSub= new ArrayList<Object>(); //반환결과를 배열로담음
+		int flag =1 ;
+		currentSub = overLap1.overLapDAO(loginId,tdValue[1],flag);
+		//(2) 
+		//overLap1에서 자원반납이 이루어졌기 때문에 다시 객체화해서 커넥션 연결
+		EnrollDAO overLap2  = new EnrollDAO();  
+		flag =2 ;
+		//enroll메서드에 매개변수를 각각 추가해야 하기 때문에 배열 2개 쓰는게 불가피.
+		ArrayList<Object> currentTime= new ArrayList<Object>(); 
+		currentTime = overLap2.overLapDAO(loginId,tdValue[1],flag);
+		
+		EnrollDAO currentCount = new EnrollDAO();  
+		int count = currentCount.count(tdValue[0]);
+		System.out.println("cccccccccccccc"+count);
+		
+		//해당 학생 id,과목 id를  기준으로 수강 신청 과목을 Insert ->DB 접속 필요
+		EnrollDAO enrollDao =new EnrollDAO();
+		int[] result = new int[5];
+		result=  enrollDao.enroll(loginId,tdValue,stdCredit,currentSub,currentTime,count);
+		
 		//결과값을 JSON 형태로 반환해야함 
 		Gson json = new Gson();
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("success", result[0]);
-		map.put("subject_id", result[1]);
+		map.put("result", result);
 		String transJson = json.toJson(map);
 		//response 로 반환
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		response.getWriter().println(transJson);
-	
+
 	}
 	/*로그인 학생의 수강 정정 */
 	public void enrollChange() throws IOException {
