@@ -399,13 +399,13 @@ public class MainController extends HttpServlet {
 			bbs.updatePage();
 			break;		
 			
-		case "/update":
+		case "/sUpdate":
 			System.out.println("학생 - 과제 게시판 수정 요청");
 			bbs = new BbsService(request,response);
 			bbs.update();
 			break;		
 			
-		case "/del":
+		case "/sDel":
 			System.out.println("학생 - 과제 게시판 삭제 요청");
 			bbs = new BbsService(request,response);
 			bbs.del();
