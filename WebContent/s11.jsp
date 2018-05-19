@@ -24,12 +24,15 @@
 		margin-top: 10px;
 	}
 	#bbs{
-				width: 75%;
-				margin-top: 3%;
-				margin-left: 22%;
-				margin-right: 20%;
-				font-size: small;
-			}
+		width: 75%;
+		margin-top: 3%;
+		margin-left: 22%;
+		margin-right: 20%;
+		font-size: small;
+	}
+	#upload{
+		text-decoration: underline;
+	}
 </style>
 </head>
 <body>
@@ -144,7 +147,7 @@
 		});
 		$("#listTable").append(content);
 	}
-	
+	/* 
 	$("#before").click(function(){
 		sNum-=10;
 		eNum-=10;
@@ -192,7 +195,7 @@
 		};
 		ajaxCall(obj);
 	});
-	
+	 */
 	function ajaxCall(param){
 		console.log("ajax 호출")
 		$.ajax(obj);

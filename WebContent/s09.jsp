@@ -38,6 +38,9 @@
 		margin-top: 2%;
 		font-size: medium;
 	}
+	#lectureNote{
+		text-decoration: underline;
+	}
 </style>
 </head>
 <body>
