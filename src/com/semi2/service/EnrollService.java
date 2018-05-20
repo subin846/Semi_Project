@@ -27,14 +27,14 @@ public class EnrollService {
 
 	/*이전 학기과목 평점조회 or 신 학기 수강신청 과목 조회 필터링으로 분류  */
 	public void subjectSearch() throws IOException {
-		String optSel  = request.getParameter("optSel");
-		String selId = request.getParameter("selId");
+		String optValue  = request.getParameter("optValue");
+		String inpValue = request.getParameter("inpValue");
 		String term_id = request.getParameter("term_id");
-		System.out.println(optSel+"/"+selId);
+		System.out.println(optValue+"/"+inpValue);
 		//DB접속을 통해서 optSel에 맞는 쿼리문 구분.->데이터가 많으므로 DTO에 담음.
 		EnrollDAO dao = new EnrollDAO();
 		ArrayList<DTO> searchList = new ArrayList<DTO>();
-		searchList = dao.subjectSearch(optSel,selId,term_id);
+		searchList = dao.subjectSearch(optValue,inpValue,term_id);
 		System.out.println("필터링 반환 받았나?");
 		System.out.println(searchList);
 		System.out.println("반환 개수: "+searchList.size());

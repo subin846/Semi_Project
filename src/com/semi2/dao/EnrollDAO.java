@@ -32,11 +32,11 @@ public class EnrollDAO {
 	}
 
 	/*이 전 학기의 과목 평점 조회 필터링 검색*/
-	public ArrayList<DTO> subjectSearch(String optSel, String selId, String term_id) {
+	public ArrayList<DTO> subjectSearch(String optValue,String inpValue,String term_id ) {
 		System.out.println("subjectSearch DAO");
 		ArrayList<DTO> list = new ArrayList<DTO>();
 		String sql ="";
-		if(optSel.equals("entry")) {
+		if(optValue.equals("entry")) {
 			System.out.println("전체");
 			sql =" SELECT  S.subject_id,term_id ,M.major_name, subject_name, P.pro_name, subject_room, subject_time, "
 					+" subject_type, subject_credit, subject_limit, subject_grade,subject_count "  
@@ -45,8 +45,8 @@ public class EnrollDAO {
 					+" ON S.major_id = M.major_id "
 					+" JOIN pro P" 
 					+" ON S.pro_id = P.pro_id "
-					+term_id+ "ORDER BY term_id DESC ";
-		}else if(optSel.equals("term")) {
+					+" WHERE S.term_id "+ term_id +"ORDER BY term_id DESC ";
+		}else if(optValue.equals("term")) {
 			System.out.println("학기");
 			sql=" SELECT S.subject_id,term_id,M.major_name, subject_name, P.pro_name, subject_room, subject_time,"
 					+"  subject_type, subject_credit, subject_limit,subject_grade,subject_count"  
@@ -55,8 +55,8 @@ public class EnrollDAO {
 					+ " ON S.major_id = M.major_id"  
 					+ " JOIN pro P"  
 					+ " ON S.pro_id = P.pro_id"  
-					+ " WHERE S.term_id Like '%"+selId+"%'"+term_id+ "ORDER BY term_id DESC" ;
-		}else if(optSel.equals("pro")) {
+					+ " WHERE S.term_id "+term_id+"AND S.term_id Like '%"+inpValue+"%'"+"ORDER BY term_id DESC" ;
+		}else if(optValue.equals("pro")) {
 			System.out.println("교수");
 			sql =" SELECT S.subject_id,term_id,M.major_name, subject_name, P.pro_name, subject_room, subject_time, "
 					+" subject_type, subject_credit, subject_limit,subject_grade,subject_count " 
@@ -65,9 +65,9 @@ public class EnrollDAO {
 					+" ON S.major_id = M.major_id"  
 					+" JOIN pro P "  
 					+" ON S.pro_id = P.pro_id"  
-					+" WHERE P.pro_name LIKE '%"+selId+"%'"+term_id+ "ORDER BY term_id DESC" ;
+					+" WHERE  S.term_id "+term_id+" AND P.pro_name Like '%"+inpValue+"%'"+"ORDER BY term_id DESC" ;
 
-		}else if(optSel.equals("maj")) {
+		}else if(optValue.equals("maj")) {
 			System.out.println("학과");
 			sql =" SELECT S.subject_id,term_id,M.major_name, subject_name, P.pro_name, subject_room, subject_time,"
 					+" subject_type, subject_credit, subject_limit,subject_grade,subject_count" 
@@ -76,7 +76,7 @@ public class EnrollDAO {
 					+" ON S.major_id = M.major_id"  
 					+" JOIN pro P "  
 					+" ON S.pro_id = P.pro_id"  
-					+" WHERE M.major_name LIKE '%"+selId+"%'"+term_id+" ORDER BY term_id DESC" ;
+					+" WHERE  S.term_id "+term_id +"AND M.major_name  Like '%"+inpValue+"%'"+"ORDER BY term_id DESC" ;
 		}else {
 			System.out.println("과목");
 			sql=" SELECT S.subject_id,term_id,M.major_name, subject_name, P.pro_name, subject_room, subject_time, "
@@ -86,8 +86,8 @@ public class EnrollDAO {
 					+" ON S.major_id = M.major_id" 
 					+" JOIN pro P"  
 					+" ON S.pro_id = P.pro_id" 
-					+" WHERE S.subject_name LIKE '%"+selId+"%'"+term_id+" ORDER BY term_id DESC" ;
-		}
+					+" WHERE  S.term_id "+term_id+"AND S.subject_name Like '%"+inpValue+"%'"+"ORDER BY term_id DESC" ;
+		} 
 		try {
 			ps =conn.prepareStatement(sql);
 			rs = ps.executeQuery();

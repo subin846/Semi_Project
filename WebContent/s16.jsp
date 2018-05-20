@@ -182,14 +182,14 @@
 			$("#btn").click(function(){
 				console.log("조회 버튼 클릭");
 				obj.url="./subjectSearch";
-				obj.optSel = $("#optSelect option:selected").val();
-				obj.selId = $("#inp").val();
-				obj.term_id = "AND S.term_id > '2018-1' ";
+				obj.optValue = $("#optSelect option:selected").val();
+				obj.inpValue = $("#inp").val();
+				obj.term_id = " >'2018-1' ";
 				obj.data={
 						//getParameter()메서드 : name 을 통해서 value를 얻을 수 있음
 						//2개 파라메터로 보내서 opt 를 기준으로 sql 분류
-						"optSel"  :obj.optSel,
-						"selId" : obj.selId,
+						"optValue"  :obj.optValue,
+						"inpValue" : obj.inpValue,
 						"term_id" : obj.term_id
 					}; 
 				obj.success =function(data){
@@ -322,14 +322,14 @@
 		function initialEntry(obj){
 				console.log("initialEntry 함수 호출");
 				obj.url="./subjectSearch";
-				obj.term_id = "AND S.term_id > '2018-1' ";
-				obj.optSel = $("#optSelect option:selected").val();
-				obj.selId = $("#inp").val();
+				obj.term_id = " > '2018-1' ";
+				obj.optValue = $("#optSelect option:selected").val();
+				obj.inpValue = $("#inp").val();
 				obj.data={
 						//getParameter()메서드 : name 을 통해서 value를 얻을 수 있음
 						//2개 파라메터로 보내서 opt 를 기준으로 sql 분류
-						"optSel"  :obj.optSel,
-						"selId" : obj.selId,
+						"optValue"  :obj.optValue,
+						"inpValue" : obj.inpValue,
 						"term_id" : obj.term_id
 				};
 				/*이전 학기 평점조회 와 

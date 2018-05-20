@@ -42,18 +42,17 @@
 <script>
 	$(document).ready(function(){
 		//ready 되자마자 이전 과목 리스트 요청
-		var optSel = $("#optSelect option:selected").val();
-		var selId = $("#inp").val();
+		var optValue = $("#optSelect option:selected").val();
+		var inpValue = $("#inp").val();
 		/*이전 학기 평점조회 와 
 		신학기 수강신청 과목 분류 하기위해 분류할수있는 데이터 함께 전송*/
-		var term_id = "AND S.term_id <= '2018-2' "
+		var term_id = " <= '2018-2' "
 		ajaxCall();
 		/* 조회 버튼 클릭 시 text의 value 가져오기 */
 		$("#btn").click(function(){
  			console.log("조회 버튼 클릭");
-			optSel = $("#optSelect option:selected").val();
-			selId = $("#inp").val();
-			console.log("selId : "+selId);
+ 			optValue = $("#optSelect option:selected").val();
+ 			inpValue = $("#inp").val();
 			ajaxCall();
 		}); 
 
@@ -65,8 +64,8 @@
 				data:{
 					//getParameter()메서드 : name 을 통해서 value를 얻을 수 있음
 					//2개 파라메터로 보내서 opt 를 기준으로 sql 분류
-					"optSel"  :optSel,
-					"selId" : selId,
+					"optValue"  :optValue,
+					"inpValue" : inpValue,
 					"term_id" : term_id
 				},
 				dataType:"JSON",
