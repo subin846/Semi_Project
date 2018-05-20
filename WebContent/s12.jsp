@@ -27,6 +27,9 @@
 		resize: none;
 		border: none;
 	}
+	#upload{
+		text-decoration: underline;
+	}
 </style>
 <body>
 <div>
@@ -83,10 +86,7 @@
 				"id":'${sessionScope.loginId}'
 		}
 		obj.success=function(data){
-			//console.log(data);
 			if(data){
-				console.log("성공");
-				//console.log(data.sublist);
 				 selectbox(data.sublist); 
 			}else{
 				location.href="index.jsp";
@@ -97,10 +97,8 @@
 	
 	function selectbox(list) {
 		var content ="";
-		console.log(list);
 		$("#list").html("<option value='과목선택'>과목선택</option>");
 			list.forEach(function(item){
-				console.log(item);
 				content += "<option value="+item.subject_id+">";
 				content += item.subject_name;
 				content += "</option>";
@@ -112,12 +110,7 @@
 		console.log("ajax 호출")
 		$.ajax(obj);
 	}
-	
-	function move(){
-		var selected = $("#list option:selected").val()
-		location.href="s13.jsp?subject_id="+selected+"&mName=과제";
-	}
-		
+
 	$("#back").click(function(){
 		location.href="s09.jsp";
 	});
@@ -139,7 +132,7 @@
 	});
 		
 	$("#del").click(function(){
-		var loginId = "s16160001";
+		var loginId = "${sessionScope.loginId}";
 		if(loginId != "${uploaddetail.bbs_writer}"){
 			alert("삭제 권한이 없습니다");
 			location.href="s09.jsp";

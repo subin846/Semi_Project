@@ -27,6 +27,9 @@
 			.info{
 				border:none;
 			}
+			#grade{
+				text-decoration: underline;
+			}
 		</style>
 	</head>
 	<body>
@@ -111,29 +114,20 @@
 				"id":'${sessionScope.loginId}'
 		}
 		obj.success=function(data){
-			//console.log(data);
 			if(data){
-				console.log("성공");
-				//console.log(data.sublist);
 				 selectbox(data.sublist); 
 			}else{
 				location.href="index.jsp";
 			}
 		}
 		ajaxCall(obj);
-		var msg = "${msg}";
-		if(msg != ""){
-			alert(msg);
-		}
 	});
 	
 	//셀렉트 박스에 넣는 반복문
 	function selectbox(list) {
 		var content ="";
-		console.log(list);
 		$("#list").html("<option value='과목선택'>과목선택</option>");
 			list.forEach(function(item){
-				console.log(item);
 				content += "<option value="+item.subject_id+">";
 				content += item.subject_name;
 				content += "</option>";
@@ -145,10 +139,8 @@
 	$("#list").change(function(){
 		obj.url="./gradePage";
 		obj.data={selected:$("#list option:selected").val()};
-		console.log(obj.data);
 		obj.success=function(data){
 			if(data){
-				console.log(data.main);
 				PrintInfo(data.main)
 			}else{
 				alert("과목을 다시 선택해주세요");
@@ -179,7 +171,6 @@
 			alert("점수를 선택하세요");
 			return;
 		}
-		//form.action="grade";
 		obj.url="./grade";
 		obj.data={
 				"id":"${sessionScope.loginId}",
