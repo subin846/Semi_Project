@@ -3,6 +3,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title></title>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>    
 		<style>
 			body{
 				margin: 0px; /* body와 div 사이 공백 제거 */
@@ -36,7 +39,6 @@
 				color: white;
 				font-size: large;
 				font-weight: bold;
-				cursor: pointer;
 			}
 			#navi div:hover{
 				background-color: #4375DB;
@@ -45,29 +47,15 @@
 	</head>
 	<body>
 		<div id="menu">
-			<span>${ sessionScope.loginId }</span>님 환영합니다
-			<a href="./pmain">HOME</a>
-			<a href="">비밀번호변경</a>
-			<a href="./logout">LOGOUT</a>
+			<span>${sessionScope.loginId}</span>님 환영합니다
+			<a href="#">HOME</a>
+			<a href="#">비밀번호변경</a>
+			<a href="#">LOGOUT</a>
 		</div>
 		<div id="navi">
-			<div id="navi1">내 정 보</div>
-			<div id="navi2">과목게시판</div>
-			<div id="navi3">강 의</div>
+			<div id="std">내정보</div>
+			<div id="subBbs">과목게시판</div>
+			<div id="enroll">강의</div>
 		</div>
 	</body>
-	<script>
-		// 내정보 클릭
-		$("#navi1").click(function() {
-			location.href="pProfile";
-		});
-		// 과목게시판 클릭
-		$("#navi2").click(function() {
-			location.href="./p03-main.jsp";
-		});
-		// 강의 클릭
-		$("#navi3").click(function() {
-			location.href="studentSearchPage?subject_id=default";
-		});
-	</script>
 </html>

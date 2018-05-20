@@ -141,8 +141,40 @@ public class MainService extends PwDTO{
 		response.getWriter().println(obj);
 	}
 	
-	// 강의계획서 조회
-	public void lecturePlan() throws IOException {
+	//교수 과목 목록 가져오기
+	public void selectProSubject() throws IOException {			
+		String loginId = request.getParameter("loginId");
+		
+		MainDAO dao = new MainDAO();
+		ArrayList<String> subjectList = dao.selectProSubject(loginId);
+		
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("subjectList", subjectList);
+
+		Gson gson = new Gson();
+		String json = gson.toJson(map);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().println(json);
+	}
+	
+	//학생 과목 목록 가져오기
+	public void selectStdSubject() throws IOException {			
+		String loginId = request.getParameter("loginId");
+		
+		MainDAO dao = new MainDAO();
+		ArrayList<String> subjectList = dao.selectStdSubject(loginId);
+		
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("subjectList", subjectList);
+
+		Gson gson = new Gson();
+		String json = gson.toJson(map);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().println(json);
+	}
+	
+	// 강의계획서 조회(교수 페이지)
+	public void plecturePlan() throws IOException {
 		String loginId = request.getParameter("loginId");
 		String subject = request.getParameter("subject");
 
@@ -151,7 +183,7 @@ public class MainService extends PwDTO{
 		planDTO.setPro_id(loginId);
 		planDTO.setSubject_name(subject);
 		System.out.println("planDTOㄴㄴㄴㄴㄴ: " +planDTO.getSubject_name());
-		DTO dto = dao.lecturePlan(planDTO);
+		DTO dto = dao.plecturePlan(planDTO);
 
 		// map에 dto 담기
 		HashMap<String, Object> map = new HashMap<>();
@@ -164,6 +196,28 @@ public class MainService extends PwDTO{
 		response.getWriter().println(json);
 	}
 
+	// 강의계획서 조회(학생 페이지)
+	public void slecturePlan() throws IOException {
+		String loginId = request.getParameter("loginId");
+		String subject = request.getParameter("subject");
+
+		MainDAO dao = new MainDAO();
+		DTO planDTO = new DTO();
+		planDTO.setStd_id(loginId);
+		planDTO.setSubject_name(subject);
+		System.out.println("planDTOㄴㄴㄴㄴㄴ: " +planDTO.getSubject_name());
+		DTO dto = dao.slecturePlan(planDTO);
+
+		// map에 dto 담기
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("dto", dto);
+
+		// json 전송
+		Gson gson = new Gson();
+		String json = gson.toJson(map);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().println(json);
+	}
 	
 }
 

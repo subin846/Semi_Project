@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>|||강의자료|||</title>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<title>|||과제제출|||</title>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>    
 <style>
 	table,th,td{
 		border-top: 2px solid #D5D5D5;
@@ -18,51 +18,42 @@
 	#bbs th{
 		font-size: 15px;
 	}
-	#bbs{
-				width: 75%;
-				margin-top: 3%;
-				margin-left: 22%;
-				margin-right: 20%;
-				font-size: small;
-			}
 	#bbs button{
 		float: right;
 		margin-top: 10px;
 	}
-	#page button{
-		color: black;
-		margin-right: 1%;
-		text-align: center;
+	#bbs{
+		width: 75%;
+		margin-top: 3%;
+		margin-left: 22%;
+		margin-right: 20%;
+		font-size: small;
 	}
-	#page{
-		margin-top: 2%;
-		font-size: medium;
-	}
-	#lectureNote{
+	#upload{
 		text-decoration: underline;
 	}
 </style>
 </head>
 <body>
-	<div id="main">
-		<jsp:include page="s09-main.jsp"/>
-	</div>
-	<div>
-		<jsp:include page="s09-main2.jsp"/>
-	</div>
-	<div id="bbs">
-		<table id="listTable" width="100%">
-			<tr>
-				<th width="15%">글번호</th>
-				<th width="50%">제목</th>
-				<th width="20%">작성자</th>
-				<th width="15%">작성일</th>
-			</tr>
-		</table>
-		<div id="page">
+<div>
+	<jsp:include page="p04-main.jsp"></jsp:include>
+</div>
+<div>
+	<jsp:include page="p04-main2.jsp"/>
+</div>
+<div id="bbs">
+	<table id="listTable" width="100%">
+		<tr>
+			<th width="15%">글번호</th>
+			<th width="50%">제목</th>
+			<th width="20%">작성자</th>
+			<th width="15%">작성일</th>
+		</tr>
+	</table>
+	<div id="page">
 			<jsp:include page="paging.jsp"></jsp:include>
-		</div>
 	</div>
+</div>
 </body>
 <script>
 	var obj={};
@@ -72,13 +63,13 @@
 	
 	//신청과목 셀렉트 박스에 넣기
 	$(document).ready(function(){
-		obj.url="./subjectTab";
+		obj.url="./prosubjectTab";
 		obj.data={
 				"id":'${sessionScope.loginId}'
 		}
 		obj.success=function(data){
 			if(data){
-				 selectbox(data.sublist); 
+				 selectbox(data.prosublist); 
 			}else{
 				location.href="index.jsp";
 			}
@@ -87,7 +78,7 @@
 	});
 	
 	$(document).ready(function(){
-		obj.url="./listback?bbssort_type=강의자료";
+		obj.url="./listback?bbssort_type=과제";
 		obj.success=function(data){
 			$("#list").val("${sessionScope.selected}").prop("selected", true);
 			if(data){
@@ -98,13 +89,14 @@
 			}
 		}
 		ajaxCall(obj);
-	});
+	}); 
 	
 	//셀렉트 박스에 넣는 반복문
-	function selectbox(list) {
+	function selectbox(prosublist) {
 		var content ="";
+		console.log(list);
 		$("#list").html("<option value='과목선택'>과목선택</option>");
-			list.forEach(function(item){
+		prosublist.forEach(function(item){
 				content += "<option value="+item.subject_id+">";
 				content += item.subject_name;
 				content += "</option>";
@@ -113,12 +105,12 @@
 	}
 	
 	//셀렉트 박스 선택시 리스트 출력
-	$("#list").change(function() {
-		obj.url="./list?mName=강의자료&sNum=1&eNum=10";
-		obj.data={"selected":$("#list option:selected").val()};
+	$("#list").change(function(){
+		obj.url="./prouploadlist?mName=과제&sNum=1&eNum=10";
+		obj.data={selected:$("#list option:selected").val()};
 		obj.success=function(data){
 			if(data){
-				mainPrint(data.main);
+				mainPrint(data.list);
 				paging(data.pageInfo);
 			}else{
 				alert("과목을 다시 선택해주세요");
@@ -127,19 +119,18 @@
 		ajaxCall(obj);
 	});
 	
-	// 리스트 출력 함수
-	function mainPrint(main){
+	function mainPrint(list){
 		var content="";
 		$("#listTable").html("<table id='listTable' width='100%'><tr>"+"<th width='15%''>글번호</th>"
 		+"<th width='50%''>제목</th>"
 		+"<th width='20%''>작성자</th>"
 		+"<th width='15%'>작성일</th></tr></table>"); //테이블 초기화
-		main.forEach(function(item){
+		list.forEach(function(item){
 			content += "<tr>";
-			content += "<td>"+item.bbs_id+"</td>";
-			content += "<td><a href='detail?idx="+item.bbs_id+"&mName=강의자료&selected="+item.subject_id+"'>"+item.bbs_title+"</td>";
-			content += "<td>"+item.bbs_writer+"</td>";
-			content += "<td>"+item.bbs_date+"</td>";
+			content += "<td>"+item.bbs_id+"</td>"
+			content += "<td><a href='prouploaddetail?idx="+item.bbs_id+"&mName=과제&selected="+item.subject_id+"'>"+item.bbs_title+"</td>"
+			content += "<td>"+item.bbs_writer+"</td>"
+			content += "<td>"+item.bbs_date+"</td>"
 		});
 		$("#listTable").append(content);
 	}
@@ -176,10 +167,11 @@
 	
 	// 특정 페이지의 리스트 불러오는 함수
 	function list(pageNum) {
-		obj.url="./list?mName=강의자료&sNum=1&eNum=10";
+		obj.url="./uploadlist?mName=과제&sNum=1&eNum=10";
 		obj.data={"selected":$("#list option:selected").val(),
 				"page": pageNum
 		};
+		console.log(obj.data);
 		obj.success=function(data){
 			if(data){
 				mainPrint(data.main);
