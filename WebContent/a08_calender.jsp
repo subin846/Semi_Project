@@ -5,6 +5,60 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Insert title here</title>
 		<style>
+			body  { height: 100%; }
+			body, div, span, applet, object, iframe,
+			p, blockquote, pre,
+			a, abbr, acronym, address, big, cite, code,
+			del, dfn, em, font, img, ins, kbd, q, s, samp,
+			small, strike, strong, sub, sup, tt, var,
+			b, u, i, center,
+			dl, dt, dd, ol, ul, li,
+			fieldset, form, label, legend,
+			table, caption, tbody, tfoot, thead, tr, th, td {
+				margin: 0;
+				padding: 0;
+				border: 0;
+				outline: 0;
+				font-size: 100%;
+				vertical-align: baseline;
+				background: transparent;
+			}
+			body { line-height: 1; }
+			ol, ul { list-style: none; }
+			blockquote, q { quotes: none; }
+			blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
+			:focus { outline: 0; }
+			del { text-decoration: line-through; }
+			table {border-spacing: 0; }
+			
+			 body{
+				font-family: Arial, Helvetica, sans-serif;
+				background: url(background.jpg);
+				margin: 0 auto;
+				width: 520px;
+			}
+		
+			a:link {
+				color: #666;
+				font-weight: bold;
+				text-decoration: none;
+			}
+			a:visited {
+				color: #666;
+				font-weight: bold;
+				text-decoration: none;
+			}
+			a:active,
+			a:hover {
+				color: #bd5a35;
+				text-decoration: underline;
+			} 
+
+			/* table a:link {
+				color: #666;
+				font-weight: bold;
+				text-decoration: none;
+			} */
 			#schedule {
 				position: relative;
                 border: 3px dotted green;
@@ -39,6 +93,7 @@
             #calender{
             	position: absolute;
             	left: 300px;
+            	top: 200px;
             }
 		</style>
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
