@@ -119,7 +119,6 @@
 	}
 
 	$("#back").click(function(){
-		alert("과목을 다시 선택하세요");
 		location.href="p04.jsp";
 	});
 	

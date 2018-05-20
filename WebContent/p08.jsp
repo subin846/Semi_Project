@@ -73,7 +73,7 @@
 	
 	//신청과목 셀렉트 박스에 넣기
 	$(document).ready(function(){
-		obj.url="./subjectTab";
+		obj.url="./prosubjectTab";
 		obj.data={
 				"id":'${sessionScope.loginId}'
 		}
@@ -82,7 +82,7 @@
 			if(data){
 				console.log("성공");
 				//console.log(data.sublist);
-				 selectbox(data.sublist); 
+				 selectbox(data.prosublist); 
 			}else{
 				location.href="index.jsp";
 			}
@@ -95,11 +95,11 @@
 	});
 	
 	//셀렉트 박스에 넣는 반복문
-	function selectbox(list) {
+	function selectbox(prosublist) {
 		var content ="";
-		console.log(list);
+		console.log(prosublist);
 		$("#list").html("<option value='과목선택'>과목선택</option>");
-			list.forEach(function(item){
+		prosublist.forEach(function(item){
 				console.log(item);
 				content += "<option value="+item.subject_id+">";
 				content += item.subject_name;
@@ -114,7 +114,6 @@
 	}
 
 	$("#back").click(function(){
-		alert("과목을 다시 선택하세요");
 		location.href="p07.jsp";
 	});
 </script>

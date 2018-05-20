@@ -23,12 +23,15 @@
 		margin-top: 10px;
 	}
 	#bbs{
-				width: 75%;
-				margin-top: 3%;
-				margin-left: 22%;
-				margin-right: 20%;
-				font-size: small;
-			}
+		width: 75%;
+		margin-top: 3%;
+		margin-left: 22%;
+		margin-right: 20%;
+		font-size: small;
+	}
+	#upload{
+		text-decoration: underline;
+	}
 </style>
 </head>
 <body>
@@ -47,6 +50,9 @@
 			<th width="15%">작성일</th>
 		</tr>
 	</table>
+	<div id="page">
+			<jsp:include page="paging.jsp"></jsp:include>
+	</div>
 </div>
 </body>
 <script>
@@ -57,7 +63,7 @@
 	
 	//신청과목 셀렉트 박스에 넣기
 	$(document).ready(function(){
-		obj.url="./subjectTab";
+		obj.url="./prosubjectTab";
 		obj.data={
 				"id":'${sessionScope.loginId}'
 		}
@@ -66,24 +72,36 @@
 			if(data){
 				console.log("성공");
 				//console.log(data.sublist);
-				 selectbox(data.sublist); 
+				 selectbox(data.prosublist); 
 			}else{
 				location.href="index.jsp";
 			}
 		}
 		ajaxCall(obj);
-		var msg = "${msg}";
-		if(msg != ""){
-			alert(msg);
-		}
 	});
 	
+	$(document).ready(function(){
+		obj.url="./listback?bbssort_type=과제";
+		obj.success=function(data){
+			$("#list").val("${sessionScope.selected}").prop("selected", true);
+			console.log(data);
+			if(data){
+				console.log(data.main);
+				mainPrint(data.main);
+				paging(data.pageInfo);
+			}else{
+				alert("과목을 다시 선택해주세요");
+			}
+		}
+		ajaxCall(obj);
+	}); 
+	
 	//셀렉트 박스에 넣는 반복문
-	function selectbox(list) {
+	function selectbox(prosublist) {
 		var content ="";
 		console.log(list);
 		$("#list").html("<option value='과목선택'>과목선택</option>");
-			list.forEach(function(item){
+		prosublist.forEach(function(item){
 				console.log(item);
 				content += "<option value="+item.subject_id+">";
 				content += item.subject_name;
@@ -101,7 +119,8 @@
 		obj.success=function(data){
 			if(data){
 				console.log(data.list);
-				mainPrint(data.list)
+				mainPrint(data.list);
+				paging(data.pageInfo);
 			}else{
 				alert("과목을 다시 선택해주세요");
 			}
@@ -128,6 +147,56 @@
 	function ajaxCall(param){
 		console.log("ajax 호출")
 		$.ajax(obj);
+	}
+	
+	// 페이지 매기기
+	function paging(pageInfo) {
+		// 초기화
+		$(".paging").html("");
+		// 맨앞
+	    if (pageInfo.startPage > 1) {
+	        $(".paging").append("<a class='text' onclick='list(1)'>맨앞</a>");
+	    }
+	    // 이전
+	    if (pageInfo.startPage > 1) {
+	        $(".paging").append("<a class='text' onclick='list("+pageInfo.prevPage+")'>이전</a>");
+	    }
+	    // 페이지 번호
+	    for (var i = pageInfo.startPage; i <= pageInfo.endPage; i++) {
+	        if (i == pageInfo.page) {
+	            $(".paging").append("<a id='curPage' onclick='list("+i+")'>" + i + "</a>");
+	        } else {
+	            $(".paging").append("<a onclick='list("+i+")'>" + i + "</a>");
+	        }
+	    }
+	    // 다음
+	    if (pageInfo.endPage != pageInfo.totalPage) {
+	        $(".paging").append("<a class='text' onclick='list(" + pageInfo.nextPage  + ")'>다음</a>");
+	    }
+	    // 맨뒤
+	    if (pageInfo.endPage != pageInfo.totalPage) {
+	        $(".paging").append("<a class='text' onclick='list(" + pageInfo.totalPage + ")'>맨뒤</a>");
+	    }
+	}
+	
+	// 특정 페이지의 리스트 불러오는 함수
+	function list(pageNum) {
+		obj.url="./uploadlist?mName=과제&sNum=1&eNum=10";
+		//console.log($("#list option:selected").val());
+		obj.data={"selected":$("#list option:selected").val(),
+				"page": pageNum
+		};
+		console.log(obj.data);
+		obj.success=function(data){
+			if(data){
+				console.log(data.main);
+				mainPrint(data.main);
+				paging(data.pageInfo);
+			}else{
+				alert("과목을 다시 선택해주세요");
+			}
+		}
+		ajaxCall(obj);
 	}
 </script>
 </html>
