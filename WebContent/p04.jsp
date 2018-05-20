@@ -70,7 +70,6 @@
 		}
 		obj.success=function(data){
 			if(data){
-				console.log("성공");
 				 selectbox(data.prosublist); 
 			}else{
 				location.href="index.jsp";
@@ -83,9 +82,7 @@
 		obj.url="./listback?bbssort_type=강의자료";
 		obj.success=function(data){
 			$("#list").val("${sessionScope.selected}").prop("selected", true);
-			console.log(data);
 			if(data){
-				console.log(data.main);
 				mainPrint(data.main);
 				paging(data.pageInfo);
 			}else{
@@ -101,7 +98,6 @@
 		console.log(prosublist);
 		$("#list").html("<option value='과목선택'>과목선택</option>");
 		prosublist.forEach(function(item){
-				console.log(item);
 				content += "<option value="+item.subject_id+">";
 				content += item.subject_name;
 				content += "</option>";
@@ -111,12 +107,10 @@
 	
 	//셀렉트 박스 선택시 리스트 출력
 	$("#list").change(function(){
-		obj.url="./prolist?mName=강의자료";
+		obj.url="./prolist?mName=강의자료&sNum=1&eNum=10";
 		obj.data={selected:$("#list option:selected").val()};
-		console.log(obj.data);
 		obj.success=function(data){
 			if(data){
-				console.log(data.list);
 				mainPrint(data.list);
 				paging(data.pageInfo);
 			}else{
@@ -142,12 +136,12 @@
 		$("#listTable").append(content);
 	}
 	
-	function ajaxCall(param){
-		console.log("ajax 호출")
-		$.ajax(obj);
-	}
 	function move(){
 		var selected = $("#list option:selected").val();
+		if(selected == "과목선택"){
+			alert("과목을 다시 선택하세요");
+			return;
+		}
 		location.href="p06.jsp?subject_id="+selected+"&mName=강의자료";
 	}
 	
@@ -183,15 +177,13 @@
 	
 	// 특정 페이지의 리스트 불러오는 함수
 	function list(pageNum) {
-		obj.url="./list?mName=강의자료";
-		//console.log($("#list option:selected").val());
+		obj.url="./list?mName=강의자료&sNum=1&eNum=10";
 		obj.data={"selected":$("#list option:selected").val(),
 				"page": pageNum
 		};
 		console.log(obj.data);
 		obj.success=function(data){
 			if(data){
-				console.log(data.main);
 				mainPrint(data.main);
 				paging(data.pageInfo);
 			}else{
@@ -199,6 +191,11 @@
 			}
 		}
 		ajaxCall(obj);
+	}
+	
+	function ajaxCall(param){
+		console.log("ajax 호출")
+		$.ajax(obj);
 	}
 	</script>
 </html>

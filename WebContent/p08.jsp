@@ -27,6 +27,9 @@
 		resize: none;
 		border: none;
 	}
+	#upload{
+		text-decoration: underline;
+	}
 </style>
 <body>
 <div>
@@ -78,10 +81,8 @@
 				"id":'${sessionScope.loginId}'
 		}
 		obj.success=function(data){
-			//console.log(data);
 			if(data){
 				console.log("성공");
-				//console.log(data.sublist);
 				 selectbox(data.prosublist); 
 			}else{
 				location.href="index.jsp";
