@@ -59,9 +59,9 @@
 			<div id="enroll">강의</div>	
 		</div>
 	</body>
-		<div>
+<%-- 		<div>
 			<jsp:include page="p03_lecture2.jsp"></jsp:include>
 			<jsp:include page="p03_std.jsp"></jsp:include>
 		</div>
-			
+			 --%>
 </html>
