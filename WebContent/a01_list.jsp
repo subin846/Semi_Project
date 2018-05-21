@@ -178,7 +178,6 @@
 		<div id="div3">
             <form id="select" action="search">
             	<select name="selectbox">
-            		<option value="none"  selected="selected" >-선택하세요-</option>
   					<option value="std_id">학번</option>
 				  	<option value="std_name">이름</option>
 				 	<option value="std_state">상태</option>

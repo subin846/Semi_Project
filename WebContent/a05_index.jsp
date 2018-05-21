@@ -190,7 +190,17 @@
 	</head>
 	<body>
 		<div id="menu">
-			관리자님 환영합니다
+			<span></span><!-- 님 환영합니다 -->
+			<script>
+				var loginId ="${sessionScope.loginId}";
+				if(loginId == ""){
+					alert("로그인이 필요한 서비스 입니다.");
+					location.href="index.jsp";
+				}else{
+					var content = loginId+" 님 환영합니다 ";
+					document.getElementById("menu").innerHTML = content;
+				}
+			</script>
 			<a href="./logout">LOGOUT</a>
 		</div>
 		<input type="checkbox" id="menu_state" checked>

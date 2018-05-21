@@ -7,7 +7,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Insert title here</title>
 		<style>
-			#grade{
+			#gradePage{
 				margin-left: 22%;
 				margin-right: 3%;
 				margin-top: 1%;
@@ -27,6 +27,9 @@
 			.info{
 				border:none;
 			}
+			#grade{
+				text-decoration: underline;
+			}
 		</style>
 	</head>
 	<body>
@@ -36,10 +39,7 @@
 		<div>
 			<jsp:include page="s09-main2.jsp"/>
 		</div>
-<%-- 		<form name="form" method="get">
-		<input type="hidden" name="selected" value="${main.subject_id}"/>
-		<input type="hidden" name="std_id" value="${sessionScope.loginId}"/> --%>
-		<div id="grade">
+		<div id="gradePage">
 			<table id="listTable" width="100%">
 				<tr>
 					<th colspan="4"><h3>강&nbsp;의&nbsp;평&nbsp;가&nbsp;서</h3></th>
@@ -96,7 +96,6 @@
 						<input type="radio" name="s4" value="5"/>매우 그렇다
 			<button>평가완료</button>
 		</div>
-		<!-- </form> -->
 	</body>
 	<script>
 	var obj={};
@@ -111,29 +110,20 @@
 				"id":'${sessionScope.loginId}'
 		}
 		obj.success=function(data){
-			//console.log(data);
 			if(data){
-				console.log("성공");
-				//console.log(data.sublist);
 				 selectbox(data.sublist); 
 			}else{
 				location.href="index.jsp";
 			}
 		}
 		ajaxCall(obj);
-		var msg = "${msg}";
-		if(msg != ""){
-			alert(msg);
-		}
 	});
 	
 	//셀렉트 박스에 넣는 반복문
 	function selectbox(list) {
 		var content ="";
-		console.log(list);
 		$("#list").html("<option value='과목선택'>과목선택</option>");
 			list.forEach(function(item){
-				console.log(item);
 				content += "<option value="+item.subject_id+">";
 				content += item.subject_name;
 				content += "</option>";
@@ -145,10 +135,8 @@
 	$("#list").change(function(){
 		obj.url="./gradePage";
 		obj.data={selected:$("#list option:selected").val()};
-		console.log(obj.data);
 		obj.success=function(data){
 			if(data){
-				console.log(data.main);
 				PrintInfo(data.main)
 			}else{
 				alert("과목을 다시 선택해주세요");
@@ -179,7 +167,6 @@
 			alert("점수를 선택하세요");
 			return;
 		}
-		//form.action="grade";
 		obj.url="./grade";
 		obj.data={
 				"id":"${sessionScope.loginId}",

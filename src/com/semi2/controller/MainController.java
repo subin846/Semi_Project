@@ -15,7 +15,7 @@ import com.semi2.service.InfoService;
 import com.semi2.service.LectureService;
 import com.semi2.service.MainService;
 
-@WebServlet({"/", "/login", "/logout", "/smain", "/pmain", "/amain", "/passChange"})
+@WebServlet("/")
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -366,6 +366,22 @@ public class MainController extends HttpServlet {
 			System.out.println("학생 강의계획서 페이지 요청");
 			mservice.slecturePlan();
 			break;
+
+		case "/lectureWrite" :
+			System.out.println("교수 강의계획서 페이지 작성 요청");
+			mservice.lectureWrite();
+			break;
+			
+		case "/planUpdatePage" :
+			System.out.println("교수 강의계획서 페이지 수정 폼 요청");
+			mservice.planUpdatePage();
+			break;
+			
+		case "/planUpdate" :
+			System.out.println("교수 강의계획서 페이지 수정 폼 요청");
+			mservice.planUpdate();
+			break;
+			
 /**********************************************************************/			
 			//은경
 			

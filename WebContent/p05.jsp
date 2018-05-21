@@ -32,6 +32,9 @@
 		resize: none;
 		border: none;
 	}
+	#lectureNote{
+			text-decoration: underline;
+		}
 </style>
 <body>
 <div>
@@ -86,17 +89,12 @@
 		}
 		obj.success=function(data){
 			if(data){
-				console.log("성공");
 				 selectbox(data.prosublist); 
 			}else{
 				location.href="index.jsp";
 			}
 		}
 		ajaxCall(obj);
-		var msg = "${msg}";
-		if(msg != ""){
-			alert(msg);
-		}
 	});
 	
 	//셀렉트 박스에 넣는 반복문
@@ -111,11 +109,6 @@
 				content += "</option>";
 			});
 			$("#list").append(content);
-	}
-	
-	function ajaxCall(param){
-		console.log("ajax 호출")
-		$.ajax(obj);
 	}
 
 	$("#back").click(function(){
@@ -145,5 +138,10 @@
 			location.href="prodel?idx="+bbs_id+"&mName=강의자료";
 		}
 	});
+	
+	function ajaxCall(param){
+		console.log("ajax 호출")
+		$.ajax(obj);
+	}
 </script>
 </html>

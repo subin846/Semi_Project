@@ -179,11 +179,10 @@
 	<div id="div3">
         <form id="select" action="tSearch">
         	<select name="selectbox">
-			<option value="std_id">학번</option>
-		  	<option value="std_name">이름</option>
-		 	<option value="term_id">학기</option>
-		 	<option value="none"  selected="selected" >-선택하세요-</option>
-		</select>
+				<option value="std_id">학번</option>
+			  	<option value="std_name">이름</option>
+			 	<option value="term_id">학기</option>
+			</select>
         <input type="text" name="val"/>
         <input type="submit" value="조회"/>
         <input type="button" onclick="location.href='a02_register.jsp'" value="등록">
