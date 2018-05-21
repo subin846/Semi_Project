@@ -178,13 +178,24 @@
 		<div id="div3">
             <form id="select" action="search">
             	<select name="selectbox">
-            		<option value="none"  selected="selected" >-선택하세요-</option>
+            		<option id="none"  selected="selected" >-선택하세요-</option>
   					<option value="std_id">학번</option>
 				  	<option value="std_name">이름</option>
 				 	<option value="std_state">상태</option>
 				</select>
                 <input type="text" name="val"/>
                 <input type="submit" value="조회"/>
+                <script>
+	                var foo = document.getElementById('none');
+	                if (foo)
+	                {
+	                   if (foo.selectedIndex != null)
+	                   {
+	                       alert("ddd");
+	                   } 
+	                }
+
+                </script>
                 <input type="button" onclick="location.href='a01_Register.jsp'" value="등록">
             </form>
         </div>
