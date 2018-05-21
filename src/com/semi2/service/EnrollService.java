@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.semi2.dao.EnrollDAO;
 import com.semi2.dto.DTO;
+import com.semi2.dto.PageInfo;
 import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
 
@@ -30,11 +31,29 @@ public class EnrollService {
 		String optValue  = request.getParameter("optValue");
 		String inpValue = request.getParameter("inpValue");
 		String term_id = request.getParameter("term_id");
-		System.out.println(optValue+"/"+inpValue);
+		System.out.println(optValue+" / "+inpValue+" / "+term_id);
+		//페이징을 하기 위해 현재 총 게시글이 몇개인지 구해야 함. 
+		//cf)필터링으로 검색시 ,  조건에 따라 게시글 수가 다르기때문에 쿼리 구분해줄수 있는 조건을 매개변수로!
+		EnrollDAO listCount = new EnrollDAO();
+		int totalCount = listCount.listCount(optValue,inpValue,term_id);
+		System.out.println("현재 총 게시글 수 : "+totalCount);
+		//현재 페이지 , 한 페이지에 보여줄 게시글 수 , 한 페이지에 보여줄 페이지 수,총게시글  
+		String paramPage =request.getParameter("page");
+		int page ; //현재 페이지
+		if(paramPage == null) {
+			page = 1;
+		}else {
+			page = Integer.parseInt(paramPage);
+		}
+		PageInfo paging = new PageInfo(page, 3, 10, totalCount);
+		int startNum =paging.getStartNum();
+		int endNum = paging.getEndNum();
+		System.out.println(startNum+" ~ "+endNum);
 		//DB접속을 통해서 optSel에 맞는 쿼리문 구분.->데이터가 많으므로 DTO에 담음.
 		EnrollDAO dao = new EnrollDAO();
 		ArrayList<DTO> searchList = new ArrayList<DTO>();
-		searchList = dao.subjectSearch(optValue,inpValue,term_id);
+		//startNum,endNum 을 추가해서 쿼리의 원하는 부분만 조회 예정
+		searchList = dao.subjectSearch(optValue,inpValue,term_id,startNum,endNum);
 		System.out.println("필터링 반환 받았나?");
 		System.out.println(searchList);
 		System.out.println("반환 개수: "+searchList.size());
@@ -45,6 +64,7 @@ public class EnrollService {
 		//2. json 과 최대한 유사한 형태로 java를 변환 K:V
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("searchList", searchList);
+		map.put("paging", paging);
 		//3.변환
 		String transJson= json.toJson(map);
 		//4.response 로 반환
@@ -127,7 +147,6 @@ public class EnrollService {
 		
 		EnrollDAO currentCount = new EnrollDAO();  
 		int count = currentCount.count(tdValue[0]);
-		System.out.println("cccccccccccccc"+count);
 		
 		//해당 학생 id,과목 id를  기준으로 수강 신청 과목을 Insert ->DB 접속 필요
 		EnrollDAO enrollDao =new EnrollDAO();

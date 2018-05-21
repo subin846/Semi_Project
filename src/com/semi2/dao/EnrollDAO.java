@@ -31,65 +31,207 @@ public class EnrollDAO {
 		}
 	}
 
+	/*optValue 에 따른 총 게시글이 몇개 인지 연산 메서드*/
+	//optValue 로 쿼리를 분류 하는 이유는 ..
+	//조건식에 따라서 총 게시글 수가 다르고 ,  조건이 다르기 때문!
+	public int listCount(String optValue,String inpValue, String term_id) {
+		int cnt =0;
+		String sql ="";
+		if(optValue.equals("entry")) {
+			sql =" SELECT count(*) AS cnt "
+					+" FROM subject S "
+					+" JOIN major M "
+					+" ON S.major_id = M.major_id "
+					+" JOIN pro P "
+					+" ON S.pro_id = P.pro_id  "
+					+ "ORDER BY term_id DESC ";
+		}else if(optValue.equals("term")) {
+			sql =" SELECT count(*) AS cnt "
+					+" FROM subject S "
+					+" JOIN major M "
+					+" ON S.major_id = M.major_id "
+					+" JOIN pro P "
+					+" ON S.pro_id = P.pro_id  "
+					+" WHERE S.term_id "+ term_id 
+					+ "AND S.term_id Like '%"+inpValue+"%'"
+					+ "ORDER BY term_id DESC ";
+		}else if(optValue.equals("pro")) {
+			sql =" SELECT count(*) AS cnt "
+					+" FROM subject S "
+					+" JOIN major M "
+					+" ON S.major_id = M.major_id "
+					+" JOIN pro P "
+					+" ON S.pro_id = P.pro_id  "
+					+" WHERE S.term_id "+ term_id 
+					+ "AND P.pro_name Like '%"+inpValue+"%'"
+					+ "ORDER BY term_id DESC ";
+		}else if(optValue.equals("maj")) {
+			sql =" SELECT count(*) AS cnt "
+					+" FROM subject S "
+					+" JOIN major M "
+					+" ON S.major_id = M.major_id "
+					+" JOIN pro P "
+					+" ON S.pro_id = P.pro_id  "
+					+" WHERE S.term_id "+ term_id 
+					+ "AND M.major_name Like '%"+inpValue+"%'"
+					+ "ORDER BY term_id DESC ";
+		}else {
+			sql =" SELECT count(*) AS cnt "
+					+" FROM subject S "
+					+" JOIN major M "
+					+" ON S.major_id = M.major_id "
+					+" JOIN pro P "
+					+" ON S.pro_id = P.pro_id  "
+					+" WHERE S.term_id "+ term_id 
+					+ "AND S.subject_name Like '%"+inpValue+"%'"
+					+ "ORDER BY term_id DESC ";
+		}
+				
+		try {
+			ps =conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				cnt =rs.getInt("cnt");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			resClose();
+		}
+		return cnt;
+	}
 	/*이 전 학기의 과목 평점 조회 필터링 검색*/
-	public ArrayList<DTO> subjectSearch(String optValue,String inpValue,String term_id ) {
+	public ArrayList<DTO> subjectSearch(String optValue,String inpValue,String term_id, int startNum, int endNum ) {
 		System.out.println("subjectSearch DAO");
 		ArrayList<DTO> list = new ArrayList<DTO>();
 		String sql ="";
 		if(optValue.equals("entry")) {
 			System.out.println("전체");
-			sql =" SELECT  S.subject_id,term_id ,M.major_name, subject_name, P.pro_name, subject_room, subject_time, "
-					+" subject_type, subject_credit, subject_limit, subject_grade,subject_count "  
-					+" FROM subject S " 
-					+" JOIN major M " 
-					+" ON S.major_id = M.major_id "
-					+" JOIN pro P" 
-					+" ON S.pro_id = P.pro_id "
-					+" WHERE S.term_id "+ term_id +"ORDER BY term_id DESC ";
+			sql =" SELECT A.rnum, A.subject_id,A.term_id ,A.major_name, A.subject_name," 
+					+" A.pro_name, A.subject_room, A.subject_time,"
+					+" A.subject_type, A.subject_credit, A.subject_limit, subject_grade,subject_count "  
+					+" FROM "
+					+" (SELECT ROWNUM AS rnum,B.subject_id,B.term_id ,B.major_name, B.subject_name, "
+					+" B.pro_name, B.subject_room, "
+					+" B.subject_time,B.subject_type, B.subject_credit, B.subject_limit, B.subject_grade,"
+					+" B.subject_count " 
+					+" FROM "
+					+" (SELECT S.subject_id,S.term_id ,M.major_name, S.subject_name, P.pro_name, "
+					+" S.subject_room, S.subject_time,"
+					+" S.subject_type, S.subject_credit, S.subject_limit, S.subject_grade,"
+					+" S.subject_count"   
+					+" FROM subject S "
+					+" JOIN major M "
+					+" ON S.major_id = M.major_id " 
+					+" JOIN pro P "
+					+" ON S.pro_id = P.pro_id   "
+					+" WHERE S.term_id "+ term_id +"ORDER BY term_id DESC) B "
+					+" WHERE rownum <= ?) A " //endNum
+					+" WHERE A.rnum >=? " ; //startNum
 		}else if(optValue.equals("term")) {
 			System.out.println("학기");
-			sql=" SELECT S.subject_id,term_id,M.major_name, subject_name, P.pro_name, subject_room, subject_time,"
-					+"  subject_type, subject_credit, subject_limit,subject_grade,subject_count"  
-					+ " FROM subject S"  
-					+ " JOIN major M" 
-					+ " ON S.major_id = M.major_id"  
-					+ " JOIN pro P"  
-					+ " ON S.pro_id = P.pro_id"  
-					+ " WHERE S.term_id "+term_id+"AND S.term_id Like '%"+inpValue+"%'"+"ORDER BY term_id DESC" ;
+			sql =" SELECT A.rnum, A.subject_id,A.term_id ,A.major_name, A.subject_name," 
+					+" A.pro_name, A.subject_room, A.subject_time,"
+					+" A.subject_type, A.subject_credit, A.subject_limit, subject_grade,subject_count "  
+					+" FROM "
+					+" (SELECT ROWNUM AS rnum,B.subject_id,B.term_id ,B.major_name, B.subject_name, "
+					+" B.pro_name, B.subject_room, "
+					+" B.subject_time,B.subject_type, B.subject_credit, B.subject_limit, B.subject_grade,"
+					+" B.subject_count " 
+					+" FROM "
+					+" (SELECT S.subject_id,S.term_id ,M.major_name, S.subject_name, P.pro_name, "
+					+" S.subject_room, S.subject_time,"
+					+" S.subject_type, S.subject_credit, S.subject_limit, S.subject_grade,"
+					+" S.subject_count"   
+					+" FROM subject S "
+					+" JOIN major M "
+					+" ON S.major_id = M.major_id " 
+					+" JOIN pro P "
+					+" ON S.pro_id = P.pro_id   "
+					+" WHERE S.term_id "+ term_id + "AND S.term_id Like '%"+inpValue+"%'"
+					+" ORDER BY term_id DESC) B "
+					+" WHERE rownum <= ?) A " //endNum
+					+" WHERE A.rnum >=? " ; //startNum
 		}else if(optValue.equals("pro")) {
 			System.out.println("교수");
-			sql =" SELECT S.subject_id,term_id,M.major_name, subject_name, P.pro_name, subject_room, subject_time, "
-					+" subject_type, subject_credit, subject_limit,subject_grade,subject_count " 
-					+" FROM subject S" 
-					+" JOIN major M"  
-					+" ON S.major_id = M.major_id"  
-					+" JOIN pro P "  
-					+" ON S.pro_id = P.pro_id"  
-					+" WHERE  S.term_id "+term_id+" AND P.pro_name Like '%"+inpValue+"%'"+"ORDER BY term_id DESC" ;
+			sql =" SELECT A.rnum, A.subject_id,A.term_id ,A.major_name, A.subject_name," 
+					+" A.pro_name, A.subject_room, A.subject_time,"
+					+" A.subject_type, A.subject_credit, A.subject_limit, subject_grade,subject_count "  
+					+" FROM "
+					+" (SELECT ROWNUM AS rnum,B.subject_id,B.term_id ,B.major_name, B.subject_name, "
+					+" B.pro_name, B.subject_room, "
+					+" B.subject_time,B.subject_type, B.subject_credit, B.subject_limit, B.subject_grade,"
+					+" B.subject_count " 
+					+" FROM "
+					+" (SELECT S.subject_id,S.term_id ,M.major_name, S.subject_name, P.pro_name, "
+					+" S.subject_room, S.subject_time,"
+					+" S.subject_type, S.subject_credit, S.subject_limit, S.subject_grade,"
+					+" S.subject_count"   
+					+" FROM subject S "
+					+" JOIN major M "
+					+" ON S.major_id = M.major_id " 
+					+" JOIN pro P "
+					+" ON S.pro_id = P.pro_id   "
+					+" WHERE S.term_id "+ term_id + "AND P.pro_name Like '%"+inpValue+"%'"
+					+" ORDER BY term_id DESC) B "
+					+" WHERE rownum <= ?) A " //endNum
+					+" WHERE A.rnum >=? " ; //startNum
 
 		}else if(optValue.equals("maj")) {
 			System.out.println("학과");
-			sql =" SELECT S.subject_id,term_id,M.major_name, subject_name, P.pro_name, subject_room, subject_time,"
-					+" subject_type, subject_credit, subject_limit,subject_grade,subject_count" 
-					+" FROM subject S"  
-					+" JOIN major M"  
-					+" ON S.major_id = M.major_id"  
-					+" JOIN pro P "  
-					+" ON S.pro_id = P.pro_id"  
-					+" WHERE  S.term_id "+term_id +"AND M.major_name  Like '%"+inpValue+"%'"+"ORDER BY term_id DESC" ;
+			sql =" SELECT A.rnum, A.subject_id,A.term_id ,A.major_name, A.subject_name," 
+					+" A.pro_name, A.subject_room, A.subject_time,"
+					+" A.subject_type, A.subject_credit, A.subject_limit, subject_grade,subject_count "  
+					+" FROM "
+					+" (SELECT ROWNUM AS rnum,B.subject_id,B.term_id ,B.major_name, B.subject_name, "
+					+" B.pro_name, B.subject_room, "
+					+" B.subject_time,B.subject_type, B.subject_credit, B.subject_limit, B.subject_grade,"
+					+" B.subject_count " 
+					+" FROM "
+					+" (SELECT S.subject_id,S.term_id ,M.major_name, S.subject_name, P.pro_name, "
+					+" S.subject_room, S.subject_time,"
+					+" S.subject_type, S.subject_credit, S.subject_limit, S.subject_grade,"
+					+" S.subject_count"   
+					+" FROM subject S "
+					+" JOIN major M "
+					+" ON S.major_id = M.major_id " 
+					+" JOIN pro P "
+					+" ON S.pro_id = P.pro_id   "
+					+" WHERE S.term_id "+ term_id + "AND M.major_name Like '%"+inpValue+"%'"
+					+" ORDER BY term_id DESC) B "
+					+" WHERE rownum <= ?) A " //endNum
+					+" WHERE A.rnum >=? " ; //startNum
+
 		}else {
 			System.out.println("과목");
-			sql=" SELECT S.subject_id,term_id,M.major_name, subject_name, P.pro_name, subject_room, subject_time, "
-					+" subject_type, subject_credit, subject_limit,subject_grade,subject_count"  
-					+" FROM subject S"  
-					+" JOIN major M"  
-					+" ON S.major_id = M.major_id" 
-					+" JOIN pro P"  
-					+" ON S.pro_id = P.pro_id" 
-					+" WHERE  S.term_id "+term_id+"AND S.subject_name Like '%"+inpValue+"%'"+"ORDER BY term_id DESC" ;
+			sql =" SELECT A.rnum, A.subject_id,A.term_id ,A.major_name, A.subject_name," 
+					+" A.pro_name, A.subject_room, A.subject_time,"
+					+" A.subject_type, A.subject_credit, A.subject_limit, subject_grade,subject_count "  
+					+" FROM "
+					+" (SELECT ROWNUM AS rnum,B.subject_id,B.term_id ,B.major_name, B.subject_name, "
+					+" B.pro_name, B.subject_room, "
+					+" B.subject_time,B.subject_type, B.subject_credit, B.subject_limit, B.subject_grade,"
+					+" B.subject_count " 
+					+" FROM "
+					+" (SELECT S.subject_id,S.term_id ,M.major_name, S.subject_name, P.pro_name, "
+					+" S.subject_room, S.subject_time,"
+					+" S.subject_type, S.subject_credit, S.subject_limit, S.subject_grade,"
+					+" S.subject_count"   
+					+" FROM subject S "
+					+" JOIN major M "
+					+" ON S.major_id = M.major_id " 
+					+" JOIN pro P "
+					+" ON S.pro_id = P.pro_id   "
+					+" WHERE S.term_id "+ term_id + "AND S.subject_name Like '%"+inpValue+"%'"
+					+" ORDER BY term_id DESC) B "
+					+" WHERE rownum <= ?) A " //endNum
+					+" WHERE A.rnum >=? " ; //startNum
+
 		} 
 		try {
 			ps =conn.prepareStatement(sql);
+			ps.setInt(1, endNum);
+			ps.setInt(2, startNum);
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				System.out.println("반복문 실행!");
@@ -357,6 +499,7 @@ public class EnrollDAO {
 			e.printStackTrace();
 		}
 	}
+	/*수강 신청 시 제한 인원 조회*/
 	public int count(String string) {
 		int resultCount =0;
 		String sql = " SELECT subject_count FROM subject"
@@ -375,4 +518,5 @@ public class EnrollDAO {
 		}
 		return resultCount;
 	}
+
 }
