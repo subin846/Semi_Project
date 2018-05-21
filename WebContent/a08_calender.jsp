@@ -61,12 +61,10 @@
 			} */
 			#schedule {
 				position: relative;
-                border: 3px dotted green;
                 left:600px;
 				width: 524px;
 				height:395px;
 				bottom: 418px;
-				border: 1px solid #c0c0c0;
 				border-radius: 5px;
 			}
 			#hacsa {
@@ -76,16 +74,10 @@
                 margin-top: 10px;
                 
             }
-            
             table,td,th{
                 border: 1px solid black;
                 /*각 라인을 합쳐 준다.*/
                 border-collapse: collapse;
-                text-align: center;
-             /*    border-right:none;
-                border-left:none;
-                border-top:none;
-                border-bottom:none;  */
             }
             td,th{
                 padding: 5px 10px;
@@ -95,6 +87,24 @@
             	left: 300px;
             	top: 200px;
             }
+           	input[type=text]{
+				padding : 10px 5px;
+				font-size: 17px;
+				width: 50%;
+				z-index: 10;
+				height: 16px;
+				border: none;
+				background: #fff;
+			}
+			table input[type=text]{
+				padding : 10px 5px;
+				font-size: 17px;
+				width: 80%;
+				z-index: 10;
+				height: 16px;
+				border: none;
+				background: #fff;
+			}
 		</style>
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	</head>
@@ -108,7 +118,7 @@
 			<div id="datepicker"></div>
 			<input type="text" id="getdate" name="getdate">
 			<div id="schedule"><h1 id="hacsa">학사일정</h1>	
-			<input type="text" name="content"/>
+			<input id="register" type="text" name="content"/>
 			<input type="submit" value="등록"/>	
 			<table id="listTable">
 	            <tr>
@@ -161,9 +171,9 @@
 	   				"<input  name='schedule_id' type='hidden' value='"+ item.schedule_id+"'/>"+
 	   				"<input class='cont1' name='content' type='text' value='"+item.schedule_content+"'/>"+
 	   				"<input  type='submit' value='수정'/>"+ 
+	   				"<input class='del' type='button' onclick='location.href=\"./caDell?schedule_id=" + item.schedule_id + "\"' value='삭제'/>"+"</td>"+
 	   				"</form>"+
-	   				"<input name='schedule_id' type='hidden' value='"+item.schedule_id+"'/>"+
-	   				"<input class='del' type='button' onclick='location.href=\"./caDell?schedule_id=" + item.schedule_id + "\"' value='삭제'/>"+"</td>";
+	   				"<input name='schedule_id' type='hidden' value='"+item.schedule_id+"'/>";
 	   			content += "</tr>";
 	   		});
 	   		$("#listTable").append(content);
