@@ -47,10 +47,10 @@
 	</head>
 	<body>
 	<div>
-		<jsp:include page="s08_main.jsp"></jsp:include>
+		<jsp:include page="s09-main.jsp"></jsp:include>
 	</div>
 	<div>
-		<jsp:include page="s08_main2.jsp"></jsp:include>
+		<jsp:include page="s09-main2.jsp"></jsp:include>
 	</div>
 		<table id="p">
 			<tr>

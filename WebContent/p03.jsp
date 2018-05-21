@@ -39,6 +39,12 @@
 		</style>
 	</head>
 	<body>
+	<div>
+		<jsp:include page="p04-main.jsp"></jsp:include>
+	</div>
+	<div>
+		<jsp:include page="p04-main2.jsp"></jsp:include>
+	</div>
 		<select id="subjectSel" name="sub">
 			<option value="default">과목 선택</option>
 		</select>
