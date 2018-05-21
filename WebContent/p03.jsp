@@ -181,9 +181,10 @@
 		});
 		
 		$("#update").click(function(){
+			var loginId = "${sessionScope.loginId}";
 			var subject_id =  $("#list option:selected").val();
 			console.log(subject_id);
-			location.href="p03u.jsp?subject_id="+subject_id;
+			location.href="./planUpdatePage?loginId="+loginId+"&subject_id="+subject_id;
 		});
 		
 	</script>

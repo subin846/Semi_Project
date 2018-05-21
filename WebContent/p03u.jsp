@@ -57,6 +57,8 @@
 	<div>
 		<jsp:include page="p04-main2.jsp"></jsp:include>
 	</div>
+	<form action="planUpdate" method="post">
+	<input type="hidden" name="selected" value="<%=request.getParameter("subject_id")%>"/>
 		<table id="listTable">
 			<tr>
 				<th id="plan" colspan="6">강 의 계 획 서</th>
@@ -66,59 +68,61 @@
 			</tr>
 			<tr>
 				<th>학기</th>
-				<td id="term" colspan="2"></td>
+				<td id="term" colspan="2"><input type="text" name="term" value="${dto.term_id}"/></td>
 				<th>교과목명</th>
-				<td id="subject" colspan="2"></td>
+				<td id="subject" colspan="2"><input type="text" name="subject" value="${dto.subject_name}"/></td>
 			</tr>
 			<tr>
 				<th>학년-분반</th>
-				<td id="class"></td>
+				<td id="class"><input type="text" name="class" value="${dto.}"/></td>
 				<th>이수구분</th>
-				<td id="major_type"></td>
+				<td id="major_type"><input type="text" name="major_type" value="${dto.}"/></td>
 				<th>학점</th>
-				<td id="score"></td>
+				<td id="score"><input type="text" name="score" value="${dto.}"/></td>
 			</tr>
 			<tr>
 				<th>담당교수</th>
-				<td id="pro" colspan="3"></td>
+				<td id="pro" colspan="3"><input type="text" name="pro" value="${dto.}"/></td>
 				<th>시수</th>
-				<td id="time"></td>
+				<td id="time"><input type="text" name="time" value="${dto.}"/></td>
 			</tr>
 			<tr>
 				<th>E-Mail</th>
-				<td id="email" colspan="2"></td>
+				<td id="email" colspan="2"><input type="text" name="email" value="${dto.}"/></td>
 				<th>교육장소</th>
-				<td id="classroom" colspan="2"></td>
+				<td id="classroom" colspan="2"><input type="text" name="classroom" value="${dto.}"/></td>
 			</tr>
 			<tr>
 				<th colspan="6">교과목 개요 및 특징</th>
 			</tr>
 			<tr>
-				<td colspan="6" id="cu"></td>
+				<td colspan="6" id="cu"><input type="text" name="cu" value="${dto.}"/></td>
 			</tr>
 			<tr>
 				<th colspan="6">교과목표</th>
 			</tr>
 			<tr>
-				<td colspan="6" id="objective"></td>
+				<td colspan="6" id="objective"><input type="text" name="objective" value="${dto.}"/></td>
 			</tr>
 			<tr>
 				<th colspan="3" rowspan="2">교재</th>
 				<th>주교재</th>
-				<td colspan="2" id ="planbook"></td>
+				<td colspan="2" id ="planbook"><input type="text" name="planbook" value="${dto.}"/></td>
 			</tr>
 				<th>부교재</th>
-				<td colspan="2" id ="sub_book"></td>
+				<td colspan="2" id ="sub_book"><input type="text" name="sub_book" value="${dto.}"/></td>
 			<tr>
 			</tr>
 		</table>
 		<div id="btn">
-		<button id="update">수정</button>
-		<button id="regist">등록</button>
+		<button>저장</button>
 		</div>
+		</form>
 	</body>
 	<script>
 		$(document).ready(function() {
+			var num = "<%=request.getParameter("subject_id")%>"
+			console.log(num);
 			// 교수가 강의 하는 과목 select 태그에 추가
 			$.ajax({
 				type: "post",
@@ -138,53 +142,6 @@
 					$("#list").append(str);
 				} 
 			});
-		
-			// 과목 선택 시
-		 $("#list").change(function() {
-			// 과목 선택이 아닌 실제 과목을 선택한 경우
-			if ($(this).val() != "default") {
-				
-				$.ajax({
-					type: "post",
-					url: "./plecturePlan",
-					dataType: "json",
-					data: {
-						"loginId": "${sessionScope.loginId}",
-						"subject": $("#list option:selected").val() //과목이름 : sub1~sub4 들어감.
-					},
-					success: function(data) {
-						// 태그에 가져온 데이터 넣기
-					
-						$("#major").html(data.dto.major_name);
-						$("#term").html(data.dto.term_id);
-						$("#subject").html(data.dto.subject_name);
-						$("#class").html(data.dto.std_year);
-						$("#major_type").html(data.dto.subject_type);
-						$("#score").html(data.dto.subject_credit.toLocaleString());
-						$("#pro").html(data.dto.pro_name);
-						$("#time").html(data.dto.subject_time);
-						$("#email").html(data.dto.pro_email);
-						$("#classroom").html(data.dto.subject_room);
-						$("#cu").html(data.dto.plan_cu);
-						$("#planbook").html(data.dto.plan_book);
-						$("#objective").html(data.dto.subject_objective);
-						$("#sub_book").html(data.dto.plan_sub_book);
-					}
-				});
-			} 
-		}); 
-	});
-		$("#regist").click(function(){
-			var subject_id =  $("#list option:selected").val();
-			console.log(subject_id);
-			location.href="p03w.jsp?subject_id="+subject_id;
 		});
-		
-		$("#update").click(function(){
-			var subject_id =  $("#list option:selected").val();
-			console.log(subject_id);
-			location.href="p03u.jsp?subject_id="+subject_id;
-		});
-		
 	</script>
 </html>

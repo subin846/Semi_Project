@@ -218,23 +218,6 @@ public class MainService extends PwDTO{
 		response.getWriter().println(json);
 	}
 
-	// 강의계획서 수정폼 요청 (교수 페이지)
-	public void plecturePlanUpdateForm() throws ServletException, IOException {
-		
-		String loginId = request.getParameter("loginId");
-		MainDAO dao = new MainDAO();
-		DTO dto = dao.slecturePlanUpdateForm(loginId);
-		if (dto != null) {
-			request.setAttribute("form", dto);
-		} else {
-			System.out.println("오류");
-			/*request.setAttribute("msg", "원하는 값을 찾을 수 없습니다.");*/
-		}
-		RequestDispatcher rd = request.getRequestDispatcher("s08_lecturePlan_UpdateForm.jsp");
-		rd.forward(request, response);
-	
-	}
-
 	//강의계획서 작성 요청(교수 페이지)
 	public void lectureWrite() throws ServletException, IOException {
 		DTO dto = new DTO();
@@ -261,6 +244,29 @@ public class MainService extends PwDTO{
 		request.setAttribute("plan", dto);
 		RequestDispatcher dis = request.getRequestDispatcher("p03.jsp");
 		dis.forward(request, response);
+		
+	}
+
+	//강의계획서를 수정하는 폼 요청 메서드
+	public void planUpdatePage() throws ServletException, IOException {
+		String loginId = request.getParameter("loginId");
+		int subject_id = Integer.parseInt(request.getParameter("subject_id"));
+		System.out.println("수정 폼 아이디 : "+loginId);
+		System.err.println("수정 폼 서브젝트 아이디 : "+subject_id);
+		
+		MainDAO dao = new MainDAO();
+		DTO planDTO = new DTO();
+		
+		DTO dto = dao.plecturePlan(loginId,subject_id);
+		request.setAttribute("dto", dto);
+		RequestDispatcher dis = request.getRequestDispatcher("p03u.jsp");
+		dis.forward(request, response);
+		
+	}
+
+	//강의계획서 수정 메서드
+	public void planUpdate() {
+		
 		
 	}
 	
