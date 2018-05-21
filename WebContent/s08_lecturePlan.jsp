@@ -51,26 +51,8 @@
 		</style>
 	</head>
 	<body>
-		<div id="menu">
-			<span></span><!-- 님 환영합니다 -->
-				<script>
-					var loginId ="${sessionScope.loginId}";
-					if(loginId == ""){
-						alert("로그인이 필요한 서비스 입니다.");
-						location.href="index.jsp";
-					}else{
-						var content = loginId+" 님 환영합니다 ";
-						document.getElementById("menu").innerHTML = content;
-					}
-				</script>
-			<a href="./s01.jsp">HOME</a>
-			<a href="./m02.jsp">비밀번호변경</a>
-			<a href="./logout">LOGOUT</a>
-		</div>
-		<div id="navi">
-			<div id="std">학적</div>
-			<div id="subBbs">과목게시판</div>
-			<div id="enroll">수강신청</div>
+		<div>
+			<jsp:include page="s08_main.jsp"></jsp:include>
 		</div>
 	</body>
 	<div>

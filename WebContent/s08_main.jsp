@@ -68,12 +68,7 @@
 			<div id="enroll"><a href="s15.jsp">수강신청</a></div>
 		</div>
 	</body>
-	<div>
-		<jsp:include page="s08_main2.jsp"></jsp:include>
-	</div>
 	<script>
-
-	
  	var obj={};
 	obj.type="post";
 	obj.dataType="json";
