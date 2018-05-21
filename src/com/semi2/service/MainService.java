@@ -218,6 +218,23 @@ public class MainService extends PwDTO{
 		response.setContentType("text/html; charset=UTF-8");
 		response.getWriter().println(json);
 	}
+
+	// 강의계획서 수정폼 요청 (교수 페이지)
+	public void plecturePlanUpdateForm() throws ServletException, IOException {
+		
+		String loginId = request.getParameter("loginId");
+		MainDAO dao = new MainDAO();
+		DTO dto = dao.slecturePlanUpdateForm(loginId);
+		if (dto != null) {
+			request.setAttribute("form", dto);
+		} else {
+			System.out.println("오류");
+			/*request.setAttribute("msg", "원하는 값을 찾을 수 없습니다.");*/
+		}
+		RequestDispatcher rd = request.getRequestDispatcher("s08_lecturePlan_UpdateForm.jsp");
+		rd.forward(request, response);
+	
+	}
 	
 }
 
