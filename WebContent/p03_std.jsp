@@ -44,7 +44,7 @@
 	</head>
 	<body>
 	<div>
-		<jsp:include page="p03_lecture.jsp"></jsp:include>
+		<jsp:include page="p03-main.jsp"></jsp:include>
 	</div>
 	<div>
 		<jsp:include page="p03_lecture2.jsp"></jsp:include>
