@@ -58,6 +58,7 @@
 		<jsp:include page="p04-main2.jsp"></jsp:include>
 	</div>
 	<form action="lectureWrite">
+	<input type="hidden" name="selected" value="${dto.subject_id}"/>
 		<table id="listTable">
 			<tr>
 				<th id="plan" colspan="6">강 의 계 획 서</th>
