@@ -58,7 +58,7 @@
 		<div>
 			<button id="update" >수정</button>
 		</div>
-	</form>
+		</form>
 	</body>
 	<script>
 		$(document).ready(function() {

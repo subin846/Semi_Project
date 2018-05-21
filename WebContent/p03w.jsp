@@ -57,8 +57,8 @@
 	<div>
 		<jsp:include page="p04-main2.jsp"></jsp:include>
 	</div>
-	<form action="lectureWrite">
-	<input type="hidden" name="selected" value="${dto.subject_id}"/>
+	<form action="lectureWrite" method="post">
+	<input type="hidden" name="selected" value="<%=request.getParameter("subject_id")%>"/>
 		<table id="listTable">
 			<tr>
 				<th id="plan" colspan="6">강 의 계 획 서</th>
@@ -68,49 +68,49 @@
 			</tr>
 			<tr>
 				<th>학기</th>
-				<td id="term" colspan="2"></td>
+				<td id="term" colspan="2"><input type="text" name="term"/></td>
 				<th>교과목명</th>
-				<td id="subject" colspan="2"></td>
+				<td id="subject" colspan="2"><input type="text" name="subject"/></td>
 			</tr>
 			<tr>
 				<th>학년-분반</th>
-				<td id="class"></td>
+				<td id="class"><input type="text" name="class"/></td>
 				<th>이수구분</th>
-				<td id="major_type"></td>
+				<td id="major_type"><input type="text" name="major_type"/></td>
 				<th>학점</th>
-				<td id="score"></td>
+				<td id="score"><input type="text" name="score"/></td>
 			</tr>
 			<tr>
 				<th>담당교수</th>
-				<td id="pro" colspan="3"></td>
+				<td id="pro" colspan="3"><input type="text" name="pro"/></td>
 				<th>시수</th>
-				<td id="time"></td>
+				<td id="time"><input type="text" name="time"/></td>
 			</tr>
 			<tr>
 				<th>E-Mail</th>
-				<td id="email" colspan="2"></td>
+				<td id="email" colspan="2"><input type="text" name="email"/></td>
 				<th>교육장소</th>
-				<td id="classroom" colspan="2"></td>
+				<td id="classroom" colspan="2"><input type="text" name="classroom"/></td>
 			</tr>
 			<tr>
 				<th colspan="6">교과목 개요 및 특징</th>
 			</tr>
 			<tr>
-				<td colspan="6" id="cu"></td>
+				<td colspan="6" id="cu"><input type="text" name="cu"/></td>
 			</tr>
 			<tr>
 				<th colspan="6">교과목표</th>
 			</tr>
 			<tr>
-				<td colspan="6" id="objective"></td>
+				<td colspan="6" id="objective"><input type="text" name="objective"/></td>
 			</tr>
 			<tr>
 				<th colspan="3" rowspan="2">교재</th>
 				<th>주교재</th>
-				<td colspan="2" id ="planbook"></td>
+				<td colspan="2" id ="planbook"><input type="text" name="planbook"/></td>
 			</tr>
 				<th>부교재</th>
-				<td colspan="2" id ="sub_book"></td>
+				<td colspan="2" id ="sub_book"><input type="text" name="sub_book"/></td>
 			<tr>
 			</tr>
 		</table>
@@ -121,6 +121,8 @@
 	</body>
 	<script>
 		$(document).ready(function() {
+			var num = "<%=request.getParameter("subject_id")%>"
+			console.log(num);
 			// 교수가 강의 하는 과목 select 태그에 추가
 			$.ajax({
 				type: "post",
@@ -132,13 +134,14 @@
 				 success: function(data) {
 					var str = "";
 					for (var i = 0; i < data.subjectList.length; i++) {
-						str += "<option value='" + data.subjectList[i] + "'>" 
-							+ data.subjectList[i] 
+						str += "<option value='" + data.subjectList[i].subject_id + "'>" 
+							+ data.subjectList[i].subject_name 
 							+ "</option>";
 							console.log(data.subjectList[i]);
 					}
 					$("#list").append(str);
 				} 
 			});
+		});
 	</script>
 </html>

@@ -146,7 +146,7 @@ public class MainService extends PwDTO{
 		String loginId = request.getParameter("loginId");
 		
 		MainDAO dao = new MainDAO();
-		ArrayList<String> subjectList = dao.selectProSubject(loginId);
+		ArrayList<DTO> subjectList = dao.selectProSubject(loginId);
 		
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("subjectList", subjectList);
@@ -176,15 +176,14 @@ public class MainService extends PwDTO{
 	// 강의계획서 조회(교수 페이지)
 	public void plecturePlan() throws IOException {
 		String loginId = request.getParameter("loginId");
-		String subject = request.getParameter("subject");
+		int subject = Integer.parseInt(request.getParameter("subject"));
 
 		MainDAO dao = new MainDAO();
 		DTO planDTO = new DTO();
-		planDTO.setPro_id(loginId);
-		planDTO.setSubject_name(subject);
-		System.out.println("planDTOㄴㄴㄴㄴㄴ: " +planDTO.getSubject_name());
-		DTO dto = dao.plecturePlan(planDTO);
-
+		
+		DTO dto = dao.plecturePlan(loginId,subject);
+		System.out.println("planDTOㄴㄴㄴㄴㄴ: " +planDTO.getSubject_id());
+		
 		// map에 dto 담기
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("dto", dto);
@@ -237,10 +236,31 @@ public class MainService extends PwDTO{
 	}
 
 	//강의계획서 작성 요청(교수 페이지)
-	public void lectureWrite() {
-		int subject_id = Integer.parseInt(request.getParameter("selected"));
+	public void lectureWrite() throws ServletException, IOException {
+		DTO dto = new DTO();
+		dto.setSubject_id(Integer.parseInt(request.getParameter("selected")));
+		
+		dto.setTerm_id(request.getParameter("term"));
+		dto.setSubject_name(request.getParameter("subject_name"));
+		dto.setStd_year(Integer.parseInt(request.getParameter("class")));
+		dto.setSubject_type(request.getParameter("major_type"));
+		dto.setSubject_credit(Integer.parseInt(request.getParameter("score")));
+		dto.setPro_name(request.getParameter("pro"));
+		dto.setSubject_time(request.getParameter("time"));
+		dto.setPro_email(request.getParameter("email"));
+		dto.setSubject_room(request.getParameter("classroom"));
+		dto.setPlan_cu(request.getParameter("cu"));
+		dto.setSubject_objective(request.getParameter("objective"));
+		dto.setPlan_book(request.getParameter("planbook"));
+		dto.setPlan_sub_book(request.getParameter("sub_book"));
+		
 		MainDAO dao = new MainDAO();
-		DTO dto = dao.lectureWrite(subject_id);
+		if (dao.lectureWrite(dto) > 0) {
+			
+		}
+		request.setAttribute("plan", dto);
+		RequestDispatcher dis = request.getRequestDispatcher("p03.jsp");
+		dis.forward(request, response);
 		
 	}
 	

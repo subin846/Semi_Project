@@ -130,8 +130,8 @@
 				 success: function(data) {
 					var str = "";
 					for (var i = 0; i < data.subjectList.length; i++) {
-						str += "<option value='" + data.subjectList[i] + "'>" 
-							+ data.subjectList[i] 
+						str += "<option value='" + data.subjectList[i].subject_id + "'>" 
+							+ data.subjectList[i].subject_name 
 							+ "</option>";
 							console.log(data.subjectList[i]);
 					}
@@ -150,7 +150,7 @@
 					dataType: "json",
 					data: {
 						"loginId": "${sessionScope.loginId}",
-						"subject": $(this).val() //과목이름 : sub1~sub4 들어감.
+						"subject": $("#list option:selected").val() //과목이름 : sub1~sub4 들어감.
 					},
 					success: function(data) {
 						// 태그에 가져온 데이터 넣기
@@ -175,7 +175,10 @@
 		}); 
 	});
 		$("#regist").click(function(){
-			location.href="p03w.jsp";
+			var subject_id =  $("#list option:selected").val();
+			console.log(subject_id);
+			location.href="p03w.jsp?subject_id="+subject_id;
 		});
+		
 	</script>
 </html>
