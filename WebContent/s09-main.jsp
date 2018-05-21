@@ -48,9 +48,9 @@
 	<body>
 		<div id="menu">
 			<span>${sessionScope.loginId}</span>님 환영합니다
-			<a href="#">HOME</a>
-			<a href="#">비밀번호변경</a>
-			<a href="#">LOGOUT</a>
+			<a href="./s01.jsp">HOME</a>
+			<a href="./m02.jsp">비밀번호변경</a>
+			<a href="./logout">LOGOUT</a>
 		</div>
 		<div id="navi">
 			<div id="std"><a href="s02-main.jsp">학적</a></div>
