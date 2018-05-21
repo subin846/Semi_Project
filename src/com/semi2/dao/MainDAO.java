@@ -308,6 +308,12 @@ public class MainDAO {
 			}
 			return dto;
 		}
+
+		//강의 계획서
+		public DTO lectureWrite(DTO dto) {
+			String sql = "INSERT INTO "
+			return null;
+		}
 	
 	
 }
