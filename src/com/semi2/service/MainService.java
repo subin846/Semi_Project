@@ -53,7 +53,7 @@ public class MainService extends PwDTO{
 			}else if(id.startsWith("p")) {
 				response.sendRedirect("pmain");
 			}else {
-				response.sendRedirect("amain");
+				response.sendRedirect("student");
 			}
 		}else {
 			System.out.println("로그인 실패");
@@ -146,7 +146,7 @@ public class MainService extends PwDTO{
 		String loginId = request.getParameter("loginId");
 		
 		MainDAO dao = new MainDAO();
-		ArrayList<String> subjectList = dao.selectProSubject(loginId);
+		ArrayList<DTO> subjectList = dao.selectProSubject(loginId);
 		
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("subjectList", subjectList);
@@ -176,15 +176,14 @@ public class MainService extends PwDTO{
 	// 강의계획서 조회(교수 페이지)
 	public void plecturePlan() throws IOException {
 		String loginId = request.getParameter("loginId");
-		String subject = request.getParameter("subject");
+		int subject = Integer.parseInt(request.getParameter("subject"));
 
 		MainDAO dao = new MainDAO();
 		DTO planDTO = new DTO();
-		planDTO.setPro_id(loginId);
-		planDTO.setSubject_name(subject);
-		System.out.println("planDTOㄴㄴㄴㄴㄴ: " +planDTO.getSubject_name());
-		DTO dto = dao.plecturePlan(planDTO);
-
+		
+		DTO dto = dao.plecturePlan(loginId,subject);
+		System.out.println("planDTOㄴㄴㄴㄴㄴ: " +planDTO.getSubject_id());
+		
 		// map에 dto 담기
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("dto", dto);
@@ -217,6 +216,58 @@ public class MainService extends PwDTO{
 		String json = gson.toJson(map);
 		response.setContentType("text/html; charset=UTF-8");
 		response.getWriter().println(json);
+	}
+
+	//강의계획서 작성 요청(교수 페이지)
+	public void lectureWrite() throws ServletException, IOException {
+		DTO dto = new DTO();
+		dto.setSubject_id(Integer.parseInt(request.getParameter("selected")));
+		
+		dto.setTerm_id(request.getParameter("term"));
+		dto.setSubject_name(request.getParameter("subject_name"));
+		dto.setStd_year(Integer.parseInt(request.getParameter("class")));
+		dto.setSubject_type(request.getParameter("major_type"));
+		dto.setSubject_credit(Integer.parseInt(request.getParameter("score")));
+		dto.setPro_name(request.getParameter("pro"));
+		dto.setSubject_time(request.getParameter("time"));
+		dto.setPro_email(request.getParameter("email"));
+		dto.setSubject_room(request.getParameter("classroom"));
+		dto.setPlan_cu(request.getParameter("cu"));
+		dto.setSubject_objective(request.getParameter("objective"));
+		dto.setPlan_book(request.getParameter("planbook"));
+		dto.setPlan_sub_book(request.getParameter("sub_book"));
+		
+		MainDAO dao = new MainDAO();
+		if (dao.lectureWrite(dto) > 0) {
+			
+		}
+		request.setAttribute("plan", dto);
+		RequestDispatcher dis = request.getRequestDispatcher("p03.jsp");
+		dis.forward(request, response);
+		
+	}
+
+	//강의계획서를 수정하는 폼 요청 메서드
+	public void planUpdatePage() throws ServletException, IOException {
+		String loginId = request.getParameter("loginId");
+		int subject_id = Integer.parseInt(request.getParameter("subject_id"));
+		System.out.println("수정 폼 아이디 : "+loginId);
+		System.err.println("수정 폼 서브젝트 아이디 : "+subject_id);
+		
+		MainDAO dao = new MainDAO();
+		DTO planDTO = new DTO();
+		
+		DTO dto = dao.plecturePlan(loginId,subject_id);
+		request.setAttribute("dto", dto);
+		RequestDispatcher dis = request.getRequestDispatcher("p03u.jsp");
+		dis.forward(request, response);
+		
+	}
+
+	//강의계획서 수정 메서드
+	public void planUpdate() {
+		
+		
 	}
 	
 }

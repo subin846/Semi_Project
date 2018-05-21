@@ -168,13 +168,13 @@ public class AdminDAO {
 			ArrayList<DTO> list = new ArrayList<>();
 			try {
 				if(selectbox.equals("std_id")) {
-					ps=conn.prepareStatement("SELECT * FROM std WHERE std_id = ?");
+					ps=conn.prepareStatement("SELECT * FROM std WHERE std_id  LIKE '%' || ? || '%'");
 					ps.setString(1, val);
 				}else if(selectbox.equals("std_name")) {
-					ps=conn.prepareStatement("SELECT * FROM std WHERE std_name=?");
+					ps=conn.prepareStatement("SELECT * FROM std WHERE std_name LIKE '%' || ? || '%'");
 					ps.setString(1, val);
 				}else if(selectbox.equals("std_state")) {
-					ps=conn.prepareStatement("SELECT * FROM std WHERE std_state=?");
+					ps=conn.prepareStatement("SELECT * FROM std WHERE std_state LIKE '%' || ? || '%'");
 					ps.setString(1, val);
 				}
 				rs=ps.executeQuery();
@@ -320,15 +320,15 @@ public class AdminDAO {
 			try {
 				if(selectbox.equals("std_id")) {
 					ps=conn.prepareStatement("SELECT t.term_id,s.std_id,s.std_name,sc.scholar_name,sc.scholar_money,t.tuition_money " + 
-							"FROM scholar sc JOIN tuition t ON sc.scholar_id = t.scholar_id JOIN std s ON t.std_id = s.std_id WHERE t.std_id=?");
+							"FROM scholar sc JOIN tuition t ON sc.scholar_id = t.scholar_id JOIN std s ON t.std_id = s.std_id WHERE t.std_id LIKE '%' || ? || '%'");
 					ps.setString(1, val);
 				}else if(selectbox.equals("std_name")) {
 					ps=conn.prepareStatement("SELECT t.term_id,s.std_id,s.std_name,sc.scholar_name,sc.scholar_money,t.tuition_money " + 
-							"FROM scholar sc JOIN tuition t ON sc.scholar_id = t.scholar_id JOIN std s ON t.std_id = s.std_id WHERE s.std_name=?");
+							"FROM scholar sc JOIN tuition t ON sc.scholar_id = t.scholar_id JOIN std s ON t.std_id = s.std_id WHERE s.std_name LIKE '%' || ? || '%'");
 					ps.setString(1, val);
 				}else if(selectbox.equals("term_id")) {
 					ps=conn.prepareStatement("SELECT t.term_id,s.std_id,s.std_name,sc.scholar_name,sc.scholar_money,t.tuition_money " + 
-							"FROM scholar sc JOIN tuition t ON sc.scholar_id = t.scholar_id JOIN std s ON t.std_id = s.std_id WHERE t.term_id=?");
+							"FROM scholar sc JOIN tuition t ON sc.scholar_id = t.scholar_id JOIN std s ON t.std_id = s.std_id WHERE t.term_id LIKE '%' || ? || '%'");
 					ps.setString(1, val);
 				}
 				rs=ps.executeQuery();
@@ -545,15 +545,15 @@ public class AdminDAO {
 			try {
 				if(selectbox.equals("std_id")) {
 					ps=conn.prepareStatement("SELECT t.term_id,s.std_id,s.std_name,sc.scholar_name,sc.scholar_money " + 
-							"FROM scholar sc JOIN tuition t ON sc.scholar_id = t.scholar_id JOIN std s ON t.std_id = s.std_id WHERE t.std_id=?");
+							"FROM scholar sc JOIN tuition t ON sc.scholar_id = t.scholar_id JOIN std s ON t.std_id = s.std_id WHERE t.std_id LIKE '%' || ? || '%'");
 					ps.setString(1, val);
 				}else if(selectbox.equals("std_name")) {
 					ps=conn.prepareStatement("SELECT t.term_id,s.std_id,s.std_name,sc.scholar_name,sc.scholar_money " + 
-							"FROM scholar sc JOIN tuition t ON sc.scholar_id = t.scholar_id JOIN std s ON t.std_id = s.std_id WHERE s.std_name=?");
+							"FROM scholar sc JOIN tuition t ON sc.scholar_id = t.scholar_id JOIN std s ON t.std_id = s.std_id WHERE s.std_name LIKE '%' || ? || '%'" );
 					ps.setString(1, val);
 				}else if(selectbox.equals("scholar_name")) {
 					ps=conn.prepareStatement("SELECT t.term_id,s.std_id,s.std_name,sc.scholar_name,sc.scholar_money " + 
-							"FROM scholar sc JOIN tuition t ON sc.scholar_id = t.scholar_id JOIN std s ON t.std_id = s.std_id WHERE t.scholar_name=?");
+							"FROM scholar sc JOIN tuition t ON sc.scholar_id = t.scholar_id JOIN std s ON t.std_id = s.std_id WHERE t.scholar_name LIKE '%' || ? || '%'");
 					ps.setString(1, val);
 				}
 				rs=ps.executeQuery();
@@ -693,13 +693,13 @@ public class AdminDAO {
 			ArrayList<DTO> list = new ArrayList<>();
 			try {
 				if(selectbox.equals("pro_id")) {
-					ps=conn.prepareStatement("SELECT * FROM pro P JOIN major M ON P.major_id=M.major_id WHERE pro_id=?");
+					ps=conn.prepareStatement("SELECT * FROM pro P JOIN major M ON P.major_id=M.major_id WHERE pro_id LIKE '%' || ? || '%'");
 					ps.setString(1, val);
 				}else if(selectbox.equals("pro_name")) {
-					ps=conn.prepareStatement("SELECT * FROM pro P JOIN major M ON P.major_id=M.major_id WHERE pro_name=?");
+					ps=conn.prepareStatement("SELECT * FROM pro P JOIN major M ON P.major_id=M.major_id WHERE pro_name LIKE '%' || ? || '%'");
 					ps.setString(1, val);
 				}else if(selectbox.equals("major_name")) {
-					ps=conn.prepareStatement("SELECT * FROM pro P JOIN major M ON P.major_id=M.major_id WHERE major_name=?");
+					ps=conn.prepareStatement("SELECT * FROM pro P JOIN major M ON P.major_id=M.major_id WHERE major_name LIKE '%' || ? || '%'");
 					ps.setString(1, val);
 				}
 				rs=ps.executeQuery();
@@ -1049,22 +1049,6 @@ public class AdminDAO {
 			return success;
 		}
 		/**학사 일정 수정  *************/
-		/*public int caUpdate(DTO dto) {
-			String sql="UPDATE schedule SET  schedule_content=? WHERE schedule_id=?" ;
-			int success=0;
-			try {
-				ps =conn.prepareStatement(sql);
-				ps.setString(1, dto.getSchedule_content());
-				ps.setInt(2, dto.getSchedule_id());
-				success=ps.executeUpdate();
-			} catch (SQLException e) {
-				e.printStackTrace();
-				return 0;
-			}finally {
-				close();
-			}
-			return success;
-		}*/
 		public Integer caUpdate(int schedule_id, String schedule_content) {
 			String sql="UPDATE schedule SET  schedule_content=? WHERE schedule_id=?" ;
 			int success=0;

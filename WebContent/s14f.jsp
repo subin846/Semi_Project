@@ -24,6 +24,9 @@
 			 	float: right;
 			 	margin-top: 1%;
 			}
+			#grade{
+				text-decoration: underline;
+			}
 		</style>
 	</head>
 	<body>
@@ -130,29 +133,20 @@
 				"id":'${sessionScope.loginId}'
 		}
 		obj.success=function(data){
-			//console.log(data);
 			if(data){
-				console.log("성공");
-				//console.log(data.sublist);
 				 selectbox(data.sublist); 
 			}else{
 				location.href="index.jsp";
 			}
 		}
 		ajaxCall(obj);
-		var msg = "${msg}";
-		if(msg != ""){
-			alert(msg);
-		}
 	});
 	
 	//셀렉트 박스에 넣는 반복문
 	function selectbox(list) {
 		var content ="";
-		console.log(list);
 		$("#list").html("<option value='과목선택'>과목선택</option>");
 			list.forEach(function(item){
-				console.log(item);
 				content += "<option value="+item.subject_id+">";
 				content += item.subject_name;
 				content += "</option>";
@@ -163,12 +157,9 @@
 	//셀렉트 박스 선택시 리스트 출력
 	$("#list").change(function(){
 		obj.url="./list?mName=강의자료&sNum=1&eNum=10";
-		//console.log($("#list option:selected").val());
 		obj.data={selected:$("#list option:selected").val()};
-		console.log(obj.data);
 		obj.success=function(data){
 			if(data){
-				console.log(data.main);
 				mainPrint(data.main)
 			}else{
 				alert("과목을 다시 선택해주세요");

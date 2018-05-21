@@ -5,14 +5,66 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Insert title here</title>
 		<style>
+			body  { height: 100%; }
+			body, div, span, applet, object, iframe,
+			p, blockquote, pre,
+			a, abbr, acronym, address, big, cite, code,
+			del, dfn, em, font, img, ins, kbd, q, s, samp,
+			small, strike, strong, sub, sup, tt, var,
+			b, u, i, center,
+			dl, dt, dd, ol, ul, li,
+			fieldset, form, label, legend,
+			table, caption, tbody, tfoot, thead, tr, th, td {
+				margin: 0;
+				padding: 0;
+				border: 0;
+				outline: 0;
+				font-size: 100%;
+				vertical-align: baseline;
+				background: transparent;
+			}
+			body { line-height: 1; }
+			ol, ul { list-style: none; }
+			blockquote, q { quotes: none; }
+			blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
+			:focus { outline: 0; }
+			del { text-decoration: line-through; }
+			table {border-spacing: 0; }
+			
+			 body{
+				font-family: Arial, Helvetica, sans-serif;
+				background: url(background.jpg);
+				margin: 0 auto;
+				width: 520px;
+			}
+		
+			a:link {
+				color: #666;
+				font-weight: bold;
+				text-decoration: none;
+			}
+			a:visited {
+				color: #666;
+				font-weight: bold;
+				text-decoration: none;
+			}
+			a:active,
+			a:hover {
+				color: #bd5a35;
+				text-decoration: underline;
+			} 
+
+			/* table a:link {
+				color: #666;
+				font-weight: bold;
+				text-decoration: none;
+			} */
 			#schedule {
 				position: relative;
-                border: 3px dotted green;
                 left:600px;
 				width: 524px;
 				height:395px;
 				bottom: 418px;
-				border: 1px solid #c0c0c0;
 				border-radius: 5px;
 			}
 			#hacsa {
@@ -22,16 +74,10 @@
                 margin-top: 10px;
                 
             }
-            
             table,td,th{
                 border: 1px solid black;
                 /*각 라인을 합쳐 준다.*/
                 border-collapse: collapse;
-                text-align: center;
-             /*    border-right:none;
-                border-left:none;
-                border-top:none;
-                border-bottom:none;  */
             }
             td,th{
                 padding: 5px 10px;
@@ -39,7 +85,26 @@
             #calender{
             	position: absolute;
             	left: 300px;
+            	top: 200px;
             }
+           	input[type=text]{
+				padding : 10px 5px;
+				font-size: 17px;
+				width: 50%;
+				z-index: 10;
+				height: 16px;
+				border: none;
+				background: #fff;
+			}
+			table input[type=text]{
+				padding : 10px 5px;
+				font-size: 17px;
+				width: 80%;
+				z-index: 10;
+				height: 16px;
+				border: none;
+				background: #fff;
+			}
 		</style>
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	</head>
@@ -53,7 +118,7 @@
 			<div id="datepicker"></div>
 			<input type="text" id="getdate" name="getdate">
 			<div id="schedule"><h1 id="hacsa">학사일정</h1>	
-			<input type="text" name="content"/>
+			<input id="register" type="text" name="content"/>
 			<input type="submit" value="등록"/>	
 			<table id="listTable">
 	            <tr>
@@ -106,9 +171,9 @@
 	   				"<input  name='schedule_id' type='hidden' value='"+ item.schedule_id+"'/>"+
 	   				"<input class='cont1' name='content' type='text' value='"+item.schedule_content+"'/>"+
 	   				"<input  type='submit' value='수정'/>"+ 
+	   				"<input class='del' type='button' onclick='location.href=\"./caDell?schedule_id=" + item.schedule_id + "\"' value='삭제'/>"+"</td>"+
 	   				"</form>"+
-	   				"<input name='schedule_id' type='hidden' value='"+item.schedule_id+"'/>"+
-	   				"<input class='del' type='button' onclick='location.href=\"./caDell?schedule_id=" + item.schedule_id + "\"' value='삭제'/>"+"</td>";
+	   				"<input name='schedule_id' type='hidden' value='"+item.schedule_id+"'/>";
 	   			content += "</tr>";
 	   		});
 	   		$("#listTable").append(content);

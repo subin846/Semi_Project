@@ -28,6 +28,9 @@
 			#bbs input[type='text']{
 				width: 80%;
 			}
+			#lectureNote{
+			text-decoration: underline;
+			}
 		</style>
 	</head>
 	<body>
@@ -94,20 +97,14 @@
 				"id":'${sessionScope.loginId}'
 		}
 		obj.success=function(data){
-			//console.log(data);
 			if(data){
 				console.log("성공");
-				//console.log(data.sublist);
 				 selectbox(data.prosublist); 
 			}else{
 				location.href="index.jsp";
 			}
 		}
 		ajaxCall(obj);
-		var msg = "${msg}";
-		if(msg != ""){
-			alert(msg);
-		}
 	});
 	
 	//셀렉트 박스에 넣는 반복문
@@ -124,11 +121,6 @@
 			$("#list").append(content);
 	}
 	
-	function ajaxCall(param){
-		console.log("ajax 호출")
-		$.ajax(obj);
-	}
-	
 	$("button").click(function(){
 		if($("input[name='bbs_title']").val()==""){
 			alert("제목을 입력하세요");
@@ -141,5 +133,10 @@
 		}
 		form.action="proupdate";
 	});
+	
+	function ajaxCall(param){
+		console.log("ajax 호출")
+		$.ajax(obj);
+	}
 	</script>
 </html>

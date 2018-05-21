@@ -31,6 +31,9 @@
 			#back{
 				float: right;
 			}
+			#lectureNote{
+			text-decoration: underline;
+			}
 		</style>
 	</head>
 	<body>
@@ -93,20 +96,13 @@
 				"id":'${sessionScope.loginId}'
 		}
 		obj.success=function(data){
-			//console.log(data);
 			if(data){
-				console.log("성공");
-				//console.log(data.sublist);
 				 selectbox(data.prosublist); 
 			}else{
 				location.href="index.jsp";
 			}
 		}
 		ajaxCall(obj);
-		var msg = "${msg}";
-		if(msg != ""){
-			alert(msg);
-		}
 	});
 	
 	//셀렉트 박스에 넣는 반복문
@@ -121,11 +117,6 @@
 				content += "</option>";
 			});
 			$("#list").append(content);
-	}
-	
-	function ajaxCall(param){
-		console.log("ajax 호출")
-		$.ajax(obj);
 	}
 	
 	$("button").click(function(){
@@ -149,5 +140,10 @@
 		alert("과목을 다시 선택해주세요");
 		location.href="p04.jsp";
 	});
+	
+	function ajaxCall(param){
+		console.log("ajax 호출")
+		$.ajax(obj);
+	}
 	</script>
 </html>

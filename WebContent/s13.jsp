@@ -29,6 +29,12 @@
 			#bbs input[type='text']{
 				width: 80%;
 			}
+			#back{
+				float: right;
+			}
+			#upload{
+				text-decoration: underline;
+			}
 		</style>
 	</head>
 	<body>
@@ -71,7 +77,7 @@
 					<tr>
 						<td colspan="4">
 							<button id="save">저장</button>
-							<button id="back">취소</button>
+							<div id="back">취소</div>
 						</td>
 					</tr>
 				</table>
@@ -90,10 +96,7 @@
 				"id":'${sessionScope.loginId}'
 		}
 		obj.success=function(data){
-			//console.log(data);
 			if(data){
-				console.log("성공");
-				//console.log(data.sublist);
 				 selectbox(data.sublist); 
 			}else{
 				location.href="index.jsp";
@@ -104,10 +107,8 @@
 	
 	function selectbox(list) {
 		var content ="";
-		console.log(list);
 		$("#list").html("<option value='과목선택'>과목선택</option>");
 			list.forEach(function(item){
-				console.log(item);
 				content += "<option value="+item.subject_id+">";
 				content += item.subject_name;
 				content += "</option>";
@@ -121,7 +122,7 @@
 	}
 	
 	$("#back").click(function(){
-		//alert("과목을 다시 선택해주세요");
+		alert("과목을 다시 선택해주세요");
 		location.href="s11.jsp";
 	});
 	

@@ -103,7 +103,7 @@
 		</div>
 		<div id="navi">
 			<div><a href="./s02-main.jsp">학적</a></div>
-			<div><a href="./s08_main.jsp">과목게시판</a></div>
+			<div><a href="./s08.jsp">과목게시판</a></div>
 			<div><a href="./s15-main.jsp">수강신청</a></div>
 		</div>
 		<div id="sub">
