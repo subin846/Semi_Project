@@ -178,7 +178,6 @@
 		<div id="div3">
             <form id="select" action="pSearch">
             	<select name="selectbox">
-            		<option value="none"  selected="selected" >-선택하세요-</option>
   					<option value="pro_id">사번</option>
 				  	<option value="pro_name">이름</option>
 				 	<option value="major_name">전공</option>

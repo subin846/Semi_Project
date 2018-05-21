@@ -182,7 +182,6 @@
 			<option value="std_id">학번</option>
 		  	<option value="std_name">이름</option>
 		 	<option value="scholar_name">장학금 종류</option>
-		 	<option value="none"  selected="selected" >-선택하세요-</option>
 		</select>
         <input type="text" name="val"/>
         <input type="submit" value="조회"/>

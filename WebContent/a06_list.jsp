@@ -178,7 +178,6 @@
 		<div id="div3">
             <form id="select" action="suSearch">
             	<select name="selectbox">
-            		<option value="none"  selected="selected" >-선택하세요-</option>
   					<option value="major_name">학과명</option>
 				  	<option value="subject_name">과목명</option>
 				 	<option value="pro_name">교수명</option>
