@@ -53,7 +53,7 @@ public class MainService extends PwDTO{
 			}else if(id.startsWith("p")) {
 				response.sendRedirect("pmain");
 			}else {
-				response.sendRedirect("amain");
+				response.sendRedirect("student");
 			}
 		}else {
 			System.out.println("로그인 실패");

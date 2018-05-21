@@ -15,7 +15,7 @@ import com.semi2.service.InfoService;
 import com.semi2.service.LectureService;
 import com.semi2.service.MainService;
 
-@WebServlet({"/", "/login", "/logout", "/smain", "/pmain", "/amain", "/passChange"})
+@WebServlet("/")
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
