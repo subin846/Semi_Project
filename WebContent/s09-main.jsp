@@ -54,7 +54,7 @@
 		</div>
 		<div id="navi">
 			<div id="std">학적</div>
-			<div id="subBbs">과목게시판</div>
+			<div id="subBbs"><a href="s08_lecturePlan.jsp">과목게시판</a></div>
 			<div id="enroll">수강신청</div>
 		</div>
 	</body>
