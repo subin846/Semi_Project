@@ -39,9 +39,6 @@
 		<div>
 			<jsp:include page="s09-main2.jsp"/>
 		</div>
-<%-- 		<form name="form" method="get">
-		<input type="hidden" name="selected" value="${main.subject_id}"/>
-		<input type="hidden" name="std_id" value="${sessionScope.loginId}"/> --%>
 		<div id="gradePage">
 			<table id="listTable" width="100%">
 				<tr>
@@ -99,7 +96,6 @@
 						<input type="radio" name="s4" value="5"/>매우 그렇다
 			<button>평가완료</button>
 		</div>
-		<!-- </form> -->
 	</body>
 	<script>
 	var obj={};
