@@ -38,6 +38,11 @@
 			#sub div:hover {
 				text-decoration: underline;
 			}
+			#update{
+				position: absolute;
+				left:700px;
+				top:720px;
+			}
 		</style>
 	</head>
 	<body>
@@ -49,9 +54,16 @@
 			<div id="lectureNote"><a href="p04.jsp">강의자료</a></div>
 			<div id="upload"><a href="p07.jsp">과제</a></div>
 		</div>
+		<form action="plecturePlanUpdateForm" method="get">
+		<div>
+			<button id="update" >수정</button>
+		</div>
+	</form>
 	</body>
 	<script>
 		$(document).ready(function() {
+			//수정 버튼 감추기
+			$("#update").hide();
 			// 교수가 강의하는 과목 select 태그에 추가
 			$.ajax({
 				type: "post",
@@ -75,6 +87,8 @@
 
 		// 과목 선택 시
 		 $("#list").change(function() {
+			//수정 버튼 보여주기
+			 $("#update").show();
 			// 과목 선택이 아닌 실제 과목을 선택한 경우
 			if ($(this).val() != "default") {
 			

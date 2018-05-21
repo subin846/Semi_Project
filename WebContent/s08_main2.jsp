@@ -51,7 +51,6 @@
 		</div>
 	</body>
 	<script>
-	
  		$("#list").change(function(){
 			obj.url="./subjectSel";
 			obj.data={selected:$("#list option:selected").val()};
