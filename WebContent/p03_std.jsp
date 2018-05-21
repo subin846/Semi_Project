@@ -36,9 +36,19 @@
 				background-color: white;
 				font-size: 25px;
 			}
+			#p{
+				margin-left: 22%;
+				margin-top: 3%;
+			}
 		</style>
 	</head>
 	<body>
+	<div>
+		<jsp:include page="p03-main.jsp"></jsp:include>
+	</div>
+	<div>
+		<jsp:include page="p03_lecture2.jsp"></jsp:include>
+	</div>
 		<table id="p">
 			<tr>
 				<th id="plan" colspan="6">강 의 계 획 서</th>
