@@ -54,7 +54,7 @@
 			<div id="lectureNote"><a href="p04.jsp">강의자료</a></div>
 			<div id="upload"><a href="p07.jsp">과제</a></div>
 		</div>
-		<form action="slecturePlanUpdate" method="get">
+		<form action="plecturePlanUpdateForm" method="get">
 		<div>
 			<button id="update" >수정</button>
 		</div>
