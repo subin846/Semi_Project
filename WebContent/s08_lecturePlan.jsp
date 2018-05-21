@@ -43,6 +43,11 @@
 			#navi div:hover{
 				background-color: #4375DB;
 			}
+			#update{
+				position: absolute;
+				left:700px;
+				top:720px;
+			}
 		</style>
 	</head>
 	<body>
@@ -72,8 +77,15 @@
 		<jsp:include page="s08_main2.jsp"></jsp:include>
 		<jsp:include page="p03_std.jsp"></jsp:include>
 	</div>
+	<form action="slecturePlanUpdateForm" method="get">
+		<div>
+			<button id="update" >수정</button>
+		</div>
+	</form>
 	<script>
 	$(document).ready(function() {
+		//수정 버튼 감추기
+		$("#update").hide();
 		// 학생이 신청한 과목 select 태그에 추가
 		$.ajax({
 			type: "post",
@@ -97,6 +109,8 @@
 
 	// 과목 선택 시
 	 $("#list").change(function() {
+		//수정 버튼 보여주기
+		 $("#update").show();
 		// 과목 선택이 아닌 실제 과목을 선택한 경우
 		if ($(this).val() != "default") {
 		
@@ -130,43 +144,5 @@
 		} 
 	}); 
 });
-	
- 	/* var obj={};
-	obj.type="post";
-	obj.dataType="json";
-	obj.error=function(e){console.log(e)};
-
-		$("#subBbs").click(function(){
-			obj.url="./subjectTab";
-			obj.success=function(data){
-				//console.log(data);
-				if(data){
-					console.log("성공");
-					//console.log(data.sublist);
-					 selectbox(data.sublist); 
-				}else{
-					location.href="index.jsp";
-				}
-			}
-			ajaxCall(obj);
-		});
-		
-		function selectbox(list) {
-			var content ="";
-			console.log(list);
-			$("#list").html("<option value='과목선택'>과목선택</option>");
-				list.forEach(function(item){
-					console.log(item);
-					content += "<option value="+item.subject_name+">";
-					content += item.subject_name;
-					content += "</option>";
-				});
-				$("#list").append(content);
-		}
-		
-		function ajaxCall(param){
-			console.log("ajax 호출")
-			$.ajax(obj);
-		}  */
 	</script>
 </html>

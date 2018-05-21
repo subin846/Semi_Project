@@ -366,6 +366,7 @@ public class MainController extends HttpServlet {
 			System.out.println("학생 강의계획서 페이지 요청");
 			mservice.slecturePlan();
 			break;
+		
 /**********************************************************************/			
 			//은경
 			

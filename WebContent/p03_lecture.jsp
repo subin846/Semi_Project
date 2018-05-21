@@ -43,6 +43,7 @@
 			#navi div:hover{
 				background-color: #4375DB;
 			}
+			
 		</style>
 	</head>
 	<body>
