@@ -370,6 +370,11 @@ public class MainController extends HttpServlet {
 			System.out.println("교수 강의계획서 페이지 요청");
 			mservice.plecturePlanUpdateForm();
 			break;
+			
+		case "/lectureWrite" :
+			System.out.println("교수 강의계획서 페이지 작성 요청");
+			mservice.lectureWrite();
+			break;
 /**********************************************************************/			
 			//은경
 			

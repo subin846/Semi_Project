@@ -235,6 +235,14 @@ public class MainService extends PwDTO{
 		rd.forward(request, response);
 	
 	}
+
+	//강의계획서 작성 요청(교수 페이지)
+	public void lectureWrite() {
+		int subject_id = Integer.parseInt(request.getParameter("selected"));
+		MainDAO dao = new MainDAO();
+		DTO dto = dao.lectureWrite(subject_id);
+		
+	}
 	
 }
 

@@ -227,7 +227,7 @@ public class MainDAO {
 			DTO dto = new DTO();
 			String sql = "SELECT T.term_id, S.subject_name, S.subject_type, S.subject_credit, P.pro_name, "
 					+ "P.pro_email, S.subject_room, M.major_name, S.subject_time, std.std_year, p.plan_cu, p.plan_book, "
-					+ "p.subject_objective, p.plan_sub_book "
+					+ "p.subject_objective, p.plan_sub_book, S.subject_id "
 					+ "FROM pro P " + "JOIN subject S ON P.pro_id = S.pro_id "
 					+ "JOIN term T ON S.term_id = T.term_id " + "JOIN major M ON S.major_id = M.major_id " 
 					+ "JOIN std std ON std.major_id = M.major_id " 
@@ -307,6 +307,12 @@ public class MainDAO {
 				resClose();
 			}
 			return dto;
+		}
+
+		//강의 계획서
+		public DTO lectureWrite(int subject_id) {
+			String sql = "INSERT INTO plan VALUES ()"
+			return null;
 		}
 	
 	
