@@ -36,6 +36,13 @@
 				background-color: white;
 				font-size: 25px;
 			}
+			#listTable{
+				width: 75%;
+				margin-top: 1%;
+				margin-left: 22%;
+				margin-right: 20%;
+				font-size: small;
+			}
 		</style>
 	</head>
 	<body>
@@ -45,10 +52,7 @@
 	<div>
 		<jsp:include page="p04-main2.jsp"></jsp:include>
 	</div>
-		<select id="subjectSel" name="sub">
-			<option value="default">과목 선택</option>
-		</select>
-		<table>
+		<table id="listTable">
 			<tr>
 				<th id="plan" colspan="6">강 의 계 획 서</th>
 			</tr>
@@ -122,12 +126,12 @@
 							+ "</option>";
 							console.log(data.subjectList[i]);
 					}
-					$("#subjectSel").append(str);
+					$("#list").append(str);
 				} 
 			});
 		
 			// 과목 선택 시
-		 $("#subjectSel").change(function() {
+		 $("#list").change(function() {
 			// 과목 선택이 아닌 실제 과목을 선택한 경우
 			if ($(this).val() != "default") {
 				

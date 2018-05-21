@@ -7,7 +7,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Insert title here</title>
 		<style>
-			#grade{
+			#gradePage{
 				margin-left: 22%;
 				margin-right: 3%;
 				margin-top: 1%;
@@ -39,10 +39,7 @@
 		<div>
 			<jsp:include page="s09-main2.jsp"/>
 		</div>
-<%-- 		<form name="form" method="get">
-		<input type="hidden" name="selected" value="${main.subject_id}"/>
-		<input type="hidden" name="std_id" value="${sessionScope.loginId}"/> --%>
-		<div id="grade">
+		<div id="gradePage">
 			<table id="listTable" width="100%">
 				<tr>
 					<th colspan="4"><h3>강&nbsp;의&nbsp;평&nbsp;가&nbsp;서</h3></th>
@@ -99,7 +96,6 @@
 						<input type="radio" name="s4" value="5"/>매우 그렇다
 			<button>평가완료</button>
 		</div>
-		<!-- </form> -->
 	</body>
 	<script>
 	var obj={};

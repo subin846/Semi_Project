@@ -63,7 +63,7 @@
 		});
 		// 과목게시판 클릭
 		$("#navi2").click(function() {
-			location.href="./p03-main.jsp";
+			location.href="./p03.jsp";
 		});
 		// 강의 클릭
 		$("#navi3").click(function() {
