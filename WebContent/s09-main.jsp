@@ -53,9 +53,9 @@
 			<a href="#">LOGOUT</a>
 		</div>
 		<div id="navi">
-			<div id="std">학적</div>
+			<div id="std"><a href="s02-main.jsp">학적</a></div>
 			<div id="subBbs"><a href="s08_lecturePlan.jsp">과목게시판</a></div>
-			<div id="enroll">수강신청</div>
+			<div id="enroll"><a href="s15.jsp">수강신청</a></div>
 		</div>
 	</body>
 </html>
