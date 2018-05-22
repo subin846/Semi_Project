@@ -73,7 +73,7 @@
 	        		<input type="text" name="userId"  placeholder="학번,사번(ID No.)"/>
 	        	</div>
 	        	<div>
-	        		<input type="text" name="userPw" placeholder="비밀번호(Password)"/>
+	        		<input type="password" name="userPw" placeholder="비밀번호(Password)"/>
 	        	</div>
 	        	<p id="one">
 	        		원하는 서비스를 이용하시려면 로그인이 필요합니다.<br/>
