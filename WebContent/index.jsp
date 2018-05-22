@@ -11,31 +11,85 @@
             	padding: 5px;
             	text-align: center;
             }
+            input [type="text"]{
+			    line-height: 18px;
+			    margin-bottom: 10px;
+			    padding: 10px;
+			    font-size: 14px;
+			    border: 1px solid #ccc;
+			        font: 400 13.3333px Arial;
+            }
+            input{
+           		margin:5px;
+             	height: 40px;
+	            width: 311px;
+			    color: #4d4d4d;
+            }
+           /*  form{
+            	position: absolute;
+            	top: 230px;
+            	left: 710px;
+            	background-color:white;
+            } */
+           #one{
+           		font-size: 14px;
+           		color: red;	
+           } 
+           #two{
+           		font-size: 14px;
+         		color: #737373;	
+           }
+           	body{
+           		background-color:#E6E6E6;
+            }
+            #main{
+           		position: absolute;
+            	top: 150px;
+            	left: 24%;
+            	background-color:white;
+            	width: 800px;
+            	height: 400px;
+            }
+            #sub{
+            position:absolute;
+            	left: 460px;
+            	top: 70px;
+            }
+            img{
+            	position: absolute;
+            	top: 70px;
+            	left: 50px;
+            }
         </style>
         <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     </head>
     <body>
-    	<h1>로그인</h1>
-        <form action="login" method="post">
-            <table>
-                <tr>
-                    <th>아이디</th>
-                    <td>
-                        <input type="text" name="userId" placeholder="아이디를 입력하세요.">
-                    </td>
-                    <td rowspan="2">
-                        <input type="submit" value="로그인">
-                    </td>
-                </tr>
-                <tr>
-                    <th>비밀번호</th>
-                    <td>
-                        <input type="password" name="userPw" placeholder="비밀번호를 입력하세요.">
-                    </td>
-                </tr>
-            </table>
+    	
+    	<div id="main">
+        <form action="WebContent/login" method="post">
+        		<img src="logo.png" width="240" height="230" alt="로고,,,"/>
+        		
+    		<div id="sub">
+	        	<div>
+	        		<input type="text" name="userId"  placeholder="학번,사번(ID No.)"/>
+	        	</div>
+	        	<div>
+	        		<input type="text" name="userPw" placeholder="비밀번호(Password)"/>
+	        	</div>
+	        	<p id="one">
+	        		원하는 서비스를 이용하시려면 로그인이 필요합니다.<br/>
+	        		Login is required for the service you want.
+	        	</p>
+	        	<div>
+	        		 <input type="submit" value="로그인(Login)">
+	     		</div>
+	     		<p id="two">
+	        		이용후 반드시 로그아웃 해주세요!<br/>
+					Please be sure to log out after use.
+	        	</p>
+     		</div>
         </form>
-        
+        </div>
     </body>
     <script>
     	var msg = "${msg}";
