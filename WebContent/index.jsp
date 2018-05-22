@@ -67,8 +67,7 @@
     	
     	<div id="main">
         <form action="WebContent/login" method="post">
-        		<img src="logo.png" width="240" height="230" alt="로고,,,"/>
-        		
+        		<img src="https://blogfiles.pstatic.net/MjAxODA1MjJfNDcg/MDAxNTI2OTU4ODkzNDA0.oE2RFzgkqv7yFyZABPHt8v16sbv5BMEMQW4qLjNdvF8g.d84xnLh5TPDc_pF8IdFtGGiCsmeR8s7V9e2XzJlcWPUg.PNG.lmc0129/logo.png" width="350" height="250" alt="로고,,,"/>
     		<div id="sub">
 	        	<div>
 	        		<input type="text" name="userId"  placeholder="학번,사번(ID No.)"/>
