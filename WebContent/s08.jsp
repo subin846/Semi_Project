@@ -43,6 +43,9 @@
 				margin-right: 20%;
 				font-size: small;
 			}
+			#plan{
+				text-decoration: underline;
+			}
 		</style>
 	</head>
 	<body>
