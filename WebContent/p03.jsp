@@ -127,14 +127,22 @@
 				data: {
 					"loginId": "${sessionScope.loginId}"
 				},
-				 success: function(data) {
+				 /*  success: function(data) {
 					var str = "";
 					for (var i = 0; i < data.subjectList.length; i++) {
 						str += "<option value='" + data.subjectList[i].subject_id + "'>" 
 							+ data.subjectList[i].subject_name 
 							+ "</option>";
-							console.log(data.subjectList[i]);
-					}
+							console.log(data.subjectList[i]); 
+					} */
+					 success: function(data) {
+						var str = "";
+						for (var i = 0; i < data.subjectList.length; i++) {
+							str += "<option value='" + data.subjectList[i] + "'>" 
+								+ data.subjectList[i]
+								+ "</option>";
+								console.log(data.subjectList[i]);
+						} 
 					$("#list").append(str);
 				} 
 			});
@@ -155,7 +163,7 @@
 					success: function(data) {
 						// 태그에 가져온 데이터 넣기
 					
-						$("#major").html(data.dto.major_name);
+						 $("#major").html(data.dto.major_name);
 						$("#term").html(data.dto.term_id);
 						$("#subject").html(data.dto.subject_name);
 						$("#class").html(data.dto.std_year);
@@ -168,12 +176,25 @@
 						$("#cu").html(data.dto.plan_cu);
 						$("#planbook").html(data.dto.plan_book);
 						$("#objective").html(data.dto.subject_objective);
-						$("#sub_book").html(data.dto.plan_sub_book);
+						$("#sub_book").html(data.dto.plan_sub_book); 
+						
+						
+						/* if(data){
+							listPrint(data.subjectList)
+						}else{
+							alert("과목을 다시 선택해주세요");
+						
 					}
-				});
-			} 
-		}); 
-	});
+					ajaxCall(obj); */
+				
+				
+				
+					
+				}
+			});
+		} 
+	}); 
+});
 		$("#regist").click(function(){
 			var subject_id =  $("#list option:selected").val();
 			console.log(subject_id);
@@ -186,6 +207,38 @@
 			console.log(subject_id);
 			location.href="./planUpdatePage?loginId="+loginId+"&subject_id="+subject_id;
 		});
+		
+/* 		function listPrint(subjectList){
+	   		var content ="";
+	   		 $("#listTable").html("<table id='listTable'><tr><th id='plan' colspan='6'>강 의 계 획 서</th></tr>"
+	   		+"<tr><th id='major' colspan='6'></th></tr><tr><th>학기</th><td id='term' colspan='2'></td>"
+			+"<th>교과목명</th><td id='subject' colspan='2'></td></tr><tr><th>학년-분반</th>"
+			+"<th>이수구분</th><td id='major_type'></td><th>학점</th><td id='score'></td></tr>"
+			+"<tr><th>담당교수</th><td id='pro' colspan='3'></td><th>시수</th><td id='time'></td>"
+			+"</tr><tr><th>E-Mail</th><td id='email' colspan='2'></td><th>교육장소</th>"
+			+"<td id='classroom' colspan='2'></td></tr><tr><th colspan='6'>교과목 개요 및 특징</th>"
+			+"</tr><tr><td colspan='6' id='cu'></td></tr><tr><th colspan='6'>교과목표</th>"
+			+"</tr><tr><td colspan='6' id='objective'></td></tr><tr><th colspan='3' rowspan='2'>교재</th>"
+			+"<th>주교재</th><td colspan='2' id ='planbook'></td></tr><th>부교재</th>"
+			+"<td colspan='2' id ='sub_book'></td><tr></tr></table>"); //테이블 초기화
+	
+	   		subjectList.forEach(function(item){
+	   		    content += "<tr>";
+	   			content += "<td>"+item.schedule_content+"</td>";
+	   			content += "</tr>";  
+	   			
+	   			content += "<tr>";
+	   			content += "<td>"+item.term_id+"</td>";
+	   			content += "</tr>";
+	   			
+	   		});
+	   		$("#listTable").append(content);
+	   	}
+		
+		function ajaxCall(param){
+			console.log("ajax 호출")
+			$.ajax(obj);
+		} */
 		
 	</script>
 </html>
