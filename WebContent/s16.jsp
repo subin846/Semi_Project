@@ -95,6 +95,25 @@
 			margin:20px;
 			text-align: center;
 		}
+		.divPaging{
+ 	 		width:300px;
+ 	 		border:1px solid black;
+            padding: 10px 0px;
+            text-align: center;
+           	cursor:pointer;
+		}
+		.divPaging #curpage{
+    	color :blue;
+   		}	
+	    #page button{
+			color: black;
+			margin-right: 1%;
+			text-align: center;
+		}
+		#page{
+			margin-top: 2%;
+			font-size: medium;
+		}
 	</style>
 </head>
 <body>
@@ -140,6 +159,11 @@
 				<th>수강신청</th>
 			</tr>
 			</table>
+			
+			<div id="page">
+			<jsp:include page="paging.jsp"></jsp:include>
+			</div>
+			
 			<div>
 				최소학점 : <input type="text" value="2" readonly size="10" style="background-color: #e2e2e2"/>	
 				최대학점 : <input type="text" id="maxCredit" value="10" readonly  size="10" style="background-color: #e2e2e2"/>	
@@ -182,41 +206,19 @@
 			$("#btn").click(function(){
 				console.log("조회 버튼 클릭");
 				obj.url="./subjectSearch";
-				obj.optSel = $("#optSelect option:selected").val();
-				obj.selId = $("#inp").val();
-				obj.term_id = "AND S.term_id > '2018-1' ";
+				obj.optValue = $("#optSelect option:selected").val();
+				obj.inpValue = $("#inp").val();
+				obj.term_id = " >'2018-1' ";
 				obj.data={
 						//getParameter()메서드 : name 을 통해서 value를 얻을 수 있음
 						//2개 파라메터로 보내서 opt 를 기준으로 sql 분류
-						"optSel"  :obj.optSel,
-						"selId" : obj.selId,
+						"optValue"  :obj.optValue,
+						"inpValue" : obj.inpValue,
 						"term_id" : obj.term_id
 					}; 
 				obj.success =function(data){
-					if(".trRemove1"!=null){
-						//tr 제거
-						console.log("tr제거");
-						$(".trRemove1").remove();
-					}
-					// 수강신청 과목 리스트 담을 변수 선언
-					var listAppend;
-					for(var i =0; i<data.searchList.length; i++){
-						listAppend+="<tr class='trRemove1'>"
-						listAppend+="<td class='display'>"+data.searchList[i].subject_id+"</td>"
-						listAppend+="<td>"+data.searchList[i].term_id+"</td>"
-						listAppend+="<td>"+data.searchList[i].major_name+"</td>"
-						listAppend+="<td>"+data.searchList[i].subject_name+"</td>"
-						listAppend+="<td>"+data.searchList[i].pro_name+"</td>"
-						listAppend+="<td>"+data.searchList[i].subject_room+"</td>"
-						listAppend+="<td>"+data.searchList[i].subject_time+"</td>"
-						listAppend+="<td>"+data.searchList[i].subject_type+"</td>"
-						listAppend+="<td>"+data.searchList[i].subject_credit+"</td>"
-						listAppend+="<td>"+data.searchList[i].subject_limit+"</td>"
-						listAppend+="<td>"+data.searchList[i].subject_count+"</td>"
-						listAppend+="<td><input type='button' class='enroll'  value='수강신청'></td>" 
-						listAppend+="</tr>"
-					}
-						$("#initialEntry").after(listAppend);
+					append(data.searchList);
+					pagingView(data.paging);
 				};
 				ajaxCall(obj);
 			});
@@ -318,18 +320,21 @@
 				}
 			});
 		});
+	
+	
+	
 		/* ready 되면서 전체 과목 리스트 조회*/
 		function initialEntry(obj){
 				console.log("initialEntry 함수 호출");
 				obj.url="./subjectSearch";
-				obj.term_id = "AND S.term_id > '2018-1' ";
-				obj.optSel = $("#optSelect option:selected").val();
-				obj.selId = $("#inp").val();
+				obj.term_id = " > '2018-1' ";
+				obj.optValue = $("#optSelect option:selected").val();
+				obj.inpValue = $("#inp").val();
 				obj.data={
 						//getParameter()메서드 : name 을 통해서 value를 얻을 수 있음
 						//2개 파라메터로 보내서 opt 를 기준으로 sql 분류
-						"optSel"  :obj.optSel,
-						"selId" : obj.selId,
+						"optValue"  :obj.optValue,
+						"inpValue" : obj.inpValue,
 						"term_id" : obj.term_id
 				};
 				/*이전 학기 평점조회 와 
@@ -338,36 +343,97 @@
 					console.log("initialEntry 성공!");
 					console.log(data);
 					console.log(data.searchList);
-					console.log(data.searchList.length);
-					if(".trRemove1"!=null){
-						//tr 제거
-						console.log("tr제거");
-						$(".trRemove1").remove();
-					}
-					// 수강신청 과목 리스트 담을 변수 선언
-					var listAppend;
-					for(var i =0; i<data.searchList.length; i++){
-
-						listAppend+="<tr class='trRemove1'>"
-						listAppend+="<td class='display'>"+data.searchList[i].subject_id+"</td>"
-						listAppend+="<td>"+data.searchList[i].term_id+"</td>"
-						listAppend+="<td>"+data.searchList[i].major_name+"</td>"
-						listAppend+="<td>"+data.searchList[i].subject_name+"</td>"
-						listAppend+="<td>"+data.searchList[i].pro_name+"</td>"
-						listAppend+="<td>"+data.searchList[i].subject_room+"</td>"
-						listAppend+="<td>"+data.searchList[i].subject_time+"</td>"
-						listAppend+="<td>"+data.searchList[i].subject_type+"</td>"
-						listAppend+="<td>"+data.searchList[i].subject_credit+"</td>"
-						listAppend+="<td>"+data.searchList[i].subject_limit+"</td>"
-						listAppend+="<td>"+data.searchList[i].subject_count+"</td>"
-						listAppend+="<td><input type='button' class='enroll'  value='수강신청'></td>" 
-						listAppend+="</tr>"
-					}
-						$("#initialEntry").after(listAppend);
+					append(data.searchList);
+					pagingView(data.paging);
 				};
 				ajaxCall(obj);
 		}
-		
+
+		/* 수강 신청 과목 list 출력 */
+		function append(searchList){
+			if(".trRemove1"!=null){
+				//tr 제거
+				console.log("tr제거");
+				$(".trRemove1").remove();
+			}
+			// 수강신청 과목 리스트 담을 변수 선언
+			var listAppend;
+			for(var i =0; i<searchList.length; i++){
+				listAppend+="<tr class='trRemove1'>"
+				listAppend+="<td class='display'>"+searchList[i].subject_id+"</td>"
+				listAppend+="<td>"+searchList[i].term_id+"</td>"
+				listAppend+="<td>"+searchList[i].major_name+"</td>"
+				listAppend+="<td>"+searchList[i].subject_name+"</td>"
+				listAppend+="<td>"+searchList[i].pro_name+"</td>"
+				listAppend+="<td>"+searchList[i].subject_room+"</td>"
+				listAppend+="<td>"+searchList[i].subject_time+"</td>"
+				listAppend+="<td>"+searchList[i].subject_type+"</td>"
+				listAppend+="<td>"+searchList[i].subject_credit+"</td>"
+				listAppend+="<td>"+searchList[i].subject_limit+"</td>"
+				listAppend+="<td>"+searchList[i].subject_count+"</td>"
+				listAppend+="<td><input type='button' class='enroll'  value='수강신청'></td>" 
+				listAppend+="</tr>"
+			}
+			$("#initialEntry").after(listAppend);
+		}
+		/* 페이징 뷰 */
+ 		function pagingView(paging){
+ 			console.log("pagingView 호출");
+ 			console.log(paging);
+ 			// 초기화
+ 			$(".paging").html("");
+ 			// 맨앞
+ 		    if (paging.startPage > 1) {
+ 		        $(".paging").append("<a class='text' onclick='list(1)'>맨앞</a>");
+ 		    }
+ 		    // 이전
+ 		    if (paging.startPage > 1) {
+ 		        $(".paging").append("<a class='text' onclick='list("+paging.prevPage+")'>이전</a>");
+ 		    }
+ 		    // 페이지 번호
+ 		    for (var i = paging.startPage; i <= paging.endPage; i++) {
+ 		        if (i == paging.page) {
+ 		            $(".paging").append("<a id='curPage' onclick='list("+i+")'>" + i + "</a>");
+ 		        } else {
+ 		            $(".paging").append("<a onclick='list("+i+")'>" + i + "</a>");
+ 		        }
+ 		    }
+ 		    // 다음
+ 		    if (paging.endPage != paging.totalPage) {
+ 		        $(".paging").append("<a class='text' onclick='list(" + paging.nextPage  + ")'>다음</a>");
+ 		    }
+ 		    // 맨뒤
+ 		    if (paging.endPage != paging.totalPage) {
+ 		        $(".paging").append("<a class='text' onclick='list(" + paging.totalPage + ")'>맨뒤</a>");
+ 		    }
+ 		}
+	/* 페이징 뷰 이벤트 처리  - 페이징 처리하는 ajax를 만들어보자.*/
+	function list(page){
+			console.log(page);
+			var optValue = $("#optSelect option:selected").val();
+			var inpValue = $("#inp").val();
+			var term_id = " <= '2018-2' ";
+			$.ajax({
+				type:"POST",
+				url:"./subjectSearch",
+				dataType:"JSON",
+				data:{
+					"optValue":optValue , 
+					"inpValue": inpValue,
+					"term_id": term_id ,
+					"page" :page
+				},
+				success:function(data){
+					console.log(data);
+					append(data.searchList)
+					pagingView(data.paging)
+				},
+				error:function(error){
+					console.log(error);
+				}
+			});
+	}
+
 		/* ready 되면서 특정학생이 수강 신청한 과목 조회 */
 		function stdEnroll(obj){
 				console.log("stdEnroll 함수 호출");

@@ -24,6 +24,9 @@ public class PageInfo {
 		this.totalCount = totalCount;
 		
 		// 총 페이지수(나누어 떨어질 때 마지막 페이지가 빈페이지로 표시되는 것 방지)
+		if(totalCount < listCount ) {
+			totalPage = 1; 
+		}
 		totalPage = totalCount / listCount;
 		if (totalCount % listCount > 0) {
 			totalPage++;
@@ -48,11 +51,12 @@ public class PageInfo {
 		startNum = (page - 1) * listCount + 1;
 		// 페이지에서 보여줄 마지막 글번호
 		endNum = page * listCount;
-		
+	
 		// 다음 눌렀을 때 이동할 페이지
 		nextPage = endPage + 1;
 		// 이전 눌렀을 때 이동할 페이지
 		prevPage = startPage - 1;
+
 	}
 
 	// Getters

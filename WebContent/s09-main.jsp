@@ -36,11 +36,17 @@
 				padding: 17px 50px 13px 50px;
 				background-color: #9DCFFF;
 				float: left;
+			}
+			#navi a{
 				color: white;
 				font-size: large;
 				font-weight: bold;
+				text-decoration: none;
 			}
 			#navi div:hover{
+				background-color: #4375DB;
+			}
+			#navi #subBbs{
 				background-color: #4375DB;
 			}
 		</style>
@@ -55,7 +61,7 @@
 		<div id="navi">
 			<div id="std"><a href="s02-main.jsp">학적</a></div>
 			<div id="subBbs"><a href="s08.jsp">과목게시판</a></div>
-			<div id="enroll"><a href="s15.jsp">수강신청</a></div>
+			<div id="enroll"><a href="s15-main.jsp">수강신청</a></div>
 		</div>
 	</body>
 </html>

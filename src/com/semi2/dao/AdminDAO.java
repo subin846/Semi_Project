@@ -135,7 +135,7 @@ public class AdminDAO {
 				ps.setString(7, dto.getStd_email());
 				ps.setString(8, dto.getStd_name());
 				ps.setString(9, dto.getStd_pw());
-				ps.setString(10, dto.getMajor_name());
+				ps.setString(10, dto.getMajor_id());
 				success=ps.executeUpdate();
 				System.out.println(success);
 			} catch (SQLException e) {

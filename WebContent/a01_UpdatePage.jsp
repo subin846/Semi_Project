@@ -24,11 +24,12 @@
 	input{
 		padding : 10px 5px;
 		font-size: 17px;
-		width: 78%;
+		width: 79%;
 		z-index: 10;
 		height: 35px;
 		border: none;
 		background: #fff;
+		border: 1px solid #dadada;
 	}
 	select{
 		text-align:center;
@@ -61,7 +62,7 @@
  <body>
  	<h2  onclick="location.href='student'">Total Information System</h2>
 	<h4 onclick="location.href='student'" >학생 수정</h4>
-	    <form action="update">
+	    <form action="update" method="post">
 			<div id="div1">
 				<div>
 					&nbsp; 학번 : ${form.std_id}
@@ -69,21 +70,19 @@
 				</div>
 				<hr/>
 				<div>
-					&nbsp; 이름 :<input type="text" name="std_name"  value="${form.std_name}">
+					&nbsp; 이름 : <input type="text" name="std_name"  value="${form.std_name}">
 				</div>
 				<hr/>
 				<div>
 					&nbsp; 학년 :
 					<select name="std_year">
-	            		<option value="none"  selected="selected" >-선택하세요-</option>
-	  					<option value="1">1</option>
-					  	<option value="2">2</option>
-					 	<option value="3">3</option>
-					 	<option value="4">4</option>
+	  					<option value="1">1학년</option>
+					  	<option value="2">2학년</option>
+					 	<option value="3">3학년</option>
+					 	<option value="4">4학년	</option>
 					</select>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;상태 :
 					<select name="std_state">
-	            		<option value="none"  selected="selected" >-선택하세요-</option>
 	  					<option value="재학">재학</option>
 					  	<option value="졸업">졸업</option>
 					 	<option value="휴학">휴학</option>
@@ -91,19 +90,19 @@
 				</div>
 				<hr/>
 				<div>
-					&nbsp; 생년월일 :<input type="text" name="std_birthday"  value="${form.std_birthday}">
+					&nbsp; 생년월일 : <input type="text" name="std_birthday"  value="${form.std_birthday}">
 				</div>
 				<hr/>
 				<div>
-					&nbsp; 핸드폰번호 :<input type="text" name="std_phone"  value="${form.std_phone}">
+					&nbsp; 연락처 : <input type="text" name="std_phone"  value="${form.std_phone}">
 				</div>
 				<hr/>
 				<div>
-					&nbsp; 주소 :<input type="text" name="std_address"  value="${form.std_address}">
+					&nbsp; 주소 : <input type="text" name="std_address"  value="${form.std_address}">
 				</div>
 				<hr/>
 				<div>
-					&nbsp; 이메일 :<input type="text" name="std_email"  value="${form.std_email}">
+					&nbsp; 이메일 : <input type="text" name="std_email"  value="${form.std_email}">
 				</div>
 				<hr/>
 			</div>

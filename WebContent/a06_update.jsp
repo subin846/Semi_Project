@@ -54,7 +54,7 @@
  	<h2  onclick="location.href='suManagePage'">Total Information System</h2>
 	<h4 onclick="location.href='suManagePage'" >과목 수정</h4>
 	<br/><br/><br/>
-	 <form action="suUpdate">
+	 <form action="suUpdate" method="post">
 		<div id="div1">
 			<div>
 				&nbsp; 과목코드 :${ form.subject_id }

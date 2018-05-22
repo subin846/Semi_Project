@@ -56,7 +56,7 @@
  <body>
  <h2  onclick="location.href='ePage'">Total Information System</h2>
 	<h4 onclick="location.href='ePage'" >장학금 관리 수정</h4>
-	    <form action="eUpdate">
+	    <form action="eUpdate" method="post">
 			<div id="div1">
 				<div>
 					&nbsp; 학기 :

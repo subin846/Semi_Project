@@ -172,6 +172,14 @@
 				background: linear-gradient(to bottom,  #f2f2f2 0%,#f0f0f0 100%); /* W3C */
 				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f2f2', endColorstr='#f0f0f0',GradientType=0 ); /* IE6-9 */
 			}
+			#div3{
+                position: absolute;
+                width:330px;
+                height: 100px;
+                border: none solid black;
+                top: 130px;
+                left: 1050px;
+           	}
 		</style>
 	</head>
 	<body>

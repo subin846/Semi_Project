@@ -66,10 +66,10 @@
 	<body>
 		<h2  onclick="location.href='student'">Total Information System</h2>
 		<h4 onclick="location.href='student'" >학생 등록</h4>
-		<form action="register">
+		<form action="register" method="post">
 			<div id="div1">
 				<div>
-					<input type="text" name="std_id"  placeholder="학번">
+					<input  type="text" name="std_id"  placeholder="학번">
 				</div>
 				<hr/>
 				<div>
@@ -99,11 +99,11 @@
 				</div>
 				<hr/>
 				<div>
-					<input type="text" name="std_birthday"  placeholder="생일">
+					<input type="text" name="std_birthday"  placeholder="생년월일">
 				</div>
 				<hr/>
 				<div>
-					<input type="text" name="std_phone"  placeholder="핸드폰번호">
+					<input type="text" name="std_phone"  placeholder="연락처">
 				</div>
 				<hr/>
 				<div>
@@ -121,8 +121,10 @@
 			</div>
 			<br/>
 			<div id="div3">
-				<input  type="submit" value="완료"/> 
+				<input type="submit" value="완료"/> 
 			</div>
 		</form>
 	</body>
+	<script>
+	</script>
 </html>

@@ -53,7 +53,7 @@
  <body>
  	<h2  onclick="location.href='aTuition'">Total Information System</h2>
 	<h4 onclick="location.href='aTuition'" >등록금 수정</h4>
-	    <form action="tUpdate">
+	    <form action="tUpdate" method="post">
 			<div id="div1">
 				<div>
 					&nbsp; 학기 : ${form.term_id}
@@ -78,7 +78,7 @@
 				</div>
 				<hr/>
 				<div>
-					&nbsp; 등록금 :<input type="text" name="tuition_money"  value="${form.tuition_money}">
+					&nbsp; 등록금 : <input type="text" name="tuition_money"  value="${form.tuition_money}">
 				</div>
 				<hr/>
 			</div>
