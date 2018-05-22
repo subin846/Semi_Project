@@ -17,6 +17,7 @@
 			}
  			#sub a{
 				text-decoration: none;
+				color: black;
 			}
 			#sub{
 				margin-top: 1%;
@@ -34,6 +35,7 @@
 				font-weight: bold;
 				color: black;
 				margin-left: 10px;
+				background-color: #F6F6F6;
 			}
 			#sub div:hover {
 				text-decoration: underline;

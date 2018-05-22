@@ -20,7 +20,7 @@
 				color: red;
 				font-size: x-small;
 			}
-			#grade input[type='button']{
+			#gradePage button{
 			 	float: right;
 			 	margin-top: 1%;
 			}
@@ -59,42 +59,72 @@
 						</ul>
 					</td>
 				</tr>
-				</table>
-				<h3>강의 진행이 체계적이었는가?</h3>
+				<tr>
+					<td colspan="4"><h3>강의 진행이 체계적이었는가?</h3></td>
+				</tr>
+				<tr>
+					<td colspan="4">
 						<input type="radio" name="s0" value="1"/>매우 그렇지 않다
 						<input type="radio" name="s0" value="2"/>그렇지 않다
 						<input type="radio" name="s0" value="3"/>보통이다
 						<input type="radio" name="s0" value="4"/>그렇다
 						<input type="radio" name="s0" value="5"/>매우 그렇다
-				
-				<h3>강의 내용이 강의계획서대로 진행되었는가?</h3>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4"><h3>강의 내용이 강의계획서대로 진행되었는가?</h3></td>
+				</tr>
+				<tr>
+					<td colspan="4">
 						<input type="radio" name="s1" value="1"/>매우 그렇지 않다
 						<input type="radio" name="s1" value="2"/>그렇지 않다
 						<input type="radio" name="s1" value="3"/>보통이다
 						<input type="radio" name="s1" value="4"/>그렇다
 						<input type="radio" name="s1" value="5"/>매우 그렇다
-
-				<h3>교재 선택(또는 보로자료 제시)이 적절하였는가?</h3>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4">
+						<h3>교재 선택(또는 보로자료 제시)이 적절하였는가?</h3>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4">
 						<input type="radio" name="s2" value="1"/>매우 그렇지 않다
 						<input type="radio" name="s2" value="2"/>그렇지 않다
 						<input type="radio" name="s2" value="3"/>보통이다
 						<input type="radio" name="s2" value="4"/>그렇다
 						<input type="radio" name="s2" value="5"/>매우 그렇다
-
-				<h3>강의 시간을 준수하였는가?</h3>
+					</td>
+				</tr>		
+				<tr>
+					<td colspan="4"><h3>강의 시간을 준수하였는가?</h3></td>
+				</tr>
+				<tr>
+					<td colspan="4">
 						<input type="radio" name="s3" value="1"/>매우 그렇지 않다
 						<input type="radio" name="s3" value="2"/>그렇지 않다
 						<input type="radio" name="s3" value="3"/>보통이다
 						<input type="radio" name="s3" value="4"/>그렇다
 						<input type="radio" name="s3" value="5"/>매우 그렇다
-				
-				<h3>이 수업이 전체적으로 만족스러웠는가?</h3>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4">
+						<h3>이 수업이 전체적으로 만족스러웠는가?</h3>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4">
 						<input type="radio" name="s4" value="1"/>매우 그렇지 않다
 						<input type="radio" name="s4" value="2"/>그렇지 않다
 						<input type="radio" name="s4" value="3"/>보통이다
 						<input type="radio" name="s4" value="4"/>그렇다
 						<input type="radio" name="s4" value="5"/>매우 그렇다
-			<button>평가완료</button>
+					</td>
+				</tr>
+		</table>
+		<button>평가완료</button>
 		</div>
 	</body>
 	<script>
@@ -151,7 +181,11 @@
 	}
 	
 	$("button").click(function(){
-		if(!$("input[name='s0']:checked").val()){
+		var selected = $("#list option:selected").val();
+		if(selected == "과목선택"){
+			alert("과목을 다시 선택하세요");
+			return;
+		}else if(!$("input[name='s0']:checked").val()){
 			alert("점수를 선택하세요");
 			return;
 		}else if(!$("input[name='s1']:checked").val()){
