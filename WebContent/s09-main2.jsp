@@ -17,6 +17,7 @@
 			}
  			#sub a{
 				text-decoration: none;
+				color: black;
 			}
 			#sub{
 				margin-top: 1%;

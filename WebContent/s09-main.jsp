@@ -30,7 +30,7 @@
 				margin-top: 20px;
 				overflow:hidden;
 			}
-			#navi div{
+			#navi a{
 				display: inline;
 				height: 30px;
 				padding: 17px 50px 13px 50px;
@@ -39,6 +39,7 @@
 				color: white;
 				font-size: large;
 				font-weight: bold;
+				text-decoration: none;
 			}
 			#navi div:hover{
 				background-color: #4375DB;
