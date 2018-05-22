@@ -178,7 +178,9 @@
 
 </head>
 <body>
+	<div id="div3">
        <input id="bnt" type="button" onclick="location.href='a03_register.jsp'" value="등록">
+	</div>
     <table cellspacing='0'> <!-- cellspacing='0' is important, must stay -->
 		<thead>
         <tr>

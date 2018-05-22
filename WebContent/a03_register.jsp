@@ -55,7 +55,7 @@
 		<h2  onclick="location.href='scScholar'">Total Information System</h2>
 		<h4 onclick="location.href='scScholar'" >장학금 종류 등록</h4>
 		<br/><br/><br/>
-		<form action="scAdd">
+		<form action="scAdd" method="post">
 			<div id="div1">
 				<div id="div2">
 					<input type="text" name="scholar_name"  placeholder="장학금 종류">

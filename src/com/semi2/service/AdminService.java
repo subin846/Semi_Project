@@ -94,6 +94,7 @@ public class AdminService {
 		dto.setStd_email(request.getParameter("std_email"));
 		dto.setStd_address(request.getParameter("std_address"));
 		dto.setStd_pw(request.getParameter("std_pw"));
+		dto.setMajor_id(request.getParameter("major_id"));
 		if(dao.sAdd(dto)>0) {
 			System.out.println("저장완료");
 		}

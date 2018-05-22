@@ -63,7 +63,7 @@
  	<h2  onclick="location.href='gPage'">Total Information System</h2>
 	<h4 onclick="location.href='gPage'" >강의평가 질문 수정</h4>
 	<br/><br/><br/>
-	<form action="gUpdate">
+	<form action="gUpdate" method="post">
 		<div id="div1">
 			<div>
 				&nbsp; 질문번호 : ${ form.question_id }

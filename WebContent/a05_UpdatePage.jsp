@@ -57,7 +57,7 @@
  	<h2  onclick="location.href='pManagePage'">Total Information System</h2>
 	<h4 onclick="location.href='pManagePage'" >교수 수정</h4>
 	<br/><br/><br/>
-	<form action="pUpdate">
+	<form action="pUpdate" method="post">
 		<div id="div1">
 			<div>
 				&nbsp; 사번 :${form.pro_id}

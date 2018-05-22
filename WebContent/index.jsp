@@ -17,7 +17,7 @@
 			    padding: 10px;
 			    font-size: 14px;
 			    border: 1px solid #ccc;
-			        font: 400 13.3333px Arial;
+		        font: 400 13.3333px Arial;
             }
             input{
            		margin:5px;
@@ -25,12 +25,6 @@
 	            width: 311px;
 			    color: #4d4d4d;
             }
-           /*  form{
-            	position: absolute;
-            	top: 230px;
-            	left: 710px;
-            	background-color:white;
-            } */
            #one{
            		font-size: 14px;
            		color: red;	

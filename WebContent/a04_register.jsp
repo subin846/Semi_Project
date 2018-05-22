@@ -55,7 +55,7 @@
 	<h2  onclick="location.href='ePage'">Total Information System</h2>
 	<h4 onclick="location.href='ePage'" >장학금 관리 등록</h4>
 	<br/><br/><br/>
-	<form action="eAdd">
+	<form action="eAdd" method="post">
 		<div id="div1">
 			<div>
 				<input type="text" name="term_id"  placeholder="학기">

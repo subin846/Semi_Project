@@ -53,7 +53,7 @@
  <body>
  	<h2  onclick="location.href='scScholar'">Total Information System</h2>
 	<h4 onclick="location.href='scScholar'" >장학금 종류 수정</h4>
-	    <form action="scUpdate">
+	    <form action="scUpdate" method="post">
 			<div id="div1">
 				<div>
 					&nbsp; 장학금 코드 : ${form.scholar_id}
