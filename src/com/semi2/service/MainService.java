@@ -265,8 +265,31 @@ public class MainService extends PwDTO{
 	}
 
 	//강의계획서 수정 메서드
-	public void planUpdate() {
+	public void planUpdate() throws ServletException, IOException {
+		DTO dto = new DTO();
+		dto.setSubject_id(Integer.parseInt(request.getParameter("selected")));
 		
+		dto.setTerm_id(request.getParameter("term"));
+		dto.setSubject_name(request.getParameter("subject_name"));
+		dto.setStd_year(Integer.parseInt(request.getParameter("class")));
+		dto.setSubject_type(request.getParameter("major_type"));
+		dto.setSubject_credit(Integer.parseInt(request.getParameter("score")));
+		dto.setPro_name(request.getParameter("pro"));
+		dto.setSubject_time(request.getParameter("time"));
+		dto.setPro_email(request.getParameter("email"));
+		dto.setSubject_room(request.getParameter("classroom"));
+		dto.setPlan_cu(request.getParameter("cu"));
+		dto.setSubject_objective(request.getParameter("objective"));
+		dto.setPlan_book(request.getParameter("planbook"));
+		dto.setPlan_sub_book(request.getParameter("sub_book"));
+		
+		MainDAO dao = new MainDAO();
+		if (dao.planUpdate(dto) > 0) {
+			
+		}
+		request.setAttribute("plan", dto);
+		RequestDispatcher dis = request.getRequestDispatcher("p03.jsp");
+		dis.forward(request, response);
 		
 	}
 	

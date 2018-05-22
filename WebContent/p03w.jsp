@@ -68,29 +68,29 @@
 			</tr>
 			<tr>
 				<th>학기</th>
-				<td id="term" colspan="2"><input type="text" name="term"/></td>
+				<td id="term" colspan="2">${dto.term_id}</td>
 				<th>교과목명</th>
-				<td id="subject" colspan="2"><input type="text" name="subject"/></td>
+				<td id="subject" colspan="2">${dto.subject_name}</td>
 			</tr>
 			<tr>
 				<th>학년-분반</th>
-				<td id="class"><input type="text" name="class"/></td>
+				<td id="class" value="${dto.std_year}"></td>
 				<th>이수구분</th>
-				<td id="major_type"><input type="text" name="major_type"/></td>
+				<td id="major_type" value="${dto.subject_type}"></td>
 				<th>학점</th>
-				<td id="score"><input type="text" name="score"/></td>
+				<td id="score" value="${dto.subject_credit}"></td>
 			</tr>
 			<tr>
 				<th>담당교수</th>
-				<td id="pro" colspan="3"><input type="text" name="pro"/></td>
+				<td id="pro" colspan="3" value="${dto.pro_name}"></td>
 				<th>시수</th>
-				<td id="time"><input type="text" name="time"/></td>
+				<td id="time" value="${dto.subject_time}"></td>
 			</tr>
 			<tr>
 				<th>E-Mail</th>
-				<td id="email" colspan="2"><input type="text" name="email"/></td>
+				<td id="email" colspan="2" value="${dto.pro_email}"></td>
 				<th>교육장소</th>
-				<td id="classroom" colspan="2"><input type="text" name="classroom"/></td>
+				<td id="classroom" colspan="2" value="${dto.subject_room}"></td>
 			</tr>
 			<tr>
 				<th colspan="6">교과목 개요 및 특징</th>
@@ -131,7 +131,7 @@
 				data: {
 					"loginId": "${sessionScope.loginId}"
 				},
-				 success: function(data) {
+				 /* success: function(data) {
 					var str = "";
 					for (var i = 0; i < data.subjectList.length; i++) {
 						str += "<option value='" + data.subjectList[i].subject_id + "'>" 
@@ -140,8 +140,54 @@
 							console.log(data.subjectList[i]);
 					}
 					$("#list").append(str);
+				}  */
+				success: function(data) {
+					var str = "";
+					for (var i = 0; i < data.subjectList.length; i++) {
+						str += "<option value='" + data.subjectList[i].subject_id+ "'>" 
+							+ data.subjectList[i].subject_name 
+							+ "</option>";
+							//console.log(data.subjectList[i]);
+							
+					}
+					$("#list").append(str);
 				} 
 			});
-		});
+			
+			// 과목 선택 시
+	 /* $("#list").change(function() {
+		// 과목 선택이 아닌 실제 과목을 선택한 경우
+		if ($(this).val() != "default") {
+					
+			$.ajax({
+				type: "post",
+				url: "./plecturePlan",
+				dataType: "json",
+				data: {
+					"loginId": "${sessionScope.loginId}",
+					"subject": $("#list option:selected").val() //과목이름 : sub1~sub4 들어감.
+				},
+				success: function(data) {
+					// 태그에 가져온 데이터 넣기
+				
+					$("#major").html(data.dto.major_name);
+					$("#term").html(data.dto.term_id);
+					$("#subject").html(data.dto.subject_name);
+					$("#class").html(data.dto.std_year);
+					$("#major_type").html(data.dto.subject_type);
+					$("#score").html(data.dto.subject_credit.toLocaleString());
+					$("#pro").html(data.dto.pro_name);
+					$("#time").html(data.dto.subject_time);
+					$("#email").html(data.dto.pro_email);
+					$("#classroom").html(data.dto.subject_room);
+					$("#cu").html(data.dto.plan_cu);
+					$("#planbook").html(data.dto.plan_book);
+					$("#objective").html(data.dto.subject_objective);
+					$("#sub_book").html(data.dto.plan_sub_book); 
+				}
+			});
+		} 
+	});  */
+});
 	</script>
 </html>

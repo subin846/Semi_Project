@@ -127,22 +127,22 @@
 				data: {
 					"loginId": "${sessionScope.loginId}"
 				},
-				 /*  success: function(data) {
+				   success: function(data) {
 					var str = "";
 					for (var i = 0; i < data.subjectList.length; i++) {
-						str += "<option value='" + data.subjectList[i].subject_id + "'>" 
-							+ data.subjectList[i].subject_name 
+						str += "<option value='" + data.subjectList[i] + "'>" 
+							+ data.subjectList[i] 
 							+ "</option>";
 							console.log(data.subjectList[i]); 
-					} */
-					 success: function(data) {
+					} 
+					 /* success: function(data) {
 						var str = "";
 						for (var i = 0; i < data.subjectList.length; i++) {
 							str += "<option value='" + data.subjectList[i] + "'>" 
 								+ data.subjectList[i]
 								+ "</option>";
 								console.log(data.subjectList[i]);
-						} 
+						}  */
 					$("#list").append(str);
 				} 
 			});
@@ -163,7 +163,7 @@
 					success: function(data) {
 						// 태그에 가져온 데이터 넣기
 					
-						 $("#major").html(data.dto.major_name);
+						$("#major").html(data.dto.major_name);
 						$("#term").html(data.dto.term_id);
 						$("#subject").html(data.dto.subject_name);
 						$("#class").html(data.dto.std_year);
@@ -198,14 +198,47 @@
 		$("#regist").click(function(){
 			var subject_id =  $("#list option:selected").val();
 			console.log(subject_id);
+			
+			/* $.ajax({
+				type: "post",
+				url: "./plecturePlan",
+				dataType: "json",
+				data: {
+					"loginId": "${sessionScope.loginId}",
+					"subject": $("#list option:selected").val() //과목이름 : sub1~sub4 들어감.
+				},
+				success: function(data) {
+					// 태그에 가져온 데이터 넣기
+				
+					$("#major").html(data.dto.major_name);
+					$("#term").html(data.dto.term_id);
+					$("#subject").html(data.dto.subject_name);
+					$("#class").html(data.dto.std_year);
+					$("#major_type").html(data.dto.subject_type);
+					$("#score").html(data.dto.subject_credit.toLocaleString());
+					$("#pro").html(data.dto.pro_name);
+					$("#time").html(data.dto.subject_time);
+					$("#email").html(data.dto.pro_email);
+					$("#classroom").html(data.dto.subject_room);
+					$("#cu").html(data.dto.plan_cu);
+					$("#planbook").html(data.dto.plan_book);
+					$("#objective").html(data.dto.subject_objective);
+					$("#sub_book").html(data.dto.plan_sub_book); */
+					
+			
 			location.href="p03w.jsp?subject_id="+subject_id;
-		});
+				
+			
+		 
+	}); 
+
 		
 		$("#update").click(function(){
 			var loginId = "${sessionScope.loginId}";
 			var subject_id =  $("#list option:selected").val();
 			console.log(subject_id);
-			location.href="./planUpdatePage?loginId="+loginId+"&subject_id="+subject_id;
+			/* location.href="./planUpdatePage?loginId="+loginId+"&subject_id="+subject_id; */
+			location.href="./p03u.jsp?loginId="+loginId+"&subject_id="+subject_id;
 		});
 		
 /* 		function listPrint(subjectList){
