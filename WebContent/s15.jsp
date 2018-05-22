@@ -9,7 +9,26 @@
 		}
 		#btn{
 			cursor: pointer;
-		}		 
+		}
+		.divPaging{
+ 	 		width:300px;
+ 	 		border:1px solid black;
+            padding: 10px 0px;
+            text-align: center;
+           	cursor:pointer;
+		}
+		.divPaging #curpage{
+    	color :blue;
+   		}	
+	    #page button{
+			color: black;
+			margin-right: 1%;
+			text-align: center;
+		}
+		#page{
+			margin-top: 2%;
+			font-size: medium;
+		}
 	</style>
 </head>
 <body>
@@ -38,72 +57,143 @@
 				<th>평점</th>
 			</tr>
 			</table>
+		<div id="page">
+			<jsp:include page="paging.jsp"></jsp:include>
+		</div>
 </body>
 <script>
 	$(document).ready(function(){
 		//ready 되자마자 이전 과목 리스트 요청
-		var optSel = $("#optSelect option:selected").val();
-		var selId = $("#inp").val();
+		var obj ={};
+		obj.type="POST";
+		obj.url="./subjectSearch" ; 
+		obj.optValue = $("#optSelect option:selected").val();
+		obj.inpValue = $("#inp").val();
+		//obj.page;
 		/*이전 학기 평점조회 와 
 		신학기 수강신청 과목 분류 하기위해 분류할수있는 데이터 함께 전송*/
-		var term_id = "AND S.term_id <= '2018-2' "
-		ajaxCall();
+		obj.term_id = " <= '2018-2' "
+		obj.data={
+				//getParameter()메서드 : name 을 통해서 value를 얻을 수 있음
+				//optValue를 기준으로 sql 분류
+				"optValue"  :obj.optValue,
+				"inpValue" : obj.inpValue ,
+				"term_id" : obj.term_id,
+		};
+		obj.dataType="JSON";
+		obj.success=function(data){
+			console.log("성공!");
+			console.log(data);
+			pagingView(data.paging);
+			append(data.searchList);
+		};
+		obj.error=function(error){
+				console.log("error");
+		};
+		ajaxCall(obj);
+		
 		/* 조회 버튼 클릭 시 text의 value 가져오기 */
 		$("#btn").click(function(){
  			console.log("조회 버튼 클릭");
-			optSel = $("#optSelect option:selected").val();
-			selId = $("#inp").val();
-			console.log("selId : "+selId);
-			ajaxCall();
+ 			obj.optValue = $("#optSelect option:selected").val();
+ 			obj.inpValue = $("#inp").val();
+ 			obj.data={
+ 					//getParameter()메서드 : name 을 통해서 value를 얻을 수 있음
+ 					//optValue를 기준으로 sql 분류
+ 					"optValue"  :obj.optValue,
+ 					"inpValue" : obj.inpValue ,
+ 					"term_id" : obj.term_id,
+ 			};
+			ajaxCall(obj);
 		}); 
-
- 		function ajaxCall(){
-
-			 $.ajax({
-				type:"post",
+	});		
+		/* 과목 list 출력 */
+ 		function append(searchList){
+			//부모 , 자식 요소 삭제 - tr을 삭제 후 새로운 tr 생성
+				if($(".trRemove")!=null){
+				$(".trRemove").remove();
+				console.log("tr제거");
+			} 
+			var listAppend;
+			for(var i =0; i<searchList.length; i++){
+				listAppend+="<tr class='trRemove'>"
+				listAppend+="<td>"+searchList[i].term_id+"</td>"
+				listAppend+="<td>"+searchList[i].major_name+"</td>"
+				listAppend+="<td>"+searchList[i].subject_name+"</td>"
+				listAppend+="<td>"+searchList[i].pro_name+"</td>"
+				listAppend+="<td>"+searchList[i].subject_room+"</td>"
+				listAppend+="<td>"+searchList[i].subject_time+"</td>"
+				listAppend+="<td>"+searchList[i].subject_type+"</td>"
+				listAppend+="<td>"+searchList[i].subject_credit+"</td>"
+				listAppend+="<td>"+searchList[i].subject_limit+"</td>"
+				listAppend+="<td>"+searchList[i].subject_grade+"</td>"
+				listAppend+="</tr>"
+			}
+				$("#trAppend").after(listAppend);
+ 		}
+		/* 페이징 뷰 */
+ 		function pagingView(paging){
+ 			console.log("pagingView 호출");
+ 			console.log(paging);
+ 			// 초기화
+ 			$(".paging").html("");
+ 			// 맨앞
+ 		    if (paging.startPage > 1) {
+ 		        $(".paging").append("<a class='text' onclick='list(1)'>맨앞</a>");
+ 		    }
+ 		    // 이전
+ 		    if (paging.startPage > 1) {
+ 		        $(".paging").append("<a class='text' onclick='list("+paging.prevPage+")'>이전</a>");
+ 		    }
+ 		    // 페이지 번호
+ 		    for (var i = paging.startPage; i <= paging.endPage; i++) {
+ 		        if (i == paging.page) {
+ 		            $(".paging").append("<a id='curPage' onclick='list("+i+")'>" + i + "</a>");
+ 		        } else {
+ 		            $(".paging").append("<a onclick='list("+i+")'>" + i + "</a>");
+ 		        }
+ 		    }
+ 		    // 다음
+ 		    if (paging.endPage != paging.totalPage) {
+ 		        $(".paging").append("<a class='text' onclick='list(" + paging.nextPage  + ")'>다음</a>");
+ 		    }
+ 		    // 맨뒤
+ 		    if (paging.endPage != paging.totalPage) {
+ 		        $(".paging").append("<a class='text' onclick='list(" + paging.totalPage + ")'>맨뒤</a>");
+ 		    }
+ 		}
+	/* 페이징 뷰 이벤트 처리  - 페이징 처리하는 ajax를 만들어보자.*/
+	function list(page){
+			console.log(page);
+			var optValue = $("#optSelect option:selected").val();
+			var inpValue = $("#inp").val();
+			var term_id = " <= '2018-2' ";
+			$.ajax({
+				type:"POST",
 				url:"./subjectSearch",
-				data:{
-					//getParameter()메서드 : name 을 통해서 value를 얻을 수 있음
-					//2개 파라메터로 보내서 opt 를 기준으로 sql 분류
-					"optSel"  :optSel,
-					"selId" : selId,
-					"term_id" : term_id
-				},
 				dataType:"JSON",
-					success:function(data){
-						console.log("성공!");
-						console.log(data);
-						console.log(data.searchList);
-						console.log(data.searchList.length);
-						//부모 , 자식 요소 삭제 - tr을 삭제 후 새로운 tr 생성
-	 					if($(".trRemove")!=null){
-							$(".trRemove").remove();
-							console.log("tr제거");
-						} 
-						var listAppend;
-						for(var i =0; i<data.searchList.length; i++){
-							listAppend+="<tr class='trRemove'>"
-							listAppend+="<td>"+data.searchList[i].term_id+"</td>"
-							listAppend+="<td>"+data.searchList[i].major_name+"</td>"
-							listAppend+="<td>"+data.searchList[i].subject_name+"</td>"
-							listAppend+="<td>"+data.searchList[i].pro_name+"</td>"
-							listAppend+="<td>"+data.searchList[i].subject_room+"</td>"
-							listAppend+="<td>"+data.searchList[i].subject_time+"</td>"
-							listAppend+="<td>"+data.searchList[i].subject_type+"</td>"
-							listAppend+="<td>"+data.searchList[i].subject_credit+"</td>"
-							listAppend+="<td>"+data.searchList[i].subject_limit+"</td>"
-							listAppend+="<td>"+data.searchList[i].subject_grade+"</td>"
-							listAppend+="</tr>"
-						}
-							$("#trAppend").after(listAppend);
-					},
-					error:function(data){
-							console.log("error");
-							console.log(data);
-					}
+				data:{
+					"optValue":optValue , 
+					"inpValue": inpValue,
+					"term_id": term_id ,
+					"page" :page
+				},
+				success:function(data){
+					console.log(data);
+					append(data.searchList)
+					pagingView(data.paging)
+				},
+				error:function(error){
+					console.log(error);
+				}
 			});
-		} 
-	});
+	}
+ 		 /* ajax실행 */
+		function ajaxCall(obj){
+			console.log(obj);
+			console.log("ajax호출");
+			$.ajax(obj);
+		}
 
 </script>
 </html>
