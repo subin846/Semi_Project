@@ -66,7 +66,7 @@
     <body>
     	
     	<div id="main">
-        <form action="WebContent/login" method="post">
+        <form action="login" method="post">
         		<img src="https://blogfiles.pstatic.net/MjAxODA1MjJfNDcg/MDAxNTI2OTU4ODkzNDA0.oE2RFzgkqv7yFyZABPHt8v16sbv5BMEMQW4qLjNdvF8g.d84xnLh5TPDc_pF8IdFtGGiCsmeR8s7V9e2XzJlcWPUg.PNG.lmc0129/logo.png" width="350" height="250" alt="로고,,,"/>
     		<div id="sub">
 	        	<div>
