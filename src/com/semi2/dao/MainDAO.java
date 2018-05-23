@@ -229,7 +229,7 @@ public class MainDAO {
 			DTO dto = new DTO();
 			String sql = "SELECT T.term_id, S.subject_name, S.subject_type, S.subject_credit, P.pro_name, "
 					+ "P.pro_email, S.subject_room, M.major_name, S.subject_time, std.std_year, p.plan_cu, p.plan_book, "
-					+ "p.subject_objective, p.plan_sub_book,S.subject_id "
+					+ "p.plan_objective, p.plan_sub_book,S.subject_id "
 					+ "FROM pro P " + "JOIN subject S ON P.pro_id = S.pro_id "
 					+ "JOIN term T ON S.term_id = T.term_id " + "JOIN major M ON S.major_id = M.major_id " 
 					+ "JOIN std std ON std.major_id = M.major_id " 
@@ -256,7 +256,7 @@ public class MainDAO {
 					dto.setPlan_cu(rs.getString("plan_cu"));
 					dto.setPlan_book(rs.getString("plan_book"));
 					dto.setPlan_sub_book(rs.getString("plan_sub_book"));
-					dto.setPlan_objective(rs.getString("subject_objective"));
+					dto.setPlan_objective(rs.getString("plan_objective"));
 					dto.setSubject_id(rs.getInt("subject_id"));
 				}
 
@@ -274,7 +274,7 @@ public class MainDAO {
 			DTO dto = new DTO();
 			String sql = "SELECT T.term_id, S.subject_name, S.subject_type, S.subject_credit, P.pro_name, "
 					+ "P.pro_email, S.subject_room, M.major_name, S.subject_time, std.std_year, p.plan_cu, p.plan_book, "
-					+ "p.subject_objective, p.plan_sub_book "
+					+ "p.plan_objective, p.plan_sub_book "
 					+ "FROM pro P " + "JOIN subject S ON P.pro_id = S.pro_id "
 					+ "JOIN term T ON S.term_id = T.term_id " + "JOIN major M ON S.major_id = M.major_id " 
 					+ "JOIN std std ON std.major_id = M.major_id " 
@@ -301,7 +301,7 @@ public class MainDAO {
 					dto.setPlan_cu(rs.getString("plan_cu"));
 					dto.setPlan_book(rs.getString("plan_book"));
 					dto.setPlan_sub_book(rs.getString("plan_sub_book"));
-					dto.setPlan_objective(rs.getString("subject_objective"));
+					dto.setPlan_objective(rs.getString("plan_objective"));
 				}
 
 			} catch (Exception e) {
@@ -335,7 +335,7 @@ public class MainDAO {
 		//강의 계획서 수정
 		public int planUpdate(DTO dto) {
 			int result = 0;
-			String sql = "UPDATE plan SET plan_cu=?, plan_book=?, subject_objective=?, plan_sub_book=? "
+			String sql = "UPDATE plan SET plan_cu=?, plan_book=?, plan_objective=?, plan_sub_book=? "
 					+ "WHERE subject_id=?";	
 			try {
 				ps= conn.prepareStatement(sql);
