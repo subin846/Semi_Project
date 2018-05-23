@@ -112,6 +112,8 @@ public class MainService extends PwDTO{
 		if(npw.equals(npwcheck)) {
 			if(dao.passChange(dto, pwdto)>0) {
 				System.out.println("비밀번호 변경 완료");
+				//location.href="index.jsp";
+				response.sendRedirect("index.jsp");
 			}else {
 				System.out.println("실패");
 				response.sendRedirect("m02.jsp");
@@ -223,7 +225,7 @@ public class MainService extends PwDTO{
 		DTO dto = new DTO();
 		dto.setSubject_id(Integer.parseInt(request.getParameter("selected")));
 		
-		dto.setTerm_id(request.getParameter("term"));
+		/*dto.setTerm_id(request.getParameter("term"));
 		dto.setSubject_name(request.getParameter("subject_name"));
 		dto.setStd_year(Integer.parseInt(request.getParameter("class")));
 		dto.setSubject_type(request.getParameter("major_type"));
@@ -231,9 +233,9 @@ public class MainService extends PwDTO{
 		dto.setPro_name(request.getParameter("pro"));
 		dto.setSubject_time(request.getParameter("time"));
 		dto.setPro_email(request.getParameter("email"));
-		dto.setSubject_room(request.getParameter("classroom"));
+		dto.setSubject_room(request.getParameter("classroom"));*/
 		dto.setPlan_cu(request.getParameter("cu"));
-		dto.setSubject_objective(request.getParameter("objective"));
+		dto.setPlan_objective(request.getParameter("objective"));
 		dto.setPlan_book(request.getParameter("planbook"));
 		dto.setPlan_sub_book(request.getParameter("sub_book"));
 		
@@ -247,6 +249,23 @@ public class MainService extends PwDTO{
 		
 	}
 
+	//강의계획서 글 쓰기 폼 요청
+	public void planWritePage() throws ServletException, IOException{
+		String loginId = request.getParameter("loginId");
+		int subject_id = Integer.parseInt(request.getParameter("subject_id"));
+		System.out.println("수정 폼 아이디 : "+loginId);
+		System.err.println("수정 폼 서브젝트 아이디 : "+subject_id);
+		
+		MainDAO dao = new MainDAO();
+		DTO planDTO = new DTO();
+		
+		DTO dto = dao.plecturePlan(loginId,subject_id);
+		request.setAttribute("dto", dto);
+		RequestDispatcher dis = request.getRequestDispatcher("p03w.jsp");
+		dis.forward(request, response);
+	}
+	
+	
 	//강의계획서를 수정하는 폼 요청 메서드
 	public void planUpdatePage() throws ServletException, IOException {
 		String loginId = request.getParameter("loginId");
@@ -263,13 +282,13 @@ public class MainService extends PwDTO{
 		dis.forward(request, response);
 		
 	}
-
+	
 	//강의계획서 수정 메서드
 	public void planUpdate() throws ServletException, IOException {
 		DTO dto = new DTO();
 		dto.setSubject_id(Integer.parseInt(request.getParameter("selected")));
 		
-		dto.setTerm_id(request.getParameter("term"));
+		/*dto.setTerm_id(request.getParameter("term"));
 		dto.setSubject_name(request.getParameter("subject_name"));
 		dto.setStd_year(Integer.parseInt(request.getParameter("class")));
 		dto.setSubject_type(request.getParameter("major_type"));
@@ -277,9 +296,9 @@ public class MainService extends PwDTO{
 		dto.setPro_name(request.getParameter("pro"));
 		dto.setSubject_time(request.getParameter("time"));
 		dto.setPro_email(request.getParameter("email"));
-		dto.setSubject_room(request.getParameter("classroom"));
+		dto.setSubject_room(request.getParameter("classroom"));*/
 		dto.setPlan_cu(request.getParameter("cu"));
-		dto.setSubject_objective(request.getParameter("objective"));
+		dto.setPlan_objective(request.getParameter("objective"));
 		dto.setPlan_book(request.getParameter("planbook"));
 		dto.setPlan_sub_book(request.getParameter("sub_book"));
 		
@@ -292,6 +311,8 @@ public class MainService extends PwDTO{
 		dis.forward(request, response);
 		
 	}
+
+
 	
 }
 

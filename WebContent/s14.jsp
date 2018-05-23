@@ -137,7 +137,7 @@
 	$(document).ready(function(){
 		obj.url="./subjectTab";
 		obj.data={
-				"id":'${sessionScope.loginId}'
+				"id":"${sessionScope.loginId}"
 		}
 		obj.success=function(data){
 			if(data){
@@ -200,30 +200,55 @@
 		}else if(!$("input[name='s4']:checked").val()){
 			alert("점수를 선택하세요");
 			return;
-		}
-		obj.url="./grade";
+		}else if(overlay()){
+				obj.url="./grade";
+				obj.data={
+						"id":"${sessionScope.loginId}",
+						"selected" :$("#list option:selected").val(),
+						"s0":$("input[name='s0']:checked").val(),
+						"s1":$("input[name='s1']:checked").val(),
+						"s2":$("input[name='s2']:checked").val(),
+						"s3":$("input[name='s3']:checked").val(),
+						"s4":$("input[name='s4']:checked").val()
+				}
+				obj.success=function(data){
+					if(data){
+						location.href="s14.jsp"
+					}else{
+						alert("평가를 다시 해주세요");
+					}
+				}
+				ajaxCall(obj);
+			}else{
+				alert("평가는 한번만 가능합니다.");
+			}
+	});
+	
+	//중복체크 함수
+	function overlay(){
+		var result=true;
+		obj.url="./overlay";
 		obj.data={
 				"id":"${sessionScope.loginId}",
-				"selected" :$("#list option:selected").val(),
-				"s0":$("input[name='s0']").val(),
-				"s1":$("input[name='s1']").val(),
-				"s2":$("input[name='s2']").val(),
-				"s3":$("input[name='s3']").val(),
-				"s4":$("input[name='s4']").val()
+				"selected" :$("#list option:selected").val()
 		}
+		obj.async=false; //return 값을 반환받기 위해 사용
 		obj.success=function(data){
-			if(data){
-				location.href="s14f.jsp"
+			console.log(data.overlay);
+			if(data.overlay){ //값이 없으면 true
+				result = true;
 			}else{
-				alert("평가를 다시 해주세요");
+				result = false;
 			}
 		}
 		ajaxCall(obj);
-	});
+		return result;
+	}
 	
 	function ajaxCall(param){
-		console.log("ajax 호출")
+		console.log("ajax 호출");
 		$.ajax(obj);
+
 	}
 	</script>
 </html>

@@ -371,7 +371,10 @@ public class MainController extends HttpServlet {
 			System.out.println("교수 강의계획서 페이지 작성 요청");
 			mservice.lectureWrite();
 			break;
-			
+		case "/planWritePage" :
+			System.out.println("교수 강의계획서 페이지 글쓰기 폼 요청");
+			mservice.planWritePage();
+			break;
 		case "/planUpdatePage" :
 			System.out.println("교수 강의계획서 페이지 수정 폼 요청");
 			mservice.planUpdatePage();
@@ -510,6 +513,12 @@ public class MainController extends HttpServlet {
 			bbs = new BbsService(request,response);
 			bbs.listback();
 			break;
+			
+		case "/overlay":
+			System.out.println("체크 요청");
+			bbs = new BbsService(request,response);
+			bbs.overlay();
+			break;	
 		}
 	}
 

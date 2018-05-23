@@ -173,7 +173,7 @@
 						$("#classroom").html(data.dto.subject_room);
 						$("#cu").html(data.dto.plan_cu);
 						$("#planbook").html(data.dto.plan_book);
-						$("#objective").html(data.dto.subject_objective);
+						$("#objective").html(data.dto.plan_objective);
 						$("#sub_book").html(data.dto.plan_sub_book);
 					}
 				});
@@ -181,9 +181,11 @@
 		}); 
 	});
 		$("#regist").click(function(){
+			var loginId = "${sessionScope.loginId}";
 			var subject_id =  $("#list option:selected").val();
 			console.log(subject_id);
-			location.href="p03w.jsp?subject_id="+subject_id;
+			/* location.href="p03w.jsp?subject_id="+subject_id; */
+			location.href="./planWritePage?loginId="+loginId+"&subject_id="+subject_id;
 		});
 		
 		$("#update").click(function(){

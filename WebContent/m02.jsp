@@ -58,7 +58,7 @@
 	<body>
 	
 		<div id="main">
-			<img onclick="location.href='index.jsp'" alt="로고" src="https://blogfiles.pstatic.net/MjAxODA1MjJfNDcg/MDAxNTI2OTU4ODkzNDA0.oE2RFzgkqv7yFyZABPHt8v16sbv5BMEMQW4qLjNdvF8g.d84xnLh5TPDc_pF8IdFtGGiCsmeR8s7V9e2XzJlcWPUg.PNG.lmc0129/logo.png" width="450" height="350">
+			<img onclick="location.href='index.jsp'" alt="로고" src="https://lh3.googleusercontent.com/onlT8Z29jXIit_TyzKv9k4feg61Jeo4QkjyRNdmN1LxCcQ5I-b4J06a8jQVWl5k1awZg4Q-US9jBWbCbv7kF=w1600-h720" width="450" height="350">
 			<div id="div1">
 				<form action="passChange" method="post">
 					<table>
@@ -118,7 +118,8 @@
 		if(document.getElementById("writeNewPass").value!=document.getElementById("newPassCheck").value){
 			alert("새 비밀번호가 일치하지 않습니다. 다시 확인 해 주세요.");
 		}else{
-			alert("저장이 완료 되었습니다.");
+			alert("저장이 완료 되었습니다. 새로운 비밀번호로 다시 로그인 해 주세요.");
+			//location.href="index.jsp";
 		}
 		//console.log(loginPw);
 		//console.log(document.getElementById("writePass").value);

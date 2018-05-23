@@ -176,7 +176,7 @@ public class MainDAO {
 	//교수 과목 리스트
 		public ArrayList<DTO> selectProSubject(String loginId) {
 			ArrayList<DTO> subjectList = new ArrayList<>();
-			String sql = "SELECT subject_name, subject_id FROM subject WHERE pro_id = ?";
+			String sql = "SELECT subject_name, subject_id FROM subject WHERE pro_id = ? AND term_id='2018-1' ";
 
 			try {
 				ps = conn.prepareStatement(sql);
@@ -202,7 +202,7 @@ public class MainDAO {
 			public ArrayList<String> selectStdSubject(String loginId) {
 				ArrayList<String> subjectList = new ArrayList<>();
 				String sql = "SELECT S.subject_name FROM subject S JOIN enroll E ON S.subject_id = E.subject_id "
-						+ "WHERE std_id = ? ORDER BY subject_name ";
+						+ "WHERE std_id = ? AND term_id='2018-1' ORDER BY subject_name ";
 
 				try {
 					ps = conn.prepareStatement(sql);
@@ -229,7 +229,7 @@ public class MainDAO {
 			DTO dto = new DTO();
 			String sql = "SELECT T.term_id, S.subject_name, S.subject_type, S.subject_credit, P.pro_name, "
 					+ "P.pro_email, S.subject_room, M.major_name, S.subject_time, std.std_year, p.plan_cu, p.plan_book, "
-					+ "p.subject_objective, p.plan_sub_book,S.subject_id "
+					+ "p.plan_objective, p.plan_sub_book,S.subject_id "
 					+ "FROM pro P " + "JOIN subject S ON P.pro_id = S.pro_id "
 					+ "JOIN term T ON S.term_id = T.term_id " + "JOIN major M ON S.major_id = M.major_id " 
 					+ "JOIN std std ON std.major_id = M.major_id " 
@@ -256,7 +256,7 @@ public class MainDAO {
 					dto.setPlan_cu(rs.getString("plan_cu"));
 					dto.setPlan_book(rs.getString("plan_book"));
 					dto.setPlan_sub_book(rs.getString("plan_sub_book"));
-					dto.setSubject_objective(rs.getString("subject_objective"));
+					dto.setPlan_objective(rs.getString("plan_objective"));
 					dto.setSubject_id(rs.getInt("subject_id"));
 				}
 
@@ -274,7 +274,7 @@ public class MainDAO {
 			DTO dto = new DTO();
 			String sql = "SELECT T.term_id, S.subject_name, S.subject_type, S.subject_credit, P.pro_name, "
 					+ "P.pro_email, S.subject_room, M.major_name, S.subject_time, std.std_year, p.plan_cu, p.plan_book, "
-					+ "p.subject_objective, p.plan_sub_book "
+					+ "p.plan_objective, p.plan_sub_book "
 					+ "FROM pro P " + "JOIN subject S ON P.pro_id = S.pro_id "
 					+ "JOIN term T ON S.term_id = T.term_id " + "JOIN major M ON S.major_id = M.major_id " 
 					+ "JOIN std std ON std.major_id = M.major_id " 
@@ -301,7 +301,7 @@ public class MainDAO {
 					dto.setPlan_cu(rs.getString("plan_cu"));
 					dto.setPlan_book(rs.getString("plan_book"));
 					dto.setPlan_sub_book(rs.getString("plan_sub_book"));
-					dto.setSubject_objective(rs.getString("subject_objective"));
+					dto.setPlan_objective(rs.getString("plan_objective"));
 				}
 
 			} catch (Exception e) {
@@ -321,7 +321,7 @@ public class MainDAO {
 				ps.setInt(1, dto.getSubject_id());
 				ps.setString(2, dto.getPlan_cu());
 				ps.setString(3, dto.getPlan_book());
-				ps.setString(4, dto.getSubject_objective());
+				ps.setString(4, dto.getPlan_objective());
 				ps.setString(5, dto.getPlan_sub_book());
 				result = ps.executeUpdate();
 			} catch (SQLException e) {
@@ -335,13 +335,13 @@ public class MainDAO {
 		//강의 계획서 수정
 		public int planUpdate(DTO dto) {
 			int result = 0;
-			String sql = "UPDATE plan SET plan_cu=?, plan_book=?, subject_objective=?, plan_sub_book=? "
+			String sql = "UPDATE plan SET plan_cu=?, plan_book=?, plan_objective=?, plan_sub_book=? "
 					+ "WHERE subject_id=?";	
 			try {
 				ps= conn.prepareStatement(sql);
 				ps.setString(1, dto.getPlan_cu());
 				ps.setString(2, dto.getPlan_book());
-				ps.setString(3, dto.getSubject_objective());
+				ps.setString(3, dto.getPlan_objective());
 				ps.setString(4, dto.getPlan_sub_book());
 				ps.setInt(5, dto.getSubject_id());
 				result = ps.executeUpdate();

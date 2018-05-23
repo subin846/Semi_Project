@@ -9,42 +9,65 @@
 		<style>
 			body{
 				margin: 0px; /* body와 div 사이 공백 제거 */
+				background-image: url('http://www.city.kr/files/attach/images/1326/304/983/008/3805676538b654da659d9f36cb53eb7b.jpg') ;
+				background-size: cover;
 			}
 			#menu{
+				width: 100%;
+				height:50px;
+				margin-top: 0px;
+				background-color: #9DCFFF;
 				overflow:hidden;
 				float: right;
 				font-weight: 600;
-				font-size:12px;
-				margin: 15px 0px 15px 0px;
+				font-size:16px;
+				color: white;
+				
 			}
 			#menu a{
 				text-decoration: none;
 				border-left: 1px solid #c0c0c0;
 				padding: 0px 10px 0px 14px;
-				color: black;
+				color: white;
+			}
+			#menu1{
+				position : relative;
+				top: 10px;
+				left:70%;
+				color: white;
 			}
 			#navi{
 				width: 100%;
-				height: 60px;
-				background-color: #9DCFFF;
+				height: 90px;
 				margin-top: 20px;
 				overflow:hidden;
+				background-color:white;
+				border-bottom: 1px solid #ccc;
 			}
 			#navi div{
-				display: inline;
-				height: 30px;
-				padding: 17px 50px 13px 50px;
-				background-color: #9DCFFF;
 				float: left;
+				position : relative;
+				top : 0px;
+				left: 80px;
+			}
+			.title{
+				position : relative;
+				top : 0px;
+				left: 150px;
+				display: inline;
+				height: 100%;
+				padding: 17px 50px 13px 50px;
+				float: left;
+				text-align: center;
 			}
 			#navi a{
-				color: white;
+				position :relative;
+				top : 15px;
+				left:0px;
+				text-decoration: none;
+				color: #333;
 				font-size: large;
 				font-weight: bold;
-				text-decoration: none;
-			}
-			#navi div:hover{
-				background-color: #4375DB;
 			}
 			#navi #subBbs{
 				background-color: #4375DB;
@@ -53,15 +76,20 @@
 	</head>
 	<body>
 		<div id="menu">
-			<span>${sessionScope.loginId}</span>님 환영합니다
-			<a href="./s01.jsp">HOME</a>
-			<a href="./m02.jsp">비밀번호변경</a>
-			<a href="./logout">LOGOUT</a>
+			<div id="menu1">
+				<span>${sessionScope.loginId}</span>님 환영합니다
+				<a href="./s01.jsp">HOME</a>
+				<a href="./m02.jsp">비밀번호변경</a>
+				<a href="./logout">LOGOUT</a>
+			</div>
 		</div>
 		<div id="navi">
-			<div id="std"><a href="s02-main.jsp">학적</a></div>
-			<div id="subBbs"><a href="s08.jsp">과목게시판</a></div>
-			<div id="enroll"><a href="s15-main.jsp">수강신청</a></div>
+			<div>
+				<img src="https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/33216304_1727920143994082_1446855077636603904_n.jpg?_nc_cat=0&oh=e7f7b334b5752ab8f86f606f82675cf9&oe=5B89CE97" onclick="location.href='s01.jsp'" width="130" height="90" alt="로고,,,"/>
+			</div>
+			<div class="title"><a href="s02-main.jsp">학적</a></div>
+			<div class="title"><a href="s08.jsp" style="text-decoration: underline">과목게시판</a></div>
+			<div class="title"><a href="s15-main.jsp">수강신청</a></div>
 		</div>
 	</body>
 </html>

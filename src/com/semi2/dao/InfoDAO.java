@@ -80,7 +80,7 @@ public class InfoDAO {
 		ArrayList<DTO> list = new ArrayList<>();
 		String sql = "SELECT sub.subject_name, sub.subject_time, sub.subject_room " + "FROM enroll E "
 				+ "JOIN subject sub ON e.subject_id = sub.subject_id " + "JOIN pro P ON P.pro_id = sub.pro_id "
-				+ "WHERE std_id = ?";
+				+ "WHERE std_id = ? AND term_id='2018-1'";
 
 		try {
 			ps = conn.prepareStatement(sql);
