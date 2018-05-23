@@ -243,13 +243,11 @@ public class BbsService {
 		int subject_id = Integer.parseInt(request.getParameter("selected"));
 		BbsDAO dao = new BbsDAO();
 		DTO dto = dao.gradePage(subject_id);
-		/*request.setAttribute("info", dto);*/
 
 		Gson json = new Gson();
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("main", dto);
 		String obj = json.toJson(map);
-		System.out.println(obj);
 		response.setContentType("text/html; charset=UTF-8");
 		response.getWriter().println(obj);
 	}
@@ -513,12 +511,10 @@ public class BbsService {
 
 			String std_id = request.getParameter("id");
 			int selected = Integer.parseInt(request.getParameter("selected"));
-			System.out.println("체크요청 : "+std_id);
-			System.out.println("체크요청 : "+selected);
 			
 			
 			BbsDAO dao = new BbsDAO();
-			boolean success = dao.overlay(std_id,selected);
+			boolean success = dao.overlay(std_id,selected);//값이 존재하면 false
 			
 			Gson json = new Gson(); 
 			HashMap<String, Object> map = new HashMap<>();
