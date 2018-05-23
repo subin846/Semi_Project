@@ -118,7 +118,8 @@
 		if(document.getElementById("writeNewPass").value!=document.getElementById("newPassCheck").value){
 			alert("새 비밀번호가 일치하지 않습니다. 다시 확인 해 주세요.");
 		}else{
-			alert("저장이 완료 되었습니다.");
+			alert("저장이 완료 되었습니다. 새로운 비밀번호로 다시 로그인 해 주세요.");
+			//location.href="index.jsp";
 		}
 		//console.log(loginPw);
 		//console.log(document.getElementById("writePass").value);

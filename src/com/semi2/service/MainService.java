@@ -112,6 +112,8 @@ public class MainService extends PwDTO{
 		if(npw.equals(npwcheck)) {
 			if(dao.passChange(dto, pwdto)>0) {
 				System.out.println("비밀번호 변경 완료");
+				//location.href="index.jsp";
+				response.sendRedirect("index.jsp");
 			}else {
 				System.out.println("실패");
 				response.sendRedirect("m02.jsp");
