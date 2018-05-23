@@ -229,6 +229,7 @@ public class BbsDAO {
 		DTO dto = null;
 		int success = 0;
 		String sql = "INSERT INTO grade(grade_id, grade_grade, subject_id, std_id) VALUES (seq_grade_id.NEXTVAL,?,?,?)";
+		String sql2 = "update subject set subject_grade=(select avg(grade_grade) from grade where subject_id=?) where subject_id=?";
 		try {
 			dto = new DTO();
 			ps = conn.prepareStatement(sql);
@@ -236,6 +237,12 @@ public class BbsDAO {
 			ps.setInt(2, selected);
 			ps.setString(3, std_id);
 			ps.executeUpdate();
+			
+			ps = conn.prepareStatement(sql2);
+			ps.setInt(1, selected);
+			ps.setInt(2, selected);
+			ps.executeQuery();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
