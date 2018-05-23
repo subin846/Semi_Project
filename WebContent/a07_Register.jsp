@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+ <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <style>
 	html {
 		box-sizing: inherit;
@@ -71,14 +72,21 @@
 			</div>
 			<hr/>
 			<div>
-				<textarea rows="5" cols="30" name="question_question" placeholder="내용을 입력하세요."></textarea>
+				<textarea id="subject_room" rows="5" cols="30" name="question_question" placeholder="내용을 입력하세요."></textarea>
 			</div>
 			<hr/>
 		</div>
 		<br/>
 		<div id="div3">
-			<input  type="submit" value="완료"/> 
+			<input id="ok" type="submit" value="완료"/> 
 		</div>
 	</form>
 </body>
+<script>
+	$("#ok").click(function(){
+		if(!$("#subject_room").val()){
+			alert("질문 내용을 입력하세요");
+		}
+	});
+</script>
 </html>

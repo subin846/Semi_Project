@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+ <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <style>
 	html {
 		box-sizing: inherit;
@@ -58,31 +59,31 @@
 	<form action="pAdd" method="post">
 		<div id="div1">
 			<div>
-				<input type="text" name="pro_id"  placeholder="사번">
+				<input id="pro_id" type="text" name="pro_id"  placeholder="사번">
 			</div>
 			<hr/>
 			<div>
-				<input type="text" name="pro_pw"   placeholder="비밀번호">
+				<input id="pro_pw" type="text" name="pro_pw"   placeholder="비밀번호">
 			</div>
 			<hr/>
 			<div>
-				<input type="text" name="pro_name"   placeholder="이름">
+				<input id="pro_name" type="text" name="pro_name"   placeholder="이름">
 			</div>
 			<hr/>
 			<div>
-				<input type="text" name="pro_phone"  placeholder="연락처">
+				<input id="pro_phone" type="text" name="pro_phone"  placeholder="연락처">
 			</div>
 			<hr/>
 			<div>
-				<input type="text" name="pro_email"   placeholder="이메일">
+				<input id="pro_email" type="text" name="pro_email"   placeholder="이메일">
 			</div>
 			<hr/>
 			<div>
-				<input type="text" name="pro_room"   placeholder="연구실">
+				<input id="pro_room" type="text" name="pro_room"   placeholder="연구실">
 			</div>
 			<hr/>
 			<div>
-				<input type="text" name="major_id"  placeholder="전공">
+				<input id="major_id" type="text" name="major_id"  placeholder="전공">
 			</div>
 			<hr/>
 		</div>
@@ -92,4 +93,23 @@
 		</div>
 	</form>
 </body>
+<script>
+	$("#ok").click(function(){
+		if(!$("#pro_id").val()){
+			alert("사번을 입력하세요");
+		}else if(!$("#pro_pw").val()){
+			alert("비밀번호를 입력하세요");
+		}else if(!$("#pro_name").val()){
+			alert("교수 이름을 입력하세요");
+		}else if(!$("#pro_phone").val()){
+			alert("연락처를 입력하세요");
+		}else if(!$("#pro_email").val()){
+			alert("이메일을 입력하세요");
+		}else if(!$("#pro_room").val()){
+			alert("연구실 입력하세요");
+		}else if(!$("#major_id").val()){
+			alert("전공번호를 입력하세요");
+		}
+	});
+</script>
 </html>
