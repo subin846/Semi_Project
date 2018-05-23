@@ -368,4 +368,23 @@ public class BbsDAO {
 
 	    return cnt;
 	}
+	
+	public boolean overlay(String std_id, int selected) {
+		boolean success = true;
+		String sql = "SELECT grade_grade FROM grade WHERE std_id=? AND subject_id=?";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, std_id);
+			ps.setInt(2, selected);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				success=false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			resClose();
+		}
+		return success;
+	}
 }
