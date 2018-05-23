@@ -45,6 +45,7 @@
 		table,th,td{
 			padding: 10px;
 			text-align:center;
+			background-color: white;
 		}
 		#trAppend th{
 		    border-right: 1px solid #ccc;

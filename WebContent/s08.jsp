@@ -11,6 +11,7 @@
 				border-collapse: collapse;
 				padding: 5px;
 				text-align: center;
+				background-color: white;
 			}
 			th, td {
 				width: 150px;

@@ -120,9 +120,6 @@
 				vertical-align: text-bottom;
 			
 			}
-			#img1{
-				opacity: 0.3;
-			}
 		</style>
 	</head>
 	<body>
