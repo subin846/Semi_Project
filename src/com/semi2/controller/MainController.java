@@ -510,6 +510,12 @@ public class MainController extends HttpServlet {
 			bbs = new BbsService(request,response);
 			bbs.listback();
 			break;
+			
+		case "/overlay":
+			System.out.println("체크 요청");
+			bbs = new BbsService(request,response);
+			bbs.overlay();
+			break;	
 		}
 	}
 

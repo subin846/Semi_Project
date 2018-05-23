@@ -56,7 +56,7 @@ public class DTO {
 	private String plan_cu;
 	private String plan_book;
 	private String plan_sub_book;
-	private String subject_objective;
+	private String plan_objective;
 
 
 	// 관리자
@@ -532,12 +532,14 @@ public class DTO {
 		this.plan_sub_book = plan_sub_book;
 	}
 	
-	public String getSubject_objective() {
-		return subject_objective;
+	public String getPlan_objective() {
+		return plan_objective;
 	}
 	
-	public void setSubject_objective(String subject_objective) {
-		this.subject_objective = subject_objective;
+	public void setPlan_objective(String plan_objective) {
+		this.plan_objective = plan_objective;
 	}
+	
+	
 	
 }

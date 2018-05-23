@@ -1,7 +1,9 @@
 package com.semi2.service;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
@@ -29,9 +31,20 @@ public class BbsService {
 
 	//과목게시판 클릭시 select에 신청과목 들어가는 메서드
 	public void subjectTab() throws IOException {
-		String id = request.getParameter("id");
+		Date date = new Date();
+		SimpleDateFormat time = new SimpleDateFormat("yyyy/MM/dd");
+		String today = time.format(date);
+		String[] list = today.split("/");
+		String term;
+		if(Integer.valueOf(list[1])<7) {
+			term = list[0]+"-"+1; 
+		}else {
+			term = list[0]+"-"+2; 
+		}
+		
+		String id = request.getParameter(";id");
 		BbsDAO dao = new BbsDAO();
-		ArrayList<DTO> sublist =  dao.sublist(id);
+		ArrayList<DTO> sublist =  dao.sublist(id,term);
 
 		Gson json = new Gson();
 		HashMap<String, Object> map = new HashMap<>();
@@ -255,7 +268,7 @@ public class BbsService {
 
 		BbsDAO dao = new BbsDAO();
 		DTO dto = dao.grade(selected, std_id, aver);
-
+		
 		Gson json = new Gson();
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("main", dto);
@@ -269,9 +282,20 @@ public class BbsService {
 
 	//교수 - 과목게시판 클릭시 select에 신청과목 들어가는 메서드
 	public void prosubjectTab() throws IOException {
+		Date date = new Date();
+		SimpleDateFormat time = new SimpleDateFormat("yyyy/MM/dd");
+		String today = time.format(date);
+		String[] list = today.split("/");
+		String term;
+		if(Integer.valueOf(list[1])<7) {
+			term = list[0]+"-"+1; 
+		}else {
+			term = list[0]+"-"+2; 
+		}
+		
 		String id = request.getParameter("id");
 		BbsDAO dao = new BbsDAO();
-		ArrayList<DTO> prosublist =  dao.prosublist(id);
+		ArrayList<DTO> prosublist =  dao.prosublist(id,term);
 
 		Gson json = new Gson();
 		HashMap<String, Object> map = new HashMap<>();
@@ -483,5 +507,26 @@ public class BbsService {
 		response.setContentType("text/html; charset=UTF-8");
 		response.getWriter().println(obj);
 	}
+	
+	//체크
+		public void overlay() throws IOException {
+
+			String std_id = request.getParameter("id");
+			int selected = Integer.parseInt(request.getParameter("selected"));
+			System.out.println("체크요청 : "+std_id);
+			System.out.println("체크요청 : "+selected);
+			
+			
+			BbsDAO dao = new BbsDAO();
+			boolean success = dao.overlay(std_id,selected);
+			
+			Gson json = new Gson(); 
+			HashMap<String, Object> map = new HashMap<>();
+			map.put("overlay",success);
+			String obj = json.toJson(map);
+			response.setContentType("text/html; charset=UTF-8");
+			response.getWriter().println(obj);
+			
+		}
 
 }
