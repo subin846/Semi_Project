@@ -4,6 +4,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 		<title>Insert title here</title>
 		<style>
 			html {
@@ -58,18 +59,27 @@
 		<form action="scAdd" method="post">
 			<div id="div1">
 				<div id="div2">
-					<input type="text" name="scholar_name"  placeholder="장학금 종류">
+					<input id="scholar_name" type="text" name="scholar_name"  placeholder="장학금 종류">
 				</div>
 				<hr/>
 				<div id="div2">
-					<input type="text" name="scholar_money"   placeholder="장학금 금액">
+					<input id="scholar_money" type="text" name="scholar_money"   placeholder="장학금 금액">
 				</div>
 				<hr/>
 			</div>
 			<br/>
 			<div id="div3">
-				<input  type="submit" value="완료"/> 
+				<input id="ok"  type="submit" value="완료"/> 
 			</div>
 		</form>
 	</body>
+	<script>
+	$("#ok").click(function(){
+		if(!$("#scholar_name").val()){
+			alert("장학금 종류를 입력하세요");
+		}else if(!$("#scholar_money").val()){
+			alert("장학금 금액을 입력하세요");
+		}
+	});
+</script>
 </html>

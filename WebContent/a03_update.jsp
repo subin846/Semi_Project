@@ -1,6 +1,7 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <style>
  	html {
 		box-sizing: inherit;
@@ -62,20 +63,27 @@
 				<hr/>
 				<div>
 					&nbsp; 장학금 종류 : 
-					<input type="text" name="scholar_name" value="${form.scholar_name}"/>
+					<input id="scholar_name" type="text" name="scholar_name" value="${form.scholar_name}"/>
 				</div>
 				<hr/>
 				<div>
 					&nbsp; 장학금 금액 :
-					<input type="text" name="scholar_money" value="${form.scholar_money}"/>
+					<input id="scholar_money" type="text" name="scholar_money" value="${form.scholar_money}"/>
 				</div>
 				<hr/>
 			</div>
 			<br/>
 			<div id="div3">
-				<input  type="submit" value="완료"/> 
+				<input id="ok"  type="submit" value="완료"/> 
 			</div>
 		</form>
 </body>
 <script>
+	$("#ok").click(function(){
+		if(!$("#scholar_name").val()){
+			alert("장학금 종류를 입력하세요");
+		}else if(!$("#scholar_money").val()){
+			alert("장학금 금액을 입력하세요");
+		}
+	});
 </script>

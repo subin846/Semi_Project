@@ -1,6 +1,7 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <style>
  	html {
 		box-sizing: inherit;
@@ -61,7 +62,7 @@
 				<div>
 					&nbsp; 학기 :
 					<input type="hidden" name="tuition_id" value="${form.tuition_id}"/>
-					<input type="text" name="term_id" value="${form.term_id}"/>
+					<input id="term_id" type="text" name="term_id" value="${form.term_id}"/>
 				</div>
 				<hr/>
 				<div>
@@ -75,17 +76,22 @@
 				<hr/>
 				<div>
 					&nbsp; 장학금 코드번호 :
-					<input id="code1" type="text" name="scholar_id" value="${form.scholar_id}"/>
+					<input id="scholar_id" type="text" name="scholar_id" value="${form.scholar_id}"/>
 				</div>
 				<hr/>
 			</div>
 			<br/>
 			<div id="div3">
-				<input  type="submit" value="완료"/> 
+				<input id="ok"  type="submit" value="완료"/> 
 			</div>
 		</form>
- 
-	
 </body>
 <script>
+	$("#ok").click(function(){
+		if(!$("#term_id").val()){
+			alert("학기를 입력하세요");
+		}else if(!$("#scholar_id").val()){
+			alert("장학금 코드번호를 입력하세요");
+		}
+	});
 </script>

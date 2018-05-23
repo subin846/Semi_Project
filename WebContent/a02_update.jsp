@@ -1,6 +1,7 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <style>
 	html {
 		box-sizing: inherit;
@@ -78,15 +79,20 @@
 				</div>
 				<hr/>
 				<div>
-					&nbsp; 등록금 : <input type="text" name="tuition_money"  value="${form.tuition_money}">
+					&nbsp; 등록금 : <input id="tuition_money" type="text" name="tuition_money"  value="${form.tuition_money}">
 				</div>
 				<hr/>
 			</div>
 			<br/>
 			<div id="div3">
-				<input  type="submit" value="완료"/> 
+				<input id="ok"  type="submit" value="완료"/> 
 			</div>
 		</form>
 </body>
 <script>
+	$("#ok").click(function(){
+		if(!$("#tuition_money").val()){
+			alert("등록금액을 입력하세요");
+		}
+	});
 </script>
