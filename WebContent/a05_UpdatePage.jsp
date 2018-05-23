@@ -1,6 +1,7 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <style>
  	html {
 		box-sizing: inherit;
@@ -66,27 +67,27 @@
 			<hr/>
 			<div>
 				&nbsp; 이름 :
-				<input type="text" name="pro_name" value="${form.pro_name}"/>
+				<input id="pro_name" type="text" name="pro_name" value="${form.pro_name}"/>
 			</div>
 			<hr/>
 			<div>
 				&nbsp; 연락처 :
-				<input type="text" name="pro_phone" value="${form.pro_phone}"/>
+				<input  id="pro_phone"  type="text" name="pro_phone" value="${form.pro_phone}"/>
 			</div>
 			<hr/>
 			<div>
 				&nbsp; 이메일 :
-				<input type="text" name="pro_email" value="${form.pro_email}"/>
+				<input id="pro_email" type="text" name="pro_email" value="${form.pro_email}"/>
 			</div>
 			<hr/>
 			<div>
 				&nbsp; 연구실 :
-				<input type="text" name="pro_room" value="${form.pro_room}"/>
+				<input id="pro_room" type="text" name="pro_room" value="${form.pro_room}"/>
 			</div>
 			<hr/>
 			<div>
 				&nbsp; 전공 코드 번호 :
-				<input  id="code1" type="text" name="major_id" value="${form.major_id}"/>
+				<input id="major_id" type="text" name="major_id" value="${form.major_id}"/>
 			</div>
 			<hr/>
 		</div>
@@ -97,5 +98,17 @@
 	</form>
 </body>
 <script>
-	
+$("#ok").click(function(){
+	if(!$("#pro_name").val()){
+		alert("교수 이름을 입력하세요");
+	}else if(!$("#pro_phone").val()){
+		alert("연락처를 입력하세요");
+	}else if(!$("#pro_email").val()){
+		alert("이메일을 입력하세요");
+	}else if(!$("#pro_room").val()){
+		alert("연구실 입력하세요");
+	}else if(!$("#major_id").val()){
+		alert("전공번호를 입력하세요");
+	}
+});
 </script>

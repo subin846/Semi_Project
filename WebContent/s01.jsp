@@ -106,7 +106,7 @@
 			<div><a href="./s08.jsp">과목게시판</a></div>
 			<div><a href="./s15-main.jsp">수강신청</a></div>
 		</div>
-		<div id="sub">
+		<!-- <div id="sub">
 			<select>
 				<option>과목선택</option>
 				<option>과목1</option>
@@ -117,7 +117,7 @@
 			<div><a href="#">강의자료</a></div>
 			<div><a href="#">과제제출</a></div>
 			<div><a href="#">강의평가</a></div>
-		</div>
+		</div> -->
 		<jsp:include page="s01_calender.jsp"></jsp:include>
 	</body>
 </html>

@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <style>
 			html {
 				box-sizing: inherit;
@@ -58,22 +59,33 @@
 	<form action="eAdd" method="post">
 		<div id="div1">
 			<div>
-				<input type="text" name="term_id"  placeholder="학기">
+				<input id="term_id" type="text" name="term_id"  placeholder="학기">
 			</div>
 			<hr/>
 			<div>
-				<input type="text" name="std_id"   placeholder="학번">
+				<input id="std_id" type="text" name="std_id"   placeholder="학번">
 			</div>
 			<hr/>
 			<div>
-				<input type="text" name="scholar_id"   placeholder="장학금 코드">
+				<input id="scholar_id" type="text" name="scholar_id"   placeholder="장학금 코드">
 			</div>
 			<hr/>
 		</div>
 		<br/>
 		<div id="div3">
-			<input  type="submit" value="완료"/> 
+			<input id="ok"  type="submit" value="완료"/> 
 		</div>
 	</form>
 </body>
+<script>
+	$("#ok").click(function(){
+		if(!$("#term_id").val()){
+			alert("학기를 입력하세요");
+		}else if(!$("#std_id").val()){
+			alert("학번을 입력하세요");
+		}else if!$("#scholar_id").val()(){
+			alert("장학금 코드를 입력하세요");
+		}
+	});
+</script>
 </html>

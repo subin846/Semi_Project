@@ -781,8 +781,8 @@ public class AdminDAO {
 		public int suAdd(DTO dto) {
 			int success=0;
 			String sql = "INSERT INTO subject(subject_id, term_id,major_id, pro_id, subject_name,"
-					+ "subject_room,subject_time,subject_type,subject_grade,subject_credit,subject_limit ) " + 
-					"VALUES (?, ?, ?, ?, ?, ?, ?,?,?,?,?)";
+					+ "subject_room,subject_time,subject_type,subject_grade,subject_credit,subject_limit ,subject_count) " + 
+					"VALUES (?, ?, ?, ?, ?, ?, ?,?,?,?,?,?)";
 			try {
 				ps=conn.prepareStatement(sql);
 				ps.setInt(1, dto.getSubject_id());
@@ -796,6 +796,7 @@ public class AdminDAO {
 				ps.setDouble(9, dto.getSubject_grade());
 				ps.setInt(10, dto.getSubject_credit());
 				ps.setInt(11, dto.getSubject_limit());
+				ps.setInt(12, dto.getSubject_limit());
 				success=ps.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();

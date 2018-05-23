@@ -85,15 +85,37 @@
 		.display{
 			display:none;
 		}
-		table{
-			width: 1800px;
+		#firstTable{
+			width: 1000px;
+			position:absolute;
+			top:200px;
+			left:350px;
 			}
+		#secondTable{
+			width: 1000px;
+			position:absolute;
+			top:530px;
+			left:350px;
+			}	
 		table,th,td{
 			border-collapse: collapse;
 			border : 1px solid black;
-			padding : 5px 10px;
-			margin:20px;
+			padding : 2px;
+			margin: 10px;
+			padding:10px;
 			text-align: center;
+		}
+		#initialEntry th , #stdEnroll th{
+		    border-right: 1px solid #ccc;
+		    border-bottom: 1px solid #ccc;
+		    border-top: 1px solid #fff;
+		    border-left: 1px solid #fff;
+			background: #eee;
+		}
+		.trRemove1 td, .trRemove2 td{
+			border-left: 1px solid #ccc;
+		 	border-right: 1px solid #ccc;
+		    border-bottom: 1px solid #ccc;
 		}
 		.divPaging{
  	 		width:300px;
@@ -114,18 +136,47 @@
 			margin-top: 2%;
 			font-size: medium;
 		}
+		#divSel{
+			position : absolute;
+			top :  130px;
+			left: 350px;
+			width:99%;
+			margin :10px;
+		}
+		#divSel #optSelect{
+			width: 170px;
+			height:50px;
+		}
+		#divSel #inp{
+			position :relative;
+			top:-2px;
+			width: 500px;
+			height:50px;
+		}
+		#divSel #btn{
+			width: 300px;
+			height:50px;
+			cursor: pointer;
+		}
+		#credit{
+			background-color: #ccc;
+			position :absolute;
+			top:500px;
+			left:360px;
+			width: 1000px;
+		}
 	</style>
 </head>
 <body>
 			<div id="menu">
-					<span>${sessionScope.loginId}</span>님 환영합니다
-					<a href="#">HOME</a>
-					<a href="#">비밀번호변경</a>
-					<a href="#">LOGOUT</a>
+					<span>${sessionScope.loginId}</span>님 환영합니다.
+					<a href="./s01.jsp">HOME</a>
+					<a href="./m02.jsp">비밀번호변경</a>
+					<a href="./logout">LOGOUT</a>
 			</div>
 			<div id="navi">
-				<div><a href="#">학적</a></div>
-				<div><a href="#">과목게시판</a></div>
+				<div><a href="./s02-main.jsp">학적</a></div>
+				<div><a href="./s08.jsp">과목게시판</a></div>
 				<div id="navi3"><a href="./s15-main.jsp">수강신청</a></div>
 			</div>
 			<div id="sub">
@@ -133,7 +184,7 @@
 				<div id="s16"><a href="./s16.jsp">수강신청</a></div>
 				<div><a href="./s17.jsp">신청과목조회</a></div>
 			</div>
-		<div>
+		<div id="divSel">
 				<select id="optSelect">
 					<option value="entry" selected>전체</option>
 					<option value="pro">교수별</option>
@@ -143,7 +194,7 @@
 				<input type="text" id ="inp"  placeholder="조회 버튼을 클릭해주세요"/>
 				<input type="button" id="btn" value="조회"/>
 			</div>
-		<table> <!-- id OR class="tabAppend" -->
+		<table id ="firstTable"> 
 			<tr id="initialEntry">
 				<th class="display">과목Id</th>
 				<th>학기</th>
@@ -164,12 +215,12 @@
 			<jsp:include page="paging.jsp"></jsp:include>
 			</div>
 			
-			<div>
+			<div id ="credit">
 				최소학점 : <input type="text" value="2" readonly size="10" style="background-color: #e2e2e2"/>	
 				최대학점 : <input type="text" id="maxCredit" value="10" readonly  size="10" style="background-color: #e2e2e2"/>	
 				내 신청학점 : <input id="stdCredit"  type="text" value="" size="10" style="background-color: #e2e2e2"/>	
 			</div>
-			<table> 
+			<table id ="secondTable"> 
 			<tr id="stdEnroll">
 				<th class="display">과목Id</th>
 				<th>학기</th>
@@ -274,7 +325,7 @@
 								}else{
 									alert("최대 20학점까지 수강 신청 가능합니다.");
 								}
-							 //
+							 //전체 과목 리스트 조회
 							 initialEntry(obj);
 							//특정학생의 수강 신청한 학점 조회
 							stdCredit(obj);
@@ -309,7 +360,7 @@
 						}else{
 							alert("삭제 실패 했습니다. 다시 시도해주세요.");
 						}
-						//
+						//전체 과목 리스트 조회
 						initialEntry(obj)
 						//특정학생의 수강 신청한 학점 조회
 						stdCredit(obj);

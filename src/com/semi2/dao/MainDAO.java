@@ -176,7 +176,7 @@ public class MainDAO {
 	//교수 과목 리스트
 		public ArrayList<DTO> selectProSubject(String loginId) {
 			ArrayList<DTO> subjectList = new ArrayList<>();
-			String sql = "SELECT subject_name, subject_id FROM subject WHERE pro_id = ?";
+			String sql = "SELECT subject_name, subject_id FROM subject WHERE pro_id = ? AND term_id='2018-1' ";
 
 			try {
 				ps = conn.prepareStatement(sql);
@@ -202,7 +202,7 @@ public class MainDAO {
 			public ArrayList<String> selectStdSubject(String loginId) {
 				ArrayList<String> subjectList = new ArrayList<>();
 				String sql = "SELECT S.subject_name FROM subject S JOIN enroll E ON S.subject_id = E.subject_id "
-						+ "WHERE std_id = ? ORDER BY subject_name ";
+						+ "WHERE std_id = ? AND term_id='2018-1' ORDER BY subject_name ";
 
 				try {
 					ps = conn.prepareStatement(sql);
@@ -312,7 +312,7 @@ public class MainDAO {
 			return dto;
 		}
 
-		//강의 계획서
+		//강의 계획서 등록
 		public int lectureWrite(DTO dto) {
 			int result = 0;
 			String sql = "INSERT INTO plan VALUES (?, ?, ?, ?, ?)";
@@ -323,6 +323,27 @@ public class MainDAO {
 				ps.setString(3, dto.getPlan_book());
 				ps.setString(4, dto.getSubject_objective());
 				ps.setString(5, dto.getPlan_sub_book());
+				result = ps.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				resClose();
+			}
+			return result;
+		}
+
+		//강의 계획서 수정
+		public int planUpdate(DTO dto) {
+			int result = 0;
+			String sql = "UPDATE plan SET plan_cu=?, plan_book=?, subject_objective=?, plan_sub_book=? "
+					+ "WHERE subject_id=?";	
+			try {
+				ps= conn.prepareStatement(sql);
+				ps.setString(1, dto.getPlan_cu());
+				ps.setString(2, dto.getPlan_book());
+				ps.setString(3, dto.getSubject_objective());
+				ps.setString(4, dto.getPlan_sub_book());
+				ps.setInt(5, dto.getSubject_id());
 				result = ps.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
