@@ -176,7 +176,7 @@ public class MainDAO {
 	//교수 과목 리스트
 		public ArrayList<DTO> selectProSubject(String loginId) {
 			ArrayList<DTO> subjectList = new ArrayList<>();
-			String sql = "SELECT subject_name, subject_id FROM subject WHERE pro_id = ?";
+			String sql = "SELECT subject_name, subject_id FROM subject WHERE pro_id = ? AND term_id='2018-1' ";
 
 			try {
 				ps = conn.prepareStatement(sql);
@@ -202,7 +202,7 @@ public class MainDAO {
 			public ArrayList<String> selectStdSubject(String loginId) {
 				ArrayList<String> subjectList = new ArrayList<>();
 				String sql = "SELECT S.subject_name FROM subject S JOIN enroll E ON S.subject_id = E.subject_id "
-						+ "WHERE std_id = ? ORDER BY subject_name ";
+						+ "WHERE std_id = ? AND term_id='2018-1' ORDER BY subject_name ";
 
 				try {
 					ps = conn.prepareStatement(sql);
