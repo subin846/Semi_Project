@@ -58,7 +58,7 @@
 	<body>
 	
 		<div id="main">
-			<img onclick="location.href='index.jsp'" alt="로고" src="https://blogfiles.pstatic.net/MjAxODA1MjJfNDcg/MDAxNTI2OTU4ODkzNDA0.oE2RFzgkqv7yFyZABPHt8v16sbv5BMEMQW4qLjNdvF8g.d84xnLh5TPDc_pF8IdFtGGiCsmeR8s7V9e2XzJlcWPUg.PNG.lmc0129/logo.png" width="450" height="350">
+			<img onclick="location.href='index.jsp'" alt="로고" src="https://lh3.googleusercontent.com/onlT8Z29jXIit_TyzKv9k4feg61Jeo4QkjyRNdmN1LxCcQ5I-b4J06a8jQVWl5k1awZg4Q-US9jBWbCbv7kF=w1600-h720" width="450" height="350">
 			<div id="div1">
 				<form action="passChange" method="post">
 					<table>
