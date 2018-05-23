@@ -146,7 +146,7 @@
 				alert("과목을 다시 선택하세요");
 				return;
 			}
-			location.href="p06.jsp?subject_id="+selected+"&mName=강의자료";
+			location.href="s13.jsp?subject_id="+selected+"&mName=강의자료";
 		}
 	 
 	// 페이지 매기기
