@@ -100,6 +100,7 @@ public class AdminService {
 		}
 		RequestDispatcher dis = request.getRequestDispatcher("student");
 		dis.forward(request, response);
+		
 	}
 	/**삭제********************************/
 	public void sDel() throws ServletException, IOException{
@@ -471,6 +472,7 @@ public class AdminService {
 		dto.setSubject_limit(Integer.parseInt(request.getParameter("subject_limit")));
 		dto.setSubject_grade(Double.parseDouble(request.getParameter("subject_grade")));
 		dto.setTerm_id(request.getParameter("term_id"));
+		dto.setSubject_count(Integer.parseInt(request.getParameter("subject_limit")));
 		if(dao.suAdd(dto)>0) {
 			System.out.println("저장완료");
 		}
@@ -649,27 +651,5 @@ public class AdminService {
 		String obj = json.toJson(map);
 		response.getWriter().println(obj);
 		response.sendRedirect("a08_index.jsp");
-		
-		
-		
-		
-		
-		
-		
-		
-		/*DTO dto = new DTO();
-		dto.setSchedule_id(schedule_id);
-		dto.setSchedule_content(schedule_content);
-		int success = dao.caUpdate(dto);
-		if (success > 0) {
-			System.out.println("성공");	
-		} 
-		Gson json = new Gson();
-		HashMap<String, Boolean> map = new HashMap<>();
-		map.put("success", success);
-		String obj = json.toJson(map);
-		response.getWriter().println(obj);
-		response.sendRedirect("a08_index.jsp");*/
-		
 	}
 }

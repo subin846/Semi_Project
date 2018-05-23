@@ -1,6 +1,7 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <style>
  	html {
 		box-sizing: inherit;
@@ -63,60 +64,83 @@
 			<hr/>
 			<div>
 				&nbsp; 학기 :
-				<input  type="text" name="term_id" value="${ form.term_id }"/>
+				<input  id="term_id" type="text" name="term_id" value="${ form.term_id }"/>
 			</div>
 			<hr/>
 			<div>
 				&nbsp; 학과 코드 :
-				<input  type="text" name="major_id" value="${ form.major_id }"/>
+				<input  id="major_id" type="text" name="major_id" value="${ form.major_id }"/>
 			</div>
 			<hr/>
 			<div>
 				&nbsp; 사번 :
-				<input  type="text" name="pro_id" value="${ form.pro_id }"/>
+				<input  id="pro_id"  type="text" name="pro_id" value="${ form.pro_id }"/>
 			</div>
 			<hr/>
 			<div>
 				&nbsp; 과목명 :
-				<input  type="text" name="subject_name" value="${ form.subject_name }"/>
+				<input  id="subject_name" type="text" name="subject_name" value="${ form.subject_name }"/>
 			</div>
 			<hr/>
 			<div>
 				&nbsp; 강의실 :
-				<input  type="text" name="subject_room" value="${ form.subject_room }"/>
+				<input  id="subject_room" type="text" name="subject_room" value="${ form.subject_room }"/>
 			</div>
 			<hr/>
 			<div>
 				&nbsp; 강의시간 :
-				<input  type="text" name="subject_time" value="${ form.subject_time }"/>
+				<input  id="subject_time" type="text" name="subject_time" value="${ form.subject_time }"/>
 			</div>
 			<hr/>
 			<div>
 				&nbsp; 전공/교양 :
-				<input  type="text" name="subject_type" value="${ form.subject_type }"/>
+				<input  id="subject_type"  type="text" name="subject_type" value="${ form.subject_type }"/>
 			</div>
 			<hr/>
 			<div>
 				&nbsp; 평점 :
-				<input  type="text" name="subject_grade" value="${ form.subject_grade }"/>
+				<input id="subject_type" type="text" name="subject_grade" value="${ form.subject_grade }"/>
 			</div>
 			<hr/>
 			<div>
 				&nbsp; 학점 :
-				<input  type="text" name="subject_credit" value="${ form.subject_credit }"/>
+				<input id="subject_type" type="text" name="subject_credit" value="${ form.subject_credit }"/>
 			</div>
 			<hr/>
 			<div>
 				&nbsp; 제한인원 :
-				<input  type="text" name="subject_limit" value="${ form.subject_limit }"/>
+				<input id="subject_type" type="text" name="subject_limit" value="${ form.subject_limit }"/>
 			</div>
 			<hr/>
 		</div>
 		<br/>
 		<div id="div3">
-			<input  type="submit" value="완료"/> 
+			<input id="ok" type="submit" value="완료"/> 
 		</div>
 	</form>
 </body>
 <script>
+	$("#ok").click(function(){
+		if(!$("#term_id").val()){
+			alert("학기를 입력하세요");
+		}else if(!$("#major_id").val()){
+			alert("전공 코드를 입력하세요");
+		}else if(!$("#pro_id").val()){
+			alert("사번을 입력하세요");
+		}else if(!$("#subject_name").val()){
+			alert("과목명을 입력하세요");
+		}else if(!$("#subject_room").val()){
+			alert("강의실을 입력하세요");
+		}else if(!$("#subject_time").val()){
+			alert("강의 시간을 입력하세요");
+		}else if(!$("#subject_type").val()){
+			alert("전공/교양을 입력하세요");
+		}else if(!$("#subject_grade").val()){
+			alert("평점을 입력하세요");
+		}else if(!$("#subject_credit").val()){
+			alert("학점을 입력하세요");
+		}else if(!$("#subject_limit").val()){
+			alert("제한인원을 입력하세요");
+		}
+	});
 </script>
