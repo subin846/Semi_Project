@@ -268,7 +268,7 @@ public class BbsService {
 
 		BbsDAO dao = new BbsDAO();
 		DTO dto = dao.grade(selected, std_id, aver);
-
+		
 		Gson json = new Gson();
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("main", dto);

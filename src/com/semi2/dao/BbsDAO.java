@@ -228,7 +228,6 @@ public class BbsDAO {
 	//학생 - 강의 평가 저장 메서드
 	public DTO grade(int selected, String std_id, int aver) {
 		DTO dto = null;
-		int success = 0;
 		String sql = "INSERT INTO grade(grade_id, grade_grade, subject_id, std_id) VALUES (seq_grade_id.NEXTVAL,?,?,?)";
 		try {
 			dto = new DTO();
