@@ -235,7 +235,7 @@ public class MainService extends PwDTO{
 		dto.setPro_email(request.getParameter("email"));
 		dto.setSubject_room(request.getParameter("classroom"));
 		dto.setPlan_cu(request.getParameter("cu"));
-		dto.setSubject_objective(request.getParameter("objective"));
+		dto.setPlan_objective(request.getParameter("objective"));
 		dto.setPlan_book(request.getParameter("planbook"));
 		dto.setPlan_sub_book(request.getParameter("sub_book"));
 		
@@ -281,7 +281,7 @@ public class MainService extends PwDTO{
 		dto.setPro_email(request.getParameter("email"));
 		dto.setSubject_room(request.getParameter("classroom"));
 		dto.setPlan_cu(request.getParameter("cu"));
-		dto.setSubject_objective(request.getParameter("objective"));
+		dto.setPlan_objective(request.getParameter("objective"));
 		dto.setPlan_book(request.getParameter("planbook"));
 		dto.setPlan_sub_book(request.getParameter("sub_book"));
 		
