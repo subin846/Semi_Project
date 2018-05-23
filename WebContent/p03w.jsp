@@ -57,7 +57,7 @@
 	<div>
 		<jsp:include page="p04-main2.jsp"></jsp:include>
 	</div>
-	<form action="lectureWrite" method="post">
+	<%-- <form action="lectureWrite" method="post">
 	<input type="hidden" name="selected" value="<%=request.getParameter("subject_id")%>"/>
 		<table id="listTable">
 			<tr>
@@ -112,6 +112,68 @@
 				<th>부교재</th>
 				<td colspan="2" id ="sub_book"><input type="text" name="sub_book"/></td>
 			<tr>
+			</tr>
+		</table>
+		<div id="btn">
+		<button>저장</button>
+		</div>
+		</form> --%>
+		<form action="lectureWrite" method="post">
+	<input type="hidden" name="selected" value="<%=request.getParameter("subject_id")%>"/>
+		<table id="listTable">
+			<tr>
+				<th id="plan" colspan="6">강 의 계 획 서</th>
+			</tr>
+			<tr>
+				<th id="major" colspan="6"></th>
+			</tr>
+			<tr>
+				<%-- <th>학기</th>
+				<td id="term" colspan="2">${dto.term_id}</td> --%>
+				<th>교과목명</th>
+				<td id="subject" colspan="2">${dto.subject_name} </td>
+				<td colspan="3"></td>
+			</tr>
+			<%-- <tr>
+				<th>학년-분반</th>
+				<td id="class">${dto.std_year}</td>
+				<th>이수구분</th>
+				<td id="major_type">${dto.subject_type}</td>
+				<th>학점</th>
+				<td id="score">${dto.subject_credit}</td>
+			</tr>
+			<tr>
+				<th>담당교수</th>
+				<td id="pro" colspan="3">${dto.pro_name}</td>
+				<th>시수</th>
+				<td id="time">${dto.subject_time}</td>
+			</tr>
+			<tr>
+				<th>E-Mail</th>
+				<td id="email" colspan="2">${dto.pro_email}</td>
+				<th>교육장소</th>
+				<td id="classroom" colspan="2">${dto.subject_room}</td>
+			</tr> --%> 
+			<tr>
+				<th colspan="6">교과목 개요 및 특징</th>
+			</tr>
+			<tr>
+				<td colspan="6" id="cu"><input type="text" name="cu" value="${dto.plan_cu}"/></td>
+			</tr>
+			<tr>
+				<th colspan="6">교과목표</th>
+			</tr>
+			<tr>
+				<td colspan="6" id="objective"><input type="text" name="objective" value="${dto.plan_objective}"/></td>
+			</tr>
+			<tr>
+				<th colspan="3" rowspan="2">교재</th>
+				<th>주교재</th>
+				<td colspan="2" id ="planbook"><input type="text" name="planbook" value="${dto.plan_book}"/></td>
+			</tr>
+			<tr>
+				<th>부교재</th>
+				<td colspan="2" id ="sub_book"><input type="text" name="sub_book" value="${dto.plan_sub_book}"/></td>
 			</tr>
 		</table>
 		<div id="btn">
