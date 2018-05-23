@@ -312,7 +312,7 @@ public class MainDAO {
 			return dto;
 		}
 
-		//강의 계획서
+		//강의 계획서 등록
 		public int lectureWrite(DTO dto) {
 			int result = 0;
 			String sql = "INSERT INTO plan VALUES (?, ?, ?, ?, ?)";
@@ -323,6 +323,27 @@ public class MainDAO {
 				ps.setString(3, dto.getPlan_book());
 				ps.setString(4, dto.getSubject_objective());
 				ps.setString(5, dto.getPlan_sub_book());
+				result = ps.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				resClose();
+			}
+			return result;
+		}
+
+		//강의 계획서 수정
+		public int planUpdate(DTO dto) {
+			int result = 0;
+			String sql = "UPDATE plan SET plan_cu=?, plan_book=?, subject_objective=?, plan_sub_book=? "
+					+ "WHERE subject_id=?";	
+			try {
+				ps= conn.prepareStatement(sql);
+				ps.setString(1, dto.getPlan_cu());
+				ps.setString(2, dto.getPlan_book());
+				ps.setString(3, dto.getSubject_objective());
+				ps.setString(4, dto.getPlan_sub_book());
+				ps.setInt(5, dto.getSubject_id());
 				result = ps.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();

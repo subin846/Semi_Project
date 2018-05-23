@@ -32,6 +32,9 @@
 		#lectureNote{
 			text-decoration: underline;
 		}
+		#navi #subBbs {
+			background-color: #4375DB;
+		}
 	</style>
 	</head>
 	<body>

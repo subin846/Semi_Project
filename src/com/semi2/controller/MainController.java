@@ -378,7 +378,7 @@ public class MainController extends HttpServlet {
 			break;
 			
 		case "/planUpdate" :
-			System.out.println("교수 강의계획서 페이지 수정 폼 요청");
+			System.out.println("교수 강의계획서 수정 요청");
 			mservice.planUpdate();
 			break;
 			
