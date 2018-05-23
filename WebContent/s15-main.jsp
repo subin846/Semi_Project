@@ -73,11 +73,14 @@
 			#sub div:hover {
 				 text-decoration: underline; 
 			}
+			#import{
+				width: 2000px;
+			}
 			#import  table,th,td{
 				border: 1px solid black;
 				border-collapse: collapse;
-				padding:10px 15px;
-				margin:2%;
+				margin : 200px;
+				padding : 2px;
 			} 
 		</style>
 	</head>
@@ -85,18 +88,18 @@
 			<div id="menu">
 					<span>${sessionScope.loginId}</span>님 환영합니다
 					<a href="./s01.jsp">HOME</a>
-					<a href="#">비밀번호변경</a>
-					<a href="#">LOGOUT</a>
+					<a href="./m02.jsp">비밀번호변경</a>
+					<a href="./logout">LOGOUT</a>
 			</div>
 			<div id="navi">
 				<div><a href="./s02-main.jsp">학적</a></div>
-				<div><a href="#">과목게시판</a></div>
+				<div><a href="./s08.jsp">과목게시판</a></div>
 				<div id="navi3"><a href="./s15-main.jsp">수강신청</a></div>
 			</div>
 			<div id="sub">
-				<div id="s15"><a href="#">과목조회</a></div>
-				<div id="s16"><a href="#">수강신청</a></div>
-				<div id="s17"><a href="#">신청과목조회</a></div>
+				<div id="s15"><a href="s15-main.jsp">과목조회</a></div>
+				<div><a href="./s16.jsp">수강신청</a></div>
+				<div><a href="./s17.jsp">신청과목조회</a></div>
 			</div>
 			<div id ="import">
 				<%@include file="s15.jsp" %> 

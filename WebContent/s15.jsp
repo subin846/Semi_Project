@@ -7,32 +7,61 @@
  		#s15{
 			text-decoration: underline;
 		}
-		#btn{
+		#divSel{
+			position : absolute;
+			top :  130px;
+			left: 350px;
+			width:99%;
+			margin :  10px;
+		}
+		#divSel #optSelect{
+			width: 170px;
+			height:50px;
+		}
+		#divSel #inp{
+			position :relative;
+			top:-2px;
+			width: 500px;
+			height:44px;
+		}
+		#divSel #btn{
+			width: 300px;
+			height:48px;
 			cursor: pointer;
 		}
-		.divPaging{
- 	 		width:300px;
- 	 		border:1px solid black;
-            padding: 10px 0px;
-            text-align: center;
-           	cursor:pointer;
-		}
-		.divPaging #curpage{
-    	color :blue;
-   		}	
-	    #page button{
-			color: black;
-			margin-right: 1%;
-			text-align: center;
-		}
 		#page{
-			margin-top: 2%;
-			font-size: medium;
+			border: 1px solid red;
+			width: 500px;
+			position :absolute;
+			top:500px;
+			left: 500px;
+		}  
+		table{
+			width: 1000px;
+			position:absolute;
+			top:30px;
+			left:160px;
+		}
+		table,th,td{
+			padding: 10px;
+			text-align:center;
+		}
+		#trAppend th{
+		    border-right: 1px solid #ccc;
+		    border-bottom: 1px solid #ccc;
+		    border-top: 1px solid #fff;
+		    border-left: 1px solid #fff;
+			background: #eee;
+		}
+		.trRemove td{
+			border-left: 1px solid #ccc;
+		 	border-right: 1px solid #ccc;
+		    border-bottom: 1px solid #ccc;
 		}
 	</style>
 </head>
 <body>
-		<div>
+		<div id="divSel">
 				<select id="optSelect">
 					<option value="entry" selected>전체</option>
 					<option value="term">학기별</option>
@@ -42,23 +71,23 @@
 				</select>
 				<input type="text" id ="inp"  placeholder="조회 버튼을 클릭해주세요"/>
 				<input type="button" id="btn" value="조회"/>
-			</div>
-		<table> <!-- id OR class="tabAppend" -->
-			<tr id="trAppend">
-				<th>학기</th>
-				<th>학과명</th>
-				<th>과목명</th>
-				<th>교수명</th>
-				<th>강의실</th>
-				<th>강의시간</th>
-				<th>이수구분</th>
-				<th>학점</th>
-				<th>제한인원</th>
-				<th>평점</th>
-			</tr>
+		</div>
+			<table> <!-- id OR class="tabAppend" -->
+				<tr id="trAppend">
+					<th>학기</th>
+					<th>학과명</th>
+					<th>과목명</th>
+					<th>교수명</th>
+					<th>강의실</th>
+					<th>강의시간</th>
+					<th>이수구분</th>
+					<th>학점</th>
+					<th>제한인원</th>
+					<th>평점</th>
+				</tr>
 			</table>
 		<div id="page">
-			<jsp:include page="paging.jsp"></jsp:include>
+			<jsp:include page="enrollPaging.jsp"></jsp:include>
 		</div>
 </body>
 <script>
