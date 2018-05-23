@@ -483,5 +483,26 @@ public class BbsService {
 		response.setContentType("text/html; charset=UTF-8");
 		response.getWriter().println(obj);
 	}
+	
+	//체크
+		public void overlay() throws IOException {
+
+			String std_id = request.getParameter("id");
+			int selected = Integer.parseInt(request.getParameter("selected"));
+			System.out.println("체크요청 : "+std_id);
+			System.out.println("체크요청 : "+selected);
+			
+			
+			BbsDAO dao = new BbsDAO();
+			boolean success = dao.overlay(std_id,selected);
+			
+			Gson json = new Gson(); 
+			HashMap<String, Object> map = new HashMap<>();
+			map.put("overlay",success);
+			String obj = json.toJson(map);
+			response.setContentType("text/html; charset=UTF-8");
+			response.getWriter().println(obj);
+			
+		}
 
 }
