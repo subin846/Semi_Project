@@ -115,12 +115,13 @@ public class BbsDAO {
 	}
 
 	//학생 - 신청과목 리스트
-	public ArrayList<DTO> sublist(String id) {
+	public ArrayList<DTO> sublist(String id, String term) {
 		ArrayList<DTO> sublist = new ArrayList<>();
-		String sql = "SELECT sub.subject_id, sub.subject_name FROM subject sub JOIN enroll e ON e.subject_id = sub.subject_id WHERE e.std_id=?";
+		String sql = "SELECT sub.subject_id, sub.subject_name FROM subject sub JOIN enroll e ON e.subject_id = sub.subject_id WHERE e.std_id=? AND sub.term_id=?";
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, id);
+			ps.setString(2, term);
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				DTO dto = new DTO();
@@ -245,12 +246,13 @@ public class BbsDAO {
 	}
 
 	//교수 - 강의 과목 리스트
-	public ArrayList<DTO> prosublist(String id) {
+	public ArrayList<DTO> prosublist(String id, String term) {
 		ArrayList<DTO> prosublist = new ArrayList<>();
-		String sql = "SELECT subject_id, subject_name FROM subject WHERE pro_id=?";
+		String sql = "SELECT subject_id, subject_name FROM subject WHERE pro_id=? AND term_id=?";
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, id);
+			ps.setString(2, term);
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				DTO dto = new DTO();
