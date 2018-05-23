@@ -97,7 +97,7 @@
 				<div id="navi3"><a href="./s15-main.jsp">수강신청</a></div>
 			</div>
 			<div id="sub">
-				<div id="s15"><a href="s15-main.jsp">과목조회</a></div>
+				<div id="s15"><a href="#">과목조회</a></div>
 				<div><a href="./s16.jsp">수강신청</a></div>
 				<div><a href="./s17.jsp">신청과목조회</a></div>
 			</div>
@@ -105,18 +105,9 @@
 				<%@include file="s15.jsp" %> 
 			</div>
 	<script>
-	
 		/* 과목 조회 메뉴 클릭시 */
 		$("#s15").click(function(){
 			$("#import").load("s15.jsp");
-		});
-		/* 과목 조회 메뉴 클릭시 */
-		$("#s16").click(function(){
-			location.href="s16.jsp"; 
-		});
-		/* 과목 조회 메뉴 클릭시 */
-		$("#s17").click(function(){
-			location.href="s17.jsp"; 
 		});
 	</script>
 </html>
