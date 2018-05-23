@@ -15,6 +15,7 @@
 				bottom: 418px;
 				border: 1px solid #c0c0c0;
 				border-radius: 5px;
+				background-color: white;
 			}
 			#hacsa {
 				text-align: center;			
@@ -31,6 +32,7 @@
                 border-left:none;
                 border-top:none;
                 border-bottom:none;  
+                background-color: white;
             }
             td,th{
                 padding: 5px 10px;
@@ -46,7 +48,7 @@
 		<br/>
 		
 		<div id="datepicker"></div>
-		<input type="text" id="getdate" name="getdate">
+		<input type="hidden" id="getdate" name="getdate">
 		<div id="schedule"><h1 id="hacsa">학사일정</h1>	
 			<br/>
 			<br/>

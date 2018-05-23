@@ -75,7 +75,6 @@ public class AdminService {
 			request.setAttribute("form", dto);
 		} else {
 			System.out.println("오류");
-			/*request.setAttribute("msg", "원하는 값을 찾을 수 없습니다.");*/
 		}
 		RequestDispatcher rd = request.getRequestDispatcher("a01_UpdatePage.jsp");
 		rd.forward(request, response);
