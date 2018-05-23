@@ -87,7 +87,7 @@
 				</tr>
 			</table>
 		<div id="page">
-			<jsp:include page="enrollPaging.jsp"></jsp:include>
+			<jsp:include page="paging.jsp"></jsp:include>
 		</div>
 </body>
 <script>

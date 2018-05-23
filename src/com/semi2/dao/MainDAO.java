@@ -256,7 +256,7 @@ public class MainDAO {
 					dto.setPlan_cu(rs.getString("plan_cu"));
 					dto.setPlan_book(rs.getString("plan_book"));
 					dto.setPlan_sub_book(rs.getString("plan_sub_book"));
-					dto.setSubject_objective(rs.getString("subject_objective"));
+					dto.setPlan_objective(rs.getString("subject_objective"));
 					dto.setSubject_id(rs.getInt("subject_id"));
 				}
 
@@ -301,7 +301,7 @@ public class MainDAO {
 					dto.setPlan_cu(rs.getString("plan_cu"));
 					dto.setPlan_book(rs.getString("plan_book"));
 					dto.setPlan_sub_book(rs.getString("plan_sub_book"));
-					dto.setSubject_objective(rs.getString("subject_objective"));
+					dto.setPlan_objective(rs.getString("subject_objective"));
 				}
 
 			} catch (Exception e) {
@@ -321,7 +321,7 @@ public class MainDAO {
 				ps.setInt(1, dto.getSubject_id());
 				ps.setString(2, dto.getPlan_cu());
 				ps.setString(3, dto.getPlan_book());
-				ps.setString(4, dto.getSubject_objective());
+				ps.setString(4, dto.getPlan_objective());
 				ps.setString(5, dto.getPlan_sub_book());
 				result = ps.executeUpdate();
 			} catch (SQLException e) {
@@ -341,7 +341,7 @@ public class MainDAO {
 				ps= conn.prepareStatement(sql);
 				ps.setString(1, dto.getPlan_cu());
 				ps.setString(2, dto.getPlan_book());
-				ps.setString(3, dto.getSubject_objective());
+				ps.setString(3, dto.getPlan_objective());
 				ps.setString(4, dto.getPlan_sub_book());
 				ps.setInt(5, dto.getSubject_id());
 				result = ps.executeUpdate();

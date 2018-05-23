@@ -115,12 +115,13 @@ public class BbsDAO {
 	}
 
 	//학생 - 신청과목 리스트
-	public ArrayList<DTO> sublist(String id) {
+	public ArrayList<DTO> sublist(String id, String term) {
 		ArrayList<DTO> sublist = new ArrayList<>();
-		String sql = "SELECT sub.subject_id, sub.subject_name FROM subject sub JOIN enroll e ON e.subject_id = sub.subject_id WHERE e.std_id=?";
+		String sql = "SELECT sub.subject_id, sub.subject_name FROM subject sub JOIN enroll e ON e.subject_id = sub.subject_id WHERE e.std_id=? AND sub.term_id=?";
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, id);
+			ps.setString(2, term);
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				DTO dto = new DTO();
@@ -227,8 +228,8 @@ public class BbsDAO {
 	//학생 - 강의 평가 저장 메서드
 	public DTO grade(int selected, String std_id, int aver) {
 		DTO dto = null;
-		int success = 0;
 		String sql = "INSERT INTO grade(grade_id, grade_grade, subject_id, std_id) VALUES (seq_grade_id.NEXTVAL,?,?,?)";
+		String sql2 = "update subject set subject_grade=(select avg(grade_grade) from grade where subject_id=?) where subject_id=?";
 		try {
 			dto = new DTO();
 			ps = conn.prepareStatement(sql);
@@ -236,6 +237,12 @@ public class BbsDAO {
 			ps.setInt(2, selected);
 			ps.setString(3, std_id);
 			ps.executeUpdate();
+			
+			ps = conn.prepareStatement(sql2);
+			ps.setInt(1, selected);
+			ps.setInt(2, selected);
+			ps.executeQuery();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -245,12 +252,13 @@ public class BbsDAO {
 	}
 
 	//교수 - 강의 과목 리스트
-	public ArrayList<DTO> prosublist(String id) {
+	public ArrayList<DTO> prosublist(String id, String term) {
 		ArrayList<DTO> prosublist = new ArrayList<>();
-		String sql = "SELECT subject_id, subject_name FROM subject WHERE pro_id=?";
+		String sql = "SELECT subject_id, subject_name FROM subject WHERE pro_id=? AND term_id=?";
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, id);
+			ps.setString(2, term);
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				DTO dto = new DTO();
@@ -367,5 +375,24 @@ public class BbsDAO {
 	    }
 
 	    return cnt;
+	}
+	
+	public boolean overlay(String std_id, int selected) {
+		boolean success = true;
+		String sql = "SELECT grade_grade FROM grade WHERE std_id=? AND subject_id=?";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, std_id);
+			ps.setInt(2, selected);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				success=false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			resClose();
+		}
+		return success;
 	}
 }
