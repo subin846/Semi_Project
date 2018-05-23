@@ -42,7 +42,7 @@ public class BbsService {
 			term = list[0]+"-"+2; 
 		}
 		
-		String id = request.getParameter(";id");
+		String id = request.getParameter("id");
 		BbsDAO dao = new BbsDAO();
 		ArrayList<DTO> sublist =  dao.sublist(id,term);
 
