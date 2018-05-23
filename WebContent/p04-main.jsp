@@ -39,6 +39,7 @@
 				color: white;
 				font-size: large;
 				font-weight: bold;
+				cursor: pointer;
 			}
 			#navi div:hover{
 				background-color: #4375DB;
@@ -53,9 +54,9 @@
 			<a href="./logout">LOGOUT</a>
 		</div>
 		<div id="navi">
-			<div id="std">내정보</div>
+			<div id="std">내 정 보</div>
 			<div id="subBbs">과목게시판</div>
-			<div id="enroll">강의</div>
+			<div id="enroll">강 의</div>
 		</div>
 	</body>
 	<script>
