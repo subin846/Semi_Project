@@ -32,7 +32,7 @@
 				border-left-color: white;
 				border-right-color: white;
 			}
-			#plan {
+			#planning {
 				background-color: white;
 				font-size: 25px;
 			}
@@ -57,7 +57,7 @@
 	</div>
 		<table id="p">
 			<tr>
-				<th id="plan" colspan="6">강 의 계 획 서</th>
+				<th id="planning" colspan="6">강 의 계 획 서</th>
 			</tr>
 			<tr>
 				<th id="major" colspan="6"></th>
