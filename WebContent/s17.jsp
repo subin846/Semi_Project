@@ -90,6 +90,18 @@
 			padding : 5px 10px;
 			margin:10px;
 		}
+		#stdEnroll th{
+		    border-right: 1px solid #ccc;
+		    border-bottom: 1px solid #ccc;
+		    border-top: 1px solid #fff;
+		    border-left: 1px solid #fff;
+			background: #eee;
+		}
+		.trRemove td{
+			border-left: 1px solid #ccc;
+		 	border-right: 1px solid #ccc;
+		    border-bottom: 1px solid #ccc;
+		}
 		#span{
 			width:1000px;
 			height:30px;
@@ -102,14 +114,14 @@
 </head>
 <body>
 			<div id="menu">
-					<span></span>님 환영합니다
-					<a href="#">HOME</a>
-					<a href="#">비밀번호변경</a>
-					<a href="#">LOGOUT</a>
+					<span>${sessionScope.loginId}</span>님 환영합니다.
+					<a href="./s01.jsp">HOME</a>
+					<a href="./m02.jsp">비밀번호변경</a>
+					<a href="./logout">LOGOUT</a>
 			</div>
 			<div id="navi">
-				<div><a href="#">학적</a></div>
-				<div><a href="#">과목게시판</a></div>
+				<div><a href="./s02-main.jsp">학적</a></div>
+				<div><a href="./s08.jsp">과목게시판</a></div>
 				<div id="navi3"><a href="./s15-main.jsp">수강신청</a></div>
 			</div>
 			<div id="sub">
@@ -148,7 +160,7 @@
 				dataType:"JSON",
 				success:function(data){
 					console.log(data);
-					if(".trRemove2"!=null){
+					if(".trRemove"!=null){
 						//tr 제거
 						console.log("tr제거");
 						$(".trRemove2").remove();
@@ -156,7 +168,7 @@
 					// 수강신청 과목 리스트 담을 변수 선언
 					var listAppend;
 					for(var i =0; i<data.searchList.length; i++){
-						listAppend+="<tr class='trRemove2'>"
+						listAppend+="<tr class='trRemove'>"
 						listAppend+="<td>"+data.searchList[i].term_id+"</td>"
 						listAppend+="<td>"+data.searchList[i].major_name+"</td>"
 						listAppend+="<td>"+data.searchList[i].subject_name+"</td>"

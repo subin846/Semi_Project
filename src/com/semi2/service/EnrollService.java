@@ -45,7 +45,7 @@ public class EnrollService {
 		}else {
 			page = Integer.parseInt(paramPage);
 		}
-		PageInfo paging = new PageInfo(page, 3, 10, totalCount);
+		PageInfo paging = new PageInfo(page, 5, 10, totalCount);
 		int startNum =paging.getStartNum();
 		int endNum = paging.getEndNum();
 		System.out.println(startNum+" ~ "+endNum);
