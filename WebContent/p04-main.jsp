@@ -48,9 +48,9 @@
 	<body>
 		<div id="menu">
 			<span>${sessionScope.loginId}</span>님 환영합니다
-			<a href="#">HOME</a>
-			<a href="#">비밀번호변경</a>
-			<a href="#">LOGOUT</a>
+			<a href="./pmain">HOME</a>
+			<a href="./m02.jsp">비밀번호변경</a>
+			<a href="./logout">LOGOUT</a>
 		</div>
 		<div id="navi">
 			<div id="std">내정보</div>
@@ -58,4 +58,18 @@
 			<div id="enroll">강의</div>
 		</div>
 	</body>
+	<script>
+		// 내정보 클릭
+		$("#std").click(function() {
+			location.href="pProfile";
+		});
+		// 과목게시판 클릭
+		$("#subBbs").click(function() {
+			location.href="./p03.jsp";
+		});
+		// 강의 클릭
+		$("#enroll").click(function() {
+			location.href="studentSearchPage?subject_id=default";
+		});
+	</script>
 </html>

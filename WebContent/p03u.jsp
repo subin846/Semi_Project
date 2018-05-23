@@ -33,8 +33,7 @@
 				border-right-color: white;
 			}
 			#plan {
-				background-color: white;
-				font-size: 25px;
+				text-decoration: underline;
 			}
 			#listTable{
 				width: 75%;
@@ -109,9 +108,9 @@
 				<th>주교재</th>
 				<td colspan="2" id ="planbook"><input type="text" name="planbook" value="${dto.plan_book}"/></td>
 			</tr>
+			<tr>
 				<th>부교재</th>
 				<td colspan="2" id ="sub_book"><input type="text" name="sub_book" value="${dto.plan_sub_book}"/></td>
-			<tr>
 			</tr>
 		</table>
 		<div id="btn">
