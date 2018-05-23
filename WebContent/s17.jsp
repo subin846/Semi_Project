@@ -81,13 +81,13 @@
 		table{
 			width: 1000px;
 			position:absolute;
-			top:140px;
-			left:250px;
+			top:180px;
+			left:350px;
 			}
 		table,th,td{
 			border-collapse: collapse;
 			border : 1px solid black;
-			padding : 5px 10px;
+			padding :10px;
 			margin:10px;
 		}
 		#stdEnroll th{
@@ -107,8 +107,8 @@
 			height:30px;
 			background-color :#e2e2e2;
 			position : absolute;
-			left :260px;
-			top:115px;
+			left :360px;
+			top:140px;
 		}
 	</style>
 </head>

@@ -30,12 +30,11 @@
 			cursor: pointer;
 		}
 		#page{
-			border: 1px solid red;
-			width: 500px;
-			position :absolute;
-			top:500px;
-			left: 500px;
-		}  
+			position:absolute;
+			top: 500px;
+			left:750px;
+			font-size: medium;
+		}
 		table{
 			width: 1000px;
 			position:absolute;
@@ -45,7 +44,6 @@
 		table,th,td{
 			padding: 10px;
 			text-align:center;
-			background-color: white;
 		}
 		#trAppend th{
 		    border-right: 1px solid #ccc;

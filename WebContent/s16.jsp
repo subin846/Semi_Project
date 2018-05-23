@@ -94,13 +94,18 @@
 		#secondTable{
 			width: 1000px;
 			position:absolute;
-			top:530px;
+			top:570px;
 			left:350px;
-			}	
+			}
+		#page{
+			position:absolute;
+			top: 480px;
+			left:770px;
+			font-size: medium;
+		} 
 		table,th,td{
 			border-collapse: collapse;
 			border : 1px solid black;
-			padding : 2px;
 			margin: 10px;
 			padding:10px;
 			text-align: center;
@@ -116,25 +121,6 @@
 			border-left: 1px solid #ccc;
 		 	border-right: 1px solid #ccc;
 		    border-bottom: 1px solid #ccc;
-		}
-		.divPaging{
- 	 		width:300px;
- 	 		border:1px solid black;
-            padding: 10px 0px;
-            text-align: center;
-           	cursor:pointer;
-		}
-		.divPaging #curpage{
-    	color :blue;
-   		}	
-	    #page button{
-			color: black;
-			margin-right: 1%;
-			text-align: center;
-		}
-		#page{
-			margin-top: 2%;
-			font-size: medium;
 		}
 		#divSel{
 			position : absolute;
@@ -161,7 +147,7 @@
 		#credit{
 			background-color: #ccc;
 			position :absolute;
-			top:500px;
+			top:540px;
 			left:360px;
 			width: 1000px;
 		}
@@ -323,7 +309,7 @@
 										alert("이미 수강 신청하신 과목입니다.");
 									}
 								}else{
-									alert("최대 20학점까지 수강 신청 가능합니다.");
+									alert("최대 10학점까지 수강 신청 가능합니다.");
 								}
 							 //전체 과목 리스트 조회
 							 initialEntry(obj);
