@@ -17,22 +17,20 @@
 				border-radius: 5px;
 			}
 			#hacsa {
-				text-align: center;	
+				text-align: center;			
 			}
 			table{
-                margin-top: 10px;
-                
+                margin-top: 10px;    
             }
-            
             table,td,th{
                 border: 1px solid black;
                 /*각 라인을 합쳐 준다.*/
                 border-collapse: collapse;
                 text-align: center;
-             /*    border-right:none;
+                 border-right:none;
                 border-left:none;
                 border-top:none;
-                border-bottom:none;  */
+                border-bottom:none;  
             }
             td,th{
                 padding: 5px 10px;
@@ -49,7 +47,9 @@
 		
 		<div id="datepicker"></div>
 		<input type="text" id="getdate" name="getdate">
-		<div id="schedule"><h1 id="hacsa">학사일정</h1>		
+		<div id="schedule"><h1 id="hacsa">학사일정</h1>	
+			<br/>
+			<br/>
 			<table id="listTable">
 	            <tr>
 	                <th id ="schedule_date" width="520px">날짜</th>	         

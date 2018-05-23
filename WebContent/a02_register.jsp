@@ -66,7 +66,7 @@
 <body>
 	<h2  onclick="location.href='aTuition'">Total Information System</h2>
 	<h4 onclick="location.href='aTuition'" >등록금 등록</h4>
-	<form action="tAdd">
+	<form action="tAdd" method="post">
 		<div id="div1">
 			<div>
 				<input type="text" name="term_id"  placeholder="학기">

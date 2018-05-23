@@ -64,7 +64,7 @@
 	<h2  onclick="location.href='gPage'">Total Information System</h2>
 	<h4 onclick="location.href='gPage'" >강의평가 질문 등록</h4>
 	<br/><br/><br/>
-	<form action="gAdd">
+	<form action="gAdd" method="post">
 		<div id="div1">
 			<div>
 				&nbsp; 질문

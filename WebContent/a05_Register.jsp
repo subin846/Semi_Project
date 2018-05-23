@@ -55,7 +55,7 @@
 	<h2  onclick="location.href='pManagePage'">Total Information System</h2>
 	<h4 onclick="location.href='pManagePage'" >교수 등록</h4>
 	<br/><br/><br/>
-	<form action="pAdd">
+	<form action="pAdd" method="post">
 		<div id="div1">
 			<div>
 				<input type="text" name="pro_id"  placeholder="사번">

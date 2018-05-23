@@ -14,11 +14,9 @@
 				top: 130px;
 				left: 87%;
 			}
-			html {
-	 			box-sizing: inherit;
-				background: -webkit-linear-gradient(right, #8e9eab, #eef2f3);
-				background: linear-gradient(to left, #8e9eab, #eef2f3);
-			}
+			html{
+           		background-color:#E6E6E6;
+            }
 			/* 로그아웃 */
 			#menu{
 				position : absolute;

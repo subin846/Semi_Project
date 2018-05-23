@@ -9,11 +9,9 @@
 		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 		<style type="text/css">
-			html {
-	 			box-sizing: inherit;
-				background: -webkit-linear-gradient(right, #8e9eab, #eef2f3);
-				background: linear-gradient(to left, #8e9eab, #eef2f3);
-			}
+			html{
+           		background-color:#E6E6E6;
+            }
 			/* 로그아웃 */
 			#menu{
 				position : absolute;
@@ -32,8 +30,8 @@
 			}
 		 	#div3{
                 position: absolute;
-                width:auto;
-                height: auto;
+                width:330px;
+                height: 100px;
                 border: none solid black;
                 top: 130px;
                 left: 1050px;

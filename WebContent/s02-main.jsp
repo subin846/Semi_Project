@@ -88,11 +88,11 @@
 		<div id="menu">
 				<span>${ sessionScope.loginId }</span>님 환영합니다
 				<a href="./s01.jsp">HOME</a>
-				<a href="#">비밀번호변경</a>
+				<a href="./m02.jsp">비밀번호변경</a>
 				<a href="./logout">LOGOUT</a>
 		</div>
 		<div id="navi">
-			<div id="navi1"><a href="#">학적</a></div>
+			<div id="navi1"><a href="s02-main.jsp">학적</a></div>
 			<div id="subBbs"><a href="s08.jsp">과목게시판</a></div>
 			<div><a href="./s15-main.jsp">수강신청</a></div>
 		</div>

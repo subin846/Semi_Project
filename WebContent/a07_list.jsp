@@ -175,7 +175,9 @@
 		</style>
 	</head>
 	<body>
+	<div id="div3">
 		<button id="bnt" onclick="location.href='a07_Register.jsp'">등록</button>
+	</div>
 		<table cellspacing='0'> 
 			<thead>
 				<tr>

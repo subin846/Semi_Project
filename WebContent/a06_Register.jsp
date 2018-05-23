@@ -55,7 +55,7 @@
 	<h2  onclick="location.href='suManagePage'">Total Information System</h2>
 	<h4 onclick="location.href='suManagePage'" >과목 등록</h4>
 	<br/><br/><br/>
-	<form action="suAdd">
+	<form action="suAdd" method="post">
 		<div id="div1">
 			<div>
 				<input type="text" name="subject_id"  placeholder="과목코드">
