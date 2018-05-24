@@ -80,7 +80,7 @@
 					<tr>
 						<td colspan="4">
 							<button>저장</button>
-							<a href="prolist?mName=강의자료">취소</a>
+							<a href="p04.jsp">취소</a>
 						</td>
 					</tr>
 				</table>
