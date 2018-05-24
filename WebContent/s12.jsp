@@ -112,7 +112,7 @@
 	}
 
 	$("#back").click(function(){
-		location.href="s09.jsp";
+		location.href="s11.jsp";
 	});
 	var loginId = "${sessionScope.loginId}";
 	if(loginId.indexOf("p") != -1){

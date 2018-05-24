@@ -116,7 +116,7 @@ public class BbsService {
 		dis.forward(request, response);
 	}
 
-	//학생 - 강의자료글쓰기 메서드
+	//학생 - 과제 글쓰기 메서드
 	public void write() throws IOException {
 
 		UploadService upload = new UploadService(request);

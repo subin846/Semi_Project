@@ -13,6 +13,7 @@
 				margin-top: 1%;
 			}
 			table,td,th{
+				background-color: white;
 				border: 1px solid;
 				border-collapse: collapse;
 			}

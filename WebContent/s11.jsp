@@ -9,6 +9,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>    
 <style>
 	table,th,td{
+		background-color: white;
 		border-top: 2px solid #D5D5D5;
 		border-bottom: 2px solid #D5D5D5;
 		color: #4C4C4C;
@@ -146,7 +147,7 @@
 				alert("과목을 다시 선택하세요");
 				return;
 			}
-			location.href="s13.jsp?subject_id="+selected+"&mName=강의자료";
+			location.href="s13.jsp?subject_id="+selected+"&mName=과제";
 		}
 	 
 	// 페이지 매기기

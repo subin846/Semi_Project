@@ -8,6 +8,7 @@
 <style>
 /************************ 테이블 ************************/
 table {
+	width:900px;
 	font-family:Arial, Helvetica, sans-serif;
 	color:#666;
 	font-size:14px;
@@ -22,6 +23,9 @@ table {
 	-moz-box-shadow: 0 1px 2px #d1d1d1;
 	-webkit-box-shadow: 0 1px 2px #d1d1d1;
 	box-shadow: 0 1px 2px #d1d1d1;
+}
+td{
+	width: 720px;
 }
 /* 크기 지정 */
 table th, table td {
