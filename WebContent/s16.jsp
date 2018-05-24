@@ -261,7 +261,7 @@
 </body>
 <script>
 	$(document).ready(function(){
-
+	
 			//개별적으로 ajax 호출하기위해 공통된 부분만 object 로 담는 변수선언
 			var obj ={};
 			obj.type ="POST";
@@ -485,11 +485,7 @@
 			console.log(page);
 			var optValue = $("#optSelect option:selected").val();
 			var inpValue = $("#inp").val();
-<<<<<<< HEAD
 			var term_id = " >'2018-1' "; 
-=======
-			var term_id =  " >'2018-1' "; 
->>>>>>> f261e8d29c7d68c350c2ee68b47ee82e0301b391
 			$.ajax({
 				type:"POST",
 				url:"./subjectSearch",
