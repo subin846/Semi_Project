@@ -107,12 +107,6 @@
 			#s16{
 			text-decoration: underline;
 			}
-			table,th,td{
-				border: 1px solid black;
-				border-collapse: collapse;
-				padding:10px;
-			} 
-
 		#btn{
 			cursor: pointer;
 		}
@@ -124,10 +118,11 @@
 			width: 987px;
 		}
 		table,th,td{
+			background-color:white;
 			border-collapse: collapse;
 			margin-top: 80px;
 			margin-left: 360px;
-			padding:7px;
+			padding:7.2px;
 			text-align: center;
 		}
 		#secondTable{
@@ -142,13 +137,13 @@
 			margin-left:700px;
 		}
 		#initialEntry th , #stdEnroll th{
-		    border-right: 1px solid #ccc;
+			border-right: 1px solid #ccc;
 		    border-bottom: 1px solid #ccc;
 		    border-top: 1px solid #fff;
 		    border-left: 1px solid #fff;
 			background: #eee;
 		}
-		.trRemove1 td, .trRemove2 td{
+		.trRemove1 td , .trRemove2 td{
 			border-left: 1px solid #ccc;
 		 	border-right: 1px solid #ccc;
 		    border-bottom: 1px solid #ccc;

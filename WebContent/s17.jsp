@@ -105,6 +105,7 @@
 			left:360px;
 			}
 		table,th,td{
+			background-color : white;
 			border-collapse: collapse;
 			border : 1px solid black;
 			padding :15px;
