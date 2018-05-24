@@ -199,9 +199,9 @@ public class MainDAO {
 		}
 		
 		//학생 과목 리스트
-			public ArrayList<String> selectStdSubject(String loginId) {
-				ArrayList<String> subjectList = new ArrayList<>();
-				String sql = "SELECT S.subject_name FROM subject S JOIN enroll E ON S.subject_id = E.subject_id "
+			public ArrayList<DTO> selectStdSubject(String loginId) {
+				ArrayList<DTO> subjectList = new ArrayList<>();
+				String sql = "SELECT S.subject_id, S.subject_name FROM subject S JOIN enroll E ON S.subject_id = E.subject_id "
 						+ "WHERE std_id = ? AND term_id='2018-1' ORDER BY subject_name ";
 
 				try {
@@ -210,7 +210,10 @@ public class MainDAO {
 					rs = ps.executeQuery();
 
 					while (rs.next()) {
-						subjectList.add(rs.getString("subject_name"));
+						DTO dto = new DTO();
+						dto.setSubject_id(rs.getInt("subject_id"));
+						dto.setSubject_name(rs.getString("subject_name"));
+						subjectList.add(dto);
 					}
 
 				} catch (Exception e) {
@@ -241,7 +244,6 @@ public class MainDAO {
 				ps.setString(1, loginId);
 				ps.setInt(2, subject);
 				rs = ps.executeQuery();
-				System.out.println("값이 있다");
 				if (rs.next()) {
 					dto.setMajor_name(rs.getString("major_name"));
 					dto.setTerm_id(rs.getString("term_id"));
@@ -274,19 +276,18 @@ public class MainDAO {
 			DTO dto = new DTO();
 			String sql = "SELECT T.term_id, S.subject_name, S.subject_type, S.subject_credit, P.pro_name, "
 					+ "P.pro_email, S.subject_room, M.major_name, S.subject_time, std.std_year, p.plan_cu, p.plan_book, "
-					+ "p.plan_objective, p.plan_sub_book "
-					+ "FROM pro P " + "JOIN subject S ON P.pro_id = S.pro_id "
+					+ "p.plan_objective, p.plan_sub_book,S.subject_id "
+					+ "FROM pro P " 
+					+ "JOIN subject S ON P.pro_id = S.pro_id "
 					+ "JOIN term T ON S.term_id = T.term_id " + "JOIN major M ON S.major_id = M.major_id " 
 					+ "JOIN std std ON std.major_id = M.major_id " 
 					+ "JOIN plan p ON S.subject_id = p.subject_id "
-					+ "WHERE std.std_id=? AND subject_name=?";
+					+ "WHERE S.subject_id=?";
 
 			try {
 				ps = conn.prepareStatement(sql);
-				ps.setString(1, planDTO.getStd_id());
-				ps.setString(2, planDTO.getSubject_name());
+				ps.setInt(1, planDTO.getSubject_id());
 				rs = ps.executeQuery();
-				System.out.println("값이 있다");
 				if (rs.next()) {
 					dto.setMajor_name(rs.getString("major_name"));
 					dto.setTerm_id(rs.getString("term_id"));
