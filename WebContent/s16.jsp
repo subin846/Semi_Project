@@ -120,29 +120,27 @@
 		.display{
 			display:none;
 		}
+		table{
+			width: 987px;
+		}
 		table,th,td{
 			border-collapse: collapse;
-			border : 1px solid black;
-			margin: 10px;
-			padding:10px;
+			margin-top: 80px;
+			margin-left: 360px;
+			padding:7px;
 			text-align: center;
 		}
-		#firstTable{
-			width: 1000px;
-			position:absolute;
-			top:200px;
-			left:350px;
-			}
 		#secondTable{
 			width: 1000px;
 			position:absolute;
-			top:570px;
-			left:350px;
+			top:500px;
 			}
 		#page{
-			margin-top: 400px;
-			font-size: medium;
-		} 
+			width: 1000px;
+		}
+		#page .paging{
+			margin-left:700px;
+		}
 		#initialEntry th , #stdEnroll th{
 		    border-right: 1px solid #ccc;
 		    border-bottom: 1px solid #ccc;
@@ -180,7 +178,7 @@
 		#credit{
 			background-color: #ccc;
 			position :absolute;
-			top:540px;
+			top:550px;
 			left:360px;
 			width: 1000px;
 		}

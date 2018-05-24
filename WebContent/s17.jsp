@@ -101,15 +101,13 @@
 		table{
 			width: 1000px;
 			position:absolute;
-			top:180px;
-			left:350px;
+			top:200px;
+			left:360px;
 			}
 		table,th,td{
 			border-collapse: collapse;
 			border : 1px solid black;
-			padding :10px;
-			margin:10px;
-			background-color: white;
+			padding :15px;
 		}
 		#stdEnroll th{
 		    border-right: 1px solid #ccc;

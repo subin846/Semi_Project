@@ -33,8 +33,8 @@
 		table,th,td{
 			border-collapse: collapse;
 			text-align: center;
-			padding:15px;
-			margin-top:120px;
+			padding:17px;
+			margin-top:110px;
 			margin-left:360px;
 		}
 		#page{
