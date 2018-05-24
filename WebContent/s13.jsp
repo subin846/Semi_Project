@@ -7,6 +7,11 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Insert title here</title>
 		<style>
+			#back{
+				position: relative;
+				top: -27px;
+				left: -100px;
+			}
 			#bbs{
 				margin-left: 22%;
 				margin-right: 3%;
@@ -77,12 +82,12 @@
 					<tr>
 						<td colspan="4">
 							<button id="save">저장</button>
-							<div id="back">취소</div>
 						</td>
 					</tr>
 				</table>
 			</div>
 		</form>
+		<button id="back">취소</button>
 	</body>
 	<script>
 	var obj={};

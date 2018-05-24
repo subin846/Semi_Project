@@ -36,9 +36,9 @@
 				color: white;
 			}
 			#menu1{
-				position : relative;
+				position : absolute;
 				top: 10px;
-				left:70%;
+				left:65%;
 				color: white;
 			}
 			#navi{
