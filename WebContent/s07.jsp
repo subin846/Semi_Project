@@ -65,7 +65,7 @@ table td {
 				text-decoration: underline;
 			}
 			table {
-				width: 600px;
+				width: 900px;
 			}
 			input[type="text"], select {
 				width: 98%;
@@ -91,7 +91,7 @@ table td {
 		</style>
 	</head>
 	<body>
-		<h3>현재 학기 신청 과목</h3>
+		<h3 id="term">현재 학기 신청 과목</h3>
 		<table id="tableEnroll">
 			<tr>
 				<th>과목명</th>
@@ -99,7 +99,7 @@ table td {
 				<th>학점</th>
 			</tr>
 		</table>
-		<h3>학점 계산</h3>
+		<h3 id="cal">학점 계산</h3>
 		<table id="tableCal">
 			<tr>
 				<th>과목명</th>

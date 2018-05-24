@@ -61,7 +61,7 @@
     	
     	<div id="main">
         <form action="login" method="post">
-        		<img src="https://lh3.googleusercontent.com/onlT8Z29jXIit_TyzKv9k4feg61Jeo4QkjyRNdmN1LxCcQ5I-b4J06a8jQVWl5k1awZg4Q-US9jBWbCbv7kF=w1600-h720" width="350" height="250" alt="로고,,,"/>
+        		<img src="/img/logo.png" width="350" height="250" alt="로고,,,"/>
     		<div id="sub">
 	        	<div>
 	        		<input type="text" name="userId"  placeholder="학번,사번(ID No.)"/>

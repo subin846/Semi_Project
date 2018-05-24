@@ -9,7 +9,7 @@
 		}
 		#divSel{
 			position : absolute;
-			top :  130px;
+			top :  160px;
 			left: 350px;
 			width:99%;
 			margin : 10px;
