@@ -7,6 +7,11 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Insert title here</title>
 		<style>
+			#back{
+				position: relative;
+				top: -27px;
+				left: -100px;
+			}
 			#bbs{
 				margin-left: 22%;
 				margin-right: 3%;
@@ -82,6 +87,7 @@
 				</table>
 			</div>
 		</form>
+		<button id="back" onclick="location.href='s11.jsp'">취소</button>
 	</body>
 	<script>
 	var obj={};
