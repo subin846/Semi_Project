@@ -125,8 +125,8 @@
 			 success: function(data) {
 				var str = "";
 				for (var i = 0; i < data.subjectList.length; i++) {
-					str += "<option value='" + data.subjectList[i] + "'>" 
-						+ data.subjectList[i] 
+					str += "<option value='" + data.subjectList[i].subject_id + "'>" 
+						+ data.subjectList[i].subject_name 
 						+ "</option>";
 						console.log(data.subjectList[i]);
 				}
@@ -149,7 +149,6 @@
 				},
 				success: function(data) {
 					// 태그에 가져온 데이터 넣기
-				
 					$("#major").html(data.dto.major_name);
 					$("#term").html(data.dto.term_id);
 					$("#subject").html(data.dto.subject_name);
@@ -162,7 +161,7 @@
 					$("#classroom").html(data.dto.subject_room);
 					$("#cu").html(data.dto.plan_cu);
 					$("#planbook").html(data.dto.plan_book);
-					$("#objective").html(data.dto.subject_objective);
+					$("#objective").html(data.dto.plan_objective);
 					$("#sub_book").html(data.dto.plan_sub_book);
 				}
 			});

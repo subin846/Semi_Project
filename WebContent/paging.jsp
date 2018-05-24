@@ -4,14 +4,13 @@
 <html>
 <head>
     <style>
-        .paging {
+        .paging{
             padding: 10px 0px;
             text-align: center;
         }
         .paging a {
             display: inline-block;
             padding: 4px;
-            margin-right: 3px;
             width: 15px;
             color: black;
             font-size: 12px;
@@ -26,7 +25,7 @@
             width: 30px;
         }
         /* 현재 페이지, 마우스 올렸을 때 */
-        .paging a#curPage, .paging div a:hover {  
+        .paging a#curPage, .paging a:hover {  
             color: #fff;
             border: 1px solid orange;
             background-color: orange;

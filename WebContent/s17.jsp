@@ -93,14 +93,8 @@
 				padding-top: 50px;
 			} 
 			#sub div:hover {
-				 text-decoration: underline; 
+				text-decoration: underline; 
 			}
-			tr,th{
-				border: 1px solid black;
-				border-collapse: collapse;
-				padding:10px 15px;
-				margin:2%;
-			} 
 		#s17{
 			text-decoration: underline;
 		}
