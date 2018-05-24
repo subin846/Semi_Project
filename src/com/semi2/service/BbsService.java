@@ -262,7 +262,7 @@ public class BbsService {
 		int num4 = Integer.parseInt(request.getParameter("s3"));
 		int num5 = Integer.parseInt(request.getParameter("s4"));
 
-		int aver = (num1+num2+num3+num4+num5) / 5;
+		double aver = ((double)num1+num2+num3+num4+num5) / 5;
 
 		BbsDAO dao = new BbsDAO();
 		DTO dto = dao.grade(selected, std_id, aver);

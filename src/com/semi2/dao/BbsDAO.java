@@ -226,14 +226,14 @@ public class BbsDAO {
 	}
 
 	//학생 - 강의 평가 저장 메서드
-	public DTO grade(int selected, String std_id, int aver) {
+	public DTO grade(int selected, String std_id, double aver) {
 		DTO dto = null;
 		String sql = "INSERT INTO grade(grade_id, grade_grade, subject_id, std_id) VALUES (seq_grade_id.NEXTVAL,?,?,?)";
 		String sql2 = "update subject set subject_grade=(select avg(grade_grade) from grade where subject_id=?) where subject_id=?";
 		try {
 			dto = new DTO();
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, aver);
+			ps.setDouble(1, aver);
 			ps.setInt(2, selected);
 			ps.setString(3, std_id);
 			ps.executeUpdate();
