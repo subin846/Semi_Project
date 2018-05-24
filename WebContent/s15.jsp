@@ -31,6 +31,7 @@
 			width: 987px;
 		}
 		table,th,td{
+			background-color : white;
 			border-collapse: collapse;
 			text-align: center;
 			padding:17px;
