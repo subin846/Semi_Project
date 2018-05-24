@@ -485,7 +485,11 @@
 			console.log(page);
 			var optValue = $("#optSelect option:selected").val();
 			var inpValue = $("#inp").val();
+<<<<<<< HEAD
+			var term_id = " >'2018-1' "; 
+=======
 			var term_id =  " >'2018-1' "; 
+>>>>>>> f261e8d29c7d68c350c2ee68b47ee82e0301b391
 			$.ajax({
 				type:"POST",
 				url:"./subjectSearch",
@@ -512,6 +516,7 @@
 				console.log("stdEnroll 함수 호출");
 				obj.url="./stdEnroll";
 				obj.term_id ="2018-2";
+				
 	 			obj.data={
 						"loginId" :"${sessionScope.loginId}",
 						"term_id":obj.term_id

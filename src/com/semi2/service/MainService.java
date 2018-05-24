@@ -164,7 +164,7 @@ public class MainService extends PwDTO{
 		String loginId = request.getParameter("loginId");
 		
 		MainDAO dao = new MainDAO();
-		ArrayList<String> subjectList = dao.selectStdSubject(loginId);
+		ArrayList<DTO> subjectList = dao.selectStdSubject(loginId);
 		
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("subjectList", subjectList);
@@ -184,7 +184,6 @@ public class MainService extends PwDTO{
 		DTO planDTO = new DTO();
 		
 		DTO dto = dao.plecturePlan(loginId,subject);
-		System.out.println("planDTOㄴㄴㄴㄴㄴ: " +planDTO.getSubject_id());
 		
 		// map에 dto 담기
 		HashMap<String, Object> map = new HashMap<>();
@@ -200,13 +199,12 @@ public class MainService extends PwDTO{
 	// 강의계획서 조회(학생 페이지)
 	public void slecturePlan() throws IOException {
 		String loginId = request.getParameter("loginId");
-		String subject = request.getParameter("subject");
+		int subject = Integer.parseInt(request.getParameter("subject"));
 
 		MainDAO dao = new MainDAO();
 		DTO planDTO = new DTO();
 		planDTO.setStd_id(loginId);
-		planDTO.setSubject_name(subject);
-		System.out.println("planDTOㄴㄴㄴㄴㄴ: " +planDTO.getSubject_name());
+		planDTO.setSubject_id(subject);
 		DTO dto = dao.slecturePlan(planDTO);
 
 		// map에 dto 담기
