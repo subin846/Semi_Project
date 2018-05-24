@@ -9,6 +9,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>    
 <style>
 	table,th,td{
+		background-color: white;
 		border-top: 2px solid #D5D5D5;
 		border-bottom: 2px solid #D5D5D5;
 		color: #4C4C4C;

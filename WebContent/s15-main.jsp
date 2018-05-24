@@ -8,42 +8,68 @@
 		<script src =" https://code.jquery.com/jquery-3.3.1.min.js"></script>
 		<title>Insert title here</title>
 		<style>
+			img{
+				cursor: pointer;
+			}
 			body{
 				margin: 0px; /* body와 div 사이 공백 제거 */
+				background-image: url('/img/back.jpg') ;
+				background-size: cover;
 			}
 			#menu{
+				width: 100%;
+				height:50px;
+				margin-top: 0px;
+				background-color: #9DCFFF;
 				overflow:hidden;
 				float: right;
 				font-weight: 600;
-				font-size:12px;
-				margin: 15px 0px 15px 0px;
+				font-size:16px;
+				color: white;
+				
 			}
 			#menu a{
 				text-decoration: none;
 				border-left: 1px solid #c0c0c0;
 				padding: 0px 10px 0px 14px;
-				color: black;
+				color: white;
+			}
+			#menu1{
+				position : relative;
+				top: 10px;
+				left:70%;
+				color: white;
 			}
 			#navi{
 				width: 100%;
-				height: 60px;
-				background-color: #9DCFFF;
+				height: 90px;
 				margin-top: 20px;
 				overflow:hidden;
+				background-color:white;
+				border-bottom: 1px solid #ccc;
 			}
 			#navi div{
-				display: inline;
-				height: 30px;
-				padding: 17px 50px 13px 50px;
-				background-color: #9DCFFF;
 				float: left;
+				position : relative;
+				top : 0px;
+				left: 80px;
 			}
-			#navi div:hover{
-				background-color: #4375DB;
+			.title{
+				position : relative;
+				top : 0px;
+				left: 150px;
+				display: inline;
+				height: 100%;
+				padding: 17px 50px 13px 50px;
+				float: left;
+				text-align: center;
 			}
 			#navi a{
+				position :relative;
+				top : 15px;
+				left:0px;
 				text-decoration: none;
-				color: white;
+				color: #333;
 				font-size: large;
 				font-weight: bold;
 			}
@@ -86,20 +112,25 @@
 	</head>
 	<body>
 			<div id="menu">
+				<div id="menu1">
 					<span>${sessionScope.loginId}</span>님 환영합니다
 					<a href="./s01.jsp">HOME</a>
 					<a href="./m02.jsp">비밀번호변경</a>
 					<a href="./logout">LOGOUT</a>
+				</div>	
 			</div>
 			<div id="navi">
-				<div><a href="./s02-main.jsp">학적</a></div>
-				<div><a href="./s08.jsp">과목게시판</a></div>
-				<div id="navi3"><a href="./s15-main.jsp">수강신청</a></div>
+				<div>
+				<img src="/img/logo.png" onclick="location.href='s01.jsp'" width="130" height="90" alt="로고,,,"/>
+				</div>
+				<div class="title"><a href="./s02-main.jsp">학적</a></div>
+				<div class="title"><a href="./s08.jsp">과목게시판</a></div>
+				<div class="title"><a href="./s15-main.jsp" style="text-decoration: underline">수강신청</a></div>
 			</div>
 			<div id="sub">
 				<div id="s15"><a href="./s15-main.jsp">과목조회</a></div>
 				<div><a href="./s16.jsp">수강신청</a></div>
-				<div><a href="./s17.jsp">신청과목조회</a></div>
+				<div><a href="./s17.jsp" >신청과목조회</a></div>
 			</div>
 			<div id ="import">
 				<%@include file="s15.jsp" %> 
