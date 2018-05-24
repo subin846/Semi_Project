@@ -44,6 +44,7 @@ public class EnrollDAO {
 					+" ON S.major_id = M.major_id "
 					+" JOIN pro P "
 					+" ON S.pro_id = P.pro_id  "
+					+" WHERE S.term_id "+ term_id 
 					+ "ORDER BY term_id DESC ";
 		}else if(optValue.equals("term")) {
 			sql =" SELECT count(*) AS cnt "

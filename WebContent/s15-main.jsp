@@ -99,15 +99,6 @@
 			#sub div:hover {
 				 text-decoration: underline; 
 			}
-			#import{
-				width: 2000px;
-			}
-			#import  table,th,td{
-				border: 1px solid black;
-				border-collapse: collapse;
-				margin : 200px;
-				padding : 2px;
-			} 
 		</style>
 	</head>
 	<body>
