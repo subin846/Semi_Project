@@ -11,7 +11,7 @@
 		<style>
 			body{
 				margin: 0px; /* body와 div 사이 공백 제거 */
-				background-image: url('http://www.city.kr/files/attach/images/1326/304/983/008/3805676538b654da659d9f36cb53eb7b.jpg') ;
+				background-image: url('/img/back.jpg') ;
 				background-size: cover;
 			}
 			img {
@@ -133,7 +133,7 @@
 		</div>
 		<div id="navi">
 			<div>
-				<img src="https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/33216304_1727920143994082_1446855077636603904_n.jpg?_nc_cat=0&oh=e7f7b334b5752ab8f86f606f82675cf9&oe=5B89CE97" onclick="location.href='s01.jsp'" width="130" height="90" alt="로고,,,"/>
+				<img src="/img/logo.png" onclick="location.href='s01.jsp'" width="130" height="90" alt="로고,,,"/>
 			</div>
 			<div class="title" style="text-decoration: underline"><a href="s02-main.jsp">학적</a></div>
 			<div class="title"><a href="s08.jsp">과목게시판</a></div>

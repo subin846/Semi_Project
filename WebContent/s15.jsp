@@ -9,7 +9,7 @@
 		}
 		#divSel{
 			position : absolute;
-			top :  130px;
+			top :  160px;
 			left: 350px;
 			width:99%;
 			margin :  10px;
@@ -38,12 +38,13 @@
 		table{
 			width: 1000px;
 			position:absolute;
-			top:30px;
+			top:35px;
 			left:160px;
 		}
 		table,th,td{
 			padding: 10px;
 			text-align:center;
+			background-color: white;
 		}
 		#trAppend th{
 		    border-right: 1px solid #ccc;
