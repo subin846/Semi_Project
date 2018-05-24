@@ -49,6 +49,7 @@ public class EnrollService {
 		int startNum =paging.getStartNum();
 		int endNum = paging.getEndNum();
 		System.out.println(startNum+" ~ "+endNum);
+
 		//DB접속을 통해서 optSel에 맞는 쿼리문 구분.->데이터가 많으므로 DTO에 담음.
 		EnrollDAO dao = new EnrollDAO();
 		ArrayList<DTO> searchList = new ArrayList<DTO>();
