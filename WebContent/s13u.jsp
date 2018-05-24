@@ -136,7 +136,7 @@
 			$("input[name='bbs_content']").focus();
 			return;
 		}
-		form.action="update";
+		form.action="sUpdate";
 	});
 	</script>
 </html>
