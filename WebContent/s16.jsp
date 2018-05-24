@@ -69,21 +69,28 @@
 			#sub div:hover {
 				 text-decoration: underline; 
 			}
-			tr,th{
+			#s16{
+			text-decoration: underline;
+			}
+			table,th,td{
 				border: 1px solid black;
 				border-collapse: collapse;
-				padding:10px 15px;
-				margin:2%;
+				padding:10px;
 			} 
-		#s16{
-			text-decoration: underline;
-		}
+
 		#btn{
 			cursor: pointer;
 		}
 		/* 과목 Id 는 수강 신청 목록에서 숨기기*/
 		.display{
 			display:none;
+		}
+		table,th,td{
+			border-collapse: collapse;
+			border : 1px solid black;
+			margin: 10px;
+			padding:10px;
+			text-align: center;
 		}
 		#firstTable{
 			width: 1000px;
@@ -98,18 +105,10 @@
 			left:350px;
 			}
 		#page{
-			position:absolute;
-			top: 480px;
-			left:770px;
+			margin-top: 400px;
 			font-size: medium;
 		} 
-		table,th,td{
-			border-collapse: collapse;
-			border : 1px solid black;
-			margin: 10px;
-			padding:10px;
-			text-align: center;
-		}
+
 		#initialEntry th , #stdEnroll th{
 		    border-right: 1px solid #ccc;
 		    border-bottom: 1px solid #ccc;
@@ -449,7 +448,7 @@
 			console.log(page);
 			var optValue = $("#optSelect option:selected").val();
 			var inpValue = $("#inp").val();
-			var term_id = " <= '2018-2' ";
+			var term_id =  " >'2018-1' "; 
 			$.ajax({
 				type:"POST",
 				url:"./subjectSearch",

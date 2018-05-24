@@ -12,38 +12,36 @@
 			top :  130px;
 			left: 350px;
 			width:99%;
-			margin :  10px;
+			margin : 10px;
 		}
 		#divSel #optSelect{
 			width: 170px;
 			height:50px;
 		}
 		#divSel #inp{
-			position :relative;
-			top:-2px;
 			width: 500px;
 			height:44px;
 		}
 		#divSel #btn{
 			width: 300px;
-			height:48px;
+			height:50px;
 			cursor: pointer;
 		}
-		#page{
-			position:absolute;
-			top: 500px;
-			left:750px;
-			font-size: medium;
-		}
 		table{
-			width: 1000px;
-			position:absolute;
-			top:30px;
-			left:160px;
+			width: 987px;
 		}
 		table,th,td{
-			padding: 10px;
-			text-align:center;
+			border-collapse: collapse;
+			text-align: center;
+			padding:15px;
+			margin-top:120px;
+			margin-left:360px;
+		}
+		#page{
+			width: 1000px;
+		}
+		#page .paging{
+			margin-left:700px;
 		}
 		#trAppend th{
 		    border-right: 1px solid #ccc;
@@ -71,23 +69,23 @@
 				<input type="text" id ="inp"  placeholder="조회 버튼을 클릭해주세요"/>
 				<input type="button" id="btn" value="조회"/>
 		</div>
-			<table> <!-- id OR class="tabAppend" -->
-				<tr id="trAppend">
-					<th>학기</th>
-					<th>학과명</th>
-					<th>과목명</th>
-					<th>교수명</th>
-					<th>강의실</th>
-					<th>강의시간</th>
-					<th>이수구분</th>
-					<th>학점</th>
-					<th>제한인원</th>
-					<th>평점</th>
-				</tr>
+			<table>
+					<tr id="trAppend">
+						<th>학기</th>
+						<th>학과명</th>
+						<th>과목명</th>
+						<th>교수명</th>
+						<th>강의실</th>
+						<th>강의시간</th>
+						<th>이수구분</th>
+						<th>학점</th>
+						<th>제한인원</th>
+						<th>평점</th>
+					</tr>
 			</table>
-		<div id="page">
-			<jsp:include page="paging.jsp"></jsp:include>
-		</div>
+			<div id="page">
+				<jsp:include page="paging.jsp"></jsp:include>
+			</div>
 </body>
 <script>
 	$(document).ready(function(){

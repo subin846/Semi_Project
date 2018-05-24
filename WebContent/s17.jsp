@@ -67,29 +67,24 @@
 				padding-top: 50px;
 			} 
 			#sub div:hover {
-				 text-decoration: underline; 
+				text-decoration: underline; 
 			}
-			tr,th{
+			#s17{
+				text-decoration: underline;
+			}
+			table{
+				width: 1000px;
+				position:absolute;
+				top:180px;
+				left:350px;
+			}
+			table,th,td{
 				border: 1px solid black;
 				border-collapse: collapse;
-				padding:10px 15px;
-				margin:2%;
+				padding:15px;
+				margin:8px;
 			} 
-		#s17{
-			text-decoration: underline;
-		}
-		table{
-			width: 1000px;
-			position:absolute;
-			top:180px;
-			left:350px;
-			}
-		table,th,td{
-			border-collapse: collapse;
-			border : 1px solid black;
-			padding :10px;
-			margin:10px;
-		}
+
 		#stdEnroll th{
 		    border-right: 1px solid #ccc;
 		    border-bottom: 1px solid #ccc;
