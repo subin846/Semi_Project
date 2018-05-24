@@ -11,6 +11,7 @@
 		<style>
 /************************ 테이블 ************************/
 table {
+	width :900px;
 	font-family:Arial, Helvetica, sans-serif;
 	color:#666;
 	font-size:14px;

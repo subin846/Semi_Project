@@ -14,6 +14,7 @@
 			border-collapse: collapse;
 			text-align: center;
 			padding: 10px;
+			background-color: white;
 		}
 		#bbs th{
 			font-size: 15px;
