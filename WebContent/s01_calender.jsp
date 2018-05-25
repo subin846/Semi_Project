@@ -54,7 +54,7 @@
 			<br/>
 			<table id="listTable">
 	            <tr>
-	                <th id ="schedule_date" width="520px">날짜</th>	         
+	                <th id ="schedule_date" width="520px">날짜를 선택하세요</th>	         
 	            </tr>
         	</table>
 		</div>
