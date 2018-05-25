@@ -139,7 +139,7 @@
 		}else{
 			var bbs_id = "${uploaddetail.bbs_id}";
 			console.log(bbs_id);
-			location.href="del?idx="+bbs_id+"&mName=과제";
+			location.href="sDel?idx="+bbs_id+"&mName=과제";
 		}
 	});
 </script>

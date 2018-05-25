@@ -234,7 +234,7 @@ public class BbsService {
 			}
 		}
 		request.setAttribute("msg", "과목을 다시 선택하세요");
-		RequestDispatcher dis = request.getRequestDispatcher("s09.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("s11.jsp");
 		dis.forward(request, response);
 	}	
 
