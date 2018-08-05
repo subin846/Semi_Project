@@ -31,7 +31,8 @@ public class BbsService {
 
 	//과목게시판 클릭시 select에 신청과목 들어가는 메서드
 	public void subjectTab() throws IOException {
-		Date date = new Date();
+		String term = "2018-1";
+		/*Date date = new Date();
 		SimpleDateFormat time = new SimpleDateFormat("yyyy/MM/dd");
 		String today = time.format(date);
 		String[] list = today.split("/");
@@ -40,7 +41,7 @@ public class BbsService {
 			term = list[0]+"-"+1; 
 		}else {
 			term = list[0]+"-"+2; 
-		}
+		}*/
 		
 		String id = request.getParameter("id");
 		BbsDAO dao = new BbsDAO();
@@ -280,7 +281,8 @@ public class BbsService {
 
 	//교수 - 과목게시판 클릭시 select에 신청과목 들어가는 메서드
 	public void prosubjectTab() throws IOException {
-		Date date = new Date();
+		String term = "2018-1";
+		/*Date date = new Date();
 		SimpleDateFormat time = new SimpleDateFormat("yyyy/MM/dd");
 		String today = time.format(date);
 		String[] list = today.split("/");
@@ -289,7 +291,7 @@ public class BbsService {
 			term = list[0]+"-"+1; 
 		}else {
 			term = list[0]+"-"+2; 
-		}
+		}*/
 		
 		String id = request.getParameter("id");
 		BbsDAO dao = new BbsDAO();
